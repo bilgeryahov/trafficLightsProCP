@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TrafficLights.MainForm" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DyiBYhAgAKAAAVgGAIiAyAUDAMCgEAABQgAgFBBiACA=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Program" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Properties.Resources" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEgAAAAAAAAAAAAAAABMAAAAQAAAAAAAAAEAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Properties.Settings" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Renderable">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Renderable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Crossing">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAABAAAAAAAAAQAAwACAAAQAAAAAAAA=</HashCode>
+      <FileName>Crossing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Car">
+    <Position X="2.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Pedestrian">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pedestrian.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Crosswalk">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAABAAAAIAAEA=</HashCode>
+      <FileName>Crosswalk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Road">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAACAAAAAAAAQAA=</HashCode>
+      <FileName>Road.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Trafficlight">
+    <Position X="3.5" Y="4" Width="2" />
+    <NestedTypes>
+      <Enum Name="TrafficLights.Trafficlight.State" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Trafficlight.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAYAAAAAAAAAAACAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Trafficlight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.Simulation">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAICAAAAAAAAAAAAABAAAAAAAAIAAAAAAEAAg=</HashCode>
+      <FileName>Simulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.SimulationResult">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>SimulationResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.UndoableAction">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UndoableAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.ReversableAction">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>ReversableAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.ReversableAction&lt;T&gt;">
+    <Position X="9.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>ReversableAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.UndoStack">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UndoStack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.RedoableAction">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RedoableAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.RecycleManager">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecycleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.SavedManager">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SavedManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.CrossingContainer">
+    <Position X="14.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAQAAAAEAAA=</HashCode>
+      <FileName>CrossingContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

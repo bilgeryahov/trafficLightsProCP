@@ -106,7 +106,7 @@
   <Class Name="TrafficLights.ReversableAction">
     <Position X="8" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>ReversableAction.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -117,11 +117,11 @@
       <FileName>ReversableAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TrafficLights.UndoStack">
+  <Class Name="TrafficLights.ActionStack">
     <Position X="10.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>UndoStack.cs</FileName>
+      <HashCode>AAAEAAAABAAABAABEAAAAAABAAAAAAAAAAAAAAFgAAA=</HashCode>
+      <FileName>ActionStack.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.RedoableAction">
@@ -149,7 +149,7 @@
     <Position X="14.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAQAAAAEAAA=</HashCode>
-      <FileName>CrossingContainer.cs</FileName>
+      <FileName>CrossingManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

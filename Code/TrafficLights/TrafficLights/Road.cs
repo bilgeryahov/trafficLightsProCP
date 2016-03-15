@@ -50,5 +50,15 @@ namespace TrafficLights
             {
             }
         }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

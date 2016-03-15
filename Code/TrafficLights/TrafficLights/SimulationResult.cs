@@ -7,15 +7,6 @@ namespace TrafficLights
 {
     public class SimulationResult
     {
-        public Simulation Simulation
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public Simulation Simulation { get; private set; }
     }
 }

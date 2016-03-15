@@ -7,7 +7,7 @@ namespace TrafficLights
 {
     public abstract class CrossingContainer
     {
-        private List<Crossing> crossings;
+        private List<Crossing> crossings = new List<Crossing>();
 
         IEnumerable<Crossing> Crossings { get { return crossings.ToArray(); } }
 
@@ -17,6 +17,11 @@ namespace TrafficLights
         }
 
         public void Remove(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Clear()
         {
             throw new System.NotImplementedException();
         }

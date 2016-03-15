@@ -7,6 +7,14 @@ namespace TrafficLights
 {
     public abstract class Crossing : Renderable
     {
+        public Simulation Parent { get; private set; }
+
+        //todo: iterate parent and get corresponding UP DOWN LEFT RIGHT
+        public Crossing LeftCrossing{get { throw new NotImplementedException();}}
+        public Crossing RightCrossing{get { throw new NotImplementedException();}}
+        public Crossing TopCrossing{get { throw new NotImplementedException();}}
+        public Crossing BotCrossing{get { throw new NotImplementedException();}}
+
         public Crosswalk[] Crosswalks
         {
             get

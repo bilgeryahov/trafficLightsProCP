@@ -17,5 +17,26 @@ namespace TrafficLights
             {
             }
         }
+
+        public Direction Direction { get; private set; }
+
+        //todo go in crosswalk, check direction, return from simulation the next crossing available's croswalk
+        public Crosswalk NextCrosswalk
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

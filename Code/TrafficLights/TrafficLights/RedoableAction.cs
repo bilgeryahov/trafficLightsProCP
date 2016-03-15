@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public class RedoableAction: ReversableAction<UndoableAction>
+    public abstract class RedoableAction: ReversableAction<UndoableAction>
     {
     }
 }

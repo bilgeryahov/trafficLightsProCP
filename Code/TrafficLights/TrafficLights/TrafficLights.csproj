@@ -46,9 +46,9 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="Crossing.cs" />
-    <Compile Include="CrossingContainer.cs" />
     <Compile Include="CrossingManager.cs" />
     <Compile Include="Crosswalk.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +68,7 @@
     <Compile Include="SimulationResult.cs" />
     <Compile Include="Trafficlight.cs" />
     <Compile Include="UndoableAction.cs" />
-    <Compile Include="UndoStack.cs" />
+    <Compile Include="ActionStack.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

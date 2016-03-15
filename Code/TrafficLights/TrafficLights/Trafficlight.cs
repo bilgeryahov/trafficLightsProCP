@@ -9,40 +9,47 @@ namespace TrafficLights
     {
         public enum State
         {
-            Red, Yellow, YellowBlink, Green, NoPower,
+            Red, Yellow, YellowBlink, Green, None
         }
 
-        public State CurrentState
+        public static State[] DefaultStateOrder { get { return new State[] { State.Red, State.Yellow, State.Green }; } }
+
+        public State CurrentState { get; private set; }
+        public State PreviousState { get; private set; }
+
+        public State OnOverrideState{get; private set;}
+        public State OnOverrideCancelNextState
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            private set
-            {
+                if (OnOverrideState == State.YellowBlink) return State.YellowBlink;
+                if (OnOverrideState == State.Red) return State.Green;
+                if (OnOverrideState == State.Yellow) return State.Green;
+                if (OnOverrideState == State.Green) return State.Red;
+                return State.None;
             }
         }
+        public bool IsOveridden{get{return OnOverrideState != State.None;}}
 
         public State NextState
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            private set
-            {
+                if (CurrentState == State.Red) return State.Green;
+                if (CurrentState == State.Green) return State.Yellow;
+                if (CurrentState == State.Yellow) return State.Red;
+                if (CurrentState == State.YellowBlink) return State.YellowBlink;
+
+                return State.None;
             }
         }
 
-        public State PreviousState
+        public void Next()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            private set
-            {
-            }
+            //todo set amount of time for YEllow
+
+            this.PreviousState = CurrentState;
+            this.CurrentState = NextState;
         }
 
         public void Override(State state, int time)
@@ -52,7 +59,23 @@ namespace TrafficLights
 
         public void Override(State state)
         {
-            throw new System.NotImplementedException();
+            Override(state, int.MaxValue);
+        }
+
+        public void CancelOverride()
+        {
+            this.CurrentState = OnOverrideCancelNextState;
+            this.OnOverrideState = State.None;
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw()
+        {
+            throw new NotImplementedException();
         }
     }
 }

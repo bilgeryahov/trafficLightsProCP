@@ -7,14 +7,8 @@ namespace TrafficLights
 {
     public abstract class Renderable
     {
-        public void Update()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Update();
 
-        public void Draw()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Draw();
     }
 }

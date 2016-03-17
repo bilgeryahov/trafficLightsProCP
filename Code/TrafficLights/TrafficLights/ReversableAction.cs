@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    /// <summary> Abstract class defining a reversable action</summary>
     public abstract class ReversableAction
     {
         public abstract ReversableAction Reverse { get; }
@@ -12,6 +13,7 @@ namespace TrafficLights
         public abstract void Apply();
     }
 
+    /// <summary> Abstract class defining a reversable action that must have a speficic counter</summary>
     public abstract class ReversableAction<T> : ReversableAction where T : ReversableAction
     {
         public sealed override ReversableAction Reverse
@@ -20,8 +22,6 @@ namespace TrafficLights
         }
 
         public abstract T ReverseAction { get; }
-
-        //new T Reverse { get { return base.Reverse as T; } }
     }
 
 }

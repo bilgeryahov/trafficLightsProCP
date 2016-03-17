@@ -5,6 +5,9 @@ using System.Text;
 
 namespace TrafficLights
 {
+    /// <summary>
+    /// Container that handles Undo and Redo of actions
+    /// </summary>
     public class ActionStack
     {
         private Stack<UndoableAction> undoableStack = new Stack<UndoableAction>();

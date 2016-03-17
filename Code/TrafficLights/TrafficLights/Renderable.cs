@@ -5,10 +5,11 @@ using System.Text;
 
 namespace TrafficLights
 {
+    /// <summary>abstract class providing with the core for a dynamic object to be rendered</summary>
     public abstract class Renderable
     {
-        public abstract void Update();
+        public abstract void Update(float seconds);
 
-        public abstract void Draw();
+        public abstract void Draw(System.Drawing.Bitmap image);
     }
 }

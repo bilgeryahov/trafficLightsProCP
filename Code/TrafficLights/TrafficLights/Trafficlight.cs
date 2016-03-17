@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    /// <summary>Responsible for the traffic light on every crosswalks</summary>
     public class Trafficlight : Renderable
     {
         public enum State
@@ -13,6 +14,9 @@ namespace TrafficLights
         }
 
         public static State[] DefaultStateOrder { get { return new State[] { State.Red, State.Yellow, State.Green }; } }
+
+        public float RedToGreenSeconds { get; private set; }
+        public float YellowSeconds { get; private set; }
 
         public State CurrentState { get; private set; }
         public State PreviousState { get; private set; }
@@ -68,13 +72,16 @@ namespace TrafficLights
             this.OnOverrideState = State.None;
         }
 
-        public override void Update()
+        public override void Update(float seconds)
         {
+            //time passed += seconds
+            //if passed > lastupdate -> change light
             throw new NotImplementedException();
         }
 
-        public override void Draw()
+        public override void Draw(System.Drawing.Bitmap image)
         {
+            //draw the circles
             throw new NotImplementedException();
         }
     }

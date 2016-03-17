@@ -29,13 +29,15 @@ namespace TrafficLights
             }
         }
 
-        public override void Update()
+        public override void Update(float seconds)
         {
+            //moves the car based on the elapsed time
             throw new NotImplementedException();
         }
 
-        public override void Draw()
+        public override void Draw(System.Drawing.Bitmap image)
         {
+            //draws a rectangle on the car's location
             throw new NotImplementedException();
         }
     }

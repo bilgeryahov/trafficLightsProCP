@@ -9,7 +9,7 @@ namespace TrafficLights
     {
         private List<Crossing> crossings = new List<Crossing>();
 
-        IEnumerable<Crossing> Crossings { get { return crossings.ToArray(); } }
+        public Crossing[] Crossings { get { return crossings.ToArray(); } }
 
         public void Add(Crossing crossing)
         {
@@ -24,6 +24,16 @@ namespace TrafficLights
         public void Clear()
         {
             throw new System.NotImplementedException();
+        }
+
+        protected Crossing this[int id]
+        {
+            get
+            {
+                if (crossings.Count < id && id > -1)
+                    return crossings[id];
+                return null;
+            }
         }
     }
 }

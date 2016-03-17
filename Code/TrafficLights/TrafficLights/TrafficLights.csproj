@@ -49,6 +49,7 @@
     <Compile Include="CrossingManager.cs" />
     <Compile Include="Crosswalk.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="Grid.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +66,8 @@
     <Compile Include="Road.cs" />
     <Compile Include="SavedManager.cs" />
     <Compile Include="Simulation.cs" />
+    <Compile Include="SystemState.cs" />
+    <Compile Include="TrafficManager.cs" />
     <Compile Include="SimulationResult.cs" />
     <Compile Include="Trafficlight.cs" />
     <Compile Include="UndoableAction.cs" />

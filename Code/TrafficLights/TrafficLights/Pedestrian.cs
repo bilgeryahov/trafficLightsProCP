@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    /// <summary>Represents a 'pedestrian' within the system</summary>
     public class Pedestrian : Renderable
     {
         public Crosswalk CurrentCrosswalk
@@ -29,13 +30,15 @@ namespace TrafficLights
             }
         }
 
-        public override void Update()
+        public override void Update(float seconds)
         {
+            //moves the location of the pedestrians based on the elapsed time
             throw new NotImplementedException();
         }
 
-        public override void Draw()
+        public override void Draw(System.Drawing.Bitmap image)
         {
+            //draws a dot on the crosswalk
             throw new NotImplementedException();
         }
     }

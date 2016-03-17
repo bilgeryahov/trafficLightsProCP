@@ -6,7 +6,7 @@ using System.Text;
 namespace TrafficLights
 {
     /// <summary>Represents a 'pedestrian' within the system</summary>
-    public class Pedestrian : Renderable
+    public class Pedestrian : Component
     {
         public Crosswalk CurrentCrosswalk
         {

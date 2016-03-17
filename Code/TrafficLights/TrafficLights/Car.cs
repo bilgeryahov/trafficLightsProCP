@@ -5,8 +5,10 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public class Car : Renderable
+    public class Car : Component
     {
+        public Direction Direction { get; set; }
+        public bool InMiddleOfCrosswalk { get; set; }
         public Road From
         {
             get

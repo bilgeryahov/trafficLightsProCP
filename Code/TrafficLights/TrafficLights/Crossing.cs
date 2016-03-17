@@ -160,7 +160,7 @@ namespace TrafficLights
             }
         }
 
-        public Crossing(TrafficManager owner, int row, int column)
+        public Crossing(TrafficManager owner)
         {
             this.Owner = owner;
         }
@@ -186,6 +186,11 @@ namespace TrafficLights
         {
             this.Row = row;
             this.Column = column;
+        }
+
+        public void Rotate()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

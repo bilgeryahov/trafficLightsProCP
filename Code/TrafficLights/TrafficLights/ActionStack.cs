@@ -10,44 +10,83 @@ namespace TrafficLights
     /// </summary>
     public class ActionStack
     {
-        private Stack<UndoableAction> undoableStack = new Stack<UndoableAction>();
-        public UndoableAction[] UndoableActions { get { return undoableStack.ToArray(); } }
-        private Stack<RedoableAction> redoableStack = new Stack<RedoableAction>();
-        public RedoableAction[] RedoableActions { get { return redoableStack.ToArray(); } }
+        /// <summary>Triggered when the Undo stack has been changed</summary>
+        public static event Action<int, UndoableAction> OnUndoAltered = (x, y) => { };
+        /// <summary>Triggered when the Redo stack has been changed</summary>
+        public static event Action<int, UndoableAction> OnRedoAltered = (x, y) => { };
 
-        public bool CanUndo { get { return undoableStack.Count > 0; } }
-        public bool CanRedo { get { return redoableStack.Count > 0; } }
-
-        public void AddAction(UndoableAction action)
+        /// <summary>True if any changes remain in the activity stack</summary>
+        public static bool CanUndo
         {
-            if (redoableStack.Count > 0) redoableStack.Clear();
+            get
+            {
+                return activitiesStack.Count != 0;
+            }
+        }
 
-            undoableStack.Push(action);
+        /// <summary>True if any changes remain in the redo stack</summary>
+        public static bool CanRedo
+        {
+            get
+            {
+                return redoStack.Count != 0;
+            }
+        }
+
+        private static Stack<UndoableAction> activitiesStack = new Stack<UndoableAction>();
+        private static Stack<UndoableAction> redoStack = new Stack<UndoableAction>();
+
+        /// <summary>Adds the specified action to be listed as an action that can be undone</summary>
+        public static void AddAction(UndoableAction action)
+        {
+            if (redoStack.Count > 0) redoStack.Clear();
+
+            activitiesStack.Push(action);
+
+            //todo apply ( remove excess code )
+            action.Apply();
+
+            OnUndoAltered(activitiesStack.Count, action);
+            OnRedoAltered(redoStack.Count, null);
         }
 
         /// <summary>Undoes the last action performed, if any</summary>
-        public void Undo()
+        public static void Undo()
         {
             if (!CanUndo) return;
-            UndoableAction action = undoableStack.Pop();
-            action.Apply();
+            UndoableAction action = activitiesStack.Pop();
+            action.Undo();
+            redoStack.Push(action);
 
-            redoableStack.Push(action.ReverseAction);
+            OnRedoAltered(redoStack.Count, action);
+            if (activitiesStack.Count == 0)
+                OnUndoAltered(activitiesStack.Count, null);
+            else
+                OnUndoAltered(activitiesStack.Count, activitiesStack.Peek());
         }
 
         /// <summary>Redoes the last action undone, if any</summary>
-        public void Redo()
+        public static void Redo()
         {
             if (!CanRedo) return;
 
-            RedoableAction action = redoableStack.Pop();
-            action.Apply();
+            UndoableAction action = redoStack.Pop();
+            action.Redo();
+            activitiesStack.Push(action);
+
+            OnUndoAltered(activitiesStack.Count, action);
+            if (redoStack.Count == 0)
+                OnRedoAltered(redoStack.Count, null);
+            else
+                OnRedoAltered(redoStack.Count, redoStack.Peek());
         }
 
-        public void Clear()
+        public static void Clear()
         {
-            redoableStack.Clear();
-            undoableStack.Clear();
+            redoStack.Clear();
+            activitiesStack.Clear();
+            OnUndoAltered(activitiesStack.Count, null);
+            OnRedoAltered(activitiesStack.Count, null);
         }
     }
 }

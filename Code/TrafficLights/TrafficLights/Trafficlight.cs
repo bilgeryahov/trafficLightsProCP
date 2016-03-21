@@ -6,7 +6,7 @@ using System.Text;
 namespace TrafficLights
 {
     /// <summary>Responsible for the traffic light on every crosswalks</summary>
-    public class Trafficlight : Renderable
+    public class Trafficlight : Component
     {
         public enum State
         {

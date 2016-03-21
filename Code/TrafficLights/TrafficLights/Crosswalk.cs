@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public class Crosswalk
+    public class Crosswalk:Component
     {
         public Pedestrian PedestrianFlowSide1 { get; private set; }
         public Pedestrian PedestrianFlowSide2 { get; private set; }

@@ -105,11 +105,11 @@ namespace TrafficLights
             }
         }
 
-        public IEnumerable<Road> Roads
+        public IEnumerable<Lane> Roads
         {
             get
             {
-                List<Road> roads = new List<Road>();
+                List<Lane> roads = new List<Lane>();
 
                 foreach (Crosswalk crosswalk in Crosswalks)
                 {
@@ -120,7 +120,7 @@ namespace TrafficLights
             }
         }
 
-        public IEnumerable<Road> Feeders
+        public IEnumerable<Lane> Feeders
         {
             get
             {
@@ -128,7 +128,7 @@ namespace TrafficLights
             }
         }
 
-        public System.Collections.Generic.IEnumerable<TrafficLights.Road> TopFeeders
+        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> TopFeeders
         {
             get
             {
@@ -136,7 +136,7 @@ namespace TrafficLights
             }
         }
 
-        public System.Collections.Generic.IEnumerable<TrafficLights.Road> BotFeeders
+        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> BotFeeders
         {
             get
             {
@@ -144,7 +144,7 @@ namespace TrafficLights
             }
         }
 
-        public System.Collections.Generic.IEnumerable<TrafficLights.Road> LeftFeeders
+        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> LeftFeeders
         {
             get
             {
@@ -152,7 +152,7 @@ namespace TrafficLights
             }
         }
 
-        public System.Collections.Generic.IEnumerable<TrafficLights.Road> RightFeeders
+        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> RightFeeders
         {
             get
             {

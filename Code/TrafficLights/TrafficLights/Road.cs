@@ -6,7 +6,7 @@ using System.Text;
 namespace TrafficLights
 {
     /// <summary>A lane on a crosswalk</summary>
-    public class Road : Component
+    public class Lane : Component
     {
         public bool IsFeeder { get; private set; }
         public Direction From { get; private set; }

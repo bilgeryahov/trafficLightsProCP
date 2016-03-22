@@ -11,9 +11,9 @@ namespace TrafficLights
         public Pedestrian PedestrianFlowSide2 { get; private set; }
         public bool HasPedestriansCrossing { get { return PedestrianFlowSide1 != null || PedestrianFlowSide2 != null; } }
 
-        public List<Road> Lanes { get; private set; }
+        public List<Lane> Lanes { get; private set; }
 
-        public Crosswalk(List<Road> lanes)
+        public Crosswalk(List<Lane> lanes)
         {
             this.Lanes = lanes;
         }
@@ -29,7 +29,7 @@ namespace TrafficLights
 
         public Trafficlight Light { get; private set; }
 
-        public IEnumerable<Road> Entrylanes
+        public IEnumerable<Lane> Entrylanes
         {
             get
             {
@@ -37,7 +37,7 @@ namespace TrafficLights
             }
         }
 
-        public IEnumerable<Road> ExitLanes
+        public IEnumerable<Lane> ExitLanes
         {
             get
             {

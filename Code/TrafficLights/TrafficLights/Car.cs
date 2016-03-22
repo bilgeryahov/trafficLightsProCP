@@ -9,7 +9,7 @@ namespace TrafficLights
     {
         public Direction Direction { get; set; }
         public bool InMiddleOfCrosswalk { get; set; }
-        public Road From
+        public Lane From
         {
             get
             {
@@ -20,7 +20,18 @@ namespace TrafficLights
             }
         }
 
-        public Road CurrentRoad
+        public Lane CurrentRoad
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public @enum State
         {
             get
             {

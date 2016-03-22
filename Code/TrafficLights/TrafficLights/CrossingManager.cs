@@ -26,7 +26,7 @@ namespace TrafficLights
             throw new System.NotImplementedException();
         }
 
-        protected Crossing this[int id]
+        public Crossing this[int id]
         {
             get
             {

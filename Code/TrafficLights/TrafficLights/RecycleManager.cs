@@ -6,7 +6,7 @@ using System.Text;
 namespace TrafficLights
 {
     /// <summary>Holds all crossings that have been deleted and could be undone</summary>
-    public class RecycleManager : CrossingContainer
+    public class RecycleManager : CrossingManager
     {
         public Crossing TakeOut(int id)
         {

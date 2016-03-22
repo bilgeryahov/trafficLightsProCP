@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -25,6 +26,16 @@ namespace TrafficLights
            //     if (PedestrianFlowSide1.Direction == direction) return;
            //     else if (direction == direction.Inverse()) PedestrianFlowSide2 = new Pedestrian(this, direction);
             throw new System.NotImplementedException();
+        }
+
+        public override void Update(float seconds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw(Bitmap image)
+        {
+            throw new NotImplementedException();
         }
 
         public Trafficlight Light { get; private set; }

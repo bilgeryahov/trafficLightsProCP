@@ -8,7 +8,7 @@ namespace TrafficLights
     /// <summary>Contains the current state of the system</summary>
     public class TrafficManager
     {
-        public event Action<SystemState> OnSystemStateChanged = (x) => { };
+        public event Action<SystemState> OnSystemStateChanged = (x) => { }; 
 
         public Grid Grid { get; private set; }
         public ActionStack UndoRedoStack { get; private set; }
@@ -22,6 +22,7 @@ namespace TrafficLights
         public void ChangeStateTo(SystemState state)
         {
             this.CurrentState = state;
+            OnSystemStateChanged(state);
         }
 
         public Simulation CreateSimulation()

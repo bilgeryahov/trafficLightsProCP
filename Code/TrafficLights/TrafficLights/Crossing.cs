@@ -105,7 +105,11 @@ namespace TrafficLights
             }
         }
 
+<<<<<<< Updated upstream
         public IEnumerable<Lane> Roads
+=======
+        public IEnumerable<Lane> Lanes
+>>>>>>> Stashed changes
         {
             get
             {
@@ -124,7 +128,7 @@ namespace TrafficLights
         {
             get
             {
-                return Roads.Where(x => x.IsFeeder);
+                return Lanes.Where(x => x.IsFeeder);
             }
         }
 

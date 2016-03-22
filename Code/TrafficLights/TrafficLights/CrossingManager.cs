@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public abstract class CrossingContainer
+    public abstract class CrossingManager
     {
         private List<Crossing> crossings = new List<Crossing>();
 

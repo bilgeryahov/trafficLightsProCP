@@ -20,7 +20,6 @@ namespace TrafficLights
             }
         }
 
-<<<<<<< Updated upstream
         public Lane CurrentRoad
         {
             get
@@ -32,10 +31,9 @@ namespace TrafficLights
             }
         }
 
-        public @enum State
-=======
+       // public @enum State
+
         public Lane CurrentLane
->>>>>>> Stashed changes
         {
             get
             {

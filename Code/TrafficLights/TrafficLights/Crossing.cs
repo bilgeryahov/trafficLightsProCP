@@ -105,11 +105,9 @@ namespace TrafficLights
             }
         }
 
-<<<<<<< Updated upstream
-        public IEnumerable<Lane> Roads
-=======
+
+     //   public IEnumerable<Lane> Roads
         public IEnumerable<Lane> Lanes
->>>>>>> Stashed changes
         {
             get
             {

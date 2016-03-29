@@ -29,5 +29,6 @@ namespace TrafficLights
         {
             return new Simulation(this.Grid);
         }
+
     }
 }

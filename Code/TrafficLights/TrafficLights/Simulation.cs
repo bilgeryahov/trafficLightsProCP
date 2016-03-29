@@ -34,7 +34,7 @@ namespace TrafficLights
             }
         }
 
-        public int TotalCars { get { return Grid.AllCrossings.Select(x => x.Feeders.Select(y => y.CarsInitialyOn).Sum(y => y)).Sum(x => x); } }
+        public int TotalCars { get { return Grid.AllCrossings.Select(x => x.Feeders.Select(y => y.Flow).Sum(y => y)).Sum(x => x); } }
 
         public int CarsPassed { get { throw new System.NotImplementedException(); } }
 
@@ -136,11 +136,27 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
-        public override void Draw(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
         {
             if (isPaused) return;
             //draw components based on which frame they should be at
             throw new NotImplementedException();
+        }
+
+        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SimulationResult CurrentSimulationResult
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            private set
+            {
+            }
         }
     }
 }

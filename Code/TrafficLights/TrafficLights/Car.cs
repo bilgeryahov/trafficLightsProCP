@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public class Car : Component
+    public class Car : Moveable
     {
         public Direction Direction { get; set; }
         public bool InMiddleOfCrosswalk { get; set; }
@@ -50,9 +50,14 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
-        public override void Draw(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
         {
             //draws a rectangle on the car's location
+            throw new NotImplementedException();
+        }
+
+        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        {
             throw new NotImplementedException();
         }
     }

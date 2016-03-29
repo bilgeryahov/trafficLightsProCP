@@ -5,16 +5,17 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public class CrossingA : Crossing
+    public abstract class Moveable : Component
     {
-        public CrossingA(TrafficManager owner):base(owner)
-        {
-        }
-        public override Crosswalk[] Crosswalks
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public List<System.Drawing.Point> Path { get; private set; }
 
+        public Moveable(params System.Drawing.Point[] path)
+        {
+            this.Path = new List<System.Drawing.Point>(path);
+        }
+        public int CurrentPointIndex { get; private set; }
+
+        public System.Drawing.Point CurrentPoint { get { throw new NotImplementedException(); } }
         public override void Update(float seconds)
         {
             throw new NotImplementedException();

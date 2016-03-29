@@ -6,8 +6,9 @@ using System.Text;
 namespace TrafficLights
 {
     /// <summary>Represents a 'pedestrian' within the system</summary>
-    public class Pedestrian : Component
+    public class Pedestrian : Moveable
     {
+        
         public Crosswalk CurrentCrosswalk
         {
             get
@@ -36,9 +37,14 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
-        public override void Draw(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
         {
             //draws a dot on the crosswalk
+            throw new NotImplementedException();
+        }
+
+        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        {
             throw new NotImplementedException();
         }
     }

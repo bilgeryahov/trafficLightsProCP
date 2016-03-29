@@ -13,13 +13,12 @@ namespace TrafficLights
 
         public Direction To { get; private set; }
 
-        public int CarsCurrentlyOn
+        public int CurrentFlow
         {
-            get;
-            private set;
+            get { throw new NotImplementedException(); }
         }
 
-        public int CarsInitialyOn
+        public int Flow
         {
             get;
             private set;
@@ -31,10 +30,20 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
-        public override void Draw(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
         {
             //draw road
             //draw cars
+            throw new NotImplementedException();
+        }
+
+        public void UpdateFlow(int value)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        {
             throw new NotImplementedException();
         }
     }

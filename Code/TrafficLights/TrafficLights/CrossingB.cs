@@ -22,7 +22,12 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
-        public override void Draw(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void DrawWhenActive(System.Drawing.Bitmap image)
         {
             throw new NotImplementedException();
         }

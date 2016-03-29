@@ -94,5 +94,10 @@ namespace TrafficLights
             if (this.Rows != -1) if (this.rowsSize <= row) throw new InvalidOperationException("Row specified is out of Range");
             if (this.Columns != -1) if (this.Columns <= row) throw new InvalidOperationException("Column specified is out of Range");
         }
+
+        public bool CheckAvailability(int row,int column)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
-        public override void Draw(Bitmap image)
+        protected override void DrawWhenNormal(Bitmap image)
         {
             throw new NotImplementedException();
         }
@@ -54,6 +54,11 @@ namespace TrafficLights
             {
                 return this.Lanes.Where(x => !x.IsFeeder);
             }
+        }
+
+        protected override void DrawWhenActive(Bitmap image)
+        {
+            throw new NotImplementedException();
         }
     }
 }

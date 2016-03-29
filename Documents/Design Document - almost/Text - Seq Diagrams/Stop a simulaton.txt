@@ -1,0 +1,4 @@
+Title Stop a simulation
+User -> +MainForm : Stop functionality
+MainForm -> + TrafficManager :StopSimulation()
+TrafficManager -> + Simulation : Stop()

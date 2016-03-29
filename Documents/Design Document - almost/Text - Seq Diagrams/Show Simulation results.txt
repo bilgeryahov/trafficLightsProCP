@@ -1,0 +1,10 @@
+Title Show Simulation Results
+User -> + MainForm : Show simulation results functionality
+MainForm -> +Simulation :GetResults()
+Simulation --> MainForm : return results
+MainForm --> MainForm : ShowResults(results)
+
+
+
+
+

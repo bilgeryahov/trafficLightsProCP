@@ -1,0 +1,4 @@
+Title Pause a simulation
+User->+MainForm: Pause funtionality
+MainForm -> + TrafficManager : PauseSimulation()
+TrafficManager -> +Simulation : Pause()

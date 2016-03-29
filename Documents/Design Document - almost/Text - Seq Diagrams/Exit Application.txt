@@ -1,0 +1,32 @@
+Title Exit Application
+User -> + MainForm : Exit  Functionality
+
+alt Simulation.Saved == false
+
+MainForm -> *+PromptDialog : propmpts user to save simulation
+User -> PromptDialog : user response
+PromptDialog --> MainForm : return response
+Destroy PromptDialog
+alt response == save
+    MainForm -> *+SaveFileExplorer : display File explorer 
+    User -> SaveFileExplorer : Input path
+    SaveFileExplorer --> MainForm :return path
+    Destroy SaveFileExplorer
+    alt isValid(path)
+        MainForm -> TrafficManager : SaveSimulation(path)
+        TrafficManager --> MainForm : return success
+        MainForm --> MainForm : Stop()
+    else
+        MainForm -> *+ ErrorDialog : unvalid path
+        User -> ErrorDialog : user reponse
+        Destroy ErrorDialog
+        
+    end
+    
+end
+end
+MainForm --> MainForm : Stop()
+
+
+
+

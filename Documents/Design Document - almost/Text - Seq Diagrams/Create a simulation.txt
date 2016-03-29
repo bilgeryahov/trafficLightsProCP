@@ -1,0 +1,27 @@
+title Create a simulation
+User->+MainForm:click "new simulation"
+MainForm->+TrafficManager : CreateSimulation()
+TrafficManager ->+Grid : CheckState()
+
+Grid --> TrafficManager: return Grid.State;
+alt Grid.State != empty
+TrafficManager --> MainForm: return 
+MainForm ->*PromptUI : prompt user for saving changes
+User ->PromptUI : user gives response
+PromptUI --> MainForm : return user response
+Destroy PromptUI
+alt toSave() == true
+MainForm -> TrafficManager : saveGrid()
+TrafficManager ->* SavedManager : Add(theGrid)
+SavedManager --> TrafficManager : return success;
+Destroy SavedManager
+end
+TrafficManager -> + Simulation : CreateSimulation()
+Simulation --> TrafficManager :return success
+TrafficManager --> MainForm : return success
+else Grid.State == empty
+TrafficManager -> + Simulation : CreateSimulation()
+Simulation --> TrafficManager :return success
+TrafficManager --> MainForm : return success
+end
+MainForm --> MainForm : Update interface

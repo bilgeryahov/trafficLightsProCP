@@ -89,6 +89,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -97,7 +98,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).BeginInit();
@@ -557,7 +559,7 @@
             // 
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Location = new System.Drawing.Point(167, 254);
+            this.button1.Location = new System.Drawing.Point(167, 288);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(43, 44);
             this.button1.TabIndex = 74;
@@ -567,7 +569,7 @@
             // 
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.Location = new System.Drawing.Point(170, 208);
+            this.button2.Location = new System.Drawing.Point(170, 242);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 40);
             this.button2.TabIndex = 75;
@@ -645,6 +647,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Properties";
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(100, 72);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(111, 27);
+            this.button5.TabIndex = 89;
+            this.button5.Text = "Update";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -701,7 +712,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(124, 232);
+            this.label4.Location = new System.Drawing.Point(124, 266);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 83;
@@ -712,7 +723,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(66, 282);
+            this.label5.Location = new System.Drawing.Point(66, 316);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 16);
             this.label5.TabIndex = 86;
@@ -730,14 +741,26 @@
             this.label3.TabIndex = 73;
             this.label3.Text = "Crossing Options";
             // 
-            // button5
+            // button8
             // 
-            this.button5.Location = new System.Drawing.Point(100, 72);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(111, 27);
-            this.button5.TabIndex = 89;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button8.Location = new System.Drawing.Point(170, 196);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(40, 40);
+            this.button8.TabIndex = 87;
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(32, 220);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(136, 16);
+            this.label9.TabIndex = 88;
+            this.label9.Text = "Saved Crossings Setups";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MainForm
             // 
@@ -745,6 +768,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1111, 741);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button6);
@@ -876,6 +901,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label9;
     }
 }
 

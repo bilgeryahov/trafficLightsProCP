@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['recyclecrossingmanager',['RecycleCrossingManager',['../class_traffic_lights_1_1_traffic_manager.html#ad5e49a58819f1cb8f16384b22d148a32',1,'TrafficLights::TrafficManager']]],
   ['redtogreenseconds',['RedToGreenSeconds',['../class_traffic_lights_1_1_trafficlight.html#ad0e2aad051ed3b419485076105b673ef',1,'TrafficLights::Trafficlight']]],
   ['rightfeeders',['RightFeeders',['../class_traffic_lights_1_1_crossing.html#aa545eb42a0175782316cd5891a71e4f7',1,'TrafficLights::Crossing']]],
   ['row',['Row',['../class_traffic_lights_1_1_crossing.html#a34e2a21e7356a2f866a7560dd53672c7',1,'TrafficLights::Crossing']]],

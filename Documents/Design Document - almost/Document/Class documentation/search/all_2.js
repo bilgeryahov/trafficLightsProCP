@@ -14,7 +14,7 @@ var searchData=
   ['columns',['Columns',['../class_traffic_lights_1_1_grid.html#a732ed5da70d66b693b129cb05515bd46',1,'TrafficLights::Grid']]],
   ['component',['Component',['../class_traffic_lights_1_1_component.html',1,'TrafficLights']]],
   ['createcopy',['CreateCopy',['../class_traffic_lights_1_1_crossing.html#aed20595b8bf23dac884f220d8d58e09c',1,'TrafficLights::Crossing']]],
-  ['createsimulation',['CreateSimulation',['../class_traffic_lights_1_1_traffic_manager.html#ae37b65ac87f5a620eb50618216d47170',1,'TrafficLights::TrafficManager']]],
+  ['createsimulation',['CreateSimulation',['../class_traffic_lights_1_1_traffic_manager.html#ae7a597a110756c62d5777b1d3bd0f9a0',1,'TrafficLights::TrafficManager']]],
   ['createsnapshot',['CreateSnapShot',['../class_traffic_lights_1_1_simulation_result.html#a8fc3b420a4cd3a40c02d3a1fc99199b2',1,'TrafficLights::SimulationResult']]],
   ['crossing',['Crossing',['../class_traffic_lights_1_1_crossing.html#a94721e24203c08f2f56ebf1ed5044289',1,'TrafficLights::Crossing']]],
   ['crossing',['Crossing',['../class_traffic_lights_1_1_crossing.html',1,'TrafficLights']]],
@@ -37,6 +37,7 @@ var searchData=
   ['currentpoint',['CurrentPoint',['../class_traffic_lights_1_1_moveable.html#a24aab1877c4a88e55808d74a45b7a3cb',1,'TrafficLights::Moveable']]],
   ['currentpointindex',['CurrentPointIndex',['../class_traffic_lights_1_1_moveable.html#aca7fc370387f6f5d7f6edc6ae3cc2774',1,'TrafficLights::Moveable']]],
   ['currentroad',['CurrentRoad',['../class_traffic_lights_1_1_car.html#a791c0d88c470d0db29fe9d445ad9828a',1,'TrafficLights::Car']]],
+  ['currentsimulation',['CurrentSimulation',['../class_traffic_lights_1_1_traffic_manager.html#a9f8cb7ddac3adace93dd0cd0363de33d',1,'TrafficLights::TrafficManager']]],
   ['currentsimulationresult',['CurrentSimulationResult',['../class_traffic_lights_1_1_simulation.html#aeb12d922853d48fd142ddf6a400d1261',1,'TrafficLights::Simulation']]],
   ['currentstate',['CurrentState',['../class_traffic_lights_1_1_trafficlight.html#a4109ca8fb8184a0fd858064c758ca083',1,'TrafficLights.Trafficlight.CurrentState()'],['../class_traffic_lights_1_1_traffic_manager.html#ab94661ff8972b8933627874b30d2045f',1,'TrafficLights.TrafficManager.CurrentState()']]]
 ];

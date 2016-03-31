@@ -6,7 +6,7 @@ var searchData=
   ['checkavailability',['CheckAvailability',['../class_traffic_lights_1_1_grid.html#ae6b4eeaa5d5da69b2bc8f7dac0240762',1,'TrafficLights::Grid']]],
   ['clear',['Clear',['../class_traffic_lights_1_1_crossing_manager.html#ab3fb0ddf11e7917b280a2697810ffda7',1,'TrafficLights::CrossingManager']]],
   ['createcopy',['CreateCopy',['../class_traffic_lights_1_1_crossing.html#aed20595b8bf23dac884f220d8d58e09c',1,'TrafficLights::Crossing']]],
-  ['createsimulation',['CreateSimulation',['../class_traffic_lights_1_1_traffic_manager.html#ae37b65ac87f5a620eb50618216d47170',1,'TrafficLights::TrafficManager']]],
+  ['createsimulation',['CreateSimulation',['../class_traffic_lights_1_1_traffic_manager.html#ae7a597a110756c62d5777b1d3bd0f9a0',1,'TrafficLights::TrafficManager']]],
   ['createsnapshot',['CreateSnapShot',['../class_traffic_lights_1_1_simulation_result.html#a8fc3b420a4cd3a40c02d3a1fc99199b2',1,'TrafficLights::SimulationResult']]],
   ['crossing',['Crossing',['../class_traffic_lights_1_1_crossing.html#a94721e24203c08f2f56ebf1ed5044289',1,'TrafficLights::Crossing']]],
   ['crossinga',['CrossingA',['../class_traffic_lights_1_1_crossing_a.html#afdc19bb90759f5a782953a22a96afc2c',1,'TrafficLights::CrossingA']]],

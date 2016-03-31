@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['recyclecrossingmanager',['RecycleCrossingManager',['../class_traffic_lights_1_1_traffic_manager.html#ad5e49a58819f1cb8f16384b22d148a32',1,'TrafficLights::TrafficManager']]],
   ['recyclemanager',['RecycleManager',['../class_traffic_lights_1_1_recycle_manager.html',1,'TrafficLights']]],
   ['red',['Red',['../class_traffic_lights_1_1_trafficlight.html#ab7b40724fc358c2a379fdc099b23bf77aee38e4d5dd68c4e440825018d549cb47',1,'TrafficLights::Trafficlight']]],
   ['redo',['Redo',['../class_traffic_lights_1_1_action_stack.html#a0fb6bbf512dc1fd5819e63264827220c',1,'TrafficLights.ActionStack.Redo()'],['../class_traffic_lights_1_1_undoable_action.html#a71ecd5017ac7a9c83add4dcdeb230ab3',1,'TrafficLights.UndoableAction.Redo()']]],

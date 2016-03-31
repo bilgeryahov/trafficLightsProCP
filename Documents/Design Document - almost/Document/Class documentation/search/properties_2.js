@@ -18,6 +18,7 @@ var searchData=
   ['currentpoint',['CurrentPoint',['../class_traffic_lights_1_1_moveable.html#a24aab1877c4a88e55808d74a45b7a3cb',1,'TrafficLights::Moveable']]],
   ['currentpointindex',['CurrentPointIndex',['../class_traffic_lights_1_1_moveable.html#aca7fc370387f6f5d7f6edc6ae3cc2774',1,'TrafficLights::Moveable']]],
   ['currentroad',['CurrentRoad',['../class_traffic_lights_1_1_car.html#a791c0d88c470d0db29fe9d445ad9828a',1,'TrafficLights::Car']]],
+  ['currentsimulation',['CurrentSimulation',['../class_traffic_lights_1_1_traffic_manager.html#a9f8cb7ddac3adace93dd0cd0363de33d',1,'TrafficLights::TrafficManager']]],
   ['currentsimulationresult',['CurrentSimulationResult',['../class_traffic_lights_1_1_simulation.html#aeb12d922853d48fd142ddf6a400d1261',1,'TrafficLights::Simulation']]],
   ['currentstate',['CurrentState',['../class_traffic_lights_1_1_trafficlight.html#a4109ca8fb8184a0fd858064c758ca083',1,'TrafficLights.Trafficlight.CurrentState()'],['../class_traffic_lights_1_1_traffic_manager.html#ab94661ff8972b8933627874b30d2045f',1,'TrafficLights.TrafficManager.CurrentState()']]]
 ];

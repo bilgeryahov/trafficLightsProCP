@@ -16,12 +16,14 @@ namespace TrafficLights
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainForm : Form
     {
+        private TrafficManager manager = new TrafficManager(3, 3);
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
         /// <summary>
@@ -62,6 +64,35 @@ namespace TrafficLights
         private void PicBoxTypeB_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ShowCrossingsManager(CrossingManager manager)
+        {
+
+        }
+
+        private void ShowRecycleCrossings()
+        {
+            ShowCrossingsManager(this.manager.RecycleCrossingManager);
+        }
+
+        private void ShowSavedCrossings()
+        {
+            ShowCrossingsManager(this.manager.SavedCrossingManager);
+        }
+
+        private void UpdateSimulation()
+        {
+            //update simulation per Tick of the timer
+        }
+
+        private void UpdateInterface()
+        {
+            //calls Render
+        }
+
+        private void ShowResults(SimulationResult results)
+        {
         }
 
         /// <summary>

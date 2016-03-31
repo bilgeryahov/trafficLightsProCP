@@ -9,6 +9,7 @@ namespace TrafficLights
     /// implements Crossing, similar to type A but has 2 parralel crosswalks on each side
     /// </summary>
     /// <seealso cref="TrafficLights.Crossing" />
+    [Serializable]
     public class CrossingB : Crossing
     {
         /// <summary>

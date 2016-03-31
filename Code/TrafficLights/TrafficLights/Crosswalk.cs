@@ -10,6 +10,7 @@ namespace TrafficLights
     /// a component that the pedestrians walk on to cross a lane
     /// </summary>
     /// <seealso cref="TrafficLights.Component" />
+    [Serializable]
     public class Crosswalk:Component
     {
         /// <summary>

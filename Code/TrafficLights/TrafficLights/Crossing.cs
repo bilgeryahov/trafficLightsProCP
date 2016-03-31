@@ -9,6 +9,7 @@ namespace TrafficLights
     /// abstract class defining the basic properties and methods for the crossings 
     /// </summary>
     /// <seealso cref="TrafficLights.Renderable" />
+    [Serializable]
     public abstract class Crossing : Renderable
     {
         /// <summary>

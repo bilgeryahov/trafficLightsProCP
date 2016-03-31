@@ -9,6 +9,7 @@ namespace TrafficLights
     /// holds saved crossings
     /// </summary>
     /// <seealso cref="TrafficLights.CrossingManager" />
+    [Serializable]
     public class SavedManager : CrossingManager
     {
         /// <summary>

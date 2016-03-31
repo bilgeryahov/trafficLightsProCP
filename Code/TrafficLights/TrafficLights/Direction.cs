@@ -10,6 +10,7 @@ namespace TrafficLights
     /// <summary>
     /// the direction an object can go within the simulation
     /// </summary>
+    [Flags] // Allows Direction d = Direction.UP | Direction. Down; then to compare call d.HasFlag(Direction.Left)
     public enum Direction
     {
         Up, Down, Left, Right

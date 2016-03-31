@@ -9,6 +9,7 @@ namespace TrafficLights
     /// a component that cars drive on
     /// </summary>
     /// <seealso cref="TrafficLights.Component" />
+    [Serializable]
     public class Lane : Component
     {
         /// <summary>

@@ -11,6 +11,10 @@ namespace TrafficLights
     public class TrafficManager
     {
         /// <summary>
+        /// Gets the current simulation or null if not created
+        /// </summary>
+        public Simulation CurrentSimulation { get; private set; }
+        /// <summary>
         /// Occurs when [on system state changed].
         /// </summary>
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
@@ -25,6 +29,16 @@ namespace TrafficLights
         /// </summary>
         /// <value>The undo redo stack.</value>
         public ActionStack UndoRedoStack { get; private set; }
+
+        /// <summary>
+        /// Manager with the recycled crossings
+        /// </summary>
+        public RecycleManager RecycleCrossingManager { get; private set; }
+        /// <summary>
+        ///  Manager with the saved crossings
+        /// </summary>
+        public SavedManager SavedCrossingManager { get; private set; }
+
         /// <summary>
         /// Gets the state of the current.
         /// </summary>
@@ -54,10 +68,10 @@ namespace TrafficLights
         /// <summary>
         /// Creates the simulation.
         /// </summary>
-        /// <returns>Simulation.</returns>
-        public Simulation CreateSimulation()
+        public void CreateSimulation()
         {
-            return new Simulation(this.Grid);
+            if (this.CurrentSimulation != null) this.CurrentSimulation.Stop();
+            this.CurrentSimulation = new Simulation(this.Grid);
         }
 
         /// <summary>
@@ -128,6 +142,14 @@ namespace TrafficLights
         /// Removes the crossing.
         /// </summary>
         public void RemoveCrossing()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Places the crossing on a specific row and column
+        /// </summary>
+        public void PlaceCrossing(Crossing crossing, int row, int column)
         {
             throw new System.NotImplementedException();
         }

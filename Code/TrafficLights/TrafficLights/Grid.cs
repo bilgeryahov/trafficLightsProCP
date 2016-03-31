@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace TrafficLights
 {
     /// <summary>
-    /// represents the 3x3 grid within the system
+    /// represents the NxN grid within the system
     /// </summary>
+    [Serializable]
     public class Grid
     {
         /// <summary>

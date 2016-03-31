@@ -9,6 +9,7 @@ namespace TrafficLights
     /// implements Crossing and is the basic type, with no crosswalks
     /// </summary>
     /// <seealso cref="TrafficLights.Crossing" />
+    [Serializable]
     public class CrossingA : Crossing
     {
         /// <summary>

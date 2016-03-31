@@ -1,12 +1,13 @@
 var searchData=
 [
+  ['savedcrossingmanager',['SavedCrossingManager',['../class_traffic_lights_1_1_traffic_manager.html#add080b4ca71d43bdc64bb5e515b8e589',1,'TrafficLights::TrafficManager']]],
   ['savedmanager',['SavedManager',['../class_traffic_lights_1_1_saved_manager.html',1,'TrafficLights']]],
   ['savesimulation',['SaveSimulation',['../class_traffic_lights_1_1_traffic_manager.html#af64a40c49c12d491a9186c688802dc88',1,'TrafficLights::TrafficManager']]],
   ['setactive',['SetActive',['../class_traffic_lights_1_1_renderable.html#a5b102993e3e6af2fa0845e4199fab8ed',1,'TrafficLights::Renderable']]],
   ['simulation',['Simulation',['../class_traffic_lights_1_1_simulation.html',1,'TrafficLights']]],
   ['simulation',['Simulation',['../class_traffic_lights_1_1_simulation.html#a11925381a714cbd62bb7600805c4c276',1,'TrafficLights::Simulation']]],
-  ['simulationresult',['SimulationResult',['../class_traffic_lights_1_1_simulation_result.html',1,'TrafficLights']]],
   ['simulationresult',['SimulationResult',['../class_traffic_lights_1_1_simulation_result.html#af76e78500c4b87e5e92d32136e966d81',1,'TrafficLights::SimulationResult']]],
+  ['simulationresult',['SimulationResult',['../class_traffic_lights_1_1_simulation_result.html',1,'TrafficLights']]],
   ['simulationsetup',['SimulationSetup',['../class_traffic_lights_1_1_simulation_result.html#acf4fb15c7fd804d7d588398acf9667b9',1,'TrafficLights::SimulationResult']]],
   ['speed',['Speed',['../class_traffic_lights_1_1_simulation.html#acb892e3b76e3a072f558f150349b2ef8',1,'TrafficLights::Simulation']]],
   ['start',['Start',['../class_traffic_lights_1_1_simulation.html#adf14ebe9008bbce71129603503fa3ce1',1,'TrafficLights::Simulation']]],

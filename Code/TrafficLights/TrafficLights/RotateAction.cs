@@ -9,9 +9,11 @@ namespace TrafficLights
     /// an action that can be undone and redone in the system
     /// </summary>
     /// <seealso cref="TrafficLights.UndoableAction" />
-    public class RotateAction : UndoableAction
+    public class RemoveCrossing : UndoableAction
     {
-
+        public int Row { get; private set; }
+        public int Column { get; private set; }
+        private Crossing removedCrossing;
         /// <summary>
         /// Defines changes to remove
         /// </summary>

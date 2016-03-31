@@ -9,9 +9,11 @@ namespace TrafficLights
     /// an action that can be undone and redone in the system
     /// </summary>
     /// <seealso cref="TrafficLights.UndoableAction" />
-    public class UpdatePropertiesAction : UndoableAction
+    public abstract class UpdateFlowAction : UndoableAction
     {
-
+        public Lane Lane { get; private set; }
+        public int Flow { get; private set; }
+        private int previousFlow;
         /// <summary>
         /// Defines changes to remove
         /// </summary>

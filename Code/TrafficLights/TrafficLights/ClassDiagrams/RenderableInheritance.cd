@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TrafficLights.Car" Collapsed="true">
-    <Position X="7" Y="4.75" Width="1.5" />
+    <Position X="7.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgQAgAAAAAAAIAAAACAAAAAAAAQAAAAAAAAAAAAAASA=</HashCode>
       <FileName>Car.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Component" Collapsed="true">
-    <Position X="5.75" Y="1.75" Width="1.5" />
+    <Position X="7" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Component.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Crossing" Collapsed="true">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAgCAAAAAUAkBAgBgQAAiEAEIwgCIBAQwgAIAAAA=</HashCode>
       <FileName>Crossing.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.CrossingA" Collapsed="true">
-    <Position X="12.25" Y="3.25" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>CrossingA.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.CrossingB" Collapsed="true">
-    <Position X="10" Y="3.25" Width="1.5" />
+    <Position X="11" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>CrossingB.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Crosswalk" Collapsed="true">
-    <Position X="5.75" Y="3.25" Width="1.5" />
+    <Position X="6.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAIAAAAAAAAgAAAAEAAAAAARAAJAIAAEA=</HashCode>
       <FileName>Crosswalk.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Lane" Collapsed="true">
-    <Position X="1.25" Y="3.25" Width="1.5" />
+    <Position X="5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgQAoAAAAAAAIAIAAAAAgAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Lane.cs</FileName>
@@ -57,13 +57,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Pedestrian" Collapsed="true">
-    <Position X="9.25" Y="4.75" Width="1.5" />
+    <Position X="9" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAIAAAgCAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pedestrian.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TrafficLights.Renderable" Collapsed="true">
+  <Class Name="TrafficLights.Renderable">
     <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAIgAAAAAAABAAAAAAAAAAAAAAAIAAAAA=</HashCode>
@@ -71,14 +71,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Simulation" Collapsed="true">
-    <Position X="14.5" Y="1.75" Width="1.5" />
+    <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAQoggAAoCCAJBIAAAAAAQABAQEiAQAAIAgQAAgAIIg=</HashCode>
       <FileName>Simulation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TrafficLights.Trafficlight" Collapsed="true">
-    <Position X="3.5" Y="3.25" Width="1.5" />
+    <Position X="5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gpQAgAAAAYAAIAAAAAAAACAAQAAQAAgACAAAAAAgAAA=</HashCode>
       <FileName>Trafficlight.cs</FileName>

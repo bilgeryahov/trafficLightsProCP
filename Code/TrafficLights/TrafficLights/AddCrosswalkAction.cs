@@ -11,7 +11,9 @@ namespace TrafficLights
     /// <seealso cref="TrafficLights.UndoableAction" />
     public class PlaceCrosswalkAction : UndoableAction
     {
-
+        public int Row { get; private set; }
+        public int Column { get; private set; }
+        private Crossing addedCrossing;
         /// <summary>
         /// Defines changes to remove
         /// </summary>

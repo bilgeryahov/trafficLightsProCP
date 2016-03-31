@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TrafficLights
 {
@@ -9,12 +10,11 @@ namespace TrafficLights
     /// an action that can be undone and redone in the system
     /// </summary>
     /// <seealso cref="TrafficLights.UndoableAction" />
-    public class MoveCrosswalkAction : UndoableAction
+    public abstract class UpdateLightIntervalAction : UndoableAction
     {
-        public int FromRow { get; private set; }
-        public int FromColumn { get; private set; }
-        public int ToRow { get; private set; }
-        public int ToColumn { get; private set; }
+        public Trafficlight Light { get; private set; }
+        public int Interval { get; private set; }
+        private int previousInterval;
         /// <summary>
         /// Defines changes to remove
         /// </summary>
@@ -34,7 +34,6 @@ namespace TrafficLights
         /// <summary>
         /// Defines how the action will be named in String format
         /// </summary>
-        /// <value>As string.</value>
         protected override string AsString
         {
             get { throw new NotImplementedException(); }

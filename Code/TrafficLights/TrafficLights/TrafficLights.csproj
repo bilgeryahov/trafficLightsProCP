@@ -77,7 +77,8 @@
     <Compile Include="Trafficlight.cs" />
     <Compile Include="UndoableAction.cs" />
     <Compile Include="ActionStack.cs" />
-    <Compile Include="UpdatePropertiesAction.cs" />
+    <Compile Include="UpdateFlowAction.cs" />
+    <Compile Include="UpdateLightIntervalAction.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,7 +107,6 @@
     </Compile>
     <None Include="ClassDiagrams\Simulation.cd" />
     <None Include="ClassDiagrams\System.cd" />
-    <None Include="ClassDiagrams\Undo.cd" />
     <None Include="ClassDiagrams\UndoRedo.cd" />
   </ItemGroup>
   <ItemGroup>

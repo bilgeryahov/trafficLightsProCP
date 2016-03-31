@@ -5,9 +5,15 @@ using System.Text;
 
 namespace TrafficLights
 {
-    /// <summary>Holds saved crossings</summary>
+    /// <summary>
+    /// holds saved crossings
+    /// </summary>
+    /// <seealso cref="TrafficLights.CrossingManager" />
     public class SavedManager : CrossingManager
     {
+        /// <summary>
+        /// Duplicates the specified identifier.
+        /// </summary>
         public Crossing Duplicate(int id)
         {
             return this[id].CreateCopy();

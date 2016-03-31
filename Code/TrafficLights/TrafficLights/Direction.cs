@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,24 @@ using System.Threading.Tasks;
 
 namespace TrafficLights
 {
+    /// <summary>
+    /// the direction an object can go within the simulation
+    /// </summary>
     public enum Direction
     {
         Up, Down, Left, Right
     }
 
+    /// <summary>
+    /// holds extension methods for the base Direction enum
+    /// </summary>
     public static class DirectionExtention
     {
+        /// <summary>
+        /// Inverses the specified direction.
+        /// </summary>
+        /// <param name="d">The d.</param>
+        /// <returns>Direction.</returns>
         public static Direction Inverse(this Direction d)
         {
             if (d == Direction.Up) return Direction.Down;

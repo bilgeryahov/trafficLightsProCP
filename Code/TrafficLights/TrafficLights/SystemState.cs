@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TrafficLights
 {
+    /// <summary>
+    /// the various states of the system
+    /// </summary>
     public enum SystemState
     {
         Drag,

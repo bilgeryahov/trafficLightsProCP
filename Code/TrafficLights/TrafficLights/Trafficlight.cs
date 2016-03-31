@@ -5,23 +5,60 @@ using System.Text;
 
 namespace TrafficLights
 {
-    /// <summary>Responsible for the traffic light on every crosswalks</summary>
+    /// <summary>
+    /// a component that controls the movement of cars and pedestrians
+    /// </summary>
+    /// <seealso cref="TrafficLights.Component" />
     public class Trafficlight : Component
     {
+        /// <summary>
+        /// Enum State
+        /// </summary>
         public enum State
         {
+            /// <summary>
+            /// The red
+            /// </summary>
             Red, Yellow, YellowBlink, Green, None
         }
 
+        /// <summary>
+        /// Gets the default state order.
+        /// </summary>
+        /// <value>The default state order.</value>
         public static State[] DefaultStateOrder { get { return new State[] { State.Red, State.Yellow, State.Green }; } }
 
+        /// <summary>
+        /// Gets the red to green seconds.
+        /// </summary>
+        /// <value>The red to green seconds.</value>
         public float RedToGreenSeconds { get; private set; }
+        /// <summary>
+        /// Gets the yellow seconds.
+        /// </summary>
+        /// <value>The yellow seconds.</value>
         public float YellowSeconds { get; private set; }
 
+        /// <summary>
+        /// Gets the state of the current.
+        /// </summary>
+        /// <value>The state of the current.</value>
         public State CurrentState { get; private set; }
+        /// <summary>
+        /// Gets the state of the previous.
+        /// </summary>
+        /// <value>The state of the previous.</value>
         public State PreviousState { get; private set; }
 
+        /// <summary>
+        /// Gets the state of the on override.
+        /// </summary>
+        /// <value>The state of the on override.</value>
         public State OnOverrideState{get; private set;}
+        /// <summary>
+        /// Gets the state of the on override cancel next.
+        /// </summary>
+        /// <value>The state of the on override cancel next.</value>
         public State OnOverrideCancelNextState
         {
             get
@@ -33,8 +70,16 @@ namespace TrafficLights
                 return State.None;
             }
         }
+        /// <summary>
+        /// Gets a value indicating whether this instance is overidden.
+        /// </summary>
+        /// <value><c>true</c> if this instance is overidden; otherwise, <c>false</c>.</value>
         public bool IsOveridden{get{return OnOverrideState != State.None;}}
 
+        /// <summary>
+        /// Gets the state of the next.
+        /// </summary>
+        /// <value>The state of the next.</value>
         public State NextState
         {
             get
@@ -48,6 +93,9 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Nexts this instance.
+        /// </summary>
         public void Next()
         {
             //todo set amount of time for YEllow
@@ -56,22 +104,38 @@ namespace TrafficLights
             this.CurrentState = NextState;
         }
 
+        /// <summary>
+        /// Overrides the specified state.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <param name="time">The time.</param>
         public void Override(State state, int time)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Overrides the specified state.
+        /// </summary>
+        /// <param name="state">The state.</param>
         public void Override(State state)
         {
             Override(state, int.MaxValue);
         }
 
+        /// <summary>
+        /// Cancels the override.
+        /// </summary>
         public void CancelOverride()
         {
             this.CurrentState = OnOverrideCancelNextState;
             this.OnOverrideState = State.None;
         }
 
+        /// <summary>
+        /// Updates the specified seconds.
+        /// </summary>
+        /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
             //time passed += seconds
@@ -79,12 +143,20 @@ namespace TrafficLights
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Draws the when normal.
+        /// </summary>
+        /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Bitmap image)
         {
             //draw the circles
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Draws the when active.
+        /// </summary>
+        /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Bitmap image)
         {
             throw new NotImplementedException();

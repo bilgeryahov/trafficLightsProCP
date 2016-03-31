@@ -6,13 +6,36 @@ using System.Threading.Tasks;
 
 namespace TrafficLights
 {
+    /// <summary>
+    /// represents the 3x3 grid within the system
+    /// </summary>
     public class Grid
     {
+        /// <summary>
+        /// Delegate GridAltered
+        /// </summary>
+        /// <param name="alteredCrossing">The altered crossing.</param>
+        /// <param name="xPosition">The x position.</param>
+        /// <param name="yPosition">The y position.</param>
         public delegate void GridAltered(Crossing alteredCrossing, int xPosition, int yPosition);
+        /// <summary>
+        /// Occurs when [on crossing added].
+        /// </summary>
         public event GridAltered OnCrossingAdded = (x, y, z) => { };
+        /// <summary>
+        /// Occurs when [on crossing removed].
+        /// </summary>
         public event GridAltered OnCrossingRemoved = (x, y, z) => { };
 
+        /// <summary>
+        /// Gets the crossings.
+        /// </summary>
+        /// <value>The crossings.</value>
         public Crossing[][] Crossings { get; private set; }
+        /// <summary>
+        /// Gets all crossings.
+        /// </summary>
+        /// <value>All crossings.</value>
         public IEnumerable<Crossing> AllCrossings
         {
             get
@@ -28,15 +51,38 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// The rows size
+        /// </summary>
         private int rowsSize = -1;
+        /// <summary>
+        /// Gets the rows.
+        /// </summary>
+        /// <value>The rows.</value>
         public int Rows { get { return rowsSize; } }
+        /// <summary>
+        /// The columns size
+        /// </summary>
         private int columnsSize = -1;
+        /// <summary>
+        /// Gets the columns.
+        /// </summary>
+        /// <value>The columns.</value>
         public int Columns { get { return this.columnsSize; } }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Grid"/> class.
+        /// </summary>
+        /// <param name="matrixSize">Size of the matrix.</param>
         public Grid(int matrixSize) : this(matrixSize, matrixSize)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Grid"/> class.
+        /// </summary>
+        /// <param name="rows">The rows.</param>
+        /// <param name="columns">The columns.</param>
         public Grid(int rows, int columns)
         {
             ValidateCanUse(rows, columns);
@@ -50,6 +96,12 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Adds at.
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <param name="column">The column.</param>
+        /// <param name="crossing">The crossing.</param>
         public void AddAt(int row, int column, Crossing crossing)
         {
             ValidateCanUse(row, column);
@@ -65,6 +117,11 @@ namespace TrafficLights
             OnCrossingAdded(crossing, row, column);
         }
 
+        /// <summary>
+        /// Removes at.
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <param name="column">The column.</param>
         public void RemoveAt(int row, int column)
         {
             ValidateCanUse(row, column);
@@ -76,6 +133,11 @@ namespace TrafficLights
             OnCrossingRemoved(crossing, row, column);
         }
 
+        /// <summary>
+        /// Gets the <see cref="Crossing[]"/> with the specified row.
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <returns>Crossing[].</returns>
         public Crossing[] this[int row]
         {
             get
@@ -86,7 +148,11 @@ namespace TrafficLights
             }
         }
 
-        /// <summary>checks if a row and column are within the bounds of the grid</summary>
+        /// <summary>
+        /// checks if a row and column are within the bounds of the grid
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <param name="column">The column.</param>
         private void ValidateCanUse(int row, int column)
         {
             if (row < 0) throw new InvalidOperationException("Cannot use a value < 0 for a row");
@@ -95,6 +161,11 @@ namespace TrafficLights
             if (this.Columns != -1) if (this.Columns <= row) throw new InvalidOperationException("Column specified is out of Range");
         }
 
+        /// <summary>
+        /// Checks the availability.
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <param name="column">The column.</param>
         public bool CheckAvailability(int row,int column)
         {
             throw new System.NotImplementedException();

@@ -5,24 +5,71 @@ using System.Text;
 
 namespace TrafficLights
 {
-    /// <summary>Holds the component on the grid</summary>
+    /// <summary>
+    /// abstract class defining the basic properties and methods for the crossings 
+    /// </summary>
+    /// <seealso cref="TrafficLights.Renderable" />
     public abstract class Crossing : Renderable
     {
+        /// <summary>
+        /// Gets a value indicating whether this instance has pedestrians crossing.
+        /// </summary>
+        /// <value><c>true</c> if this instance has pedestrians crossing; otherwise, <c>false</c>.</value>
         public bool HasPedestriansCrossing { get { return this.Crosswalks.Any(x => x.HasPedestriansCrossing); } }
 
+        /// <summary>
+        /// Gets the crosswalks.
+        /// </summary>
+        /// <value>The crosswalks.</value>
         public abstract Crosswalk[] Crosswalks { get; }
 
+        /// <summary>
+        /// Gets the crosswalk on left.
+        /// </summary>
+        /// <value>The crosswalk on left.</value>
         public Crosswalk CrosswalkOnLeft { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Left)); } }
+        /// <summary>
+        /// Gets the crosswalk on right.
+        /// </summary>
+        /// <value>The crosswalk on right.</value>
         public Crosswalk CrosswalkOnRight { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Right)); } }
+        /// <summary>
+        /// Gets the crosswalk above.
+        /// </summary>
+        /// <value>The crosswalk above.</value>
         public Crosswalk CrosswalkAbove { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Up)); } }
+        /// <summary>
+        /// Gets the crosswalk below.
+        /// </summary>
+        /// <value>The crosswalk below.</value>
         public Crosswalk CrosswalkBelow { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Down)); } }
 
+        /// <summary>
+        /// Gets the owner.
+        /// </summary>
+        /// <value>The owner.</value>
         public TrafficManager Owner { get; private set; }
+        /// <summary>
+        /// Gets the row.
+        /// </summary>
+        /// <value>The row.</value>
         public int Row { get; private set; }
+        /// <summary>
+        /// Gets the column.
+        /// </summary>
+        /// <value>The column.</value>
         public int Column { get; private set; }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is on the grid.
+        /// </summary>
+        /// <value><c>true</c> if this instance is on the grid; otherwise, <c>false</c>.</value>
         public bool IsOnTheGrid { get { return Row != -1 && Column != -1; } }
 
+        /// <summary>
+        /// Gets the next crosswalk below.
+        /// </summary>
+        /// <value>The next crosswalk below.</value>
         public Crosswalk NextCrosswalkBelow
         {
             get
@@ -33,6 +80,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crosswalk above.
+        /// </summary>
+        /// <value>The next crosswalk above.</value>
         public Crosswalk NextCrosswalkAbove
         {
             get
@@ -43,6 +94,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crosswalk left.
+        /// </summary>
+        /// <value>The next crosswalk left.</value>
         public Crosswalk NextCrosswalkLeft
         {
             get
@@ -53,6 +108,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crosswalk right.
+        /// </summary>
+        /// <value>The next crosswalk right.</value>
         public Crosswalk NextCrosswalkRight
         {
             get
@@ -63,6 +122,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crossing below.
+        /// </summary>
+        /// <value>The next crossing below.</value>
         public Crossing NextCrossingBelow
         {
             get
@@ -74,6 +137,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crossing above.
+        /// </summary>
+        /// <value>The next crossing above.</value>
         public Crossing NextCrossingAbove
         {
             get
@@ -85,6 +152,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crossing on right.
+        /// </summary>
+        /// <value>The next crossing on right.</value>
         public Crossing NextCrossingOnRight
         {
             get
@@ -95,6 +166,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the next crossing on left.
+        /// </summary>
+        /// <value>The next crossing on left.</value>
         public Crossing NextCrossingOnLeft
         {
             get
@@ -107,6 +182,10 @@ namespace TrafficLights
 
 
      //   public IEnumerable<Lane> Roads
+        /// <summary>
+        /// Gets the lanes.
+        /// </summary>
+        /// <value>The lanes.</value>
         public IEnumerable<Lane> Lanes
         {
             get
@@ -122,6 +201,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the feeders.
+        /// </summary>
+        /// <value>The feeders.</value>
         public IEnumerable<Lane> Feeders
         {
             get
@@ -130,6 +213,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the top feeders.
+        /// </summary>
+        /// <value>The top feeders.</value>
         public System.Collections.Generic.IEnumerable<TrafficLights.Lane> TopFeeders
         {
             get
@@ -138,6 +225,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the bot feeders.
+        /// </summary>
+        /// <value>The bot feeders.</value>
         public System.Collections.Generic.IEnumerable<TrafficLights.Lane> BotFeeders
         {
             get
@@ -146,6 +237,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the left feeders.
+        /// </summary>
+        /// <value>The left feeders.</value>
         public System.Collections.Generic.IEnumerable<TrafficLights.Lane> LeftFeeders
         {
             get
@@ -154,6 +249,10 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Gets the right feeders.
+        /// </summary>
+        /// <value>The right feeders.</value>
         public System.Collections.Generic.IEnumerable<TrafficLights.Lane> RightFeeders
         {
             get
@@ -162,16 +261,28 @@ namespace TrafficLights
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Crossing"/> class.
+        /// </summary>
+        /// <param name="owner">The owner.</param>
         public Crossing(TrafficManager owner)
         {
             this.Owner = owner;
         }
 
+        /// <summary>
+        /// Activates the pedestrian sensor.
+        /// </summary>
+        /// <param name="crosswalk">The crosswalk.</param>
         public void ActivatePedestrianSensor(Crosswalk crosswalk)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Creates the copy.
+        /// </summary>
+        /// <returns>Crossing.</returns>
         public Crossing CreateCopy()
         {
             //using serialization create Full copy
@@ -179,17 +290,28 @@ namespace TrafficLights
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Removes from grid.
+        /// </summary>
         public void RemoveFromGrid()
         {
             AssignGridLocation(-1, -1);
         }
 
+        /// <summary>
+        /// Assigns the grid location.
+        /// </summary>
+        /// <param name="row">The row.</param>
+        /// <param name="column">The column.</param>
         public void AssignGridLocation(int row, int column)
         {
             this.Row = row;
             this.Column = column;
         }
 
+        /// <summary>
+        /// Rotates this instance.
+        /// </summary>
         public void Rotate()
         {
             throw new System.NotImplementedException();

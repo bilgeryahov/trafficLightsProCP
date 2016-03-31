@@ -31,7 +31,8 @@ var hierarchy =
     [ "TrafficLights.UndoableAction", "class_traffic_lights_1_1_undoable_action.html", [
       [ "TrafficLights.MoveCrosswalkAction", "class_traffic_lights_1_1_move_crosswalk_action.html", null ],
       [ "TrafficLights.PlaceCrosswalkAction", "class_traffic_lights_1_1_place_crosswalk_action.html", null ],
-      [ "TrafficLights.RotateAction", "class_traffic_lights_1_1_rotate_action.html", null ],
-      [ "TrafficLights.UpdatePropertiesAction", "class_traffic_lights_1_1_update_properties_action.html", null ]
+      [ "TrafficLights.RemoveCrossing", "class_traffic_lights_1_1_remove_crossing.html", null ],
+      [ "TrafficLights.UpdateFlowAction", "class_traffic_lights_1_1_update_flow_action.html", null ],
+      [ "TrafficLights.UpdateLightIntervalAction", "class_traffic_lights_1_1_update_light_interval_action.html", null ]
     ] ]
 ];

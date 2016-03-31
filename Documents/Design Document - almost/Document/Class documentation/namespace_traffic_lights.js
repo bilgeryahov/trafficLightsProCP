@@ -16,13 +16,14 @@ var namespace_traffic_lights =
     [ "Pedestrian", "class_traffic_lights_1_1_pedestrian.html", "class_traffic_lights_1_1_pedestrian" ],
     [ "PlaceCrosswalkAction", "class_traffic_lights_1_1_place_crosswalk_action.html", "class_traffic_lights_1_1_place_crosswalk_action" ],
     [ "RecycleManager", "class_traffic_lights_1_1_recycle_manager.html", "class_traffic_lights_1_1_recycle_manager" ],
+    [ "RemoveCrossing", "class_traffic_lights_1_1_remove_crossing.html", "class_traffic_lights_1_1_remove_crossing" ],
     [ "Renderable", "class_traffic_lights_1_1_renderable.html", "class_traffic_lights_1_1_renderable" ],
-    [ "RotateAction", "class_traffic_lights_1_1_rotate_action.html", "class_traffic_lights_1_1_rotate_action" ],
     [ "SavedManager", "class_traffic_lights_1_1_saved_manager.html", "class_traffic_lights_1_1_saved_manager" ],
     [ "Simulation", "class_traffic_lights_1_1_simulation.html", "class_traffic_lights_1_1_simulation" ],
     [ "SimulationResult", "class_traffic_lights_1_1_simulation_result.html", "class_traffic_lights_1_1_simulation_result" ],
     [ "Trafficlight", "class_traffic_lights_1_1_trafficlight.html", "class_traffic_lights_1_1_trafficlight" ],
     [ "TrafficManager", "class_traffic_lights_1_1_traffic_manager.html", "class_traffic_lights_1_1_traffic_manager" ],
     [ "UndoableAction", "class_traffic_lights_1_1_undoable_action.html", "class_traffic_lights_1_1_undoable_action" ],
-    [ "UpdatePropertiesAction", "class_traffic_lights_1_1_update_properties_action.html", "class_traffic_lights_1_1_update_properties_action" ]
+    [ "UpdateFlowAction", "class_traffic_lights_1_1_update_flow_action.html", "class_traffic_lights_1_1_update_flow_action" ],
+    [ "UpdateLightIntervalAction", "class_traffic_lights_1_1_update_light_interval_action.html", "class_traffic_lights_1_1_update_light_interval_action" ]
 ];

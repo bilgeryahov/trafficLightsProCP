@@ -1,0 +1,16 @@
+Title Redo an Action
+User -> + MainForm : Redo Functionality
+alt SimulationIsRunning()
+    MainForm ->*ErrorDialog : display error
+    User -> ErrorDialog : user response
+    Destroy ErrorDialog
+MainForm ->
+else
+alt undoDone()
+MainForm -> +TrafficManager : ChangeStateTo(stateBeforeUndo)
+TrafficManager --> MainForm:return success
+MainForm --> MainForm : UpdateInterfce()
+else
+    MainForm --> MainForm : disableRedo()
+end
+

@@ -1,0 +1,15 @@
+title Set Current Active Crossing
+User -> +MainForm : Click properties on toolbox
+MainForm --> MainForm : highlightTool()
+User --> MainForm : hovers over crossing
+MainForm --> MainForm : highlightCrossing()
+User -> MainForm : Click crossing
+
+MainForm -> TrafficManager : setActiveComponent(selected)
+TrafficManager -> +Grid:setActiveComponent(selected)
+Grid -> Renderable : SetActive(selected)
+Renderable --> Grid : return success
+Grid --> TrafficManager : return success
+
+TrafficManager -->MainForm : return Success
+MainForm --> MainForm : updateInterface()

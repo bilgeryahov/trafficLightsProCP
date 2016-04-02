@@ -1,0 +1,14 @@
+title Access "Removed" crossings
+
+User -> +MainForm : Click previous removed crossings functionality
+MainForm -> *RecycleManager : GetCrossings()
+RecycleManager --> MainForm :return crossings
+Destroy RecycleManager
+alt crossings == null
+ MainForm ->*Dialog : notify user (no recycled crossings)
+ User -> Dialog : user responses
+ Destroy Dialog
+else 
+MainForm --> MainForm : ShowRecycledCrossings(crossings)
+
+

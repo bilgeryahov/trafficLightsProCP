@@ -1,0 +1,21 @@
+title Save simulation
+
+User -> +MainForm : Click save functionality
+MainForm -> * PromptDialog : Dialog for saving the simulation
+User -> PromptDialog : user gives response
+PromptDialog --> MainForm : return saving location
+Destroy PromptDialog
+alt isValid(location) == false
+    MainForm -> *ErrorDialog : Inform user 
+    User -> ErrorDialog : user response
+    Destroy ErrorDialog
+    
+else
+MainForm -> +TrafficManager : SaveSimulation()
+TrafficManager-> *SavedManager : Add(theSimulation)
+SavedManager --> TrafficManager:return success
+Destroy SavedManager
+TrafficManager -->MainForm : return success
+end
+MainForm --> MainForm : notify user
+

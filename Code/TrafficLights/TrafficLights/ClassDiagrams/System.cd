@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TrafficLights.Grid">
+    <Position X="1.5" Y="0.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="TrafficLights.Grid.GridAltered" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Grid.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAABEAACIAAAQIAAAAAAAAACAAAAChEIAA=</HashCode>
+      <FileName>Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.TrafficManager">
+    <Position X="3.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAQAuAAAAAABIAEAAgAQCAQAQBAAQAkCABAAAAAEAA=</HashCode>
+      <FileName>TrafficManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="TrafficLights.SystemState">
+    <Position X="5.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAEAEAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>SystemState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

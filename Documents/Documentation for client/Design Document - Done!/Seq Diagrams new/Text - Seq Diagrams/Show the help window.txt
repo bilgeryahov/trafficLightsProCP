@@ -1,0 +1,9 @@
+Title Show the help window
+User -> + MainForm : Show help Functionality
+
+MainForm -> *HelpManualDialog : Show Help
+User -> HelpManualDialog : user closes the help manual
+Destroy HelpManualDialog
+
+
+

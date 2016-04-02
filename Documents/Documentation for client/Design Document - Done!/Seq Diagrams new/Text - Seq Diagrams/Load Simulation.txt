@@ -1,0 +1,16 @@
+title Load Simulation
+
+User ->+ MainForm : Load functionality
+MainForm ->*LoadDialog : show dialog for choosing file
+User -> LoadDialog : Provide Input
+LoadDialog --> MainForm : return path
+Destroy LoadDialog
+alt isValid(path) == false
+MainForm ->*ErrorDialog : notify user of error
+User -> ErrorDialog : user response
+Destroy ErrorDialog
+else isValid(path) == true
+MainForm -> +TrafficManager : LoadFromFile(path)
+TrafficManager -->MainForm :return success
+end
+MainForm --> MainForm :Update interface

@@ -1,0 +1,4 @@
+Title Start a simulation
+User -> +MainForm : Start functionality
+MainForm ->+TrafficManager: StartSimulation()
+TrafficManager ->+Simulation : Start()

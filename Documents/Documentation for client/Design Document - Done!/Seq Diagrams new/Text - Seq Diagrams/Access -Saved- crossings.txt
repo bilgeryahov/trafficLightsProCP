@@ -1,0 +1,14 @@
+title Access "Saved" crossings
+
+User -> +MainForm : Click previous saved crossings functionality
+MainForm -> *SavedManager : GetCrossings()
+SavedManager --> MainForm :return crossings
+Destroy SavedManager
+alt crossings == null
+ MainForm ->*Dialog : notify user (no saved crossings)
+ User -> Dialog : user responses
+ Destroy Dialog
+else 
+MainForm --> MainForm : ShowSavedCrossings(crossings)
+
+

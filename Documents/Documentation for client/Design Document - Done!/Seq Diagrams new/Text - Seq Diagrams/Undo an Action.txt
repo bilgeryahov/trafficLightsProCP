@@ -1,0 +1,13 @@
+Title Undo an Action
+User -> + MainForm : Undo Functionality
+alt SimulationIsRunning()
+    MainForm ->*ErrorDialog : display error
+    User -> ErrorDialog : user response
+    Destroy ErrorDialog
+MainForm ->
+else
+MainForm -> +TrafficManager : ChangeStateTo(previousState)
+TrafficManager --> MainForm:return success
+end
+
+MainForm --> MainForm : UpdateInterface()

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TrafficLights.Crossing">
+    <Position X="13.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAgCAAAAAUAkBAgBgQAAiEAEIwgCIBAQwgAIAAAA=</HashCode>
+      <FileName>Crossing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficLights.CrossingA">
+    <Position X="16.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CrossingA.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Crosswalks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TrafficLights.CrossingB">
+    <Position X="16.25" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CrossingB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Crosswalks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TrafficLights.Crosswalk">
+    <Position X="19" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAIAAAAAAAAgAAAAEAAAAAARAAJAIAAEA=</HashCode>
+      <FileName>Crosswalk.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Lanes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TrafficLights.Lane">
+    <Position X="21.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAoAAAAAAAIAIAAAAAgAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Lane.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="To" />
+      <Property Name="From" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="TrafficLights.Direction">
+    <Position X="23.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

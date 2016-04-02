@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace TrafficLights
@@ -79,7 +82,8 @@ namespace TrafficLights
         /// </summary>
         public void IncreaseSimulationSpeed()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.IncreaseSpeed();
+            // Increase speed with?
         }
 
         /// <summary>
@@ -87,7 +91,8 @@ namespace TrafficLights
         /// </summary>
         public void DecreaseSimulationSpeed()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.DecreaseSpeed();
+            // Decrease speed with?
         }
 
         /// <summary>
@@ -95,7 +100,7 @@ namespace TrafficLights
         /// </summary>
         public void StartSimulation()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.Start();
         }
 
         /// <summary>
@@ -103,7 +108,7 @@ namespace TrafficLights
         /// </summary>
         public void StopSimulation()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.Stop();
         }
 
         /// <summary>
@@ -111,7 +116,7 @@ namespace TrafficLights
         /// </summary>
         public void PauseSimulation()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.Pause();
         }
 
         /// <summary>
@@ -119,7 +124,7 @@ namespace TrafficLights
         /// </summary>
         public void ResumeSimulation()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.Resume();
         }
 
         /// <summary>
@@ -127,7 +132,7 @@ namespace TrafficLights
         /// </summary>
         public void FinishSimulation()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.Finish();
         }
 
         /// <summary>
@@ -135,15 +140,15 @@ namespace TrafficLights
         /// </summary>
         public void RestartSimulation()
         {
-            throw new System.NotImplementedException();
+            this.CurrentSimulation.Restart();
         }
 
         /// <summary>
         /// Removes the crossing.
         /// </summary>
-        public void RemoveCrossing()
+        public void RemoveCrossing(int row, int column)
         {
-            throw new System.NotImplementedException();
+            this.Grid.RemoveAt(row, column);
         }
 
         /// <summary>
@@ -151,7 +156,7 @@ namespace TrafficLights
         /// </summary>
         public void PlaceCrossing(Crossing crossing, int row, int column)
         {
-            throw new System.NotImplementedException();
+            this.Grid.AddAt(row, column, crossing);
         }
 
         /// <summary>
@@ -159,7 +164,33 @@ namespace TrafficLights
         /// </summary>
         public void SaveSimulation()
         {
-            throw new System.NotImplementedException();
+            FileStream myFileStream = null;
+            BinaryFormatter myBinaryFormatter = null;
+
+            try
+            {
+                myFileStream = new FileStream(this.CurrentSimulation.Destination + ".tlm", FileMode.Create, FileAccess.Write);
+                myBinaryFormatter = new BinaryFormatter();
+
+                myBinaryFormatter.Serialize(myFileStream, this.CurrentSimulation);
+                //Notify for success?
+            }
+
+            catch (SerializationException)
+            {
+                //Notify for failure?
+            }
+            catch (IOException)
+            {
+                //Notify for failure?
+            }
+            finally
+            {
+                if (myFileStream != null)
+                {
+                    myFileStream.Close();
+                }
+            }
         }
 
         /// <summary>
@@ -167,7 +198,35 @@ namespace TrafficLights
         /// </summary>
         public void LoadFromFile()
         {
-            throw new System.NotImplementedException();
+            //Are there unsaved changes?
+
+            FileStream myFileStream = null;
+            BinaryFormatter myBinaryFormatter = null;
+            try
+            {
+                myFileStream = new FileStream("", FileMode.Open, FileAccess.Read);
+                myBinaryFormatter = new BinaryFormatter();
+
+                this.CurrentSimulation = (Simulation)myBinaryFormatter.Deserialize(myFileStream);
+
+                //Notify for success?
+            }
+
+            catch (SerializationException)
+            {
+                //Notify for failure?
+            }
+            catch (IOException)
+            {
+                //Notify for failure?
+            }
+            finally
+            {
+                if (myFileStream != null)
+                {
+                    myFileStream.Close();
+                }
+            }
         }
 
     }

@@ -181,8 +181,20 @@ namespace TrafficLights
             }
         }
 
+        public IEnumerable<Renderable> ChildElements
+        {
+            get
+            {
+                List<Renderable> children = new List<Renderable>();
 
-     //   public IEnumerable<Lane> Roads
+                children.AddRange(Lights);
+                children.AddRange(Lanes);
+
+                return children;
+            }
+        }
+
+
         /// <summary>
         /// Gets the lanes.
         /// </summary>
@@ -199,6 +211,25 @@ namespace TrafficLights
                 }
 
                 return roads;
+            }
+        }
+
+        /// <summary>
+        /// Gets the lanes.
+        /// </summary>
+        /// <value>The lanes.</value>
+        public IEnumerable<Trafficlight> Lights
+        {
+            get
+            {
+                List<Trafficlight> lights = new List<Trafficlight>();
+
+                foreach (Crosswalk crosswalk in Crosswalks)
+                {
+                    lights.Add(crosswalk.Light);
+                }
+
+                return lights;
             }
         }
 
@@ -310,12 +341,22 @@ namespace TrafficLights
             this.Column = column;
         }
 
-        /// <summary>
-        /// Rotates this instance.
-        /// </summary>
-        public void Rotate()
+        public override void Update(float seconds)
         {
-            throw new System.NotImplementedException();
+            foreach (Renderable child in this.ChildElements)
+                child.Update(seconds);
+        }
+
+        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        {
+            foreach (Renderable child in this.ChildElements)
+                child.Draw(image);
+        }
+
+        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        {
+            foreach (Renderable child in this.ChildElements)
+                child.Draw(image);
         }
     }
 }

@@ -12,6 +12,13 @@ namespace TrafficLights
     [Serializable]
     public class Grid
     {
+        public System.Drawing.Point PointFromSlotID(int slotID) { return new System.Drawing.Point(slotID % 3, slotID / 3); }
+        public Crossing CrossingAt(int slotID)
+        {
+            System.Drawing.Point point = PointFromSlotID(slotID);
+            return Crossings[point.Y][point.X];
+        }
+
         /// <summary>
         /// Delegate GridAltered
         /// </summary>
@@ -44,9 +51,7 @@ namespace TrafficLights
                 List<Crossing> crossings = new List<Crossing>();
 
                 foreach (Crossing[] row in this.Crossings)
-                {
                     crossings.AddRange(row);
-                }
 
                 return crossings;
             }

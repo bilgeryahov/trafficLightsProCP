@@ -16,6 +16,9 @@ namespace TrafficLights
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainForm : Form
     {
+        Dictionary<int, PictureBox> slotIDToPBoxLookup = new Dictionary<int, PictureBox>();
+        Dictionary<PictureBox, int> pBoxToSlotIDLookup = new Dictionary<PictureBox, int>();
+
         private TrafficManager manager = new TrafficManager(3, 3);
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -57,6 +60,46 @@ namespace TrafficLights
             ToggleControl(redoBtn, false);
             ToggleControl(undoToolStripMenuItem1, false);
             ToggleControl(undoBtn, false);
+
+            manager.OnCurrentActiveComponentChanged += (x) =>
+                {
+                    if (x == null)
+                    {
+                        propertiesEditGBox.Visible = false;
+                        return;
+                    }
+                    propertiesEditGBox.Visible = true;
+                    if (x is Trafficlight)
+                        propertiesLbl.Text = "Green interval";
+                    else if (x is Lane)
+                        propertiesLbl.Text = "Car flow";
+                };
+
+            manager.CurrentActiveComponent = null;
+
+            foreach (Control item in this.Controls)
+            {
+                if (item.Name.StartsWith("gridSlot"))
+                {
+
+                    int slotID = int.Parse(item.Name.Substring("gridSlot".Length)) - 1;
+                    pBoxToSlotIDLookup.Add(item as PictureBox, slotID);
+                    slotIDToPBoxLookup.Add(slotID, item as PictureBox);
+                }
+            }
+
+            foreach (Control item in this.Controls)
+                item.KeyDown += MainForm_KeyDown;
+
+            this.Click += MainForm_Click;
+
+            PicBoxTypeA.Click += PicBoxTypeA_Click;
+            PicBoxTypeB.Click += PicBoxTypeB_Click;
+            PicBoxTypeC.Click += PicBoxTypeC_Click;
+
+            PicBoxTypeA.Cursor = Cursors.Hand;
+            PicBoxTypeB.Cursor = Cursors.Hand;
+            PicBoxTypeC.Cursor = Cursors.Hand;
         }
 
         private void PopulateActionStackListbox()
@@ -106,15 +149,6 @@ namespace TrafficLights
 
         }
 
-        /// <summary>
-        /// Handles the Click event of the PicBoxTypeB control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void PicBoxTypeB_Click(object sender, EventArgs e)
-        {
-        }
-
         private void ShowCrossingsManager(CrossingManager manager)
         {
 
@@ -132,12 +166,18 @@ namespace TrafficLights
 
         private void UpdateSimulation()
         {
-            //update simulation per Tick of the timer
+            manager.CurrentSimulation.Update(timer.Interval);
         }
 
         private void UpdateInterface()
         {
-            //calls Render
+            for (int i = 0; i < (manager.Grid.Columns ^ 2); i++)
+            {
+                Crossing c = manager.Grid.CrossingAt(i);
+                if (c == null)
+                    continue;
+                c.Draw(slotIDToPBoxLookup[i].Image as Bitmap);
+            }
         }
 
         private void ShowResults(SimulationResult results)
@@ -252,6 +292,109 @@ namespace TrafficLights
             {
                 //todo excel; snapshot
                 
+            }
+        }
+
+        private void updateFlowBtn_Click(object sender, EventArgs e)
+        {
+            if (manager.CurrentActiveLane != null)
+                manager.CurrentActiveLane.UpdateFlow((int)propertiesEditNUD.Value);
+            else if (manager.CurrentActiveTrafficLight != null)
+                manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            UpdateSimulation();
+        }
+
+         /// <summary>
+        /// Changes border of the picturebox crossing, whenever clicked on it.
+        /// </summary>
+        /// <param name="thePictureBox"></param>
+        /// <param name="isActive">Pass true if you want to make it active - clicked on</param>
+        private void ChangeCursor(PictureBox thePictureBox, bool isActive)
+        {
+            if (isActive)
+            {
+                thePictureBox.BorderStyle = BorderStyle.Fixed3D;
+                ChangeGridSlotsCursor(true);
+            }
+            else
+            {
+                thePictureBox.BorderStyle = BorderStyle.None;
+            }
+        }
+  private void ChangeGridSlotsCursor(bool isActive)
+        {
+            if (isActive)
+            {
+                gridSlot1.Cursor = Cursors.Hand;
+                gridSlot2.Cursor = Cursors.Hand;
+                gridSlot3.Cursor = Cursors.Hand;
+                gridSlot4.Cursor = Cursors.Hand;
+                gridSlot5.Cursor = Cursors.Hand;
+                gridSlot6.Cursor = Cursors.Hand;
+                gridSlot7.Cursor = Cursors.Hand;
+                gridSlot8.Cursor = Cursors.Hand;
+                gridSlot9.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                gridSlot1.Cursor = Cursors.Default;
+                gridSlot2.Cursor = Cursors.Default;
+                gridSlot3.Cursor = Cursors.Default;
+                gridSlot4.Cursor = Cursors.Default;
+                gridSlot5.Cursor = Cursors.Default;
+                gridSlot6.Cursor = Cursors.Default;
+                gridSlot7.Cursor = Cursors.Default;
+                gridSlot8.Cursor = Cursors.Default;
+                gridSlot9.Cursor = Cursors.Default;
+            }
+            
+        }
+
+   private void MainForm_Click(object sender, EventArgs e)
+        {
+            /*
+                Whenever the user clicks somewhere in the form, the crossing pictures will return out of mode.
+            */
+            ChangeCursor(PicBoxTypeA, false);
+            ChangeCursor(PicBoxTypeB, false);
+            ChangeCursor(PicBoxTypeC, false);
+
+            ChangeGridSlotsCursor(false);
+        }
+   private void PicBoxTypeA_Click(object sender, EventArgs e)
+        {
+            ChangeCursor(PicBoxTypeA,true);
+            ChangeCursor(PicBoxTypeB, false);
+            ChangeCursor(PicBoxTypeC, false);
+        }
+
+        private void PicBoxTypeC_Click(object sender, EventArgs e)
+        {
+            ChangeCursor(PicBoxTypeC,true);
+            ChangeCursor(PicBoxTypeA, false);
+            ChangeCursor(PicBoxTypeB, false);
+        }
+
+        private void PicBoxTypeB_Click(object sender, EventArgs e)
+        {
+            ChangeCursor(PicBoxTypeB,true);
+            ChangeCursor(PicBoxTypeA, false);
+            ChangeCursor(PicBoxTypeC, false);
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                ChangeCursor(PicBoxTypeA, false);
+                ChangeCursor(PicBoxTypeB, false);
+                ChangeCursor(PicBoxTypeC, false);
+
+                ChangeGridSlotsCursor(false);
             }
         }
     }

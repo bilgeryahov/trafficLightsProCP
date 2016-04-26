@@ -44,6 +44,20 @@ namespace TrafficLights
         /// <value>The state of the current.</value>
         public SystemState CurrentState { get; private set; }
 
+        public event Action<Component> OnCurrentActiveComponentChanged = (x) => { };
+        private Component currentActiveComponent = null;
+        public Component CurrentActiveComponent
+        {
+            get { return currentActiveComponent; }
+            set
+            {
+                currentActiveComponent = value;
+                OnCurrentActiveComponentChanged(value);
+            }
+        }
+        public Trafficlight CurrentActiveTrafficLight { get { return CurrentActiveComponent as Trafficlight; } }
+        public Lane CurrentActiveLane { get { return CurrentActiveComponent as Lane; } }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TrafficManager"/> class.
         /// </summary>
@@ -79,7 +93,6 @@ namespace TrafficLights
         public void IncreaseSimulationSpeed()
         {
             this.CurrentSimulation.IncreaseSpeed();
-            // Increase speed with?
         }
 
         /// <summary>
@@ -88,7 +101,6 @@ namespace TrafficLights
         public void DecreaseSimulationSpeed()
         {
             this.CurrentSimulation.DecreaseSpeed();
-            // Decrease speed with?
         }
 
         /// <summary>

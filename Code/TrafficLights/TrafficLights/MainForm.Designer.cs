@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnIncSpeed = new System.Windows.Forms.Button();
             this.btnDecSpeed = new System.Windows.Forms.Button();
@@ -65,18 +66,18 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.gridSlot1 = new System.Windows.Forms.PictureBox();
+            this.gridSlot3 = new System.Windows.Forms.PictureBox();
+            this.gridSlot2 = new System.Windows.Forms.PictureBox();
+            this.gridSlot5 = new System.Windows.Forms.PictureBox();
+            this.gridSlot4 = new System.Windows.Forms.PictureBox();
+            this.gridSlot6 = new System.Windows.Forms.PictureBox();
+            this.gridSlot9 = new System.Windows.Forms.PictureBox();
+            this.gridSlot8 = new System.Windows.Forms.PictureBox();
+            this.gridSlot7 = new System.Windows.Forms.PictureBox();
             this.lblTimeElapsed = new System.Windows.Forms.Label();
             this.lbActions = new System.Windows.Forms.ListBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.PicBoxTypeC = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -85,10 +86,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.listViewResults = new System.Windows.Forms.ListView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.propertiesEditGBox = new System.Windows.Forms.GroupBox();
+            this.propertiesEditNUD = new System.Windows.Forms.NumericUpDown();
+            this.updatePropertiesBtn = new System.Windows.Forms.Button();
+            this.propertiesLbl = new System.Windows.Forms.Label();
             this.btnRestart = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.undoBtn = new System.Windows.Forms.Button();
@@ -98,21 +99,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeC)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.propertiesEditGBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.propertiesEditNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIncSpeed
@@ -180,21 +183,21 @@
             // newSimulationToolStripMenuItem
             // 
             this.newSimulationToolStripMenuItem.Name = "newSimulationToolStripMenuItem";
-            this.newSimulationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newSimulationToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.newSimulationToolStripMenuItem.Text = "New Grid";
             this.newSimulationToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.openToolStripMenuItem.Text = "Load Grid";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.saveToolStripMenuItem1.Text = "Save Grid";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
@@ -210,14 +213,14 @@
             // undoToolStripMenuItem1
             // 
             this.undoToolStripMenuItem1.Name = "undoToolStripMenuItem1";
-            this.undoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.undoToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.undoToolStripMenuItem1.Text = "Undo";
             this.undoToolStripMenuItem1.Click += new System.EventHandler(this.undoToolStripMenuItem1_Click);
             // 
             // redoToolStripMenuItem1
             // 
             this.redoToolStripMenuItem1.Name = "redoToolStripMenuItem1";
-            this.redoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.redoToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.redoToolStripMenuItem1.Text = "Redo";
             this.redoToolStripMenuItem1.Click += new System.EventHandler(this.redoToolStripMenuItem1_Click);
             // 
@@ -232,7 +235,7 @@
             // showHelpToolStripMenuItem
             // 
             this.showHelpToolStripMenuItem.Name = "showHelpToolStripMenuItem";
-            this.showHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showHelpToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.showHelpToolStripMenuItem.Text = "Manual";
             this.showHelpToolStripMenuItem.Click += new System.EventHandler(this.showHelpToolStripMenuItem_Click);
             // 
@@ -414,95 +417,95 @@
             this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem1.Text = "Help";
             // 
-            // pictureBox1
+            // gridSlot1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(241, 90);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.TabIndex = 60;
-            this.pictureBox1.TabStop = false;
+            this.gridSlot1.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot1.Location = new System.Drawing.Point(241, 90);
+            this.gridSlot1.Name = "gridSlot1";
+            this.gridSlot1.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot1.TabIndex = 60;
+            this.gridSlot1.TabStop = false;
             // 
-            // pictureBox2
+            // gridSlot3
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(641, 90);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox2.TabIndex = 61;
-            this.pictureBox2.TabStop = false;
+            this.gridSlot3.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot3.Location = new System.Drawing.Point(641, 90);
+            this.gridSlot3.Name = "gridSlot3";
+            this.gridSlot3.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot3.TabIndex = 61;
+            this.gridSlot3.TabStop = false;
             // 
-            // pictureBox3
+            // gridSlot2
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Location = new System.Drawing.Point(441, 90);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox3.TabIndex = 62;
-            this.pictureBox3.TabStop = false;
+            this.gridSlot2.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot2.Location = new System.Drawing.Point(441, 90);
+            this.gridSlot2.Name = "gridSlot2";
+            this.gridSlot2.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot2.TabIndex = 62;
+            this.gridSlot2.TabStop = false;
             // 
-            // pictureBox4
+            // gridSlot5
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox4.Location = new System.Drawing.Point(441, 290);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox4.TabIndex = 63;
-            this.pictureBox4.TabStop = false;
+            this.gridSlot5.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot5.Location = new System.Drawing.Point(441, 290);
+            this.gridSlot5.Name = "gridSlot5";
+            this.gridSlot5.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot5.TabIndex = 63;
+            this.gridSlot5.TabStop = false;
             // 
-            // pictureBox5
+            // gridSlot4
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox5.Location = new System.Drawing.Point(241, 290);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox5.TabIndex = 64;
-            this.pictureBox5.TabStop = false;
+            this.gridSlot4.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot4.Location = new System.Drawing.Point(241, 290);
+            this.gridSlot4.Name = "gridSlot4";
+            this.gridSlot4.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot4.TabIndex = 64;
+            this.gridSlot4.TabStop = false;
             // 
-            // pictureBox6
+            // gridSlot6
             // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox6.Location = new System.Drawing.Point(641, 290);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox6.TabIndex = 65;
-            this.pictureBox6.TabStop = false;
+            this.gridSlot6.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot6.Location = new System.Drawing.Point(641, 290);
+            this.gridSlot6.Name = "gridSlot6";
+            this.gridSlot6.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot6.TabIndex = 65;
+            this.gridSlot6.TabStop = false;
             // 
-            // pictureBox7
+            // gridSlot9
             // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox7.Location = new System.Drawing.Point(641, 490);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox7.TabIndex = 66;
-            this.pictureBox7.TabStop = false;
+            this.gridSlot9.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot9.Location = new System.Drawing.Point(641, 490);
+            this.gridSlot9.Name = "gridSlot9";
+            this.gridSlot9.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot9.TabIndex = 66;
+            this.gridSlot9.TabStop = false;
             // 
-            // pictureBox8
+            // gridSlot8
             // 
-            this.pictureBox8.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox8.Location = new System.Drawing.Point(441, 490);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox8.TabIndex = 67;
-            this.pictureBox8.TabStop = false;
+            this.gridSlot8.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot8.Location = new System.Drawing.Point(441, 490);
+            this.gridSlot8.Name = "gridSlot8";
+            this.gridSlot8.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot8.TabIndex = 67;
+            this.gridSlot8.TabStop = false;
             // 
-            // pictureBox9
+            // gridSlot7
             // 
-            this.pictureBox9.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox9.Location = new System.Drawing.Point(241, 490);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox9.TabIndex = 68;
-            this.pictureBox9.TabStop = false;
+            this.gridSlot7.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot7.Location = new System.Drawing.Point(241, 490);
+            this.gridSlot7.Name = "gridSlot7";
+            this.gridSlot7.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot7.TabIndex = 68;
+            this.gridSlot7.TabStop = false;
             // 
             // lblTimeElapsed
             // 
@@ -521,17 +524,16 @@
             this.lbActions.Size = new System.Drawing.Size(202, 121);
             this.lbActions.TabIndex = 69;
             // 
-            // pictureBox10
+            // PicBoxTypeC
             // 
-            this.pictureBox10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox10.BackgroundImage")));
-            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox10.Enabled = false;
-            this.pictureBox10.Location = new System.Drawing.Point(157, 68);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(65, 64);
-            this.pictureBox10.TabIndex = 70;
-            this.pictureBox10.TabStop = false;
+            this.PicBoxTypeC.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PicBoxTypeC.BackgroundImage")));
+            this.PicBoxTypeC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PicBoxTypeC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PicBoxTypeC.Location = new System.Drawing.Point(157, 68);
+            this.PicBoxTypeC.Name = "PicBoxTypeC";
+            this.PicBoxTypeC.Size = new System.Drawing.Size(65, 64);
+            this.PicBoxTypeC.TabIndex = 70;
+            this.PicBoxTypeC.TabStop = false;
             // 
             // label1
             // 
@@ -618,45 +620,46 @@
             this.listViewResults.TabIndex = 77;
             this.listViewResults.UseCompatibleStateImageBehavior = false;
             // 
-            // textBox1
+            // propertiesEditGBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(60, 26);
-            this.textBox1.TabIndex = 78;
+            this.propertiesEditGBox.Controls.Add(this.propertiesEditNUD);
+            this.propertiesEditGBox.Controls.Add(this.updatePropertiesBtn);
+            this.propertiesEditGBox.Controls.Add(this.propertiesLbl);
+            this.propertiesEditGBox.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.propertiesEditGBox.Location = new System.Drawing.Point(5, 338);
+            this.propertiesEditGBox.Name = "propertiesEditGBox";
+            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 105);
+            this.propertiesEditGBox.TabIndex = 81;
+            this.propertiesEditGBox.TabStop = false;
+            this.propertiesEditGBox.Text = "Properties";
             // 
-            // groupBox2
+            // propertiesEditNUD
             // 
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(5, 338);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(217, 105);
-            this.groupBox2.TabIndex = 81;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Properties";
+            this.propertiesEditNUD.Location = new System.Drawing.Point(91, 28);
+            this.propertiesEditNUD.Name = "propertiesEditNUD";
+            this.propertiesEditNUD.Size = new System.Drawing.Size(120, 26);
+            this.propertiesEditNUD.TabIndex = 90;
             // 
-            // button5
+            // updatePropertiesBtn
             // 
-            this.button5.Location = new System.Drawing.Point(100, 72);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(111, 27);
-            this.button5.TabIndex = 89;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = true;
+            this.updatePropertiesBtn.Location = new System.Drawing.Point(100, 72);
+            this.updatePropertiesBtn.Name = "updatePropertiesBtn";
+            this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 27);
+            this.updatePropertiesBtn.TabIndex = 89;
+            this.updatePropertiesBtn.Text = "Update";
+            this.updatePropertiesBtn.UseVisualStyleBackColor = true;
+            this.updatePropertiesBtn.Click += new System.EventHandler(this.updateFlowBtn_Click);
             // 
-            // label7
+            // propertiesLbl
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Baskerville Old Face", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(60, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 23);
-            this.label7.TabIndex = 82;
-            this.label7.Text = "Car Flow";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.propertiesLbl.AutoSize = true;
+            this.propertiesLbl.Font = new System.Drawing.Font("Baskerville Old Face", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.propertiesLbl.Location = new System.Drawing.Point(8, 28);
+            this.propertiesLbl.Name = "propertiesLbl";
+            this.propertiesLbl.Size = new System.Drawing.Size(82, 23);
+            this.propertiesLbl.TabIndex = 82;
+            this.propertiesLbl.Text = "Car Flow";
+            this.propertiesLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnRestart
             // 
@@ -756,6 +759,10 @@
             this.label9.Text = "Saved Crossings Setups";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -770,7 +777,7 @@
             this.Controls.Add(this.undoBtn);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnRestart);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.propertiesEditGBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -784,17 +791,17 @@
             this.Controls.Add(this.TimeElapsed);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox10);
+            this.Controls.Add(this.PicBoxTypeC);
             this.Controls.Add(this.lbActions);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.gridSlot7);
+            this.Controls.Add(this.gridSlot8);
+            this.Controls.Add(this.gridSlot9);
+            this.Controls.Add(this.gridSlot6);
+            this.Controls.Add(this.gridSlot4);
+            this.Controls.Add(this.gridSlot5);
+            this.Controls.Add(this.gridSlot2);
+            this.Controls.Add(this.gridSlot3);
+            this.Controls.Add(this.gridSlot1);
             this.Controls.Add(this.PicBoxTypeB);
             this.Controls.Add(this.PicBoxTypeA);
             this.Controls.Add(this.menuStrip);
@@ -806,20 +813,21 @@
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeC)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.propertiesEditGBox.ResumeLayout(false);
+            this.propertiesEditGBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.propertiesEditNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -853,21 +861,21 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox gridSlot1;
+        private System.Windows.Forms.PictureBox gridSlot3;
+        private System.Windows.Forms.PictureBox gridSlot2;
+        private System.Windows.Forms.PictureBox gridSlot5;
+        private System.Windows.Forms.PictureBox gridSlot4;
+        private System.Windows.Forms.PictureBox gridSlot6;
+        private System.Windows.Forms.PictureBox gridSlot9;
+        private System.Windows.Forms.PictureBox gridSlot8;
+        private System.Windows.Forms.PictureBox gridSlot7;
         private System.Windows.Forms.Label lblTimeElapsed;
         private System.Windows.Forms.ListBox lbActions;
         private System.Windows.Forms.ToolStripMenuItem FileMenu;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem2;
-        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox PicBoxTypeC;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem newSimulationToolStripMenuItem;
@@ -880,9 +888,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSaveStats;
         private System.Windows.Forms.ListView listViewResults;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox propertiesEditGBox;
+        private System.Windows.Forms.Label propertiesLbl;
         private System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
@@ -892,9 +899,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button updatePropertiesBtn;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown propertiesEditNUD;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

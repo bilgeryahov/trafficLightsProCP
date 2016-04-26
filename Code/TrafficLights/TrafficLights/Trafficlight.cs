@@ -29,6 +29,10 @@ namespace TrafficLights
         public static State[] DefaultStateOrder { get { return new State[] { State.Red, State.Yellow, State.Green }; } }
 
         /// <summary>
+        /// Gets the time spent in green in seconds.
+        /// </summary>
+        public float GreenSeconds { get; set; }
+        /// <summary>
         /// Gets the red to green seconds.
         /// </summary>
         /// <value>The red to green seconds.</value>

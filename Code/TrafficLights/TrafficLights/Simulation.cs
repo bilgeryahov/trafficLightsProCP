@@ -89,6 +89,9 @@ namespace TrafficLights
         /// </summary>
         /// <value>The cars left.</value>
         public int CarsLeft { get { return TotalCars - CarsPassed; } }
+
+        public List<Car> CurrentCars = new List<Car>();
+
         /// <summary>
         /// Gets a value indicating whether this instance has pedestrians crossing.
         /// </summary>
@@ -232,7 +235,13 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             if (isPaused) return;
-            currentFrame += speed;
+            seconds *= speed;
+            float fps = 15;
+            currentFrame += (seconds * 1000) / (1000/fps);
+            foreach (Crossing crossing in Grid.AllCrossings)
+                crossing.Update(seconds);
+            foreach (Car car in this.CurrentCars)
+                car.Update(seconds);
             throw new NotImplementedException();
         }
 
@@ -244,6 +253,10 @@ namespace TrafficLights
         {
             if (isPaused) return;
             //draw components based on which frame they should be at
+            foreach (Crossing crossing in Grid.AllCrossings)
+                crossing.Draw(image);
+            foreach (Car car in this.CurrentCars)
+                car.Draw(image);
             throw new NotImplementedException();
         }
 
@@ -253,7 +266,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Bitmap image)
         {
-            throw new NotImplementedException();
+            throw new Exception("Should not be called");
         }
 
         /// <summary>

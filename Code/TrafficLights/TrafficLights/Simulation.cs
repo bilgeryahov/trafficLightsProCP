@@ -73,16 +73,6 @@ namespace TrafficLights
         }
 
         /// <summary>
-        /// Destination of the simulation when saving and loading.
-        /// To be used with save file dialogs.
-        /// </summary>
-        public string Destination
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Gets the total cars.
         /// </summary>
         /// <value>The total cars.</value>

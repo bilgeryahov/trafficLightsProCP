@@ -13,6 +13,7 @@ namespace TrafficLights
     /// </summary>
     public class TrafficManager
     {
+        public string CurrentLoadedPath { get; private set; }
         /// <summary>
         /// Gets the current simulation or null if not created
         /// </summary>
@@ -27,11 +28,6 @@ namespace TrafficLights
         /// </summary>
         /// <value>The grid.</value>
         public Grid Grid { get; private set; }
-        /// <summary>
-        /// Gets the undo redo stack.
-        /// </summary>
-        /// <value>The undo redo stack.</value>
-        public ActionStack UndoRedoStack { get; private set; }
 
         /// <summary>
         /// Manager with the recycled crossings
@@ -162,17 +158,18 @@ namespace TrafficLights
         /// <summary>
         /// Saves the simulation.
         /// </summary>
-        public void SaveSimulation()
+        public void SaveToFile(string filepath)
         {
             FileStream myFileStream = null;
             BinaryFormatter myBinaryFormatter = null;
 
             try
             {
-                myFileStream = new FileStream(this.CurrentSimulation.Destination + ".tlm", FileMode.Create, FileAccess.Write);
+                myFileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write);
                 myBinaryFormatter = new BinaryFormatter();
 
-                myBinaryFormatter.Serialize(myFileStream, this.CurrentSimulation);
+                myBinaryFormatter.Serialize(myFileStream, this.Grid);
+                CurrentLoadedPath = filepath;
                 //Notify for success?
             }
 
@@ -196,7 +193,7 @@ namespace TrafficLights
         /// <summary>
         /// Loads from file.
         /// </summary>
-        public void LoadFromFile()
+        public void LoadFromFile(string filepath)
         {
             //Are there unsaved changes?
 
@@ -204,11 +201,13 @@ namespace TrafficLights
             BinaryFormatter myBinaryFormatter = null;
             try
             {
-                myFileStream = new FileStream("", FileMode.Open, FileAccess.Read);
+                myFileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
                 myBinaryFormatter = new BinaryFormatter();
 
-                this.CurrentSimulation = (Simulation)myBinaryFormatter.Deserialize(myFileStream);
-
+                this.Grid = (Grid)myBinaryFormatter.Deserialize(myFileStream);
+                CurrentLoadedPath = filepath;
+                ProcessNewGridLoaded();
+                throw new NotImplementedException("Update grid UI");
                 //Notify for success?
             }
 
@@ -229,5 +228,16 @@ namespace TrafficLights
             }
         }
 
+        public void CreateNewGrid()
+        {
+            this.Grid = new Grid(3, 3);
+            ProcessNewGridLoaded();
+        }
+
+        private void ProcessNewGridLoaded()
+        {
+            this.CurrentSimulation = null;
+            ActionStack.Clear();
+        }
     }
 }

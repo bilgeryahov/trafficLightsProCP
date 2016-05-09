@@ -50,6 +50,7 @@
     <Compile Include="Crossing.cs" />
     <Compile Include="CrossingA.cs" />
     <Compile Include="CrossingB.cs" />
+    <Compile Include="CrossingBRotated.cs" />
     <Compile Include="CrossingManager.cs" />
     <Compile Include="Crosswalk.cs" />
     <Compile Include="Direction.cs" />

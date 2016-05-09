@@ -56,5 +56,10 @@ namespace TrafficLights
         {
             throw new NotImplementedException();
         }
+
+        public override System.Drawing.Image Image
+        {
+            get { return TrafficLights.Properties.Resources.cross_2; }
+        }
     }
 }

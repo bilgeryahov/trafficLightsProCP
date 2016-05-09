@@ -427,7 +427,6 @@
             this.gridSlot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot1.TabIndex = 60;
             this.gridSlot1.TabStop = false;
-            this.gridSlot1.Click += new System.EventHandler(this.gridSlot1_Click);
             // 
             // gridSlot3
             // 
@@ -439,7 +438,6 @@
             this.gridSlot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot3.TabIndex = 61;
             this.gridSlot3.TabStop = false;
-            this.gridSlot3.Click += new System.EventHandler(this.gridSlot3_Click);
             // 
             // gridSlot2
             // 
@@ -451,7 +449,6 @@
             this.gridSlot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot2.TabIndex = 62;
             this.gridSlot2.TabStop = false;
-            this.gridSlot2.Click += new System.EventHandler(this.gridSlot2_Click);
             // 
             // gridSlot5
             // 
@@ -463,7 +460,6 @@
             this.gridSlot5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot5.TabIndex = 63;
             this.gridSlot5.TabStop = false;
-            this.gridSlot5.Click += new System.EventHandler(this.gridSlot5_Click);
             // 
             // gridSlot4
             // 
@@ -475,7 +471,6 @@
             this.gridSlot4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot4.TabIndex = 64;
             this.gridSlot4.TabStop = false;
-            this.gridSlot4.Click += new System.EventHandler(this.gridSlot4_Click);
             // 
             // gridSlot6
             // 
@@ -487,7 +482,6 @@
             this.gridSlot6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot6.TabIndex = 65;
             this.gridSlot6.TabStop = false;
-            this.gridSlot6.Click += new System.EventHandler(this.gridSlot6_Click);
             // 
             // gridSlot9
             // 
@@ -499,7 +493,6 @@
             this.gridSlot9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot9.TabIndex = 66;
             this.gridSlot9.TabStop = false;
-            this.gridSlot9.Click += new System.EventHandler(this.gridSlot9_Click);
             // 
             // gridSlot8
             // 
@@ -511,7 +504,6 @@
             this.gridSlot8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot8.TabIndex = 67;
             this.gridSlot8.TabStop = false;
-            this.gridSlot8.Click += new System.EventHandler(this.gridSlot8_Click);
             // 
             // gridSlot7
             // 
@@ -523,7 +515,6 @@
             this.gridSlot7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot7.TabIndex = 68;
             this.gridSlot7.TabStop = false;
-            this.gridSlot7.Click += new System.EventHandler(this.gridSlot7_Click);
             // 
             // lblTimeElapsed
             // 

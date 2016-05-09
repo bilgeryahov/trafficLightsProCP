@@ -87,6 +87,12 @@ namespace TrafficLights
                     int slotID = int.Parse(item.Name.Substring("gridSlot".Length)) - 1;
                     pBoxToSlotIDLookup.Add(item as PictureBox, slotID);
                     slotIDToPBoxLookup.Add(slotID, item as PictureBox);
+
+                    item.Click += (x, y) =>
+                    {
+                        PlaceCrossing(x as PictureBox);
+                        RemoveCrossing(x as PictureBox);
+                    };
                 }
             }
 
@@ -386,7 +392,7 @@ namespace TrafficLights
         private void PicBoxTypeC_Click(object sender, EventArgs e)
         {
             state = SystemState.Place;
-            crossingToBePlaced = new CrossingB(manager);
+            crossingToBePlaced = new CrossingBRotated(manager);
             ChangeBorder(PicBoxTypeC,true);
             ChangeBorder(PicBoxTypeA, false);
             ChangeBorder(PicBoxTypeB, false);
@@ -422,23 +428,7 @@ namespace TrafficLights
         {
             if (state != SystemState.Place) return;
 
-            if (crossingToBePlaced is CrossingA)
-            {
-                currentBox.Image = TrafficLights.Properties.Resources.cross_1;
-            }
-            else if (crossingToBePlaced is CrossingB)
-            {
-                if (PicBoxTypeB.BorderStyle == BorderStyle.Fixed3D)
-                {
-                    currentBox.Image = TrafficLights.Properties.Resources.cross_2;
-                }
-                else if (PicBoxTypeC.BorderStyle == BorderStyle.Fixed3D)
-                {
-                    currentBox.Image = PicBoxTypeC.BackgroundImage;
-                }
-
-            }
-
+             currentBox.Image = crossingToBePlaced.Image;
         }
         private void RemoveCrossing(PictureBox currentBox)
         {
@@ -447,60 +437,6 @@ namespace TrafficLights
             currentBox.Image = null;
         }
 
-        private void gridSlot1_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot1);
-            RemoveCrossing(gridSlot1);
-        }
-
-
-        private void gridSlot5_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot5);
-            RemoveCrossing(gridSlot5);
-        }
-
-        private void gridSlot3_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot3);
-            RemoveCrossing(gridSlot3);
-        }
-
-        private void gridSlot4_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot4);
-            RemoveCrossing(gridSlot4);
-        }
-
-        private void gridSlot2_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot2);
-            RemoveCrossing(gridSlot2);
-        }
-
-        private void gridSlot6_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot6);
-            RemoveCrossing(gridSlot6);
-        }
-
-        private void gridSlot7_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot7);
-            RemoveCrossing(gridSlot7);
-        }
-
-        private void gridSlot8_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot8);
-            RemoveCrossing(gridSlot8);
-        }
-
-        private void gridSlot9_Click(object sender, EventArgs e)
-        {
-            PlaceCrossing(gridSlot9);
-            RemoveCrossing(gridSlot9);
-        }
         private void button2_Click(object sender, EventArgs e)
         {
             ToggleRemoveButton();

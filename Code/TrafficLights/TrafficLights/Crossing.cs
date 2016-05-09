@@ -194,6 +194,7 @@ namespace TrafficLights
             }
         }
 
+        public abstract System.Drawing.Image Image { get; }
 
         /// <summary>
         /// Gets the lanes.

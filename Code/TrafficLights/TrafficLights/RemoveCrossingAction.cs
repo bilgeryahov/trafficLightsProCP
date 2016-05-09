@@ -9,17 +9,24 @@ namespace TrafficLights
     /// an action that can be undone and redone in the system
     /// </summary>
     /// <seealso cref="TrafficLights.UndoableAction" />
-    public class PlaceCrosswalkAction : UndoableAction
+    public class RemoveCrossingAction : UndoableAction
     {
-        public int Row { get; private set; }
-        public int Column { get; private set; }
-        private Crossing addedCrossing;
+        protected int row, column;
+        protected Crossing crossing;
+        public RemoveCrossingAction(int row, int column, Crossing crossing)
+        {
+            this.row = row;
+            this.column = column;
+            this.crossing = crossing;
+        }
+
         /// <summary>
         /// Defines changes to remove
         /// </summary>
         protected override void OnUndo()
         {
-            throw new NotImplementedException();
+            crossing.Owner.RecycleCrossingManager.Remove(crossing);
+            crossing.Owner.PlaceCrossing(crossing, row, column);
         }
 
         /// <summary>
@@ -27,7 +34,8 @@ namespace TrafficLights
         /// </summary>
         protected override void OnRedo()
         {
-            throw new NotImplementedException();
+            crossing.Owner.RecycleCrossingManager.Add(crossing);
+            crossing.Owner.RemoveCrossing(row,column);
         }
 
         /// <summary>
@@ -36,7 +44,7 @@ namespace TrafficLights
         /// <value>As string.</value>
         protected override string AsString
         {
-            get { throw new NotImplementedException(); }
+            get { return string.Format("Remove at {0}x{1}", this.row, this.column);}
         }
     }
 }

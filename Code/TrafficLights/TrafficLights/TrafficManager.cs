@@ -66,6 +66,9 @@ namespace TrafficLights
         public TrafficManager(int rows, int columns)
         {
             this.Grid = new Grid(rows, columns);
+
+            this.RecycleCrossingManager = new RecycleManager();
+            this.SavedCrossingManager = new SavedManager();
         }
 
         /// <summary>
@@ -242,7 +245,14 @@ namespace TrafficLights
 
         public void CreateNewGrid()
         {
-            this.Grid = new Grid(3, 3);
+            for (int i = 0; i < Grid.Rows; i++)
+            {
+                for (int j = 0; j < Grid.Columns; j++)
+                {
+                    if(Grid.CrossingAt(i*Grid.Rows+j)!=null)
+                    Grid.RemoveAt(i,j);
+                }
+            }
             ProcessNewGridLoaded();
         }
 

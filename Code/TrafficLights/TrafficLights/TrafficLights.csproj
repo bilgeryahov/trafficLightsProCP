@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCrosswalkAction.cs" />
+    <Compile Include="PlaceCrossingAction.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Crossing.cs" />
@@ -75,7 +75,7 @@
     <Compile Include="RecycleManager.cs" />
     <Compile Include="Renderable.cs" />
     <Compile Include="Lane.cs" />
-    <Compile Include="RotateAction.cs" />
+    <Compile Include="RemoveCrossingAction.cs" />
     <Compile Include="SavedManager.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="SystemState.cs" />

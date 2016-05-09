@@ -112,7 +112,17 @@ namespace TrafficLights
             PicBoxTypeB.Cursor = Cursors.Hand;
             PicBoxTypeC.Cursor = Cursors.Hand;
 
-            
+            this.manager.Grid.OnCrossingAdded += (crossing, row, column)=>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = crossing.Image;
+            };
+
+            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = null;
+            };
         }
 
         private void PopulateActionStackListbox()
@@ -237,6 +247,10 @@ namespace TrafficLights
                 if (MessageBox.Show("There are changes on this grid. Do you want to save them?", "Save changes", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                     ShowSaveDialog();
             manager.CreateNewGrid();
+            foreach (var item in pBoxToSlotIDLookup)
+            {
+                item.Key.Image = null;
+            }
         }
 
         private void undoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -428,13 +442,16 @@ namespace TrafficLights
         {
             if (state != SystemState.Place) return;
 
-             currentBox.Image = crossingToBePlaced.Image;
+            int id = pBoxToSlotIDLookup[currentBox];
+            ActionStack.AddAction(new PlaceCrossingAction(id / 3, id % 3, crossingToBePlaced));
         }
         private void RemoveCrossing(PictureBox currentBox)
         {
             if (state != SystemState.Delete) return;
+            if (currentBox.Image == null) return;
 
-            currentBox.Image = null;
+            int id = pBoxToSlotIDLookup[currentBox];
+            ActionStack.AddAction(new RemoveCrossingAction(id / 3, id % 3, manager.Grid.Crossings[id / 3][id % 3]));
         }
 
         private void button2_Click(object sender, EventArgs e)

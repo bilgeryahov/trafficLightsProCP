@@ -114,7 +114,6 @@ namespace TrafficLights
 
             if (this[row][column] != null)
                 RemoveAt(row, column);
-            throw new NotImplementedException();
 
             crossing = crossing.CreateCopy();
             crossing.AssignGridLocation(row, column);
@@ -132,9 +131,8 @@ namespace TrafficLights
         {
             ValidateCanUse(row, column);
 
-            throw new NotImplementedException();
-
             Crossing crossing = this[row][column];
+            this.Crossings[row][column] = null;
             crossing.RemoveFromGrid();
             OnCrossingRemoved(crossing, row, column);
         }

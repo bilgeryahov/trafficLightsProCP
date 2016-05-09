@@ -18,7 +18,8 @@ namespace TrafficLights
     {
         Dictionary<int, PictureBox> slotIDToPBoxLookup = new Dictionary<int, PictureBox>();
         Dictionary<PictureBox, int> pBoxToSlotIDLookup = new Dictionary<PictureBox, int>();
-
+        private SystemState state;
+        private Crossing crossingToBePlaced;
         private TrafficManager manager = new TrafficManager(3, 3);
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -26,6 +27,7 @@ namespace TrafficLights
         public MainForm()
         {
             InitializeComponent();
+            state = SystemState.None;
             ActionStack.OnRedoAltered += (actionsToRedo, actionRedone) =>
             {
                 if (actionsToRedo > 0)
@@ -94,12 +96,17 @@ namespace TrafficLights
             this.Click += MainForm_Click;
 
             PicBoxTypeA.Click += PicBoxTypeA_Click;
+            PicBoxTypeA.Click += ClearToggles;
             PicBoxTypeB.Click += PicBoxTypeB_Click;
+            PicBoxTypeB.Click += ClearToggles;
             PicBoxTypeC.Click += PicBoxTypeC_Click;
+            PicBoxTypeC.Click += ClearToggles;
 
             PicBoxTypeA.Cursor = Cursors.Hand;
             PicBoxTypeB.Cursor = Cursors.Hand;
             PicBoxTypeC.Cursor = Cursors.Hand;
+
+            
         }
 
         private void PopulateActionStackListbox()
@@ -313,7 +320,7 @@ namespace TrafficLights
         /// </summary>
         /// <param name="thePictureBox"></param>
         /// <param name="isActive">Pass true if you want to make it active - clicked on</param>
-        private void ChangeCursor(PictureBox thePictureBox, bool isActive)
+        private void ChangeBorder(PictureBox thePictureBox, bool isActive)
         {
             if (isActive)
             {
@@ -322,7 +329,7 @@ namespace TrafficLights
             }
             else
             {
-                thePictureBox.BorderStyle = BorderStyle.None;
+                thePictureBox.BorderStyle = BorderStyle.FixedSingle;
             }
         }
   private void ChangeGridSlotsCursor(bool isActive)
@@ -359,42 +366,151 @@ namespace TrafficLights
             /*
                 Whenever the user clicks somewhere in the form, the crossing pictures will return out of mode.
             */
-            ChangeCursor(PicBoxTypeA, false);
-            ChangeCursor(PicBoxTypeB, false);
-            ChangeCursor(PicBoxTypeC, false);
-
+            ChangeBorder(PicBoxTypeA, false);
+            ChangeBorder(PicBoxTypeB, false);
+            ChangeBorder(PicBoxTypeC, false);
             ChangeGridSlotsCursor(false);
+            if (sender == button2) return;
+            ClearToggles(sender, e);
         }
    private void PicBoxTypeA_Click(object sender, EventArgs e)
         {
-            ChangeCursor(PicBoxTypeA,true);
-            ChangeCursor(PicBoxTypeB, false);
-            ChangeCursor(PicBoxTypeC, false);
+            state = SystemState.Place;
+            crossingToBePlaced = new CrossingA(manager);
+            ChangeBorder(PicBoxTypeA,true);
+            ChangeBorder(PicBoxTypeB, false);
+            ChangeBorder(PicBoxTypeC, false);
         }
 
         private void PicBoxTypeC_Click(object sender, EventArgs e)
         {
-            ChangeCursor(PicBoxTypeC,true);
-            ChangeCursor(PicBoxTypeA, false);
-            ChangeCursor(PicBoxTypeB, false);
+            state = SystemState.Place;
+            crossingToBePlaced = new CrossingB(manager);
+            ChangeBorder(PicBoxTypeC,true);
+            ChangeBorder(PicBoxTypeA, false);
+            ChangeBorder(PicBoxTypeB, false);
         }
 
         private void PicBoxTypeB_Click(object sender, EventArgs e)
         {
-            ChangeCursor(PicBoxTypeB,true);
-            ChangeCursor(PicBoxTypeA, false);
-            ChangeCursor(PicBoxTypeC, false);
+            state = SystemState.Place;
+            crossingToBePlaced = new CrossingB(manager);
+            ChangeBorder(PicBoxTypeB,true);
+            ChangeBorder(PicBoxTypeA, false);
+            ChangeBorder(PicBoxTypeC, false);
         }
-
+        private void ClearToggles(object sender, EventArgs e)
+        {
+            button2.FlatStyle = FlatStyle.Standard;
+            rmToggled = false;
+        }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                ChangeCursor(PicBoxTypeA, false);
-                ChangeCursor(PicBoxTypeB, false);
-                ChangeCursor(PicBoxTypeC, false);
-
+                ChangeBorder(PicBoxTypeA, false);
+                ChangeBorder(PicBoxTypeB, false);
+                ChangeBorder(PicBoxTypeC, false);
+                state = SystemState.None;
                 ChangeGridSlotsCursor(false);
+                button2.FlatStyle = FlatStyle.Standard;
+                rmToggled = false;
+            }
+        }
+        private void PlaceCrossing(PictureBox currentBox)
+        {
+            if (state != SystemState.Place) return;
+
+            if (crossingToBePlaced is CrossingA)
+            {
+                currentBox.Image = TrafficLights.Properties.Resources.cross_1;
+            }
+            else if (crossingToBePlaced is CrossingB)
+            {
+                if (PicBoxTypeB.BorderStyle == BorderStyle.Fixed3D)
+                {
+                    currentBox.Image = TrafficLights.Properties.Resources.cross_2;
+                }
+                else if (PicBoxTypeC.BorderStyle == BorderStyle.Fixed3D)
+                {
+                    currentBox.Image = PicBoxTypeC.BackgroundImage;
+                }
+
+            }
+
+        }
+        private void RemoveCrossing(PictureBox currentBox)
+        {
+            if (state != SystemState.Delete) return;
+
+            currentBox.Image = null;
+        }
+
+        private void gridSlot1_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot1);
+            RemoveCrossing(gridSlot1);
+        }
+
+
+        private void gridSlot5_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot5);
+        }
+
+        private void gridSlot3_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot3);
+        }
+
+        private void gridSlot4_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot4);
+        }
+
+        private void gridSlot2_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot2);
+        }
+
+        private void gridSlot6_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot6);
+        }
+
+        private void gridSlot7_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot7);
+        }
+
+        private void gridSlot8_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot8);
+        }
+
+        private void gridSlot9_Click(object sender, EventArgs e)
+        {
+            PlaceCrossing(gridSlot9);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ToggleRemoveButton();
+            MainForm_Click(sender, e);
+        }
+        private bool rmToggled = false;
+        private void ToggleRemoveButton()
+        {
+            if (!rmToggled)
+            {
+                state = SystemState.Delete;
+                button2.FlatStyle = FlatStyle.Flat;
+                rmToggled = true;
+            }
+            else
+            {
+                state = SystemState.None;
+                button2.FlatStyle = FlatStyle.Standard;
+                rmToggled = false;
             }
         }
     }

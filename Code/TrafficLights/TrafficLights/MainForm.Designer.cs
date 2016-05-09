@@ -424,8 +424,10 @@
             this.gridSlot1.Location = new System.Drawing.Point(241, 90);
             this.gridSlot1.Name = "gridSlot1";
             this.gridSlot1.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot1.TabIndex = 60;
             this.gridSlot1.TabStop = false;
+            this.gridSlot1.Click += new System.EventHandler(this.gridSlot1_Click);
             // 
             // gridSlot3
             // 
@@ -434,8 +436,10 @@
             this.gridSlot3.Location = new System.Drawing.Point(641, 90);
             this.gridSlot3.Name = "gridSlot3";
             this.gridSlot3.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot3.TabIndex = 61;
             this.gridSlot3.TabStop = false;
+            this.gridSlot3.Click += new System.EventHandler(this.gridSlot3_Click);
             // 
             // gridSlot2
             // 
@@ -444,8 +448,10 @@
             this.gridSlot2.Location = new System.Drawing.Point(441, 90);
             this.gridSlot2.Name = "gridSlot2";
             this.gridSlot2.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot2.TabIndex = 62;
             this.gridSlot2.TabStop = false;
+            this.gridSlot2.Click += new System.EventHandler(this.gridSlot2_Click);
             // 
             // gridSlot5
             // 
@@ -454,8 +460,10 @@
             this.gridSlot5.Location = new System.Drawing.Point(441, 290);
             this.gridSlot5.Name = "gridSlot5";
             this.gridSlot5.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot5.TabIndex = 63;
             this.gridSlot5.TabStop = false;
+            this.gridSlot5.Click += new System.EventHandler(this.gridSlot5_Click);
             // 
             // gridSlot4
             // 
@@ -464,8 +472,10 @@
             this.gridSlot4.Location = new System.Drawing.Point(241, 290);
             this.gridSlot4.Name = "gridSlot4";
             this.gridSlot4.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot4.TabIndex = 64;
             this.gridSlot4.TabStop = false;
+            this.gridSlot4.Click += new System.EventHandler(this.gridSlot4_Click);
             // 
             // gridSlot6
             // 
@@ -474,8 +484,10 @@
             this.gridSlot6.Location = new System.Drawing.Point(641, 290);
             this.gridSlot6.Name = "gridSlot6";
             this.gridSlot6.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot6.TabIndex = 65;
             this.gridSlot6.TabStop = false;
+            this.gridSlot6.Click += new System.EventHandler(this.gridSlot6_Click);
             // 
             // gridSlot9
             // 
@@ -484,8 +496,10 @@
             this.gridSlot9.Location = new System.Drawing.Point(641, 490);
             this.gridSlot9.Name = "gridSlot9";
             this.gridSlot9.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot9.TabIndex = 66;
             this.gridSlot9.TabStop = false;
+            this.gridSlot9.Click += new System.EventHandler(this.gridSlot9_Click);
             // 
             // gridSlot8
             // 
@@ -494,8 +508,10 @@
             this.gridSlot8.Location = new System.Drawing.Point(441, 490);
             this.gridSlot8.Name = "gridSlot8";
             this.gridSlot8.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot8.TabIndex = 67;
             this.gridSlot8.TabStop = false;
+            this.gridSlot8.Click += new System.EventHandler(this.gridSlot8_Click);
             // 
             // gridSlot7
             // 
@@ -504,8 +520,10 @@
             this.gridSlot7.Location = new System.Drawing.Point(241, 490);
             this.gridSlot7.Name = "gridSlot7";
             this.gridSlot7.Size = new System.Drawing.Size(200, 200);
+            this.gridSlot7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gridSlot7.TabIndex = 68;
             this.gridSlot7.TabStop = false;
+            this.gridSlot7.Click += new System.EventHandler(this.gridSlot7_Click);
             // 
             // lblTimeElapsed
             // 
@@ -576,6 +594,7 @@
             this.button2.Size = new System.Drawing.Size(40, 40);
             this.button2.TabIndex = 75;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSaveStats
             // 
@@ -709,7 +728,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(124, 266);
+            this.label4.Location = new System.Drawing.Point(120, 256);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 83;
@@ -720,7 +739,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(66, 316);
+            this.label5.Location = new System.Drawing.Point(62, 306);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 16);
             this.label5.TabIndex = 86;
@@ -752,7 +771,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(32, 220);
+            this.label9.Location = new System.Drawing.Point(28, 210);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(136, 16);
             this.label9.TabIndex = 88;

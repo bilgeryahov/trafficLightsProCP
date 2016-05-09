@@ -372,6 +372,7 @@ namespace TrafficLights
             ChangeGridSlotsCursor(false);
             if (sender == button2) return;
             ClearToggles(sender, e);
+            state = SystemState.None;
         }
    private void PicBoxTypeA_Click(object sender, EventArgs e)
         {
@@ -456,41 +457,49 @@ namespace TrafficLights
         private void gridSlot5_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot5);
+            RemoveCrossing(gridSlot5);
         }
 
         private void gridSlot3_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot3);
+            RemoveCrossing(gridSlot3);
         }
 
         private void gridSlot4_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot4);
+            RemoveCrossing(gridSlot4);
         }
 
         private void gridSlot2_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot2);
+            RemoveCrossing(gridSlot2);
         }
 
         private void gridSlot6_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot6);
+            RemoveCrossing(gridSlot6);
         }
 
         private void gridSlot7_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot7);
+            RemoveCrossing(gridSlot7);
         }
 
         private void gridSlot8_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot8);
+            RemoveCrossing(gridSlot8);
         }
 
         private void gridSlot9_Click(object sender, EventArgs e)
         {
             PlaceCrossing(gridSlot9);
+            RemoveCrossing(gridSlot9);
         }
         private void button2_Click(object sender, EventArgs e)
         {

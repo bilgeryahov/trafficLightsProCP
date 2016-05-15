@@ -1,0 +1,19 @@
+title Start simulating pedestrians
+
+User -> +MainForm : Click pedestrian simulation functionality
+
+
+alt PedestrianSimulationIsActive 
+    MainForm -> +TrafficManager : DeactivatePedestrianSimulation()
+    TrafficManager -> + Simulation : DeactivatePedestrianFlow()
+    Simulation --> TrafficManager :return Success
+    TrafficManager --> MainForm : return Success
+    MainForm -->MainForm : updateInterface()
+else 
+   MainForm -> +TrafficManager : ActivatePedestrianSimulation()
+    TrafficManager -> + Simulation : ActivatetPedestrianFlow()
+    Simulation --> TrafficManager :return Success
+    TrafficManager --> MainForm : Success
+    MainForm -->MainForm : updateInterface()
+    
+end

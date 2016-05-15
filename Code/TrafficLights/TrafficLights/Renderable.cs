@@ -5,16 +5,44 @@ using System.Text;
 
 namespace TrafficLights
 {
+    /// <summary>
+    /// abstract class providing with the core for a dynamic object to be rendered
+    /// </summary>
     public abstract class Renderable
     {
-        public void Update()
-        {
-            throw new System.NotImplementedException();
-        }
+        /// <summary>
+        /// Gets a value indicating whether this instance is active.
+        /// </summary>
+        /// <value><c>true</c> if this instance is active; otherwise, <c>false</c>.</value>
+        public bool isActive { get; private set; }
+        /// <summary>
+        /// Updates the specified seconds.
+        /// </summary>
+        public abstract void Update(float seconds);
 
-        public void Draw()
+        /// <summary>
+        /// Draws the when normal.
+        /// </summary>
+        protected abstract void DrawWhenNormal(System.Drawing.Bitmap image);
+        /// <summary>
+        /// Draws the when active.
+        /// </summary>
+        protected abstract void DrawWhenActive(System.Drawing.Bitmap image);
+        /// <summary>
+        /// Draws the specified image.
+        /// </summary>
+        public void Draw(System.Drawing.Bitmap image)
         {
-            throw new System.NotImplementedException();
+            if (isActive) { DrawWhenActive(image); }
+            else { DrawWhenNormal(image); }
+        }
+        /// <summary>
+        /// Sets the active.
+        /// </summary>
+        /// <param name="state">if set to <c>true</c> [state].</param>
+        public void SetActive(bool state)
+        {
+            this.isActive = state;
         }
     }
 }

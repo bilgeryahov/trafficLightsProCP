@@ -1,0 +1,6 @@
+Title Restart a simulation
+User ->+ MainForm : Restart Functionality
+MainForm ->+ TrafficManager: RestartSimulation()
+TrafficManager -> +Simulation : Stop()
+TrafficManager -> Simulation : Reset()
+TrafficManager -> Simulation : Restart()

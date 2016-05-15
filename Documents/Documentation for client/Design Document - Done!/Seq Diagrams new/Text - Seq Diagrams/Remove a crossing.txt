@@ -1,0 +1,13 @@
+title Remove a crossing
+User->+MainForm : Click on crossing
+MainForm --> MainForm : Highlight crossing
+User -> MainForm : Click Delete functionality
+MainForm -> + TrafficManager : RemoveCrossing(theCrossing)
+TrafficManager -> + Grid : RemoveAt(theCrossing)
+Grid -> *RecycleManager : Add(theCrossing)
+RecycleManager --> Grid : success
+Destroy RecycleManager
+Grid --> TrafficManager : success
+TrafficManager-> Grid:SetAvailability(theSlot,theAvailability)
+TrafficManager -->MainForm: success
+MainForm-->MainForm : Update interface

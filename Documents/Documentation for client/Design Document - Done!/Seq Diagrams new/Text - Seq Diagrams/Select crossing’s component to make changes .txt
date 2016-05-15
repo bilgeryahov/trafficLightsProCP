@@ -1,0 +1,11 @@
+title Select crossing’s component to make changes 
+
+
+User -> +MainForm : Click component 
+MainForm -> +TrafficManager : componentAction()
+TrafficManager -> +Renderable : Activate()
+Renderable --> TrafficManager : Success
+TrafficManager --> MainForm : Success
+MainForm : MainForm :updateInterface()
+MainForm--> MainForm : updateInterface()
+

@@ -1,0 +1,19 @@
+Title Save Simulation Results
+User -> + MainForm : Save results Functionality
+
+    MainForm ->*PromptDialog : display file explorer
+    User -> Input path
+    PromptDialog --> MainForm : return path
+    Destroy PromptDialog
+alt isValid(path)
+    MainForm -> TrafficManager : SaveResults(path)
+    TrafficManager --> MainForm :return success
+    MainForm -->MainForm : UpdateInterface()
+else
+    MainForm -> * ErrorDialog : display error
+    User -> ErrorDialog : user response
+    Destroy ErrorDialog
+    end
+
+
+

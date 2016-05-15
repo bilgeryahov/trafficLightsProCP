@@ -5,11 +5,19 @@ using System.Text;
 
 namespace TrafficLights
 {
-    public class SavedManager : CrossingContainer
+    /// <summary>
+    /// holds saved crossings
+    /// </summary>
+    /// <seealso cref="TrafficLights.CrossingManager" />
+    [Serializable]
+    public class SavedManager : CrossingManager
     {
+        /// <summary>
+        /// Duplicates the specified identifier.
+        /// </summary>
         public Crossing Duplicate(int id)
         {
-            throw new System.NotImplementedException();
+            return this[id].CreateCopy();
         }
     }
 }

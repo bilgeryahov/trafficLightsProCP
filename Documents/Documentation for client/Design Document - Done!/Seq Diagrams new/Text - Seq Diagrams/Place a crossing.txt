@@ -1,0 +1,18 @@
+title Place a crossing
+User ->+ MainForm : Mouse hover over a specific grid slot
+MainForm -> +TrafficManager :IsSlotFree(theSlot)
+TrafficManager -> +Grid :CheckAvailability(theSlot)
+Grid --> TrafficManager : return Availability
+TrafficManager -> MainForm : ShowSlotAvailability(isAvailable)
+User->MainForm: Click on slot
+MainForm ->TrafficManager:IsSlotFree(theSlot)
+alt true
+TrafficManager -> MainForm :UpdateSlot(theSlot)
+TrafficManager ->+Crossing :New
+TrafficManager -> Grid: SetAvailability(theSlot)
+else false
+TrafficManager->MainForm:ShowSlotAvailabity(isAvailable)
+end
+
+
+

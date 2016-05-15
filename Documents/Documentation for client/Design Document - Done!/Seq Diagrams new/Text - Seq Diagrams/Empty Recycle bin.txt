@@ -1,0 +1,9 @@
+title Empty Recycle bin
+
+User -> +MainForm : Empty recycle bin functionality
+MainForm -> +RecycleManager : Clear()
+RecycleManager --> MainForm :return success
+
+MainForm --> MainForm : UpdateInterface()
+
+

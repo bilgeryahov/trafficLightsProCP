@@ -1,0 +1,17 @@
+Title Edit a Road Traffic Flow
+
+User -> + MainForm : Input flow
+
+MainForm -->MainForm : update interface
+
+User -> MainForm : Confirm value
+
+MainForm ->+ TrafficManager : EditLaneFlow(theLane,theFlow)
+
+TrafficManager ->+Lane: UpdateFlow(theFlow)
+
+Lane --> TrafficManager :return success
+
+TrafficManager --> MainForm : return success
+
+MainForm --> MainForm : Update Interface

@@ -156,7 +156,7 @@ namespace TrafficLights
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draw the circles
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary>

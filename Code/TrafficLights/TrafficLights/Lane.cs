@@ -35,7 +35,7 @@ namespace TrafficLights
         {
             get
             {
-                IEnumerable<Lane> result = Owner.Lanes.Where(x => x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.From));
+                IEnumerable<Lane> result = Owner.Lanes.Where(x => x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
                 if (result.Count() == 0) return null;
                 if (result.Count() == 1) return result.First();
                 else
@@ -86,7 +86,7 @@ namespace TrafficLights
         {
             this.From = from;
             this.To = to;
-            this.IsFeeder = IsFeeder;
+            this.IsFeeder = isFeeder;
         }
 
         public void IncreaseAccumulatedFlow()
@@ -126,10 +126,23 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            foreach (Car car in this.currentCarsOn)
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(150, System.Drawing.Color.Tomato));
+            int x = 60;
+            int y = 20;
+            if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)
             {
-                car.Draw(image);
+                x = 20;
+                y = 60;
             }
+                if (this.IsFeeder)
+                    image.FillRectangle(System.Drawing.Brushes.Yellow, this.X, this.Y, x, y);
+                else
+                    image.FillRectangle(brush, this.X, this.Y, x, y);
+                foreach (Car car in this.currentCarsOn)
+                {
+                    car.Draw(image);
+                }
+            
         }
 
         /// <summary>
@@ -138,7 +151,7 @@ namespace TrafficLights
         /// <param name="value">The value.</param>
         public void UpdateFlow(int value)
         {
-            throw new System.NotImplementedException();
+            this.Flow = value;
         }
 
         /// <summary>
@@ -147,7 +160,15 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            DrawWhenNormal(image);
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(150, System.Drawing.Color.Green));
+            if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)
+                image.FillRectangle(brush, this.X, this.Y, 20, 60);
+            else
+                image.FillRectangle(brush, this.X, this.Y, 60, 20);
+            foreach (Car car in this.currentCarsOn)
+            {
+                car.Draw(image);
+            }
         }
     }
 }

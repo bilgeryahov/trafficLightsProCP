@@ -9,17 +9,23 @@ namespace TrafficLights
     /// an action that can be undone and redone in the system
     /// </summary>
     /// <seealso cref="TrafficLights.UndoableAction" />
-    public abstract class UpdateFlowAction : UndoableAction
+    public class UpdateFlowAction : UndoableAction
     {
         public Lane Lane { get; private set; }
         public int Flow { get; private set; }
         private int previousFlow;
+        public UpdateFlowAction(int flow, Lane lane)
+        {
+            this.Lane = lane;
+            this.Flow = flow;
+            this.previousFlow = lane.Flow;
+        }
         /// <summary>
         /// Defines changes to remove
         /// </summary>
         protected override void OnUndo()
         {
-            throw new NotImplementedException();
+            Lane.UpdateFlow(previousFlow);
         }
 
         /// <summary>
@@ -27,7 +33,7 @@ namespace TrafficLights
         /// </summary>
         protected override void OnRedo()
         {
-            throw new NotImplementedException();
+            Lane.UpdateFlow(Flow);
         }
 
         /// <summary>
@@ -35,7 +41,7 @@ namespace TrafficLights
         /// </summary>
         protected override string AsString
         {
-            get { throw new NotImplementedException(); }
+            get { return string.Format("Flow changed from {0} to {1}", previousFlow, Flow); }
         }
     }
 }

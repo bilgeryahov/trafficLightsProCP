@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// abstract class containing coordinates for various objects within the simulation
     /// </summary>

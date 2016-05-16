@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// abstract class providing with the core for a dynamic object to be rendered
     /// </summary>

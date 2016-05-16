@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// handles a simulation based on the grid created by the System
     /// </summary>

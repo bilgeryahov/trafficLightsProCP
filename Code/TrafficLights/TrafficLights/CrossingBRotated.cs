@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TrafficLights
-{
+{[Serializable]
     class CrossingBRotated : CrossingB
     {
         public CrossingBRotated(TrafficManager owner) : base(owner) { }

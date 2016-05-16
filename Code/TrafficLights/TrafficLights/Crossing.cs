@@ -45,10 +45,12 @@ namespace TrafficLights
         /// <value>The crosswalk below.</value>
         public Crosswalk CrosswalkBelow { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Down)); } }
 
+
         /// <summary>
         /// Gets the owner.
         /// </summary>
         /// <value>The owner.</value>
+        [field: NonSerialized]
         public TrafficManager Owner { get; private set; }
         /// <summary>
         /// Gets the row.

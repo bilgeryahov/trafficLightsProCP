@@ -61,13 +61,12 @@ namespace TrafficLights
         /// <value>The current flow.</value>
         public int CurrentFlow
         {
-<<<<<<< Updated upstream
+
             get { return currentCarsOn.Count; }
-=======
-            //returns List<Car>.Count 
-            get { throw new NotImplementedException(); }
->>>>>>> Stashed changes
         }
+
+            //returns List<Car>.Count 
+      
 
         /// <summary>
         /// Gets the flow.

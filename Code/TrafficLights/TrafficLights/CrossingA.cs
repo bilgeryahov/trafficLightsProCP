@@ -60,7 +60,7 @@ namespace TrafficLights
             }
         }
 
-<<<<<<< Updated upstream
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
@@ -77,7 +77,7 @@ namespace TrafficLights
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             foreach (Crosswalk walk in this.Crosswalks)
             {
@@ -89,13 +89,11 @@ namespace TrafficLights
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             DrawWhenNormal(image);
         }
-=======
-        
->>>>>>> Stashed changes
+
 
         public override System.Drawing.Image Image
         {

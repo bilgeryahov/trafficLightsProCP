@@ -25,7 +25,7 @@ namespace TrafficLights
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-        public override Crosswalk[] Crosswalks
+        protected override Crosswalk[] GenerateCrosswalks
         {
             get { throw new NotImplementedException(); }
         }

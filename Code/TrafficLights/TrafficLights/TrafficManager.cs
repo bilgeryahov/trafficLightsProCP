@@ -52,7 +52,11 @@ namespace TrafficLights
             get { return currentActiveComponent; }
             set
             {
+                if (currentActiveComponent != null)
+                    currentActiveComponent.SetActive(false);
                 currentActiveComponent = value;
+                if (currentActiveComponent != null)
+                    currentActiveComponent.SetActive(true);
                 OnCurrentActiveComponentChanged(value);
             }
         }

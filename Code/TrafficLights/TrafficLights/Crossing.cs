@@ -22,7 +22,11 @@ namespace TrafficLights
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-        public abstract Crosswalk[] Crosswalks { get; }
+
+        private Crosswalk[] crosswalks = null;
+
+        public Crosswalk[] Crosswalks { get { if (crosswalks == null) crosswalks = GenerateCrosswalks; return crosswalks; } }
+        protected abstract Crosswalk[] GenerateCrosswalks { get; }
 
         /// <summary>
         /// Gets the crosswalk on left.

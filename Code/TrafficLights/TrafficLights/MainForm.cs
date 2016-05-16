@@ -315,6 +315,10 @@ namespace TrafficLights
 
         private void btnSaveStats_Click(object sender, EventArgs e)
         {
+            // for testing purpose.
+            SimulationResult test = new SimulationResult(new Simulation(new Grid(20)));
+            test.ExportToExcel("bla");
+
             if(manager.CurrentSimulation != null)
             {
                 //todo excel; snapshot

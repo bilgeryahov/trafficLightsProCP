@@ -1,7 +1,10 @@
-﻿using System;
+﻿using ExportToExcel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Drawing;
 
 namespace TrafficLights
 {
@@ -37,7 +40,27 @@ namespace TrafficLights
         /// <param name="fileName">Name of the file.</param>
         public void ExportToExcel(string fileName)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            DataTable myTable = new DataTable();
+            myTable.Columns.Add("name", typeof(string));
+            myTable.Columns.Add("age", typeof(int));
+            myTable.Rows.Add("bilger", 20);
+            myTable.Rows.Add("bilger next year", 21);
+
+
+
+
+            // Step 2: Create the Excel .xlsx file
+            try
+            {
+                // if you want to try this, uncomment it and change the path where the excel file will be created.
+                //CreateExcelFile.CreateExcelDocument(myTable, "E:\\Sample.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
         }
 
         /// <summary>

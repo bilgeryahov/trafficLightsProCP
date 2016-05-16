@@ -61,7 +61,12 @@ namespace TrafficLights
         /// <value>The current flow.</value>
         public int CurrentFlow
         {
+<<<<<<< Updated upstream
             get { return currentCarsOn.Count; }
+=======
+            //returns List<Car>.Count 
+            get { throw new NotImplementedException(); }
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -120,7 +125,7 @@ namespace TrafficLights
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             foreach (Car car in this.currentCarsOn)
             {
@@ -141,7 +146,7 @@ namespace TrafficLights
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             DrawWhenNormal(image);
         }

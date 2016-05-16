@@ -60,6 +60,7 @@ namespace TrafficLights
             }
         }
 
+<<<<<<< Updated upstream
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
@@ -92,6 +93,9 @@ namespace TrafficLights
         {
             DrawWhenNormal(image);
         }
+=======
+        
+>>>>>>> Stashed changes
 
         public override System.Drawing.Image Image
         {

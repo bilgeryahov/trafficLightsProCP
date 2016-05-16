@@ -62,7 +62,7 @@ namespace TrafficLights
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draws a dot on the crosswalk
             throw new NotImplementedException();
@@ -72,7 +72,7 @@ namespace TrafficLights
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             throw new NotImplementedException();
         }

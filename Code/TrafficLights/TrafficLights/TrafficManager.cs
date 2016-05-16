@@ -23,6 +23,7 @@ namespace TrafficLights
         /// </summary>
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
 
+
         /// <summary>
         /// Gets the grid.
         /// </summary>

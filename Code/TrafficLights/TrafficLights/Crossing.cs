@@ -349,13 +349,14 @@ namespace TrafficLights
                 child.Update(seconds);
         }
 
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
+            
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);
         }
 
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);

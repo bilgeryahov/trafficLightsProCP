@@ -22,8 +22,20 @@ namespace TrafficLights
         /// <value>The x.</value>
         public int X
         {
+<<<<<<< Updated upstream
             get;
             protected set;
+=======
+            get
+            {
+                throw new System.NotImplementedException();
+
+
+            }
+            set
+            {
+            }
+>>>>>>> Stashed changes
         }
 
         /// <summary>

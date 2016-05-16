@@ -143,7 +143,7 @@ namespace TrafficLights
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(Bitmap image)
+        protected override void DrawWhenNormal(Graphics image)
         {
             if (PedestrianFlowFrom != null)
                 PedestrianFlowFrom.Draw(image);
@@ -191,7 +191,7 @@ namespace TrafficLights
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(Bitmap image)
+        protected override void DrawWhenActive(Graphics image)
         {
             DrawWhenActive(image);
         }

@@ -199,7 +199,7 @@ namespace TrafficLights
                 Crossing c = manager.Grid.CrossingAt(i);
                 if (c == null)
                     continue;
-                c.Draw(slotIDToPBoxLookup[i].Image as Bitmap);
+                c.Draw(slotIDToPBoxLookup[i].CreateGraphics());
             }
         }
 

@@ -29,13 +29,39 @@ namespace TrafficLights
         /// <value>To.</value>
         public Direction To { get; private set; }
 
+        static Random r = new Random();
+
+        public Lane Next
+        {
+            get
+            {
+                IEnumerable<Lane> result = Owner.Lanes.Where(x => x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.From));
+                if (result.Count() == 0) return null;
+                if (result.Count() == 1) return result.First();
+                else
+                {
+                    int current = r.Next(result.Count());
+                    if (current == 0) current = 1;
+
+                    foreach (Lane lane in result)
+                    {
+                        if (--current == 0)
+                            return lane;
+                    }
+                    throw new InvalidProgramException("Unable to obtain next lane");
+                }
+            }
+        }
+
+        private List<Car> currentCarsOn = new List<Car>();
+
         /// <summary>
         /// Gets the current flow.
         /// </summary>
         /// <value>The current flow.</value>
         public int CurrentFlow
         {
-            get { throw new NotImplementedException(); }
+            get { return currentCarsOn.Count; }
         }
 
         /// <summary>
@@ -48,14 +74,46 @@ namespace TrafficLights
             private set;
         }
 
+        private int flowReleased = 0;
+        private int flowAccumulated = 0;
+        public Crosswalk Owner { get; private set; }
+
+        public Lane(Direction from, Direction to, bool isFeeder, int x, int y) : base(x,y)
+        {
+            this.From = from;
+            this.To = to;
+            this.IsFeeder = IsFeeder;
+        }
+
+        public void IncreaseAccumulatedFlow()
+        {
+            flowAccumulated += 1;
+        }
+
+        public void SetOwner(Crosswalk owner)
+        {
+            this.Owner = owner;
+        }
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            //update cars
-            throw new NotImplementedException();
+            if (flowReleased < Flow)
+            {
+                this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+            }
+            else if (flowAccumulated > 0)
+            {
+                this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                flowAccumulated -= 1;
+            }
+            foreach (Car car in this.currentCarsOn)
+            {
+                car.Update(seconds);
+            }
         }
 
         /// <summary>
@@ -64,9 +122,10 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Bitmap image)
         {
-            //draw road
-            //draw cars
-            throw new NotImplementedException();
+            foreach (Car car in this.currentCarsOn)
+            {
+                car.Draw(image);
+            }
         }
 
         /// <summary>
@@ -84,7 +143,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Bitmap image)
         {
-            throw new NotImplementedException();
+            DrawWhenNormal(image);
         }
     }
 }

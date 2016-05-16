@@ -46,6 +46,8 @@ namespace TrafficLights
             }
         }
 
+        public Pedestrian(int startX, int startY, params System.Drawing.Point[] path) : base(startX, startY, path) { }
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>

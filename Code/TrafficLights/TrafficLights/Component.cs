@@ -11,19 +11,19 @@ namespace TrafficLights
     /// <seealso cref="TrafficLights.Renderable" />
     public abstract class Component:Renderable
     {
+        public Component(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
         /// <summary>
         /// Gets or sets the x.
         /// </summary>
         /// <value>The x.</value>
         public int X
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            protected set;
         }
 
         /// <summary>
@@ -32,13 +32,8 @@ namespace TrafficLights
         /// <value>The y.</value>
         public int Y
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            protected set;
         }
     }
 }

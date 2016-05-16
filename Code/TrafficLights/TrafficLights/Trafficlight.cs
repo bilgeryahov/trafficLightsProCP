@@ -97,6 +97,8 @@ namespace TrafficLights
             }
         }
 
+        public Trafficlight(int x, int y) : base(x, y) { }
+
         /// <summary>
         /// Nexts this instance.
         /// </summary>

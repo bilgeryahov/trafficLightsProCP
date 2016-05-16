@@ -21,7 +21,7 @@ namespace TrafficLights
         /// Initializes a new instance of the <see cref="Moveable"/> class.
         /// </summary>
         /// <param name="path">The path.</param>
-        public Moveable(params System.Drawing.Point[] path)
+        public Moveable(int startX, int startY, params System.Drawing.Point[] path) : base(startX, startY)
         {
             this.Path = new List<System.Drawing.Point>(path);
         }

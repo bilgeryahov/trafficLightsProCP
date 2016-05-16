@@ -17,17 +17,21 @@ namespace TrafficLights
         /// Gets the pedestrian flow side1.
         /// </summary>
         /// <value>The pedestrian flow side1.</value>
-        public Pedestrian PedestrianFlowSide1 { get; private set; }
+        public Pedestrian PedestrianFlowFrom { get; private set; }
         /// <summary>
         /// Gets the pedestrian flow side2.
         /// </summary>
         /// <value>The pedestrian flow side2.</value>
-        public Pedestrian PedestrianFlowSide2 { get; private set; }
+        public Pedestrian PedestrianFlowTo { get; private set; }
         /// <summary>
         /// Gets a value indicating whether this instance has pedestrians crossing.
         /// </summary>
         /// <value><c>true</c> if this instance has pedestrians crossing; otherwise, <c>false</c>.</value>
-        public bool HasPedestriansCrossing { get { return PedestrianFlowSide1 != null || PedestrianFlowSide2 != null; } }
+        public bool HasPedestriansCrossing { get { return PedestrianFlowFrom != null || PedestrianFlowTo != null; } }
+
+        public Direction From { get; private set; }
+        public Direction To { get { return From.Inverse(); } }
+        public bool CanHavePedestrians { get; private set; }
 
         /// <summary>
         /// Gets the lanes.
@@ -39,22 +43,83 @@ namespace TrafficLights
         /// Initializes a new instance of the <see cref="Crosswalk"/> class.
         /// </summary>
         /// <param name="lanes">The lanes.</param>
-        public Crosswalk(List<Lane> lanes)
+        public Crosswalk(List<Lane> lanes, Direction from, bool canHavePedestrians, int x, int y, int trafficLightX, int trafficLightY) : base(x,y)
         {
             this.Lanes = lanes;
+            foreach (Lane lane in this.Lanes)
+            {
+                lane.SetOwner(this);
+            }
+            this.CanHavePedestrians = canHavePedestrians;
+            this.From = from;
+            this.Light = new Trafficlight(trafficLightX, trafficLightY);
+        }
+
+        public Crosswalk(Direction from, bool canHavePedestrians,int x, int y, int trafficLightX, int trafficLightY, params Lane[] lanes)
+            : this(lanes.ToList(), from, canHavePedestrians, x, y, trafficLightX, trafficLightY)
+        {
         }
 
         /// <summary>
         /// Activates the sensor.
         /// </summary>
-        /// <param name="direction">The direction.</param>
-        public void ActivateSensor(Direction direction)
+        /// <param name="atWhichLocation">The direction of the traffic light, compared to the crosswalk in which it was activated.</param>
+        public void ActivateSensor(Direction atWhichLocation)
         {
-           // if (PedestrianFlowSide1 == null) PedestrianFlowSide1 = new Pedestrian(this, direction);
-           // else
-           //     if (PedestrianFlowSide1.Direction == direction) return;
-           //     else if (direction == direction.Inverse()) PedestrianFlowSide2 = new Pedestrian(this, direction);
-            throw new System.NotImplementedException();
+            if (!CanHavePedestrians) return;
+            if (atWhichLocation == this.To)
+                if (this.PedestrianFlowTo == null)
+                    CreatePedestrianForTo(atWhichLocation);
+            if (atWhichLocation == this.From)
+                if (this.PedestrianFlowFrom == null)
+                    CreatePedestrianForFrom(atWhichLocation);
+        }
+
+        private Pedestrian CreatePedestrian(Direction from, Direction targetDirection)
+        {
+            System.Drawing.Point start = GetPointFromDirection(from, targetDirection);
+            System.Drawing.Point end = GetPointFromDirection(from, targetDirection.Inverse());
+
+            System.Drawing.Point[] path = new Point[] { start, end };
+            return new Pedestrian(start.X, start.Y, path);
+        }
+
+        private System.Drawing.Point GetPointFromDirection(Direction from, Direction startLocation)
+        {
+            int x = this.X;
+            int y = this.Y;
+
+            if (from == Direction.Left)
+                x += 30;
+            if (from == Direction.Right)
+                x -= 30;
+            if (from == Direction.Up)
+                y += 30;
+            if (from == Direction.Down)
+                y += 30;
+
+            if (from == Direction.Left || from == Direction.Right)
+                if (startLocation == Direction.Up)
+                    y -= 30;
+                else if (startLocation == Direction.Down)
+                    y += 100;
+            if (from == Direction.Down || from == Direction.Up)
+                if (startLocation == Direction.Left)
+                    x -= 30;
+                else if (startLocation == Direction.Right)
+                    x += 100;
+
+            return new Point(x, y);
+        }
+
+        private void CreatePedestrianForTo(Direction targetDirection)
+        {
+            this.PedestrianFlowTo = CreatePedestrian(this.To, targetDirection);
+        }
+
+        private void CreatePedestrianForFrom(Direction targetDirection)
+        {
+            this.PedestrianFlowFrom = CreatePedestrian(this.From, targetDirection);
         }
 
         /// <summary>
@@ -63,7 +128,15 @@ namespace TrafficLights
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            throw new NotImplementedException();
+            if (PedestrianFlowFrom != null)
+                PedestrianFlowFrom.Update(seconds);
+            if (PedestrianFlowTo != null)
+                PedestrianFlowTo.Update(seconds);
+            this.Light.Update(seconds);
+            foreach (Lane lane in this.Lanes)
+            {
+                lane.Update(seconds);
+            }
         }
 
         /// <summary>
@@ -72,7 +145,16 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(Bitmap image)
         {
-            throw new NotImplementedException();
+            if (PedestrianFlowFrom != null)
+                PedestrianFlowFrom.Draw(image);
+            if (PedestrianFlowTo != null)
+                PedestrianFlowTo.Draw(image);
+            this.Light.Draw(image);
+
+            foreach (Lane lane in this.Lanes)
+            {
+                lane.Draw(image);
+            }
         }
 
         /// <summary>
@@ -111,7 +193,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(Bitmap image)
         {
-            throw new NotImplementedException();
+            DrawWhenActive(image);
         }
     }
 }

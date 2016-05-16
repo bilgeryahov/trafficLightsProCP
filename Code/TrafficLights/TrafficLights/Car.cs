@@ -21,51 +21,36 @@ namespace TrafficLights
         /// </summary>
         /// <value><c>true</c> if [in middle of crosswalk]; otherwise, <c>false</c>.</value>
         public bool InMiddleOfCrosswalk { get; set; }
-        /// <summary>
-        /// Gets or sets from.
-        /// </summary>
-        /// <value>From.</value>
-        public Lane From
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the current road.
-        /// </summary>
-        /// <value>The current road.</value>
-        public Lane CurrentRoad
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-       // public @enum State
 
         /// <summary>
         /// Gets or sets the current lane.
         /// </summary>
         /// <value>The current lane.</value>
-        public Lane CurrentLane
+        public Lane CurrentLane { get; private set; }
+
+        public Car(int startX, int startY, Lane lane) : base(startX, startY, PathFromLane(lane)) { this.CurrentLane = lane; }
+
+        static System.Drawing.Point[] PathFromLane(Lane lane)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            Lane next = lane.Next;
+
+            int midX = lane.X;
+            int midY = next.Y;
+
+            if (lane.To.HasFlag(next.From))
+                if (lane.To.HasFlag(Direction.Left))
+                    midX = lane.X / 2;
+                else if (lane.To.HasFlag(Direction.Right))
+                    midX = next.X / 2;
+                else if (lane.To.HasFlag(Direction.Down))
+                    midY = lane.Y / 2;
+                else if (lane.To.HasFlag(Direction.Up))
+                    midY = next.Y / 2;
+
+            System.Drawing.Point start = new System.Drawing.Point(lane.X, lane.Y);
+            System.Drawing.Point end = new System.Drawing.Point(next.X, next.Y);
+            System.Drawing.Point mid = new System.Drawing.Point(start.X, end.Y);
+            return new System.Drawing.Point[] { start, mid, end };
         }
 
         /// <summary>
@@ -74,6 +59,9 @@ namespace TrafficLights
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
+            //move to end; if at end -> get next lane on the Crossing
+            //if no lane found -> nothing happens
+            //if lane found - Lane.IncreaseAccumlatedFlow
             //moves the car based on the elapsed time
             throw new NotImplementedException();
         }

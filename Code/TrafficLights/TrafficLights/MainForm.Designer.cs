@@ -421,6 +421,7 @@
             // 
             this.gridSlot1.BackColor = System.Drawing.Color.Gray;
             this.gridSlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot1.Image = global::TrafficLights.Properties.Resources.cross_1;
             this.gridSlot1.Location = new System.Drawing.Point(241, 90);
             this.gridSlot1.Name = "gridSlot1";
             this.gridSlot1.Size = new System.Drawing.Size(200, 200);

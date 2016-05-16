@@ -16,7 +16,7 @@ namespace TrafficLights
         /// Initializes a new instance of the <see cref="CrossingB"/> class.
         /// </summary>
         /// <param name="owner">The owner.</param>
-        public CrossingB(TrafficManager owner):base(owner)
+        public CrossingB(TrafficManager owner) : base(owner)
         {
         }
 
@@ -27,34 +27,39 @@ namespace TrafficLights
         /// <value>The crosswalks.</value>
         protected override Crosswalk[] GenerateCrosswalks
         {
-        get{ return new Crosswalk[]{
-            new Crosswalk
-                (Direction.Left, true, 0, 60,30, 140,
-                    new Lane(Direction.Right,Direction.Left, false, 0, 60),
-                    new Lane(Direction.Right,Direction.Left, false, 0, 120)
-                )
-            ,
-            new Crosswalk
-                (Direction.Down, false,60, 200,140, 140,
-                    new Lane(Direction.Up,   Direction.Down, false, 75, 200),
-                    new Lane(Direction.Down, Direction.Left, true, 100, 200),
-                    new Lane(Direction.Down, Direction.Right | Direction.Up , true, 120, 200)
-                )
-            ,
-            new Crosswalk
-                (Direction.Right, true,200, 60,140, 0,
-                    new Lane(Direction.Left,Direction.Right, false, 200, 60),
-                    new Lane(Direction.Left,Direction.Right, false, 200, 120)                  
-                )
-            ,
-            new Crosswalk
-                (Direction.Up, false,60, 0,40, 0,
-                    new Lane(Direction.Down, Direction.Up, false, 120, 0),
-                    new Lane(Direction.Up, Direction.Right, true, 100, 0 ),
-                    new Lane(Direction.Up, Direction.Left | Direction.Down, true, 75, 0)
-                )
-    };
-}}
+            get
+            {
+                return new Crosswalk[]
+                    {
+                new Crosswalk
+                        (Direction.Left, false, 0, 60, 30, 140,
+                        new Lane(Direction.Right, Direction.Left, false, 0, 65),
+                        new Lane(Direction.Left, Direction.Up, true, 0, 90),
+                        new Lane(Direction.Left, Direction.Down | Direction.Right, true, 0, 115)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Down, true, 60, 200, 140, 140,
+                        new Lane(Direction.Up, Direction.Down, false, 75, 135),
+                        new Lane(Direction.Up, Direction.Down, false, 110, 135)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Right, false, 200, 60, 140, 0,
+                        new Lane(Direction.Left, Direction.Right, false, 135, 115),
+                        new Lane(Direction.Right, Direction.Down, true, 135, 90),
+                        new Lane(Direction.Right, Direction.Up | Direction.Left, true, 135, 65)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Up, true, 60, 0, 40, 0,
+                        new Lane(Direction.Down, Direction.Up, false, 110, 0),
+                        new Lane(Direction.Down, Direction.Up, false, 75, 0)
+
+                        )
+        };
+            }
+        }
 
         public override void Update(float seconds)
         {
@@ -82,6 +87,6 @@ namespace TrafficLights
         }
 
 
-        public override System.Drawing.Image Image { get { return Properties.Resources.cross_1; } }
+        public override System.Drawing.Image Image { get { return Properties.Resources.cross_2; } }
     }
 }

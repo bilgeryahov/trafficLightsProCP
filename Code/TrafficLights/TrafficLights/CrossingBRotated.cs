@@ -11,38 +11,42 @@ namespace TrafficLights
     {
         public CrossingBRotated(TrafficManager owner) : base(owner) { }
         protected override Crosswalk[] GenerateCrosswalks
-           {
-        get{return new Crosswalk[]{
-            new Crosswalk
-                        (Direction.Left, false, 0, 60,30, 140,
-                        new Lane(Direction.Right, Direction.Left, false, 0, 75),
-                        new Lane(Direction.Left, Direction.Up , true, 0, 100 ),
-                        new Lane(Direction.Left, Direction.Down | Direction.Right, true, 0, 120)
-                        )
-                        ,
-                    new Crosswalk
-                        (Direction.Down, true,60, 200,140, 140,
-                        new Lane(Direction.Up, Direction.Down, false, 75, 200),
-                        new Lane(Direction.Up, Direction.Down, false, 120, 200)
-                        )
-                        ,
-                    new Crosswalk
-                        (Direction.Right, false,200, 60,140, 0,
-                        new Lane(Direction.Left, Direction.Right, false, 200, 120),
-                        new Lane(Direction.Right, Direction.Down, true, 200, 100 ),
-                        new Lane(Direction.Right, Direction.Up | Direction.Left, true, 200, 75)
-                        )
-                        ,
-                    new Crosswalk
-                        (Direction.Up, true,60, 0,40, 0,
-                        new Lane(Direction.Down, Direction.Up, false, 120, 0),
-                        new Lane(Direction.Down, Direction.Up, false, 75, 0 )
-                        
-                        )
-        };
-        }
+        {
+            get
+            {
+                return new Crosswalk[]
+                
+                    {
+                new Crosswalk
+                    (Direction.Left, true, 0, 60,30, 140,
+                        new Lane(Direction.Right,Direction.Left, false, 0, 75),
+                        new Lane(Direction.Right,Direction.Left, false, 0, 110)
+                    )
+                ,
+                new Crosswalk
+                    (Direction.Down, false,60, 200,140, 140,
+                        new Lane(Direction.Up,   Direction.Down, false, 65, 135),
+                        new Lane(Direction.Down, Direction.Left, true, 90, 135),
+                        new Lane(Direction.Down, Direction.Right | Direction.Up , true, 112, 135)
+                    )
+                ,
+                new Crosswalk
+                    (Direction.Right, true,200, 60,140, 0,
+                        new Lane(Direction.Left,Direction.Right, false, 135, 75),
+                        new Lane(Direction.Left,Direction.Right, false, 135, 110)
+                    )
+                ,
+                new Crosswalk
+                    (Direction.Up, false,60, 0,40, 0,
+                        new Lane(Direction.Down, Direction.Up, false, 112, 0),
+                        new Lane(Direction.Up, Direction.Right, true, 90, 0 ),
+                        new Lane(Direction.Up, Direction.Left | Direction.Down, true, 65, 0)
+                    )
+             };
+                
+            }
         }
 
-        public override System.Drawing.Image Image{get{return new System.ComponentModel.ComponentResourceManager(typeof(MainForm)).GetObject("PicBoxTypeC.BackgroundImage") as System.Drawing.Image;}}
+        public override System.Drawing.Image Image { get { return new System.ComponentModel.ComponentResourceManager(typeof(MainForm)).GetObject("PicBoxTypeC.BackgroundImage") as System.Drawing.Image; } }
     }
 }

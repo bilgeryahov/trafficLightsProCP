@@ -31,30 +31,30 @@ namespace TrafficLights
                 {
                     new Crosswalk
                         (Direction.Left, false, 0, 60,30, 140,
-                        new Lane(Direction.Right, Direction.Left, false, 0, 70),
-                        new Lane(Direction.Left, Direction.Up | Direction.Right, true, 0, 90 ),
+                        new Lane(Direction.Right, Direction.Left, false, 0, 62),
+                        new Lane(Direction.Left, Direction.Up | Direction.Right, true, 0, 88 ),
                         new Lane(Direction.Left, Direction.Down, true, 0, 110)
                         )
                         ,
                     new Crosswalk
                         (Direction.Down, false,60, 200,140, 140,
-                        new Lane(Direction.Up, Direction.Down, false, 70, 100),
-                        new Lane(Direction.Down, Direction.Up | Direction.Left, true, 90, 100),
-                        new Lane(Direction.Down, Direction.Right, true, 110, 100)
+                        new Lane(Direction.Up, Direction.Down, false, 65, 135),
+                        new Lane(Direction.Down, Direction.Up | Direction.Left, true, 90, 135),
+                        new Lane(Direction.Down, Direction.Right, true, 112, 135)
                         )
                         ,
                     new Crosswalk
                         (Direction.Right, false,200, 60,140, 0,
-                        new Lane(Direction.Left, Direction.Right, false, 100, 110),
-                        new Lane(Direction.Right, Direction.Left | Direction.Down, true, 100, 90 ),
-                        new Lane(Direction.Right, Direction.Up, true, 100, 70)
+                        new Lane(Direction.Left, Direction.Right, false, 135, 110),
+                        new Lane(Direction.Right, Direction.Left | Direction.Down, true, 135, 88 ),
+                        new Lane(Direction.Right, Direction.Up, true, 135, 62)
                         )
                         ,
                     new Crosswalk
                         (Direction.Up, false,60, 0,40, 0,
-                        new Lane(Direction.Down, Direction.Up, false, 110, 0),
+                        new Lane(Direction.Down, Direction.Up, false, 112, 0),
                         new Lane(Direction.Up, Direction.Up | Direction.Left, true, 90, 0 ),
-                        new Lane(Direction.Up, Direction.Right, true, 70, 0)
+                        new Lane(Direction.Up, Direction.Right, true, 65, 0)
                         )
                 };
             }

@@ -41,6 +41,15 @@ namespace TrafficLights
                     ToggleControl(redoBtn, false);
                 }
                 PopulateActionStackListbox();
+
+                if (actionRedone is UpdateFlowAction && manager.CurrentActiveLane == (actionRedone as UpdateFlowAction).Lane)
+                {
+                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                }
+                else if (actionRedone is UpdateLightIntervalAction && manager.CurrentActiveTrafficLight == (actionRedone as UpdateLightIntervalAction).Light)
+                {
+                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                }
             };
 
             ActionStack.OnUndoAltered += (actionsToUndo, actionUndone) =>
@@ -56,6 +65,14 @@ namespace TrafficLights
                     ToggleControl(undoBtn, false);
                 }
                 PopulateActionStackListbox();
+                if (actionUndone is UpdateFlowAction && manager.CurrentActiveLane == (actionUndone as UpdateFlowAction).Lane)
+                {
+                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                }
+                else if (actionUndone is UpdateLightIntervalAction && manager.CurrentActiveTrafficLight == (actionUndone as UpdateLightIntervalAction).Light)
+                {
+                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                }
             };
 
             ToggleControl(redoToolStripMenuItem1, false);
@@ -72,9 +89,16 @@ namespace TrafficLights
                     }
                     propertiesEditGBox.Visible = true;
                     if (x is Trafficlight)
+                    {
                         propertiesLbl.Text = "Green interval";
+                        propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                    }
+                        
                     else if (x is Lane)
+                    {
                         propertiesLbl.Text = "Car flow";
+                        propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                    } 
                 };
 
             manager.CurrentActiveComponent = null;
@@ -378,6 +402,7 @@ namespace TrafficLights
             {
                 if (manager.CurrentActiveLane.Flow == (int)propertiesEditNUD.Value) return;
                 ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
+                propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
             }
             else if (manager.CurrentActiveTrafficLight != null)
                 if (manager.CurrentActiveTrafficLight.GreenSeconds == (float)propertiesEditNUD.Value) return;

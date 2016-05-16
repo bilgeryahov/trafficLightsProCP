@@ -14,6 +14,7 @@ namespace TrafficLights
         public Lane Lane { get; private set; }
         public int Flow { get; private set; }
         private int previousFlow;
+        string OnString;
         public UpdateFlowAction(int flow, Lane lane)
         {
             this.Lane = lane;
@@ -26,6 +27,7 @@ namespace TrafficLights
         protected override void OnUndo()
         {
             Lane.UpdateFlow(previousFlow);
+            OnString = "Flow change from {1} to {0}";
         }
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace TrafficLights
         protected override void OnRedo()
         {
             Lane.UpdateFlow(Flow);
+            OnString = "Flow change from {0} to {1}";
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace TrafficLights
         /// </summary>
         protected override string AsString
         {
-            get { return string.Format("Flow changed from {0} to {1}", previousFlow, Flow); }
+            get { return string.Format(OnString, previousFlow, Flow); }
         }
     }
 }

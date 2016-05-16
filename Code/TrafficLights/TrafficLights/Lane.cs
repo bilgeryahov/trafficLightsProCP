@@ -86,7 +86,7 @@ namespace TrafficLights
         {
             this.From = from;
             this.To = to;
-            this.IsFeeder = IsFeeder;
+            this.IsFeeder = isFeeder;
         }
 
         public void IncreaseAccumulatedFlow()

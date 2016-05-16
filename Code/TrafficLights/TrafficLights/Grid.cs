@@ -29,10 +29,12 @@ namespace TrafficLights
         /// <summary>
         /// Occurs when [on crossing added].
         /// </summary>
+        [field:NonSerialized]
         public event GridAltered OnCrossingAdded = (x, y, z) => { };
         /// <summary>
         /// Occurs when [on crossing removed].
         /// </summary>
+        [field:NonSerialized]
         public event GridAltered OnCrossingRemoved = (x, y, z) => { };
 
         /// <summary>

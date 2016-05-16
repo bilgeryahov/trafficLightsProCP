@@ -55,7 +55,7 @@ namespace TrafficLights
             try
             {
                 // if you want to try this, uncomment it and change the path where the excel file will be created.
-                //CreateExcelFile.CreateExcelDocument(myTable, "E:\\Sample.xlsx");
+                CreateExcelFile.CreateExcelDocument(myTable, "E:\\Sample.xlsx");
             }
             catch (Exception ex)
             {

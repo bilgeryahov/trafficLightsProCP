@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// holds all crossings that have been deleted and could be undone
     /// </summary>

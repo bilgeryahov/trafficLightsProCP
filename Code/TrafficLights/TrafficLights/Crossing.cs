@@ -50,8 +50,8 @@ namespace TrafficLights
         /// Gets the owner.
         /// </summary>
         /// <value>The owner.</value>
-        [field: NonSerialized]
-        public TrafficManager Owner { get; private set; }
+        [NonSerialized]
+        public TrafficManager Owner;
         /// <summary>
         /// Gets the row.
         /// </summary>

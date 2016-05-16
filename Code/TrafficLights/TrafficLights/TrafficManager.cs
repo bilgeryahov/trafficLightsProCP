@@ -23,6 +23,7 @@ namespace TrafficLights
         /// <summary>
         /// Occurs when [on system state changed].
         /// </summary>
+        [field:NonSerialized]
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
 
 
@@ -35,11 +36,13 @@ namespace TrafficLights
         /// <summary>
         /// Manager with the recycled crossings
         /// </summary>
-        public RecycleManager RecycleCrossingManager { get; private set; }
+        [NonSerialized]
+        public RecycleManager RecycleCrossingManager;
         /// <summary>
         ///  Manager with the saved crossings
         /// </summary>
-        public SavedManager SavedCrossingManager { get; private set; }
+        [NonSerialized]
+        public SavedManager SavedCrossingManager;
 
         /// <summary>
         /// Gets the state of the current.

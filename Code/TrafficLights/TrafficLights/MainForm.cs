@@ -264,6 +264,8 @@ namespace TrafficLights
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 manager.LoadFromFile(d.FileName);
+
+           
         }
 
         private void ShowSaveDialog()

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// handles a simulation based on the grid created by the System
     /// </summary>
@@ -249,7 +250,7 @@ namespace TrafficLights
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             if (isPaused) return;
             //draw components based on which frame they should be at
@@ -264,7 +265,7 @@ namespace TrafficLights
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             throw new Exception("Should not be called");
         }

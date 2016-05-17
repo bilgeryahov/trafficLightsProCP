@@ -21,7 +21,7 @@ namespace TrafficLights
         /// Initializes a new instance of the <see cref="Moveable"/> class.
         /// </summary>
         /// <param name="path">The path.</param>
-        public Moveable(params System.Drawing.Point[] path)
+        public Moveable(int startX, int startY, params System.Drawing.Point[] path) : base(startX, startY)
         {
             this.Path = new List<System.Drawing.Point>(path);
         }
@@ -49,7 +49,7 @@ namespace TrafficLights
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             throw new NotImplementedException();
         }
@@ -58,7 +58,7 @@ namespace TrafficLights
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             throw new NotImplementedException();
         }

@@ -41,6 +41,15 @@ namespace TrafficLights
                     ToggleControl(redoBtn, false);
                 }
                 PopulateActionStackListbox();
+
+                if (actionRedone is UpdateFlowAction && manager.CurrentActiveLane == (actionRedone as UpdateFlowAction).Lane)
+                {
+                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                }
+                else if (actionRedone is UpdateLightIntervalAction && manager.CurrentActiveTrafficLight == (actionRedone as UpdateLightIntervalAction).Light)
+                {
+                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                }
             };
 
             ActionStack.OnUndoAltered += (actionsToUndo, actionUndone) =>
@@ -56,6 +65,14 @@ namespace TrafficLights
                     ToggleControl(undoBtn, false);
                 }
                 PopulateActionStackListbox();
+                if (actionUndone is UpdateFlowAction && manager.CurrentActiveLane == (actionUndone as UpdateFlowAction).Lane)
+                {
+                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                }
+                else if (actionUndone is UpdateLightIntervalAction && manager.CurrentActiveTrafficLight == (actionUndone as UpdateLightIntervalAction).Light)
+                {
+                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                }
             };
 
             ToggleControl(redoToolStripMenuItem1, false);
@@ -67,14 +84,21 @@ namespace TrafficLights
                 {
                     if (x == null)
                     {
-                        propertiesEditGBox.Visible = false;
+                        propertiesEditGBox.Visible = true;
                         return;
                     }
                     propertiesEditGBox.Visible = true;
                     if (x is Trafficlight)
+                    {
                         propertiesLbl.Text = "Green interval";
+                        propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                    }
+                        
                     else if (x is Lane)
+                    {
                         propertiesLbl.Text = "Car flow";
+                        propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                    } 
                 };
 
             manager.CurrentActiveComponent = null;
@@ -88,10 +112,26 @@ namespace TrafficLights
                     pBoxToSlotIDLookup.Add(item as PictureBox, slotID);
                     slotIDToPBoxLookup.Add(slotID, item as PictureBox);
 
+
                     item.Click += (x, y) =>
                     {
-                        PlaceCrossing(x as PictureBox);
-                        RemoveCrossing(x as PictureBox);
+                        if (state != SystemState.None)
+                        {
+                            PlaceCrossing(x as PictureBox);
+                            RemoveCrossing(x as PictureBox);
+                        }
+                        else
+                        {
+                            SelectComponent(x as PictureBox, y as MouseEventArgs);
+                        }
+                    };
+
+                    item.Paint += (x, y) =>
+                    {
+                        int slot = pBoxToSlotIDLookup[x as PictureBox];
+                        Crossing crossing = manager.Grid.CrossingAt(slot);
+                        if(crossing!=null)
+                                crossing.Draw(y.Graphics);
                     };
                 }
             }
@@ -199,7 +239,7 @@ namespace TrafficLights
                 Crossing c = manager.Grid.CrossingAt(i);
                 if (c == null)
                     continue;
-                c.Draw(slotIDToPBoxLookup[i].Image as Bitmap);
+                c.Draw(slotIDToPBoxLookup[i].CreateGraphics());
             }
         }
 
@@ -315,19 +355,62 @@ namespace TrafficLights
 
         private void btnSaveStats_Click(object sender, EventArgs e)
         {
+            // for testing purpose.
+            SimulationResult test = new SimulationResult(new Simulation(new Grid(20)));
+            test.ExportToExcel("bla");
+
             if(manager.CurrentSimulation != null)
             {
                 //todo excel; snapshot
                 
             }
         }
-
+        private void SelectComponent(PictureBox sender, MouseEventArgs e)
+        {
+            int slot = pBoxToSlotIDLookup[sender];
+            Crossing crossing = manager.Grid.CrossingAt(slot);
+            if(crossing!=null)
+            {
+                foreach (var lane in crossing.Feeders)
+                //foreach (Lane lane in crossing.Feeders)
+                {
+                    if (e.X < lane.X || e.Y < lane.Y) continue;
+                    if (lane.Owner.From == Direction.Up || lane.Owner.From == Direction.Down)
+                    {
+                        if (e.X - lane.X <= 20 && lane.Y - e.Y <= 60)
+                        {
+                            manager.CurrentActiveComponent = lane;
+                            sender.Invalidate();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (e.X - lane.X <= 60 && lane.Y - e.Y <= 20)
+                        {
+                            manager.CurrentActiveComponent = lane;
+                            sender.Invalidate();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         private void updateFlowBtn_Click(object sender, EventArgs e)
         {
             if (manager.CurrentActiveLane != null)
-                manager.CurrentActiveLane.UpdateFlow((int)propertiesEditNUD.Value);
+            {
+                if (manager.CurrentActiveLane.Flow == (int)propertiesEditNUD.Value) return;
+                ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
+                propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+            }
             else if (manager.CurrentActiveTrafficLight != null)
-                manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
+                if (manager.CurrentActiveTrafficLight.GreenSeconds == (float)propertiesEditNUD.Value) return;
+                else
+                {
+                    //todo - add action
+                    manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
+                }
         }
 
         private void timer_Tick(object sender, EventArgs e)

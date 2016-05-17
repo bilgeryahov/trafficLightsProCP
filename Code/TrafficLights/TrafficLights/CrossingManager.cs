@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace TrafficLights
-{
+{[Serializable]
     /// <summary>
     /// is responsible for the crossings
     /// </summary>

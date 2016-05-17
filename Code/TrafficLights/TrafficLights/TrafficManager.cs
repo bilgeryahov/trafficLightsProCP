@@ -5,9 +5,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// is responsible for all the actions that can be done from the GUI and represents the system
     /// </summary>
@@ -21,7 +23,9 @@ namespace TrafficLights
         /// <summary>
         /// Occurs when [on system state changed].
         /// </summary>
+        [field:NonSerialized]
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
+
 
         /// <summary>
         /// Gets the grid.
@@ -32,11 +36,13 @@ namespace TrafficLights
         /// <summary>
         /// Manager with the recycled crossings
         /// </summary>
-        public RecycleManager RecycleCrossingManager { get; private set; }
+        [NonSerialized]
+        public RecycleManager RecycleCrossingManager;
         /// <summary>
         ///  Manager with the saved crossings
         /// </summary>
-        public SavedManager SavedCrossingManager { get; private set; }
+        [NonSerialized]
+        public SavedManager SavedCrossingManager;
 
         /// <summary>
         /// Gets the state of the current.
@@ -51,7 +57,11 @@ namespace TrafficLights
             get { return currentActiveComponent; }
             set
             {
+                if (currentActiveComponent != null)
+                    currentActiveComponent.SetActive(false);
                 currentActiveComponent = value;
+                if (currentActiveComponent != null)
+                    currentActiveComponent.SetActive(true);
                 OnCurrentActiveComponentChanged(value);
             }
         }
@@ -69,6 +79,7 @@ namespace TrafficLights
 
             this.RecycleCrossingManager = new RecycleManager();
             this.SavedCrossingManager = new SavedManager();
+            this.CreateSimulation();
         }
 
         /// <summary>
@@ -188,13 +199,13 @@ namespace TrafficLights
                 //Notify for success?
             }
 
-            catch (SerializationException)
+            catch (SerializationException e)
             {
-                //Notify for failure?
+                MessageBox.Show(e.Message);
             }
-            catch (IOException)
+            catch (IOException e)
             {
-                //Notify for failure?
+                MessageBox.Show(e.Message);
             }
             finally
             {
@@ -226,13 +237,9 @@ namespace TrafficLights
                 //Notify for success?
             }
 
-            catch (SerializationException)
+         catch(Exception e)
             {
-                //Notify for failure?
-            }
-            catch (IOException)
-            {
-                //Notify for failure?
+                MessageBox.Show(e.Message);
             }
             finally
             {
@@ -260,6 +267,7 @@ namespace TrafficLights
         {
             this.CurrentSimulation = null;
             ActionStack.Clear();
+            CreateSimulation();
         }
     }
 }

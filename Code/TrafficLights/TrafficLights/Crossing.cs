@@ -22,7 +22,11 @@ namespace TrafficLights
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-        public abstract Crosswalk[] Crosswalks { get; }
+
+        private Crosswalk[] crosswalks = null;
+
+        public Crosswalk[] Crosswalks { get { if (crosswalks == null) crosswalks = GenerateCrosswalks; return crosswalks; } }
+        protected abstract Crosswalk[] GenerateCrosswalks { get; }
 
         /// <summary>
         /// Gets the crosswalk on left.
@@ -45,11 +49,13 @@ namespace TrafficLights
         /// <value>The crosswalk below.</value>
         public Crosswalk CrosswalkBelow { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Down)); } }
 
+
         /// <summary>
         /// Gets the owner.
         /// </summary>
         /// <value>The owner.</value>
-        public TrafficManager Owner { get; private set; }
+        [NonSerialized]
+        public TrafficManager Owner;
         /// <summary>
         /// Gets the row.
         /// </summary>
@@ -250,7 +256,7 @@ namespace TrafficLights
         /// Gets the top feeders.
         /// </summary>
         /// <value>The top feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> TopFeeders
+        public IEnumerable<Lane> TopFeeders
         {
             get
             {
@@ -262,7 +268,7 @@ namespace TrafficLights
         /// Gets the bot feeders.
         /// </summary>
         /// <value>The bot feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> BotFeeders
+        public IEnumerable<Lane> BotFeeders
         {
             get
             {
@@ -274,7 +280,7 @@ namespace TrafficLights
         /// Gets the left feeders.
         /// </summary>
         /// <value>The left feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> LeftFeeders
+        public IEnumerable<Lane> LeftFeeders
         {
             get
             {
@@ -286,7 +292,7 @@ namespace TrafficLights
         /// Gets the right feeders.
         /// </summary>
         /// <value>The right feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> RightFeeders
+        public IEnumerable<Lane> RightFeeders
         {
             get
             {
@@ -349,13 +355,14 @@ namespace TrafficLights
                 child.Update(seconds);
         }
 
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
+            
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);
         }
 
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);

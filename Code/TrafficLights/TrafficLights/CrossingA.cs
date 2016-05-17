@@ -23,10 +23,43 @@ namespace TrafficLights
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-        public override Crosswalk[] Crosswalks
+        protected override Crosswalk[] GenerateCrosswalks
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return new Crosswalk[]
+                {
+                    new Crosswalk
+                        (Direction.Left, false, 0, 60,30, 140,
+                        new Lane(Direction.Right, Direction.Left, false, 0, 62),
+                        new Lane(Direction.Left, Direction.Up | Direction.Right, true, 0, 88 ),
+                        new Lane(Direction.Left, Direction.Down, true, 0, 110)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Down, false,60, 200,140, 140,
+                        new Lane(Direction.Up, Direction.Down, false, 65, 135),
+                        new Lane(Direction.Down, Direction.Up | Direction.Left, true, 90, 135),
+                        new Lane(Direction.Down, Direction.Right, true, 112, 135)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Right, false,200, 60,140, 0,
+                        new Lane(Direction.Left, Direction.Right, false, 135, 110),
+                        new Lane(Direction.Right, Direction.Left | Direction.Down, true, 135, 88 ),
+                        new Lane(Direction.Right, Direction.Up, true, 135, 62)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Up, false,60, 0,40, 0,
+                        new Lane(Direction.Down, Direction.Up, false, 112, 0),
+                        new Lane(Direction.Up, Direction.Up | Direction.Left, true, 90, 0 ),
+                        new Lane(Direction.Up, Direction.Right, true, 65, 0)
+                        )
+                };
+            }
         }
+
 
         /// <summary>
         /// Updates the specified seconds.
@@ -34,26 +67,33 @@ namespace TrafficLights
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            throw new NotImplementedException();
+            foreach (Crosswalk walk in this.Crosswalks)
+            {
+                walk.Update(seconds);
+            }
         }
 
         /// <summary>
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            foreach (Crosswalk walk in this.Crosswalks)
+            {
+                walk.Draw(image);
+            }
         }
 
         /// <summary>
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            DrawWhenNormal(image);
         }
+
 
         public override System.Drawing.Image Image
         {

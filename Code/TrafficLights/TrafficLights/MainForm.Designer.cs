@@ -421,6 +421,7 @@
             // 
             this.gridSlot1.BackColor = System.Drawing.Color.Gray;
             this.gridSlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot1.Image = global::TrafficLights.Properties.Resources.cross_1;
             this.gridSlot1.Location = new System.Drawing.Point(241, 90);
             this.gridSlot1.Name = "gridSlot1";
             this.gridSlot1.Size = new System.Drawing.Size(200, 200);
@@ -636,6 +637,7 @@
             this.propertiesEditGBox.Controls.Add(this.updatePropertiesBtn);
             this.propertiesEditGBox.Controls.Add(this.propertiesLbl);
             this.propertiesEditGBox.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.propertiesEditGBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.propertiesEditGBox.Location = new System.Drawing.Point(5, 338);
             this.propertiesEditGBox.Name = "propertiesEditGBox";
             this.propertiesEditGBox.Size = new System.Drawing.Size(217, 105);

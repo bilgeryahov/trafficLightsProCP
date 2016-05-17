@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// a component that moves on the sidewalks and crosswalks of the roads
     /// </summary>

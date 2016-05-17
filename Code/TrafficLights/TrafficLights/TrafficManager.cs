@@ -233,7 +233,21 @@ namespace TrafficLights
                 this.Grid = (Grid)myBinaryFormatter.Deserialize(myFileStream);
                 CurrentLoadedPath = filepath;
                 ProcessNewGridLoaded();
-                throw new NotImplementedException("Update grid UI");
+                
+                // to be used for testing of the load functionality
+                // if you want to test it, create a grid with a crossing on place 3 (first one, second row)
+                // then load it and it should say "correct"
+
+                //if(this.Grid.CrossingAt(3) == null)
+                //{
+                //    MessageBox.Show("not correct");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("correct");
+                //}
+
+               // throw new NotImplementedException("Update grid UI");
                 //Notify for success?
             }
 

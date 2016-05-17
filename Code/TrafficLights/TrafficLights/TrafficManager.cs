@@ -233,7 +233,7 @@ namespace TrafficLights
                 this.Grid = (Grid)myBinaryFormatter.Deserialize(myFileStream);
                 CurrentLoadedPath = filepath;
                 ProcessNewGridLoaded();
-                throw new NotImplementedException("Update grid UI");
+               // throw new NotImplementedException("Update grid UI");
                 //Notify for success?
             }
 

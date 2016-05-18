@@ -25,7 +25,21 @@ namespace TrafficLights
 
         private Crosswalk[] crosswalks = null;
 
-        public Crosswalk[] Crosswalks { get { if (crosswalks == null) crosswalks = GenerateCrosswalks; return crosswalks; } }
+        public Crosswalk[] Crosswalks
+        {
+            get
+            {
+                if (crosswalks == null)
+                {
+                    crosswalks = GenerateCrosswalks;
+                    foreach (Crosswalk crosswalk in crosswalks)
+                    {
+                        crosswalk.Owner = this;
+                    }
+                }
+                return crosswalks;
+            }
+        }
         protected abstract Crosswalk[] GenerateCrosswalks { get; }
 
         /// <summary>

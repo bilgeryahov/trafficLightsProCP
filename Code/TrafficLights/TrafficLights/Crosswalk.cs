@@ -33,6 +33,8 @@ namespace TrafficLights
         public Direction To { get { return From.Inverse(); } }
         public bool CanHavePedestrians { get; private set; }
 
+        public Crossing Owner;
+
         /// <summary>
         /// Gets the lanes.
         /// </summary>

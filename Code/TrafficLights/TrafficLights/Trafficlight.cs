@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace TrafficLights
 {
@@ -98,7 +99,12 @@ namespace TrafficLights
             }
         }
 
-        public Trafficlight(int x, int y) : base(x, y) { }
+        public Trafficlight(int x, int y) : base(x, y) 
+        {
+            this.CurrentState = State.None;
+            this.RedToGreenSeconds = 1;
+            this.YellowSeconds = 1;
+        }
 
         /// <summary>
         /// Nexts this instance.
@@ -118,7 +124,7 @@ namespace TrafficLights
         /// <param name="time">The time.</param>
         public void Override(State state, int time)
         {
-            throw new System.NotImplementedException();
+            CurrentState = OnOverrideState;
         }
 
         /// <summary>
@@ -139,16 +145,50 @@ namespace TrafficLights
             this.OnOverrideState = State.None;
         }
         private float timePassed = 0;
+        private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
+        private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
+        private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            timePassed += seconds;
-            //time passed += seconds
-            //if passed > lastupdate -> change light
-            throw new NotImplementedException();
+            if(CurrentState==State.None)
+            {
+                CurrentState = State.Red;
+                brushRed = System.Drawing.Brushes.Red;
+            }
+            else if (CurrentState==State.Red || CurrentState==OnOverrideState)
+            {
+                brushRed = System.Drawing.Brushes.Red;
+                timePassed += seconds;
+                if(timePassed>=RedToGreenSeconds)
+                {
+                    CurrentState = State.Green;
+                    timePassed = 0;
+                }
+            }
+            else if (CurrentState==State.Green)
+            {
+                brushGreen = System.Drawing.Brushes.Green;
+                timePassed += seconds;
+                if(timePassed>=GreenSeconds)
+                {
+                    CurrentState = State.Yellow;
+                    timePassed = 0;
+                }
+            }
+            else if (CurrentState==State.Yellow)
+            {
+                brushYellow = System.Drawing.Brushes.Yellow;
+                timePassed += seconds;
+                if(timePassed>=YellowSeconds)
+                {
+                    CurrentState = State.Red;
+                    timePassed = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -157,9 +197,10 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            
-            //draw the circles
-            //throw new NotImplementedException();
+            image.FillRectangle(System.Drawing.Brushes.Black, this.X + 2, this.Y + 2, 16, 46);
+            image.FillEllipse(brushGreen, this.X + 3, this.Y + 4, 12, 12);
+            image.FillEllipse(brushYellow, this.X + 3, this.Y + 19, 12, 12);
+            image.FillEllipse(brushRed, this.X + 3, this.Y + 34, 12, 12);
         }
 
         /// <summary>
@@ -168,7 +209,8 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            image.FillRectangle(System.Drawing.Brushes.Green, this.X-1, this.Y-1, 22, 52);
+            DrawWhenNormal(image);
         }
     }
 }

@@ -421,7 +421,6 @@
             // 
             this.gridSlot1.BackColor = System.Drawing.Color.Gray;
             this.gridSlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot1.Image = global::TrafficLights.Properties.Resources.cross_1;
             this.gridSlot1.Location = new System.Drawing.Point(241, 90);
             this.gridSlot1.Name = "gridSlot1";
             this.gridSlot1.Size = new System.Drawing.Size(200, 200);
@@ -640,21 +639,21 @@
             this.propertiesEditGBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.propertiesEditGBox.Location = new System.Drawing.Point(5, 338);
             this.propertiesEditGBox.Name = "propertiesEditGBox";
-            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 105);
+            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 120);
             this.propertiesEditGBox.TabIndex = 81;
             this.propertiesEditGBox.TabStop = false;
             this.propertiesEditGBox.Text = "Properties";
             // 
             // propertiesEditNUD
             // 
-            this.propertiesEditNUD.Location = new System.Drawing.Point(91, 28);
+            this.propertiesEditNUD.Location = new System.Drawing.Point(55, 48);
             this.propertiesEditNUD.Name = "propertiesEditNUD";
             this.propertiesEditNUD.Size = new System.Drawing.Size(120, 26);
             this.propertiesEditNUD.TabIndex = 90;
             // 
             // updatePropertiesBtn
             // 
-            this.updatePropertiesBtn.Location = new System.Drawing.Point(100, 72);
+            this.updatePropertiesBtn.Location = new System.Drawing.Point(60, 80);
             this.updatePropertiesBtn.Name = "updatePropertiesBtn";
             this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 27);
             this.updatePropertiesBtn.TabIndex = 89;
@@ -664,11 +663,10 @@
             // 
             // propertiesLbl
             // 
-            this.propertiesLbl.AutoSize = true;
             this.propertiesLbl.Font = new System.Drawing.Font("Baskerville Old Face", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.propertiesLbl.Location = new System.Drawing.Point(8, 28);
+            this.propertiesLbl.Location = new System.Drawing.Point(12, 22);
             this.propertiesLbl.Name = "propertiesLbl";
-            this.propertiesLbl.Size = new System.Drawing.Size(82, 23);
+            this.propertiesLbl.Size = new System.Drawing.Size(193, 23);
             this.propertiesLbl.TabIndex = 82;
             this.propertiesLbl.Text = "Car Flow";
             this.propertiesLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -838,7 +836,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.propertiesEditGBox.ResumeLayout(false);
-            this.propertiesEditGBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.propertiesEditNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

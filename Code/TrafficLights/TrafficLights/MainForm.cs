@@ -373,30 +373,58 @@ namespace TrafficLights
             Crossing crossing = manager.Grid.CrossingAt(slot);
             if(crossing!=null)
             {
-                foreach (var lane in crossing.Feeders)
+                foreach (Lane lane in crossing.Feeders)
                 //foreach (Lane lane in crossing.Feeders)
                 {
-                    if (e.X < lane.X || e.Y < lane.Y) continue;
-                    if (lane.Owner.From == Direction.Up || lane.Owner.From == Direction.Down)
+                    if (FindCollision(e, lane))
                     {
-                        if (e.X - lane.X <= 20 && lane.Y - e.Y <= 60)
-                        {
-                            manager.CurrentActiveComponent = lane;
-                            sender.Invalidate();
-                            return;
-                        }
+                        manager.CurrentActiveComponent = lane;
+                        sender.Invalidate();
+                        return;
                     }
-                    else
+                }
+                foreach (Trafficlight light in crossing.Lights)
+                {
+                    if (FindCollision(e, light))
                     {
-                        if (e.X - lane.X <= 60 && lane.Y - e.Y <= 20)
-                        {
-                            manager.CurrentActiveComponent = lane;
-                            sender.Invalidate();
-                            return;
-                        }
+                        manager.CurrentActiveComponent = light;
+                        sender.Invalidate();
+                        return;
                     }
                 }
             }
+        }
+        private bool FindCollision(MouseEventArgs e, Trafficlight light)
+        {
+            if (e.X < light.X || e.Y < light.Y) return false;
+            if (e.X - light.X <= 16 && e.Y - light.Y <= 46)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool FindCollision(MouseEventArgs e, Lane lane)
+        {
+            if (e.X < lane.X || e.Y < lane.Y) return false;
+            if (lane.Owner.From == Direction.Up || lane.Owner.From == Direction.Down)
+            {
+                if (e.X - lane.X <= 20 &&  e.Y - lane.Y <= 60)
+                {
+
+                    return true;
+                }
+            }
+            else
+            {
+                if (e.X - lane.X <= 60 && e.Y - lane.Y <= 20)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         private void updateFlowBtn_Click(object sender, EventArgs e)
         {

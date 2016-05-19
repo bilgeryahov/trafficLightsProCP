@@ -432,14 +432,13 @@ namespace TrafficLights
             {
                 if (manager.CurrentActiveLane.Flow == (int)propertiesEditNUD.Value) return;
                 ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
-                propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
             }
             else if (manager.CurrentActiveTrafficLight != null)
                 if (manager.CurrentActiveTrafficLight.GreenSeconds == (float)propertiesEditNUD.Value) return;
                 else
                 {
-                    //todo - add action
-                    manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
+                    ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, manager.CurrentActiveTrafficLight));
+                    //manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
                 }
         }
 

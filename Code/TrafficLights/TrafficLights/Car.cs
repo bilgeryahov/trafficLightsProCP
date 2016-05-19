@@ -64,7 +64,21 @@ namespace TrafficLights
             //if no lane found -> nothing happens
             //if lane found - Lane.IncreaseAccumlatedFlow
             //moves the car based on the elapsed time
-            throw new NotImplementedException();
+            if (CurrentPoint != PathFromLane(CurrentLane)[2])
+            {
+                if (CurrentPoint == PathFromLane(CurrentLane)[0])
+                {
+                    X = PathFromLane(CurrentLane)[1].X;
+                    Y = PathFromLane(CurrentLane)[1].Y;
+                }
+                else if (CurrentPoint == PathFromLane(CurrentLane)[1])
+                { X = PathFromLane(CurrentLane)[2].X;
+                Y = PathFromLane(CurrentLane)[2].Y;
+                }              
+            }
+            else { CurrentLane = CurrentLane.Next; }
+            if (CurrentLane != null)
+            { CurrentLane.IncreaseAccumulatedFlow(); }
         }
 
         /// <summary>
@@ -74,7 +88,7 @@ namespace TrafficLights
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draws a rectangle on the car's location
-            throw new NotImplementedException();
+            image.DrawEllipse(System.Drawing.Pens.Black, this.X-2, this.Y-2, 4, 4);
         }
 
         /// <summary>
@@ -83,7 +97,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            base.DrawWhenNormal(image);
         }
     }
 }

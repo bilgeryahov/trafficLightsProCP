@@ -21,10 +21,12 @@ namespace TrafficLights
         {
             get
             {
-                throw new System.NotImplementedException();
+                return CurrentCrosswalk;
             }
             set
             {
+                if (value.CanHavePedestrians)
+                { CurrentCrosswalk = value; }
             }
         }
 
@@ -43,7 +45,27 @@ namespace TrafficLights
         {
             get
             {
-                throw new System.NotImplementedException();
+                if (CurrentCrosswalk.CanHavePedestrians && CurrentCrosswalk.To!=null)
+                {
+                    Crossing crossing = CurrentCrosswalk.Owner;
+                    if (CurrentCrosswalk.To == Direction.Up)
+                    {
+                        return crossing.NextCrosswalkAbove;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Down)
+                    {
+                        return crossing.NextCrosswalkBelow;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Left)
+                    {
+                        return crossing.NextCrosswalkLeft;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Right)
+                    {
+                        return crossing.NextCrosswalkRight;
+                    }
+                }
+                return null;
             }
         }
 
@@ -56,7 +78,19 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             //moves the location of the pedestrians based on the elapsed time
-            throw new NotImplementedException();
+            base.Update(seconds);
+            if (CurrentPointIndex > 0)
+            {
+                int index = Convert.ToInt32(Math.Round(Convert.ToDecimal(seconds) * Path.Count));
+                this.X = Path[index+CurrentPointIndex].X;
+                this.Y = Path[index + CurrentPointIndex].Y;
+            }
+            else 
+            {
+                int index = Convert.ToInt32(Math.Round(Convert.ToDecimal(seconds) * Path.Count));
+                this.X = Path[index].X;
+                this.Y = Path[index].Y;
+            }
         }
 
         /// <summary>
@@ -66,7 +100,7 @@ namespace TrafficLights
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draws a dot on the crosswalk
-            throw new NotImplementedException();
+            image.DrawEllipse(System.Drawing.Pens.Red, this.X, this.Y, 2, 2);
         }
 
         /// <summary>
@@ -75,7 +109,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            base.DrawWhenNormal(image);
         }
     }
 }

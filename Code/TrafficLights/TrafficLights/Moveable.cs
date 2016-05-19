@@ -36,15 +36,19 @@ namespace TrafficLights
         /// Gets the current point.
         /// </summary>
         /// <value>The current point.</value>
-        public System.Drawing.Point CurrentPoint { get { throw new NotImplementedException(); } }
+        public System.Drawing.Point CurrentPoint { get { return new System.Drawing.Point(X, Y); } }
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            throw new NotImplementedException();
-        }
+            foreach (System.Drawing.Point p in Path)
+            {
+                if (p == CurrentPoint)
+                { CurrentPointIndex = Path.IndexOf(p); }
+            }
+         }
 
         /// <summary>
         /// Draws the when normal.
@@ -61,7 +65,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            DrawWhenNormal(image);
         }
     }
 }

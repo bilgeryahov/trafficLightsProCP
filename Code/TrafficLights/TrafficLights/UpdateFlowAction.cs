@@ -14,7 +14,7 @@ namespace TrafficLights
         public Lane Lane { get; private set; }
         public int Flow { get; private set; }
         private int previousFlow;
-        string OnString;
+        private string OnString;
         public UpdateFlowAction(int flow, Lane lane)
         {
             this.Lane = lane;

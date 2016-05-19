@@ -138,13 +138,14 @@ namespace TrafficLights
             this.CurrentState = OnOverrideCancelNextState;
             this.OnOverrideState = State.None;
         }
-
+        private float timePassed = 0;
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
+            timePassed += seconds;
             //time passed += seconds
             //if passed > lastupdate -> change light
             throw new NotImplementedException();
@@ -156,6 +157,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
+            
             //draw the circles
             //throw new NotImplementedException();
         }

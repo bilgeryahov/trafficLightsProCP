@@ -126,7 +126,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(150, System.Drawing.Color.Tomato));
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(80, System.Drawing.Color.Tomato));
             int x = 60;
             int y = 20;
             if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)

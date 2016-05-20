@@ -26,6 +26,8 @@ namespace TrafficLights
         [field:NonSerialized]
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
 
+        [field: NonSerialized]
+        public event Action GridLoaded;
 
         /// <summary>
         /// Gets the grid.
@@ -80,6 +82,7 @@ namespace TrafficLights
             this.RecycleCrossingManager = new RecycleManager();
             this.SavedCrossingManager = new SavedManager();
             this.CreateSimulation();
+
         }
 
         /// <summary>
@@ -282,6 +285,7 @@ namespace TrafficLights
             this.CurrentSimulation = null;
             ActionStack.Clear();
             CreateSimulation();
+            this.GridLoaded();
         }
     }
 }

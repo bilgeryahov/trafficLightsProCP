@@ -163,6 +163,32 @@ namespace TrafficLights
                 int id = row * 3 + column;
                 this.slotIDToPBoxLookup[id].Image = null;
             };
+
+            this.manager.GridLoaded += () =>
+            {
+                gridSlot1.Image = null;
+                gridSlot2.Image = null;
+                gridSlot3.Image = null;
+                gridSlot4.Image = null;
+                gridSlot5.Image = null;
+                gridSlot6.Image = null;
+                gridSlot7.Image = null;
+                gridSlot8.Image = null;
+                gridSlot9.Image = null;
+
+                foreach (Crossing[] c in this.manager.Grid.Crossings)
+                {
+                    foreach(Crossing cr in c)
+                    {
+                        if(cr != null)
+                        {
+                            int id = cr.Row * 3 + cr.Column;
+                            this.slotIDToPBoxLookup[id].Image = cr.Image;
+                        }
+                    }
+                }
+
+            };
         }
 
         private void PopulateActionStackListbox()

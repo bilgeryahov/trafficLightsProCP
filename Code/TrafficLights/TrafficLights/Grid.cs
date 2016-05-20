@@ -26,6 +26,7 @@ namespace TrafficLights
         /// <param name="xPosition">The x position.</param>
         /// <param name="yPosition">The y position.</param>
         public delegate void GridAltered(Crossing alteredCrossing, int xPosition, int yPosition);
+      
         /// <summary>
         /// Occurs when [on crossing added].
         /// </summary>
@@ -36,6 +37,8 @@ namespace TrafficLights
         /// </summary>
         [field:NonSerialized]
         public event GridAltered OnCrossingRemoved = (x, y, z) => { };
+
+      
 
         /// <summary>
         /// Gets the crossings.

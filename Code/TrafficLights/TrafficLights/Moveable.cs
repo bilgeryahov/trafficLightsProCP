@@ -56,7 +56,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -65,7 +64,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            DrawWhenNormal(image);
         }
     }
 }

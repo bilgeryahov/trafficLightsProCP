@@ -97,7 +97,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            base.DrawWhenNormal(image);
+            DrawWhenNormal(image);
         }
     }
 }

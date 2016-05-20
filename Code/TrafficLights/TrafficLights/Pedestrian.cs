@@ -45,26 +45,25 @@ namespace TrafficLights
         {
             get
             {
-                if (CurrentCrosswalk.CanHavePedestrians && CurrentCrosswalk.To!=null)
-                {
+                
                     Crossing crossing = CurrentCrosswalk.Owner;
-                    if (CurrentCrosswalk.To == Direction.Up)
+                    if (CurrentCrosswalk.To == Direction.Up && crossing.NextCrosswalkAbove.CanHavePedestrians)
                     {
                         return crossing.NextCrosswalkAbove;
                     }
-                    else if (CurrentCrosswalk.To == Direction.Down)
+                    else if (CurrentCrosswalk.To == Direction.Down && crossing.NextCrosswalkBelow.CanHavePedestrians)
                     {
                         return crossing.NextCrosswalkBelow;
                     }
-                    else if (CurrentCrosswalk.To == Direction.Left)
+                    else if (CurrentCrosswalk.To == Direction.Left && crossing.NextCrosswalkLeft.CanHavePedestrians)
                     {
                         return crossing.NextCrosswalkLeft;
                     }
-                    else if (CurrentCrosswalk.To == Direction.Right)
+                    else if (CurrentCrosswalk.To == Direction.Right && crossing.NextCrosswalkRight.CanHavePedestrians)
                     {
                         return crossing.NextCrosswalkRight;
                     }
-                }
+                
                 return null;
             }
         }
@@ -109,7 +108,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            base.DrawWhenNormal(image);
+            DrawWhenNormal(image);
         }
     }
 }

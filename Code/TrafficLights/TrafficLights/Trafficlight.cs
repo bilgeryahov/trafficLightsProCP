@@ -13,6 +13,11 @@ namespace TrafficLights
     /// <seealso cref="TrafficLights.Component" />
     public class Trafficlight : Component
     {
+        private float timePassed = 0;
+        private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
+        private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
+        private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
+
         /// <summary>
         /// Enum State
         /// </summary>
@@ -104,7 +109,11 @@ namespace TrafficLights
             this.CurrentState = State.None;
             this.RedToGreenSeconds = 1;
             this.YellowSeconds = 1;
-        }
+
+              brushGreen = System.Drawing.Brushes.White;
+         brushYellow = System.Drawing.Brushes.White;
+          brushRed = System.Drawing.Brushes.White;
+    }
 
         /// <summary>
         /// Nexts this instance.
@@ -144,10 +153,7 @@ namespace TrafficLights
             this.CurrentState = OnOverrideCancelNextState;
             this.OnOverrideState = State.None;
         }
-        private float timePassed = 0;
-        private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
-        private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
-        private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
+      
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>

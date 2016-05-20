@@ -206,9 +206,9 @@ namespace TrafficLights
             get
             {
                 List<Renderable> children = new List<Renderable>();
-
-                children.AddRange(Lights);
-                children.AddRange(Lanes);
+                children.AddRange(this.Crosswalks);
+                //children.AddRange(Lights);
+                //children.AddRange(Lanes);
 
                 return children;
             }

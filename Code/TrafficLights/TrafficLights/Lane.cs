@@ -35,7 +35,8 @@ namespace TrafficLights
         {
             get
             {
-                IEnumerable<Lane> result = Owner.Lanes.Where(x => x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
+                IEnumerable<Lane> result = Owner.Owner.Lanes.Where(x => 
+                    x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
                 if (result.Count() == 0) return null;
                 if (result.Count() == 1) return result.First();
                 else
@@ -53,7 +54,10 @@ namespace TrafficLights
             }
         }
 
+
         private List<Car> currentCarsOn = new List<Car>();
+
+        public Car[] CarsCurrentlyOn { get { return currentCarsOn.ToArray(); } }
 
         /// <summary>
         /// Gets the current flow.
@@ -108,6 +112,7 @@ namespace TrafficLights
             if (flowReleased < Flow)
             {
                 this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                flowReleased += 1;
             }
             else if (flowAccumulated > 0)
             {

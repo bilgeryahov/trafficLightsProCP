@@ -61,32 +61,6 @@ namespace TrafficLights
             }
         }
 
-        public override void Update(float seconds)
-        {
-            foreach (var walk in this.Crosswalks)
-            {
-                walk.Update(seconds);
-            }
-        }
-
-        protected override void DrawWhenNormal(System.Drawing.Graphics image)
-        {
-            foreach (var walk in this.Crosswalks)
-            {
-                walk.Draw(image);
-            }
-        }
-
-        /// <summary>
-        /// Draws the when active.
-        /// </summary>
-        /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Graphics image)
-        {
-            DrawWhenNormal(image);
-        }
-
-
         public override System.Drawing.Image Image { get { return Properties.Resources.cross_2; } }
     }
 }

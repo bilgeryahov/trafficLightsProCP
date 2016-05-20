@@ -187,8 +187,10 @@ namespace TrafficLights
                         }
                     }
                 }
-
             };
+            manager.CurrentSimulation.OnPauseStateChanged += 
+                (x) => 
+                    timer.Enabled = !x;
         }
 
         private void PopulateActionStackListbox()
@@ -255,7 +257,11 @@ namespace TrafficLights
 
         private void UpdateSimulation()
         {
-            manager.CurrentSimulation.Update(timer.Interval);
+            manager.CurrentSimulation.Update(timer.Interval / 1000.0f);
+            foreach (var item in this.pBoxToSlotIDLookup)
+            {
+                item.Key.Invalidate();
+            }
         }
 
         private void UpdateInterface()

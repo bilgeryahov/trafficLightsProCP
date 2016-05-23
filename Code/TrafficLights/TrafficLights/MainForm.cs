@@ -384,7 +384,7 @@ namespace TrafficLights
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            manager.RestartSimulation();
+           manager.RestartSimulation();
         }
 
         private void btnSaveStats_Click(object sender, EventArgs e)

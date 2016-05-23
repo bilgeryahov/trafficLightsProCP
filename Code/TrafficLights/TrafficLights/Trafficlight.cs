@@ -14,9 +14,13 @@ namespace TrafficLights
     public class Trafficlight : Component
     {
         private float timePassed = 0;
+        [field:NonSerialized]
         private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
+        [field: NonSerialized]
         private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
+        [field: NonSerialized]
         private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
+
         public Crossing Owner { get; private set; }
         /// <summary>
         /// Enum State

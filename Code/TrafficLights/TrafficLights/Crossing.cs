@@ -36,6 +36,10 @@ namespace TrafficLights
                     {
                         crosswalk.Owner = this;
                     }
+                    foreach (Trafficlight light in this.Lights)
+                    {
+                        light.SetOwner(this);
+                    }
                 }
                 return crosswalks;
             }

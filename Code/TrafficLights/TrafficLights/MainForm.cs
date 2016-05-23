@@ -410,6 +410,8 @@ namespace TrafficLights
                 {
                     if (FindCollision(e, lane))
                     {
+                        if(manager.CurrentActiveLane != null)
+                            slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
                         manager.CurrentActiveComponent = lane;
                         sender.Invalidate();
                         return;
@@ -419,6 +421,8 @@ namespace TrafficLights
                 {
                     if (FindCollision(e, light))
                     {
+                        if (manager.CurrentActiveTrafficLight != null)
+                            slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
                         manager.CurrentActiveComponent = light;
                         sender.Invalidate();
                         return;
@@ -463,15 +467,56 @@ namespace TrafficLights
             if (manager.CurrentActiveLane != null)
             {
                 if (manager.CurrentActiveLane.Flow == (int)propertiesEditNUD.Value) return;
-                ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
+                if (cbApply.Checked || cbApplyCrossing.Checked)
+                {
+                    ApplyForAll();
+                }
+                else
+                {
+                    ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
+                }
             }
             else if (manager.CurrentActiveTrafficLight != null)
+            {
                 if (manager.CurrentActiveTrafficLight.GreenSeconds == (float)propertiesEditNUD.Value) return;
+                if (cbApply.Checked || cbApplyCrossing.Checked)
+                {
+                    ApplyForAll();
+                }
                 else
                 {
                     ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, manager.CurrentActiveTrafficLight));
-                    //manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
                 }
+            }
+                
+        }
+
+        private void ApplyForAll()
+        {
+            foreach (Crossing crossing in manager.Grid.AllCrossings)
+            {
+                if (crossing == null) continue;
+                if (cbApplyCrossing.Checked && (manager.CurrentActiveTrafficLight.Owner != crossing || manager.CurrentActiveTrafficLight.Owner != crossing))
+                {
+                    continue;
+                }
+                if (manager.CurrentActiveComponent is Lane)
+                {
+                    foreach (Lane lane in crossing.Lanes)
+                    {
+                        if (lane.Flow == (int)propertiesEditNUD.Value) continue;
+                        ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
+                    }
+                }
+                if (manager.CurrentActiveComponent is Trafficlight)
+                {
+                    foreach (Trafficlight light in crossing.Lights)
+                    {
+                        if (light.GreenSeconds == (float)propertiesEditNUD.Value) continue;
+                        ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, light));
+                    }
+                }
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -587,7 +632,7 @@ namespace TrafficLights
             if (state != SystemState.Place) return;
 
             int id = pBoxToSlotIDLookup[currentBox];
-            ActionStack.AddAction(new PlaceCrossingAction(id / 3, id % 3, crossingToBePlaced));
+            ActionStack.AddAction(new PlaceCrossingAction(id / 3, id % 3, Activator.CreateInstance(crossingToBePlaced.GetType(), manager) as Crossing));
         }
         private void RemoveCrossing(PictureBox currentBox)
         {
@@ -617,6 +662,22 @@ namespace TrafficLights
                 state = SystemState.None;
                 button2.FlatStyle = FlatStyle.Standard;
                 rmToggled = false;
+            }
+        }
+
+        private void cbApplyCrossing_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbApplyCrossing.Checked)
+            {
+                cbApply.Checked = false;
+            }
+        }
+
+        private void cbApply_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbApply.Checked)
+            {
+                cbApplyCrossing.Checked = false;
             }
         }
     }

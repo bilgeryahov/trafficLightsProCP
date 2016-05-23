@@ -17,7 +17,7 @@ namespace TrafficLights
         private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
         private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
         private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
-
+        public Crossing Owner { get; private set; }
         /// <summary>
         /// Enum State
         /// </summary>
@@ -107,12 +107,12 @@ namespace TrafficLights
         public Trafficlight(int x, int y) : base(x, y) 
         {
             this.CurrentState = State.None;
-            this.RedToGreenSeconds = 1;
-            this.YellowSeconds = 1;
+            this.GreenSeconds = 1;
+            this.YellowSeconds = 2;
 
-              brushGreen = System.Drawing.Brushes.White;
-         brushYellow = System.Drawing.Brushes.White;
-          brushRed = System.Drawing.Brushes.White;
+            brushGreen = System.Drawing.Brushes.White;
+            brushYellow = System.Drawing.Brushes.White;
+            brushRed = System.Drawing.Brushes.White;
     }
 
         /// <summary>
@@ -135,6 +135,10 @@ namespace TrafficLights
         {
             CurrentState = OnOverrideState;
         }
+        public void SetOwner(Crossing owner)
+        {
+            this.Owner = owner;
+        }
 
         /// <summary>
         /// Overrides the specified state.
@@ -153,6 +157,27 @@ namespace TrafficLights
             this.CurrentState = OnOverrideCancelNextState;
             this.OnOverrideState = State.None;
         }
+        private void ChangeLight(string light)
+        {
+            if(light == "green")
+            {
+                brushGreen = System.Drawing.Brushes.Green;
+                brushYellow = System.Drawing.Brushes.White;
+                brushRed = System.Drawing.Brushes.White;
+            }
+            else if (light=="yellow")
+            {
+                brushGreen = System.Drawing.Brushes.White;
+                brushYellow = System.Drawing.Brushes.Yellow;
+                brushRed = System.Drawing.Brushes.White;
+            }
+            else if (light=="red")
+            {
+                brushGreen = System.Drawing.Brushes.White;
+                brushYellow = System.Drawing.Brushes.White;
+                brushRed = System.Drawing.Brushes.Red;
+            }
+        }
       
         /// <summary>
         /// Updates the specified seconds.
@@ -163,13 +188,13 @@ namespace TrafficLights
             if(CurrentState==State.None)
             {
                 CurrentState = State.Red;
-                brushRed = System.Drawing.Brushes.Red;
+                ChangeLight("red");
             }
             else if (CurrentState==State.Red || CurrentState==OnOverrideState)
             {
-                brushRed = System.Drawing.Brushes.Red;
+                ChangeLight("red");
                 timePassed += seconds;
-                if(timePassed>=RedToGreenSeconds)
+                if(timePassed>=GreenSeconds)
                 {
                     CurrentState = State.Green;
                     timePassed = 0;
@@ -177,7 +202,7 @@ namespace TrafficLights
             }
             else if (CurrentState==State.Green)
             {
-                brushGreen = System.Drawing.Brushes.Green;
+                ChangeLight("green");
                 timePassed += seconds;
                 if(timePassed>=GreenSeconds)
                 {
@@ -187,7 +212,7 @@ namespace TrafficLights
             }
             else if (CurrentState==State.Yellow)
             {
-                brushYellow = System.Drawing.Brushes.Yellow;
+                ChangeLight("yellow");
                 timePassed += seconds;
                 if(timePassed>=YellowSeconds)
                 {

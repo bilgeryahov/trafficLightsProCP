@@ -100,6 +100,8 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.cbApply = new System.Windows.Forms.CheckBox();
+            this.cbApplyCrossing = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).BeginInit();
@@ -528,7 +530,7 @@
             // lbActions
             // 
             this.lbActions.FormattingEnabled = true;
-            this.lbActions.Location = new System.Drawing.Point(8, 506);
+            this.lbActions.Location = new System.Drawing.Point(12, 524);
             this.lbActions.Name = "lbActions";
             this.lbActions.Size = new System.Drawing.Size(202, 121);
             this.lbActions.TabIndex = 69;
@@ -632,6 +634,8 @@
             // 
             // propertiesEditGBox
             // 
+            this.propertiesEditGBox.Controls.Add(this.cbApplyCrossing);
+            this.propertiesEditGBox.Controls.Add(this.cbApply);
             this.propertiesEditGBox.Controls.Add(this.propertiesEditNUD);
             this.propertiesEditGBox.Controls.Add(this.updatePropertiesBtn);
             this.propertiesEditGBox.Controls.Add(this.propertiesLbl);
@@ -639,7 +643,7 @@
             this.propertiesEditGBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.propertiesEditGBox.Location = new System.Drawing.Point(5, 338);
             this.propertiesEditGBox.Name = "propertiesEditGBox";
-            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 120);
+            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 154);
             this.propertiesEditGBox.TabIndex = 81;
             this.propertiesEditGBox.TabStop = false;
             this.propertiesEditGBox.Text = "Properties";
@@ -653,7 +657,7 @@
             // 
             // updatePropertiesBtn
             // 
-            this.updatePropertiesBtn.Location = new System.Drawing.Point(60, 80);
+            this.updatePropertiesBtn.Location = new System.Drawing.Point(55, 121);
             this.updatePropertiesBtn.Name = "updatePropertiesBtn";
             this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 27);
             this.updatePropertiesBtn.TabIndex = 89;
@@ -687,7 +691,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Baskerville Old Face", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(7, 477);
+            this.label8.Location = new System.Drawing.Point(11, 495);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 26);
             this.label8.TabIndex = 83;
@@ -697,7 +701,7 @@
             // 
             this.undoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("undoBtn.BackgroundImage")));
             this.undoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.undoBtn.Location = new System.Drawing.Point(124, 633);
+            this.undoBtn.Location = new System.Drawing.Point(128, 651);
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.Size = new System.Drawing.Size(40, 40);
             this.undoBtn.TabIndex = 84;
@@ -708,7 +712,7 @@
             // 
             this.redoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("redoBtn.BackgroundImage")));
             this.redoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.redoBtn.Location = new System.Drawing.Point(170, 633);
+            this.redoBtn.Location = new System.Drawing.Point(174, 651);
             this.redoBtn.Name = "redoBtn";
             this.redoBtn.Size = new System.Drawing.Size(40, 40);
             this.redoBtn.TabIndex = 85;
@@ -773,6 +777,28 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // cbApply
+            // 
+            this.cbApply.AutoSize = true;
+            this.cbApply.Location = new System.Drawing.Point(60, 98);
+            this.cbApply.Name = "cbApply";
+            this.cbApply.Size = new System.Drawing.Size(106, 22);
+            this.cbApply.TabIndex = 91;
+            this.cbApply.Text = "Apply for all";
+            this.cbApply.UseVisualStyleBackColor = true;
+            this.cbApply.CheckedChanged += new System.EventHandler(this.cbApply_CheckedChanged);
+            // 
+            // cbApplyCrossing
+            // 
+            this.cbApplyCrossing.AutoSize = true;
+            this.cbApplyCrossing.Location = new System.Drawing.Point(60, 80);
+            this.cbApplyCrossing.Name = "cbApplyCrossing";
+            this.cbApplyCrossing.Size = new System.Drawing.Size(143, 22);
+            this.cbApplyCrossing.TabIndex = 92;
+            this.cbApplyCrossing.Text = "Apply for crossing";
+            this.cbApplyCrossing.UseVisualStyleBackColor = true;
+            this.cbApplyCrossing.CheckedChanged += new System.EventHandler(this.cbApplyCrossing_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -836,6 +862,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.propertiesEditGBox.ResumeLayout(false);
+            this.propertiesEditGBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.propertiesEditNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -913,6 +940,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown propertiesEditNUD;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.CheckBox cbApplyCrossing;
+        private System.Windows.Forms.CheckBox cbApply;
     }
 }
 

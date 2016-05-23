@@ -14,11 +14,11 @@ namespace TrafficLights
     public class Trafficlight : Component
     {
         private float timePassed = 0;
-        [field:NonSerialized]
+        [NonSerialized]
         private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
-        [field: NonSerialized]
+        [NonSerialized]
         private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
-        [field: NonSerialized]
+        [NonSerialized]
         private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
 
         public Crossing Owner { get; private set; }
@@ -232,6 +232,12 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
+            if(brushGreen == null && brushRed == null && brushYellow == null)
+            {
+                brushGreen = System.Drawing.Brushes.White;
+                brushRed = System.Drawing.Brushes.White;
+                brushYellow = System.Drawing.Brushes.White;
+            }
             image.FillRectangle(System.Drawing.Brushes.Black, this.X + 2, this.Y + 2, 16, 46);
             image.FillEllipse(brushGreen, this.X + 3, this.Y + 4, 12, 12);
             image.FillEllipse(brushYellow, this.X + 3, this.Y + 19, 12, 12);

@@ -14,8 +14,11 @@ namespace TrafficLights
     public class Trafficlight : Component
     {
         private float timePassed = 0;
+        [NonSerialized]
         private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
+        [NonSerialized]
         private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
+        [NonSerialized]
         private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
         public int Position { get;private set; }
         private int intervalX { get; set; }
@@ -237,6 +240,12 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
+            if(brushGreen == null && brushRed == null && brushYellow == null)
+            {
+                brushGreen = System.Drawing.Brushes.White;
+                brushRed = System.Drawing.Brushes.White;
+                brushYellow = System.Drawing.Brushes.White;
+            }
             if (this.Position == 1 || this.Position == 4)
             {
                 this.intervalX = this.X - 22; 

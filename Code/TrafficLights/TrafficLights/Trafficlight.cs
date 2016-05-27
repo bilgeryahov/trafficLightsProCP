@@ -17,6 +17,9 @@ namespace TrafficLights
         private System.Drawing.Brush brushGreen = System.Drawing.Brushes.White;
         private System.Drawing.Brush brushYellow = System.Drawing.Brushes.White;
         private System.Drawing.Brush brushRed = System.Drawing.Brushes.White;
+        public int Position { get;private set; }
+        private int intervalX { get; set; }
+        private int intervalY { get; set; }
         public Crossing Owner { get; private set; }
         /// <summary>
         /// Enum State
@@ -103,12 +106,15 @@ namespace TrafficLights
                 return State.None;
             }
         }
+        public Action<System.Drawing.Graphics> OnUpdateInterval = (image) => { };
 
-        public Trafficlight(int x, int y) : base(x, y) 
+        public Trafficlight(int x, int y, int position) : base(x, y) 
         {
+            OnUpdateInterval += DrawWhenNormal;
             this.CurrentState = State.None;
             this.GreenSeconds = 1;
-            this.YellowSeconds = 2;
+            this.YellowSeconds = 1;
+            this.Position = position;
 
             brushGreen = System.Drawing.Brushes.White;
             brushYellow = System.Drawing.Brushes.White;
@@ -221,13 +227,27 @@ namespace TrafficLights
                 }
             }
         }
+        public void ShowInterval()
+        {
 
+        }
         /// <summary>
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
+            if (this.Position == 1 || this.Position == 4)
+            {
+                this.intervalX = this.X - 22; 
+                this.intervalY = this.Y + 10;
+            }
+            else
+            {
+                this.intervalX = this.X + 22;
+                this.intervalY = this.Y + 10;
+            }
+            image.DrawString(this.GreenSeconds.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 14), System.Drawing.Brushes.Black, this.intervalX, this.intervalY);
             image.FillRectangle(System.Drawing.Brushes.Black, this.X + 2, this.Y + 2, 16, 46);
             image.FillEllipse(brushGreen, this.X + 3, this.Y + 4, 12, 12);
             image.FillEllipse(brushYellow, this.X + 3, this.Y + 19, 12, 12);

@@ -87,6 +87,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.listViewResults = new System.Windows.Forms.ListView();
             this.propertiesEditGBox = new System.Windows.Forms.GroupBox();
+            this.cbApplyCrossing = new System.Windows.Forms.CheckBox();
+            this.cbApply = new System.Windows.Forms.CheckBox();
             this.propertiesEditNUD = new System.Windows.Forms.NumericUpDown();
             this.updatePropertiesBtn = new System.Windows.Forms.Button();
             this.propertiesLbl = new System.Windows.Forms.Label();
@@ -100,8 +102,6 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.cbApply = new System.Windows.Forms.CheckBox();
-            this.cbApplyCrossing = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).BeginInit();
@@ -648,6 +648,30 @@
             this.propertiesEditGBox.TabStop = false;
             this.propertiesEditGBox.Text = "Properties";
             // 
+            // cbApplyCrossing
+            // 
+            this.cbApplyCrossing.AutoSize = true;
+            this.cbApplyCrossing.Checked = true;
+            this.cbApplyCrossing.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbApplyCrossing.Location = new System.Drawing.Point(60, 80);
+            this.cbApplyCrossing.Name = "cbApplyCrossing";
+            this.cbApplyCrossing.Size = new System.Drawing.Size(143, 22);
+            this.cbApplyCrossing.TabIndex = 92;
+            this.cbApplyCrossing.Text = "Apply for crossing";
+            this.cbApplyCrossing.UseVisualStyleBackColor = true;
+            this.cbApplyCrossing.CheckedChanged += new System.EventHandler(this.cbApplyCrossing_CheckedChanged);
+            // 
+            // cbApply
+            // 
+            this.cbApply.AutoSize = true;
+            this.cbApply.Location = new System.Drawing.Point(60, 98);
+            this.cbApply.Name = "cbApply";
+            this.cbApply.Size = new System.Drawing.Size(106, 22);
+            this.cbApply.TabIndex = 91;
+            this.cbApply.Text = "Apply for all";
+            this.cbApply.UseVisualStyleBackColor = true;
+            this.cbApply.CheckedChanged += new System.EventHandler(this.cbApply_CheckedChanged);
+            // 
             // propertiesEditNUD
             // 
             this.propertiesEditNUD.Location = new System.Drawing.Point(55, 48);
@@ -776,28 +800,6 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // cbApply
-            // 
-            this.cbApply.AutoSize = true;
-            this.cbApply.Location = new System.Drawing.Point(60, 98);
-            this.cbApply.Name = "cbApply";
-            this.cbApply.Size = new System.Drawing.Size(106, 22);
-            this.cbApply.TabIndex = 91;
-            this.cbApply.Text = "Apply for all";
-            this.cbApply.UseVisualStyleBackColor = true;
-            this.cbApply.CheckedChanged += new System.EventHandler(this.cbApply_CheckedChanged);
-            // 
-            // cbApplyCrossing
-            // 
-            this.cbApplyCrossing.AutoSize = true;
-            this.cbApplyCrossing.Location = new System.Drawing.Point(60, 80);
-            this.cbApplyCrossing.Name = "cbApplyCrossing";
-            this.cbApplyCrossing.Size = new System.Drawing.Size(143, 22);
-            this.cbApplyCrossing.TabIndex = 92;
-            this.cbApplyCrossing.Text = "Apply for crossing";
-            this.cbApplyCrossing.UseVisualStyleBackColor = true;
-            this.cbApplyCrossing.CheckedChanged += new System.EventHandler(this.cbApplyCrossing_CheckedChanged);
             // 
             // MainForm
             // 

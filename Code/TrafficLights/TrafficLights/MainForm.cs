@@ -474,6 +474,7 @@ namespace TrafficLights
                 else
                 {
                     ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
+                    slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
                 }
             }
             else if (manager.CurrentActiveTrafficLight != null)
@@ -486,9 +487,10 @@ namespace TrafficLights
                 else
                 {
                     ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, manager.CurrentActiveTrafficLight));
+                    slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
                 }
             }
-                
+            UpdateInterface(); 
         }
 
         private void ApplyForAll()
@@ -496,24 +498,30 @@ namespace TrafficLights
             foreach (Crossing crossing in manager.Grid.AllCrossings)
             {
                 if (crossing == null) continue;
-                if (cbApplyCrossing.Checked && (manager.CurrentActiveTrafficLight.Owner != crossing || manager.CurrentActiveTrafficLight.Owner != crossing))
-                {
-                    continue;
-                }
                 if (manager.CurrentActiveComponent is Lane)
                 {
+                    if (cbApplyCrossing.Checked && manager.CurrentActiveLane.Owner.Owner != crossing)
+                    {
+                        continue;
+                    }
                     foreach (Lane lane in crossing.Lanes)
                     {
                         if (lane.Flow == (int)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
+                        slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
                     }
                 }
                 if (manager.CurrentActiveComponent is Trafficlight)
                 {
+                    if (cbApplyCrossing.Checked && manager.CurrentActiveTrafficLight.Owner != crossing)
+                    {
+                        continue;
+                    }
                     foreach (Trafficlight light in crossing.Lights)
                     {
                         if (light.GreenSeconds == (float)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, light));
+                        slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
                     }
                 }
             }

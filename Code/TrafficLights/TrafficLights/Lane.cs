@@ -139,15 +139,26 @@ namespace TrafficLights
                 x = 20;
                 y = 60;
             }
-                if (this.IsFeeder)
-                    image.FillRectangle(System.Drawing.Brushes.Yellow, this.X, this.Y, x, y);
-                else
-                    image.FillRectangle(brush, this.X, this.Y, x, y);
-                foreach (Car car in this.currentCarsOn)
-                {
-                    car.Draw(image);
-                }
-            
+            if (this.IsFeeder)
+                image.FillRectangle(System.Drawing.Brushes.Yellow, this.X, this.Y, x, y);
+            else
+                image.FillRectangle(brush, this.X, this.Y, x, y);
+            foreach (Car car in this.currentCarsOn)
+            {
+                car.Draw(image);
+            }
+            if(this.Owner.From == Direction.Down)
+            {
+                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y+45);
+            }
+            else if (this.Owner.From == Direction.Right)
+            {
+                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+45, this.Y+2);
+            }
+            else
+            {
+                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y +3);
+            }
         }
 
         /// <summary>

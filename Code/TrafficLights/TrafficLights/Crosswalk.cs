@@ -40,6 +40,7 @@ namespace TrafficLights
         /// </summary>
         /// <value>The lanes.</value>
         public List<Lane> Lanes { get; private set; }
+        static int pos = 1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Crosswalk"/> class.
@@ -54,7 +55,9 @@ namespace TrafficLights
             }
             this.CanHavePedestrians = canHavePedestrians;
             this.From = from;
-            this.Light = new Trafficlight(trafficLightX, trafficLightY);
+            this.Light = new Trafficlight(trafficLightX, trafficLightY,pos);
+            pos++;
+            if (pos > 4) pos = 1;
         }
 
         public Crosswalk(Direction from, bool canHavePedestrians,int x, int y, int trafficLightX, int trafficLightY, params Lane[] lanes)

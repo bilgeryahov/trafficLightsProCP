@@ -688,5 +688,16 @@ namespace TrafficLights
                 cbApplyCrossing.Checked = false;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RecycleManagerForm rmform = new RecycleManagerForm(manager);
+            rmform.Show();
+        }
+
+        private void PicBoxTypeB_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

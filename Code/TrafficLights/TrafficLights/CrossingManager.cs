@@ -61,7 +61,7 @@ namespace TrafficLights
         /// </summary>
         public void Clear()
         {
-            throw new System.NotImplementedException();
+            this.crossings.Clear();
         }
 
         /// <summary>

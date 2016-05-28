@@ -85,6 +85,9 @@ namespace TrafficLights
         /// <value>The column.</value>
         public int Column { get; private set; }
 
+        public int RowRecycleManager { get; private set; }
+        public int ColumnRecycleManager { get; private set; }
+
         /// <summary>
         /// Gets a value indicating whether this instance is on the grid.
         /// </summary>
@@ -365,6 +368,12 @@ namespace TrafficLights
         {
             this.Row = row;
             this.Column = column;
+
+            if(row!=-1 && column != -1)
+            {
+                this.RowRecycleManager = row;
+                this.ColumnRecycleManager = column;
+            }
         }
 
         public override void Update(float seconds)

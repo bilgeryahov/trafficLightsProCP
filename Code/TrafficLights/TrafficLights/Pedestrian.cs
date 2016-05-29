@@ -77,19 +77,6 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             //moves the location of the pedestrians based on the elapsed time
-            base.Update(seconds);
-            if (CurrentPointIndex > 0)
-            {
-                int index = Convert.ToInt32(Math.Round(Convert.ToDecimal(seconds) * Path.Count));
-                this.X = Path[index+CurrentPointIndex].X;
-                this.Y = Path[index + CurrentPointIndex].Y;
-            }
-            else 
-            {
-                int index = Convert.ToInt32(Math.Round(Convert.ToDecimal(seconds) * Path.Count));
-                this.X = Path[index].X;
-                this.Y = Path[index].Y;
-            }
         }
 
         /// <summary>

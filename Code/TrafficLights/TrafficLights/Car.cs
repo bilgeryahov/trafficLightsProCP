@@ -81,13 +81,12 @@ namespace TrafficLights
             if (CurrentPoint == this.Path[this.Path.Count - 1])
             {
                 CurrentLane = CurrentLane.Next;
-            }
-
-            if (CurrentLane != null)
-            { CurrentLane.IncreaseAccumulatedFlow(); }
-            else
-            {
-                //car is out of circuit += 1 @ simulation
+                if (CurrentLane != null)
+                { CurrentLane.IncreaseAccumulatedFlow(); }
+                else
+                {
+                    //car is out of circuit += 1 @ simulation
+                }
             }
         }
 

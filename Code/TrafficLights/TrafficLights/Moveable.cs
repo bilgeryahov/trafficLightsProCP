@@ -63,13 +63,16 @@ namespace TrafficLights
                 int rightIndex = leftIndex + 1;
                 System.Drawing.Point leftPoint = Path[leftIndex];
                 System.Drawing.Point rightPoint = Path[rightIndex];
-
-                float percentPassed = currentPassed / avrg;
+                float passed = currentPassed;
+                while (passed >= avrg)
+                    passed -= avrg;
+                float percentPassed = passed / avrg;
 
                 if (percentPassed.ToString().IndexOf('.') != -1)
                     percentPassed = float.Parse("0." + percentPassed.ToString().Split('.').Last());
                 else
-                    percentPassed = 1;
+                    if(percentPassed != 0)
+                        percentPassed = 1;
 
                 this.X = leftPoint.X + (int)((rightPoint.X - leftPoint.X) * percentPassed);
                 this.Y = leftPoint.Y + (int)((rightPoint.Y - leftPoint.Y) * percentPassed);

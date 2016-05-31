@@ -123,6 +123,7 @@ namespace TrafficLights
             {
                 car.Update(seconds);
             }
+            this.currentCarsOn = new List<Car>(this.currentCarsOn.Where(x => x.CurrentLane == this));
         }
 
         /// <summary>

@@ -39,6 +39,11 @@ namespace TrafficLights
         /// </summary>
         /// <value>The current point.</value>
         public System.Drawing.Point CurrentPoint { get { return new System.Drawing.Point(X, Y); } }
+
+        private float lastUpdatePassed = 0;
+
+        protected bool OneCycleHasPassed { get { return lastUpdatePassed >= DefaultTimeFromStartToEnd; } }
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
@@ -51,6 +56,7 @@ namespace TrafficLights
                 { CurrentPointIndex = Path.IndexOf(p); }
             }*/
             currentPassed += seconds;
+            lastUpdatePassed = currentPassed;
             if (currentPassed >= DefaultTimeFromStartToEnd)
             {
                 //set next lane

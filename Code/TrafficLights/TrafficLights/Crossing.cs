@@ -160,7 +160,7 @@ namespace TrafficLights
             {
                 Crossing[] nextRow = Owner.Grid[this.Row + 1];
                 if (nextRow == null) return null;
-                if (nextRow.Length < this.Column) return nextRow[this.Column];
+                if (nextRow.Length > this.Column) return nextRow[this.Column];
                 return null;
             }
         }

@@ -78,11 +78,17 @@ namespace TrafficLights
             //if lane found - Lane.IncreaseAccumlatedFlow
             //moves the car based on the elapsed time
             base.Update(seconds);
-            if (CurrentPoint == this.Path[this.Path.Count - 1])
+            if (OneCycleHasPassed)
             {
                 CurrentLane = CurrentLane.Next;
+                
                 if (CurrentLane != null)
-                { CurrentLane.IncreaseAccumulatedFlow(); }
+                {
+                    if (!CurrentLane.IsFeeder)
+                        CurrentLane = CurrentLane.Next;
+                    if(CurrentLane != null)
+                        CurrentLane.IncreaseAccumulatedFlow();
+                }
                 else
                 {
                     //car is out of circuit += 1 @ simulation

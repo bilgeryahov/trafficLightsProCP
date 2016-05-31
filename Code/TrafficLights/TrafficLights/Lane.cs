@@ -35,8 +35,28 @@ namespace TrafficLights
         {
             get
             {
-                IEnumerable<Lane> result = Owner.Owner.Lanes.Where(x => 
-                    x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
+                IEnumerable<Lane> result = null;
+                if (!this.IsFeeder)
+                {
+                    if (this.Owner.From == Direction.Down)
+                        if (Owner.Owner.NextCrosswalkBelow != null)
+                            result = Owner.Owner.NextCrosswalkBelow.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                    if (this.Owner.From == Direction.Left)
+                        if (Owner.Owner.NextCrosswalkLeft != null)
+                            result = Owner.Owner.NextCrosswalkLeft.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                    if (this.Owner.From == Direction.Right)
+                        if (Owner.Owner.NextCrossingOnRight != null)
+                            result = Owner.Owner.NextCrossingOnRight.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                    if (this.Owner.From == Direction.Up)
+                        if (Owner.Owner.NextCrosswalkAbove != null)
+                            result = Owner.Owner.NextCrosswalkAbove.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                    if(result == null)
+                        return null;
+                }
+                if(result == null)
+                    result = Owner.Owner.Lanes.Where(x => 
+                        x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
+                
                 if (result.Count() == 0) return null;
                 if (result.Count() == 1) return result.First();
                 else

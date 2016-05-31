@@ -152,7 +152,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(80, System.Drawing.Color.Tomato));
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(70, System.Drawing.Color.Tomato));
             int x = 60;
             int y = 20;
             if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)
@@ -161,7 +161,7 @@ namespace TrafficLights
                 y = 60;
             }
             if (this.IsFeeder)
-                image.FillRectangle(System.Drawing.Brushes.Yellow, this.X, this.Y, x, y);
+                image.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(70, System.Drawing.Color.Yellow)), this.X, this.Y, x, y);
             else
                 image.FillRectangle(brush, this.X, this.Y, x, y);
             foreach (Car car in this.currentCarsOn)
@@ -197,7 +197,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(150, System.Drawing.Color.Green));
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(70, System.Drawing.Color.Green));
             if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)
                 image.FillRectangle(brush, this.X, this.Y, 20, 60);
             else

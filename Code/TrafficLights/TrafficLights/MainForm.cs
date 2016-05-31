@@ -506,6 +506,7 @@ namespace TrafficLights
                     }
                     foreach (Lane lane in crossing.Lanes)
                     {
+                        if (!lane.IsFeeder) continue;
                         if (lane.Flow == (int)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
                         slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();

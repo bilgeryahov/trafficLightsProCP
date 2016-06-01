@@ -642,6 +642,7 @@ namespace TrafficLights
 
             int id = pBoxToSlotIDLookup[currentBox];
             ActionStack.AddAction(new PlaceCrossingAction(id / 3, id % 3, Activator.CreateInstance(crossingToBePlaced.GetType(), manager) as Crossing));
+
         }
         private void RemoveCrossing(PictureBox currentBox)
         {

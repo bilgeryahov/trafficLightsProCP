@@ -15,7 +15,6 @@ namespace TrafficLights
             get
             {
                 return new Crosswalk[]
-                
                     {
                 new Crosswalk
                     (Direction.Left, true, 0, 60,30, 140,

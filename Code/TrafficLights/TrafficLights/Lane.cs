@@ -40,16 +40,16 @@ namespace TrafficLights
                 {
                     if (this.Owner.From == Direction.Down)
                         if (Owner.Owner.NextCrosswalkBelow != null)
-                            result = Owner.Owner.NextCrosswalkBelow.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                            result = Owner.Owner.NextCrosswalkBelow.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (this.Owner.From == Direction.Left)
                         if (Owner.Owner.NextCrosswalkLeft != null)
-                            result = Owner.Owner.NextCrosswalkLeft.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                            result = Owner.Owner.NextCrosswalkLeft.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (this.Owner.From == Direction.Right)
                         if (Owner.Owner.NextCrossingOnRight != null)
-                            result = Owner.Owner.NextCrossingOnRight.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                            result = Owner.Owner.NextCrossingOnRight.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (this.Owner.From == Direction.Up)
                         if (Owner.Owner.NextCrosswalkAbove != null)
-                            result = Owner.Owner.NextCrosswalkAbove.Lanes.Where(x => x.IsFeeder && this.To.HasFlag(x.From));
+                            result = Owner.Owner.NextCrosswalkAbove.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if(result == null)
                         return null;
                 }
@@ -62,11 +62,10 @@ namespace TrafficLights
                 else
                 {
                     int current = r.Next(result.Count());
-                    if (current == 0) current = 1;
 
                     foreach (Lane lane in result)
                     {
-                        if (--current == 0)
+                        if (--current == -1)
                             return lane;
                     }
                     throw new InvalidProgramException("Unable to obtain next lane");

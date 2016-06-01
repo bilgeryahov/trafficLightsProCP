@@ -103,7 +103,7 @@ namespace TrafficLights
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draws a rectangle on the car's location
-            image.FillEllipse(System.Drawing.Brushes.Black, this.X - 2, this.Y - 2, 4, 4);
+            image.FillEllipse(System.Drawing.Brushes.Black, this.X - 6, this.Y - 6, 8, 8);
         }
 
         /// <summary>

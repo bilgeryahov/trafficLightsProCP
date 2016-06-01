@@ -53,8 +53,8 @@ namespace TrafficLights
                     new Crosswalk
                         (Direction.Up, false,60, 0,40, 0,
                         new Lane(Direction.Down, Direction.Up, false, 112, 0),
-                        new Lane(Direction.Up, Direction.Up | Direction.Left, true, 90, 0 ),
-                        new Lane(Direction.Up, Direction.Right, true, 65, 0)
+                        new Lane(Direction.Up, Direction.Down | Direction.Right, true, 90, 0 ),
+                        new Lane(Direction.Up, Direction.Left, true, 65, 0)
                         )
                 };
             }

@@ -91,6 +91,12 @@
     <Compile Include="Lane.cs" />
     <Compile Include="RemoveCrossingAction.cs" />
     <Compile Include="SavedManager.cs" />
+    <Compile Include="SavedManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SavedManagerForm.Designer.cs">
+      <DependentUpon>SavedManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Simulation.cs" />
     <Compile Include="SystemState.cs" />
     <Compile Include="TrafficManager.cs" />
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecycleManagerForm.resx">
       <DependentUpon>RecycleManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SavedManagerForm.resx">
+      <DependentUpon>SavedManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagrams\Component.cd" />
     <None Include="ClassDiagrams\Crossing.cd" />
@@ -141,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\cross 1.bmp" />
+    <Content Include="Resources\save.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\cross 2.bmp" />

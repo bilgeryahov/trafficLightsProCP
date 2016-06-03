@@ -17,7 +17,7 @@ namespace TrafficLights
         /// </summary>
         public Crossing Duplicate(int id)
         {
-            return this[id].CreateCopy();
+            throw new System.NotImplementedException();
         }
     }
 }

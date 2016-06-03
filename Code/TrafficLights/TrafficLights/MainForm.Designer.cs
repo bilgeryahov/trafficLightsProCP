@@ -58,31 +58,13 @@
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.finishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overrideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PicBoxTypeB = new System.Windows.Forms.PictureBox();
-            this.PicBoxTypeA = new System.Windows.Forms.PictureBox();
-            this.btnPause = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridSlot1 = new System.Windows.Forms.PictureBox();
-            this.gridSlot3 = new System.Windows.Forms.PictureBox();
-            this.gridSlot2 = new System.Windows.Forms.PictureBox();
-            this.gridSlot5 = new System.Windows.Forms.PictureBox();
-            this.gridSlot4 = new System.Windows.Forms.PictureBox();
-            this.gridSlot6 = new System.Windows.Forms.PictureBox();
-            this.gridSlot9 = new System.Windows.Forms.PictureBox();
-            this.gridSlot8 = new System.Windows.Forms.PictureBox();
-            this.gridSlot7 = new System.Windows.Forms.PictureBox();
             this.lblTimeElapsed = new System.Windows.Forms.Label();
             this.lbActions = new System.Windows.Forms.ListBox();
-            this.PicBoxTypeC = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnSaveStats = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.listViewResults = new System.Windows.Forms.ListView();
@@ -92,39 +74,59 @@
             this.propertiesEditNUD = new System.Windows.Forms.NumericUpDown();
             this.updatePropertiesBtn = new System.Windows.Forms.Button();
             this.propertiesLbl = new System.Windows.Forms.Label();
-            this.btnRestart = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.undoBtn = new System.Windows.Forms.Button();
-            this.redoBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnSaveCrossingManager = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.redoBtn = new System.Windows.Forms.Button();
+            this.undoBtn = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
+            this.btnSaveStats = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.PicBoxTypeC = new System.Windows.Forms.PictureBox();
+            this.gridSlot7 = new System.Windows.Forms.PictureBox();
+            this.gridSlot8 = new System.Windows.Forms.PictureBox();
+            this.gridSlot9 = new System.Windows.Forms.PictureBox();
+            this.gridSlot6 = new System.Windows.Forms.PictureBox();
+            this.gridSlot4 = new System.Windows.Forms.PictureBox();
+            this.gridSlot5 = new System.Windows.Forms.PictureBox();
+            this.gridSlot2 = new System.Windows.Forms.PictureBox();
+            this.gridSlot3 = new System.Windows.Forms.PictureBox();
+            this.gridSlot1 = new System.Windows.Forms.PictureBox();
+            this.PicBoxTypeB = new System.Windows.Forms.PictureBox();
+            this.PicBoxTypeA = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeC)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.propertiesEditGBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.propertiesEditNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIncSpeed
             // 
-            this.btnIncSpeed.Location = new System.Drawing.Point(458, 58);
+            this.btnIncSpeed.Location = new System.Drawing.Point(458, 54);
             this.btnIncSpeed.Name = "btnIncSpeed";
-            this.btnIncSpeed.Size = new System.Drawing.Size(29, 26);
+            this.btnIncSpeed.Size = new System.Drawing.Size(29, 24);
             this.btnIncSpeed.TabIndex = 33;
             this.btnIncSpeed.Text = "+";
             this.btnIncSpeed.UseVisualStyleBackColor = true;
@@ -132,9 +134,9 @@
             // 
             // btnDecSpeed
             // 
-            this.btnDecSpeed.Location = new System.Drawing.Point(388, 58);
+            this.btnDecSpeed.Location = new System.Drawing.Point(388, 54);
             this.btnDecSpeed.Name = "btnDecSpeed";
-            this.btnDecSpeed.Size = new System.Drawing.Size(25, 25);
+            this.btnDecSpeed.Size = new System.Drawing.Size(25, 23);
             this.btnDecSpeed.TabIndex = 34;
             this.btnDecSpeed.Text = "-";
             this.btnDecSpeed.UseVisualStyleBackColor = true;
@@ -143,9 +145,9 @@
             // lblSpeed
             // 
             this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Location = new System.Drawing.Point(419, 65);
+            this.lblSpeed.Location = new System.Drawing.Point(419, 60);
             this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(33, 13);
+            this.lblSpeed.Size = new System.Drawing.Size(35, 12);
             this.lblSpeed.TabIndex = 38;
             this.lblSpeed.Text = "+1.0x";
             // 
@@ -153,7 +155,7 @@
             // 
             this.TimeElapsed.AutoSize = true;
             this.TimeElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeElapsed.Location = new System.Drawing.Point(701, 60);
+            this.TimeElapsed.Location = new System.Drawing.Point(701, 55);
             this.TimeElapsed.Name = "TimeElapsed";
             this.TimeElapsed.Size = new System.Drawing.Size(40, 20);
             this.TimeElapsed.TabIndex = 39;
@@ -342,64 +344,6 @@
             this.overrideToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.overrideToolStripMenuItem.Text = "Override";
             // 
-            // PicBoxTypeB
-            // 
-            this.PicBoxTypeB.BackgroundImage = global::TrafficLights.Properties.Resources.cross_2;
-            this.PicBoxTypeB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PicBoxTypeB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicBoxTypeB.Location = new System.Drawing.Point(79, 68);
-            this.PicBoxTypeB.Name = "PicBoxTypeB";
-            this.PicBoxTypeB.Size = new System.Drawing.Size(72, 64);
-            this.PicBoxTypeB.TabIndex = 59;
-            this.PicBoxTypeB.TabStop = false;
-            this.PicBoxTypeB.Click += new System.EventHandler(this.PicBoxTypeB_Click_1);
-            // 
-            // PicBoxTypeA
-            // 
-            this.PicBoxTypeA.BackgroundImage = global::TrafficLights.Properties.Resources.cross_1;
-            this.PicBoxTypeA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PicBoxTypeA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicBoxTypeA.ErrorImage = null;
-            this.PicBoxTypeA.InitialImage = null;
-            this.PicBoxTypeA.Location = new System.Drawing.Point(5, 68);
-            this.PicBoxTypeA.Name = "PicBoxTypeA";
-            this.PicBoxTypeA.Size = new System.Drawing.Size(68, 64);
-            this.PicBoxTypeA.TabIndex = 58;
-            this.PicBoxTypeA.TabStop = false;
-            // 
-            // btnPause
-            // 
-            this.btnPause.BackgroundImage = global::TrafficLights.Properties.Resources.Pause;
-            this.btnPause.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPause.Location = new System.Drawing.Point(287, 44);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(40, 40);
-            this.btnPause.TabIndex = 37;
-            this.btnPause.UseVisualStyleBackColor = true;
-            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.BackColor = System.Drawing.Color.Red;
-            this.btnStop.BackgroundImage = global::TrafficLights.Properties.Resources.Stop_button_play_pause_music;
-            this.btnStop.Location = new System.Drawing.Point(333, 44);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(40, 40);
-            this.btnStop.TabIndex = 35;
-            this.btnStop.UseVisualStyleBackColor = false;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // btnStart
-            // 
-            this.btnStart.BackgroundImage = global::TrafficLights.Properties.Resources.play_button;
-            this.btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnStart.Location = new System.Drawing.Point(241, 44);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(40, 40);
-            this.btnStart.TabIndex = 32;
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -420,105 +364,6 @@
             this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem1.Text = "Help";
             // 
-            // gridSlot1
-            // 
-            this.gridSlot1.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot1.Location = new System.Drawing.Point(241, 90);
-            this.gridSlot1.Name = "gridSlot1";
-            this.gridSlot1.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot1.TabIndex = 60;
-            this.gridSlot1.TabStop = false;
-            // 
-            // gridSlot3
-            // 
-            this.gridSlot3.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot3.Location = new System.Drawing.Point(641, 90);
-            this.gridSlot3.Name = "gridSlot3";
-            this.gridSlot3.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot3.TabIndex = 61;
-            this.gridSlot3.TabStop = false;
-            // 
-            // gridSlot2
-            // 
-            this.gridSlot2.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot2.Location = new System.Drawing.Point(441, 90);
-            this.gridSlot2.Name = "gridSlot2";
-            this.gridSlot2.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot2.TabIndex = 62;
-            this.gridSlot2.TabStop = false;
-            // 
-            // gridSlot5
-            // 
-            this.gridSlot5.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot5.Location = new System.Drawing.Point(441, 290);
-            this.gridSlot5.Name = "gridSlot5";
-            this.gridSlot5.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot5.TabIndex = 63;
-            this.gridSlot5.TabStop = false;
-            // 
-            // gridSlot4
-            // 
-            this.gridSlot4.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot4.Location = new System.Drawing.Point(241, 290);
-            this.gridSlot4.Name = "gridSlot4";
-            this.gridSlot4.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot4.TabIndex = 64;
-            this.gridSlot4.TabStop = false;
-            // 
-            // gridSlot6
-            // 
-            this.gridSlot6.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot6.Location = new System.Drawing.Point(641, 290);
-            this.gridSlot6.Name = "gridSlot6";
-            this.gridSlot6.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot6.TabIndex = 65;
-            this.gridSlot6.TabStop = false;
-            // 
-            // gridSlot9
-            // 
-            this.gridSlot9.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot9.Location = new System.Drawing.Point(641, 490);
-            this.gridSlot9.Name = "gridSlot9";
-            this.gridSlot9.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot9.TabIndex = 66;
-            this.gridSlot9.TabStop = false;
-            // 
-            // gridSlot8
-            // 
-            this.gridSlot8.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot8.Location = new System.Drawing.Point(441, 490);
-            this.gridSlot8.Name = "gridSlot8";
-            this.gridSlot8.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot8.TabIndex = 67;
-            this.gridSlot8.TabStop = false;
-            // 
-            // gridSlot7
-            // 
-            this.gridSlot7.BackColor = System.Drawing.Color.Gray;
-            this.gridSlot7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridSlot7.Location = new System.Drawing.Point(241, 490);
-            this.gridSlot7.Name = "gridSlot7";
-            this.gridSlot7.Size = new System.Drawing.Size(200, 200);
-            this.gridSlot7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gridSlot7.TabIndex = 68;
-            this.gridSlot7.TabStop = false;
-            // 
             // lblTimeElapsed
             // 
             this.lblTimeElapsed.AutoSize = true;
@@ -531,28 +376,18 @@
             // lbActions
             // 
             this.lbActions.FormattingEnabled = true;
-            this.lbActions.Location = new System.Drawing.Point(12, 524);
+            this.lbActions.ItemHeight = 12;
+            this.lbActions.Location = new System.Drawing.Point(12, 484);
             this.lbActions.Name = "lbActions";
-            this.lbActions.Size = new System.Drawing.Size(202, 121);
+            this.lbActions.Size = new System.Drawing.Size(202, 112);
             this.lbActions.TabIndex = 69;
-            // 
-            // PicBoxTypeC
-            // 
-            this.PicBoxTypeC.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PicBoxTypeC.BackgroundImage")));
-            this.PicBoxTypeC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PicBoxTypeC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicBoxTypeC.Location = new System.Drawing.Point(157, 68);
-            this.PicBoxTypeC.Name = "PicBoxTypeC";
-            this.PicBoxTypeC.Size = new System.Drawing.Size(65, 64);
-            this.PicBoxTypeC.TabIndex = 70;
-            this.PicBoxTypeC.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Baskerville Old Face", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(7, 39);
+            this.label1.Location = new System.Drawing.Point(7, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 26);
             this.label1.TabIndex = 71;
@@ -562,45 +397,12 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Baskerville Old Face", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(550, 57);
+            this.label2.Location = new System.Drawing.Point(550, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 23);
             this.label2.TabIndex = 72;
             this.label2.Text = "Simulation Time:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Location = new System.Drawing.Point(167, 288);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 44);
-            this.button1.TabIndex = 74;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.Location = new System.Drawing.Point(170, 242);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(40, 40);
-            this.button2.TabIndex = 75;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnSaveStats
-            // 
-            this.btnSaveStats.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSaveStats.BackgroundImage")));
-            this.btnSaveStats.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSaveStats.Location = new System.Drawing.Point(9, 25);
-            this.btnSaveStats.Name = "btnSaveStats";
-            this.btnSaveStats.Size = new System.Drawing.Size(40, 40);
-            this.btnSaveStats.TabIndex = 76;
-            this.btnSaveStats.UseVisualStyleBackColor = true;
-            this.btnSaveStats.Click += new System.EventHandler(this.btnSaveStats_Click);
             // 
             // groupBox1
             // 
@@ -608,9 +410,9 @@
             this.groupBox1.Controls.Add(this.listViewResults);
             this.groupBox1.Controls.Add(this.btnSaveStats);
             this.groupBox1.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(861, 90);
+            this.groupBox1.Location = new System.Drawing.Point(861, 83);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(207, 600);
+            this.groupBox1.Size = new System.Drawing.Size(207, 554);
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Simulation Results";
@@ -619,7 +421,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(55, 49);
+            this.label10.Location = new System.Drawing.Point(55, 45);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 16);
             this.label10.TabIndex = 88;
@@ -628,9 +430,9 @@
             // 
             // listViewResults
             // 
-            this.listViewResults.Location = new System.Drawing.Point(6, 71);
+            this.listViewResults.Location = new System.Drawing.Point(6, 66);
             this.listViewResults.Name = "listViewResults";
-            this.listViewResults.Size = new System.Drawing.Size(193, 523);
+            this.listViewResults.Size = new System.Drawing.Size(193, 483);
             this.listViewResults.TabIndex = 77;
             this.listViewResults.UseCompatibleStateImageBehavior = false;
             // 
@@ -643,9 +445,9 @@
             this.propertiesEditGBox.Controls.Add(this.propertiesLbl);
             this.propertiesEditGBox.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.propertiesEditGBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.propertiesEditGBox.Location = new System.Drawing.Point(5, 338);
+            this.propertiesEditGBox.Location = new System.Drawing.Point(5, 321);
             this.propertiesEditGBox.Name = "propertiesEditGBox";
-            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 154);
+            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 142);
             this.propertiesEditGBox.TabIndex = 81;
             this.propertiesEditGBox.TabStop = false;
             this.propertiesEditGBox.Text = "Properties";
@@ -655,7 +457,7 @@
             this.cbApplyCrossing.AutoSize = true;
             this.cbApplyCrossing.Checked = true;
             this.cbApplyCrossing.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbApplyCrossing.Location = new System.Drawing.Point(60, 80);
+            this.cbApplyCrossing.Location = new System.Drawing.Point(60, 74);
             this.cbApplyCrossing.Name = "cbApplyCrossing";
             this.cbApplyCrossing.Size = new System.Drawing.Size(143, 22);
             this.cbApplyCrossing.TabIndex = 92;
@@ -666,7 +468,7 @@
             // cbApply
             // 
             this.cbApply.AutoSize = true;
-            this.cbApply.Location = new System.Drawing.Point(60, 98);
+            this.cbApply.Location = new System.Drawing.Point(60, 90);
             this.cbApply.Name = "cbApply";
             this.cbApply.Size = new System.Drawing.Size(106, 22);
             this.cbApply.TabIndex = 91;
@@ -676,16 +478,16 @@
             // 
             // propertiesEditNUD
             // 
-            this.propertiesEditNUD.Location = new System.Drawing.Point(55, 48);
+            this.propertiesEditNUD.Location = new System.Drawing.Point(55, 44);
             this.propertiesEditNUD.Name = "propertiesEditNUD";
             this.propertiesEditNUD.Size = new System.Drawing.Size(120, 26);
             this.propertiesEditNUD.TabIndex = 90;
             // 
             // updatePropertiesBtn
             // 
-            this.updatePropertiesBtn.Location = new System.Drawing.Point(55, 121);
+            this.updatePropertiesBtn.Location = new System.Drawing.Point(55, 112);
             this.updatePropertiesBtn.Name = "updatePropertiesBtn";
-            this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 27);
+            this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 25);
             this.updatePropertiesBtn.TabIndex = 89;
             this.updatePropertiesBtn.Text = "Update";
             this.updatePropertiesBtn.UseVisualStyleBackColor = true;
@@ -694,62 +496,29 @@
             // propertiesLbl
             // 
             this.propertiesLbl.Font = new System.Drawing.Font("Baskerville Old Face", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.propertiesLbl.Location = new System.Drawing.Point(12, 22);
+            this.propertiesLbl.Location = new System.Drawing.Point(12, 20);
             this.propertiesLbl.Name = "propertiesLbl";
-            this.propertiesLbl.Size = new System.Drawing.Size(193, 23);
+            this.propertiesLbl.Size = new System.Drawing.Size(193, 21);
             this.propertiesLbl.TabIndex = 82;
             this.propertiesLbl.Text = "Car Flow";
             this.propertiesLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnRestart
-            // 
-            this.btnRestart.BackColor = System.Drawing.Color.Red;
-            this.btnRestart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRestart.BackgroundImage")));
-            this.btnRestart.Location = new System.Drawing.Point(493, 44);
-            this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(40, 40);
-            this.btnRestart.TabIndex = 82;
-            this.btnRestart.UseVisualStyleBackColor = false;
-            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Baskerville Old Face", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(11, 495);
+            this.label8.Location = new System.Drawing.Point(11, 457);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 26);
             this.label8.TabIndex = 83;
             this.label8.Text = "States ";
             // 
-            // undoBtn
-            // 
-            this.undoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("undoBtn.BackgroundImage")));
-            this.undoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.undoBtn.Location = new System.Drawing.Point(128, 651);
-            this.undoBtn.Name = "undoBtn";
-            this.undoBtn.Size = new System.Drawing.Size(40, 40);
-            this.undoBtn.TabIndex = 84;
-            this.undoBtn.UseVisualStyleBackColor = true;
-            this.undoBtn.Click += new System.EventHandler(this.undoBtn_Click);
-            // 
-            // redoBtn
-            // 
-            this.redoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("redoBtn.BackgroundImage")));
-            this.redoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.redoBtn.Location = new System.Drawing.Point(174, 651);
-            this.redoBtn.Name = "redoBtn";
-            this.redoBtn.Size = new System.Drawing.Size(40, 40);
-            this.redoBtn.TabIndex = 85;
-            this.redoBtn.UseVisualStyleBackColor = true;
-            this.redoBtn.Click += new System.EventHandler(this.redoBtn_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(120, 256);
+            this.label4.Location = new System.Drawing.Point(120, 255);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 83;
@@ -760,7 +529,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(62, 306);
+            this.label5.Location = new System.Drawing.Point(62, 301);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 16);
             this.label5.TabIndex = 86;
@@ -772,27 +541,17 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Baskerville Old Face", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(12, 161);
+            this.label3.Location = new System.Drawing.Point(7, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 26);
             this.label3.TabIndex = 73;
             this.label3.Text = "Crossing Options";
             // 
-            // button8
-            // 
-            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button8.Location = new System.Drawing.Point(170, 196);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(40, 40);
-            this.button8.TabIndex = 87;
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(28, 210);
+            this.label9.Location = new System.Drawing.Point(28, 170);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(136, 16);
             this.label9.TabIndex = 88;
@@ -803,12 +562,280 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Baskerville Old Face", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(28, 211);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 14);
+            this.label6.TabIndex = 90;
+            this.label6.Text = "Saved Crossing Manager";
+            // 
+            // btnSaveCrossingManager
+            // 
+            this.btnSaveCrossingManager.BackgroundImage = global::TrafficLights.Properties.Resources.save;
+            this.btnSaveCrossingManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSaveCrossingManager.Location = new System.Drawing.Point(170, 200);
+            this.btnSaveCrossingManager.Name = "btnSaveCrossingManager";
+            this.btnSaveCrossingManager.Size = new System.Drawing.Size(40, 37);
+            this.btnSaveCrossingManager.TabIndex = 89;
+            this.btnSaveCrossingManager.UseVisualStyleBackColor = true;
+            this.btnSaveCrossingManager.Click += new System.EventHandler(this.btnSaveCrossingManager_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button8.Location = new System.Drawing.Point(170, 157);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(40, 37);
+            this.button8.TabIndex = 87;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // redoBtn
+            // 
+            this.redoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("redoBtn.BackgroundImage")));
+            this.redoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.redoBtn.Location = new System.Drawing.Point(174, 601);
+            this.redoBtn.Name = "redoBtn";
+            this.redoBtn.Size = new System.Drawing.Size(40, 37);
+            this.redoBtn.TabIndex = 85;
+            this.redoBtn.UseVisualStyleBackColor = true;
+            this.redoBtn.Click += new System.EventHandler(this.redoBtn_Click);
+            // 
+            // undoBtn
+            // 
+            this.undoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("undoBtn.BackgroundImage")));
+            this.undoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.undoBtn.Location = new System.Drawing.Point(128, 601);
+            this.undoBtn.Name = "undoBtn";
+            this.undoBtn.Size = new System.Drawing.Size(40, 37);
+            this.undoBtn.TabIndex = 84;
+            this.undoBtn.UseVisualStyleBackColor = true;
+            this.undoBtn.Click += new System.EventHandler(this.undoBtn_Click);
+            // 
+            // btnRestart
+            // 
+            this.btnRestart.BackColor = System.Drawing.Color.Red;
+            this.btnRestart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRestart.BackgroundImage")));
+            this.btnRestart.Location = new System.Drawing.Point(493, 41);
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.Size = new System.Drawing.Size(40, 37);
+            this.btnRestart.TabIndex = 82;
+            this.btnRestart.UseVisualStyleBackColor = false;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            // 
+            // btnSaveStats
+            // 
+            this.btnSaveStats.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSaveStats.BackgroundImage")));
+            this.btnSaveStats.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSaveStats.Location = new System.Drawing.Point(9, 23);
+            this.btnSaveStats.Name = "btnSaveStats";
+            this.btnSaveStats.Size = new System.Drawing.Size(40, 37);
+            this.btnSaveStats.TabIndex = 76;
+            this.btnSaveStats.UseVisualStyleBackColor = true;
+            this.btnSaveStats.Click += new System.EventHandler(this.btnSaveStats_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.Location = new System.Drawing.Point(170, 242);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(40, 37);
+            this.button2.TabIndex = 75;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Location = new System.Drawing.Point(167, 285);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 41);
+            this.button1.TabIndex = 74;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.BackColor = System.Drawing.Color.Red;
+            this.btnStop.BackgroundImage = global::TrafficLights.Properties.Resources.Stop_button_play_pause_music;
+            this.btnStop.Location = new System.Drawing.Point(333, 41);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(40, 37);
+            this.btnStop.TabIndex = 35;
+            this.btnStop.UseVisualStyleBackColor = false;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnPause
+            // 
+            this.btnPause.BackgroundImage = global::TrafficLights.Properties.Resources.Pause;
+            this.btnPause.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPause.Location = new System.Drawing.Point(287, 41);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(40, 37);
+            this.btnPause.TabIndex = 37;
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // btnStart
+            // 
+            this.btnStart.BackgroundImage = global::TrafficLights.Properties.Resources.play_button;
+            this.btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnStart.Location = new System.Drawing.Point(241, 41);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(40, 37);
+            this.btnStart.TabIndex = 32;
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // PicBoxTypeC
+            // 
+            this.PicBoxTypeC.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PicBoxTypeC.BackgroundImage")));
+            this.PicBoxTypeC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PicBoxTypeC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PicBoxTypeC.Location = new System.Drawing.Point(157, 65);
+            this.PicBoxTypeC.Name = "PicBoxTypeC";
+            this.PicBoxTypeC.Size = new System.Drawing.Size(65, 59);
+            this.PicBoxTypeC.TabIndex = 70;
+            this.PicBoxTypeC.TabStop = false;
+            // 
+            // gridSlot7
+            // 
+            this.gridSlot7.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot7.Location = new System.Drawing.Point(241, 452);
+            this.gridSlot7.Name = "gridSlot7";
+            this.gridSlot7.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot7.TabIndex = 68;
+            this.gridSlot7.TabStop = false;
+            // 
+            // gridSlot8
+            // 
+            this.gridSlot8.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot8.Location = new System.Drawing.Point(441, 452);
+            this.gridSlot8.Name = "gridSlot8";
+            this.gridSlot8.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot8.TabIndex = 67;
+            this.gridSlot8.TabStop = false;
+            // 
+            // gridSlot9
+            // 
+            this.gridSlot9.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot9.Location = new System.Drawing.Point(641, 452);
+            this.gridSlot9.Name = "gridSlot9";
+            this.gridSlot9.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot9.TabIndex = 66;
+            this.gridSlot9.TabStop = false;
+            // 
+            // gridSlot6
+            // 
+            this.gridSlot6.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot6.Location = new System.Drawing.Point(641, 268);
+            this.gridSlot6.Name = "gridSlot6";
+            this.gridSlot6.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot6.TabIndex = 65;
+            this.gridSlot6.TabStop = false;
+            // 
+            // gridSlot4
+            // 
+            this.gridSlot4.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot4.Location = new System.Drawing.Point(241, 268);
+            this.gridSlot4.Name = "gridSlot4";
+            this.gridSlot4.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot4.TabIndex = 64;
+            this.gridSlot4.TabStop = false;
+            // 
+            // gridSlot5
+            // 
+            this.gridSlot5.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot5.Location = new System.Drawing.Point(441, 268);
+            this.gridSlot5.Name = "gridSlot5";
+            this.gridSlot5.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot5.TabIndex = 63;
+            this.gridSlot5.TabStop = false;
+            // 
+            // gridSlot2
+            // 
+            this.gridSlot2.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot2.Location = new System.Drawing.Point(441, 83);
+            this.gridSlot2.Name = "gridSlot2";
+            this.gridSlot2.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot2.TabIndex = 62;
+            this.gridSlot2.TabStop = false;
+            // 
+            // gridSlot3
+            // 
+            this.gridSlot3.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot3.Location = new System.Drawing.Point(641, 83);
+            this.gridSlot3.Name = "gridSlot3";
+            this.gridSlot3.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot3.TabIndex = 61;
+            this.gridSlot3.TabStop = false;
+            // 
+            // gridSlot1
+            // 
+            this.gridSlot1.BackColor = System.Drawing.Color.Gray;
+            this.gridSlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridSlot1.Location = new System.Drawing.Point(241, 83);
+            this.gridSlot1.Name = "gridSlot1";
+            this.gridSlot1.Size = new System.Drawing.Size(200, 185);
+            this.gridSlot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gridSlot1.TabIndex = 60;
+            this.gridSlot1.TabStop = false;
+            // 
+            // PicBoxTypeB
+            // 
+            this.PicBoxTypeB.BackgroundImage = global::TrafficLights.Properties.Resources.cross_2;
+            this.PicBoxTypeB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PicBoxTypeB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PicBoxTypeB.Location = new System.Drawing.Point(79, 65);
+            this.PicBoxTypeB.Name = "PicBoxTypeB";
+            this.PicBoxTypeB.Size = new System.Drawing.Size(72, 59);
+            this.PicBoxTypeB.TabIndex = 59;
+            this.PicBoxTypeB.TabStop = false;
+            this.PicBoxTypeB.Click += new System.EventHandler(this.PicBoxTypeB_Click_1);
+            // 
+            // PicBoxTypeA
+            // 
+            this.PicBoxTypeA.BackgroundImage = global::TrafficLights.Properties.Resources.cross_1;
+            this.PicBoxTypeA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PicBoxTypeA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PicBoxTypeA.ErrorImage = null;
+            this.PicBoxTypeA.InitialImage = null;
+            this.PicBoxTypeA.Location = new System.Drawing.Point(5, 65);
+            this.PicBoxTypeA.Name = "PicBoxTypeA";
+            this.PicBoxTypeA.Size = new System.Drawing.Size(68, 59);
+            this.PicBoxTypeA.TabIndex = 58;
+            this.PicBoxTypeA.TabStop = false;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1111, 741);
+            this.ClientSize = new System.Drawing.Size(1111, 684);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnSaveCrossingManager);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label5);
@@ -852,23 +879,23 @@
             this.Text = "Traffic Lights System";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSlot7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeC)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.propertiesEditGBox.ResumeLayout(false);
             this.propertiesEditGBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.propertiesEditNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSlot1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxTypeA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -947,6 +974,8 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.CheckBox cbApplyCrossing;
         private System.Windows.Forms.CheckBox cbApply;
+        private System.Windows.Forms.Button btnSaveCrossingManager;
+        private System.Windows.Forms.Label label6;
     }
 }
 

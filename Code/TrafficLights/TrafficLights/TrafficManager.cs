@@ -19,13 +19,15 @@ namespace TrafficLights
         /// <summary>
         /// Gets the current simulation or null if not created
         /// </summary>
-        public Simulation CurrentSimulation { get; private set; }
+        public Simulation CurrentSimulation;
         /// <summary>
         /// Occurs when [on system state changed].
         /// </summary>
-        [field:NonSerialized]
+        [field: NonSerialized]
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
 
+        [field: NonSerialized]
+        public event Action GridLoaded;
 
         /// <summary>
         /// Gets the grid.
@@ -80,6 +82,8 @@ namespace TrafficLights
             this.RecycleCrossingManager = new RecycleManager();
             this.SavedCrossingManager = new SavedManager();
             this.CreateSimulation();
+            this.CurrentSimulation = new Simulation(this.Grid);
+
         }
 
         /// <summary>
@@ -97,8 +101,9 @@ namespace TrafficLights
         /// </summary>
         public void CreateSimulation()
         {
-            if (this.CurrentSimulation != null) this.CurrentSimulation.Stop();
-            this.CurrentSimulation = new Simulation(this.Grid);
+           // if (this.CurrentSimulation != null) 
+           //     this.CurrentSimulation.Stop();
+            //this.CurrentSimulation = new Simulation(this.Grid);
         }
 
         /// <summary>
@@ -233,7 +238,7 @@ namespace TrafficLights
                 this.Grid = (Grid)myBinaryFormatter.Deserialize(myFileStream);
                 CurrentLoadedPath = filepath;
                 ProcessNewGridLoaded();
-                
+
                 // to be used for testing of the load functionality
                 // if you want to test it, create a grid with a crossing on place 3 (first one, second row)
                 // then load it and it should say "correct"
@@ -247,11 +252,11 @@ namespace TrafficLights
                 //    MessageBox.Show("correct");
                 //}
 
-               // throw new NotImplementedException("Update grid UI");
+                // throw new NotImplementedException("Update grid UI");
                 //Notify for success?
             }
 
-         catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -270,8 +275,8 @@ namespace TrafficLights
             {
                 for (int j = 0; j < Grid.Columns; j++)
                 {
-                    if(Grid.CrossingAt(i*Grid.Rows+j)!=null)
-                    Grid.RemoveAt(i,j);
+                    if (Grid.CrossingAt(i * Grid.Rows + j) != null)
+                        Grid.RemoveAt(i, j);
                 }
             }
             ProcessNewGridLoaded();
@@ -282,6 +287,7 @@ namespace TrafficLights
             this.CurrentSimulation = null;
             ActionStack.Clear();
             CreateSimulation();
+            this.GridLoaded();
         }
     }
 }

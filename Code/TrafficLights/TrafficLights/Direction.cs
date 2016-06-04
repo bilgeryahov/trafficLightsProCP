@@ -13,7 +13,7 @@ namespace TrafficLights
     [Flags] // Allows Direction d = Direction.UP | Direction. Down; then to compare call d.HasFlag(Direction.Left)
     public enum Direction
     {
-        Up, Down, Left, Right
+        Up = 1, Down = 2, Left = 4, Right = 8
     }
 
     /// <summary>

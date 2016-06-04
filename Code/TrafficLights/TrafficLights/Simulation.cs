@@ -17,6 +17,7 @@ namespace TrafficLights
         /// Occurs when [on completed].
         /// </summary>
         public event Action<SimulationResult> OnCompleted = (x) => { };
+        public event Action<bool> OnPauseStateChanged = (x) => { };
 
         /// <summary>
         /// The min speed
@@ -46,7 +47,7 @@ namespace TrafficLights
         /// <summary>
         /// The is paused
         /// </summary>
-        bool isPaused;
+        bool isPaused = false;
 
         /// <summary>
         /// Gets the grid.
@@ -57,7 +58,7 @@ namespace TrafficLights
         /// <summary>
         /// The speed
         /// </summary>
-        private float speed;
+        private float speed = 1;
         /// <summary>
         /// Gets the speed.
         /// </summary>
@@ -91,7 +92,22 @@ namespace TrafficLights
         /// <value>The cars left.</value>
         public int CarsLeft { get { return TotalCars - CarsPassed; } }
 
-        public List<Car> CurrentCars = new List<Car>();
+        public List<Car> CurrentCars
+        {
+            get
+            {
+                List<Car> cars = new List<Car>();
+                foreach (Crossing crossing in this.Grid.AllCrossings)
+                {
+                    foreach (Lane lane in crossing.Lanes)
+                    {
+                        cars.AddRange(lane.CarsCurrentlyOn);
+                    }
+                }
+
+                return cars;
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance has pedestrians crossing.
@@ -161,12 +177,13 @@ namespace TrafficLights
         /// </summary>
         public void Start()
         {
-            throw new System.NotImplementedException();
             if (isPaused)
             {
                 Resume();
                 return;
             }
+            isPaused = false;
+            OnPauseStateChanged(isPaused);
         }
 
         /// <summary>
@@ -175,8 +192,8 @@ namespace TrafficLights
         public void Pause()
         {
             if (isPaused) return;
-            throw new System.NotImplementedException();
             isPaused = true;
+            OnPauseStateChanged(isPaused);
         }
 
         /// <summary>
@@ -184,9 +201,9 @@ namespace TrafficLights
         /// </summary>
         public void Resume()
         {
-            throw new System.NotImplementedException();
             if (!isPaused) return;
             isPaused = false;
+            OnPauseStateChanged(isPaused);
         }
 
         /// <summary>
@@ -240,10 +257,9 @@ namespace TrafficLights
             float fps = 15;
             currentFrame += (seconds * 1000) / (1000/fps);
             foreach (Crossing crossing in Grid.AllCrossings)
-                crossing.Update(seconds);
-            foreach (Car car in this.CurrentCars)
-                car.Update(seconds);
-            throw new NotImplementedException();
+                if(crossing != null)
+                    crossing.Update(seconds);
+            //throw new NotImplementedException();
         }
 
         /// <summary>

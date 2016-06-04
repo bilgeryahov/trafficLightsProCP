@@ -25,7 +25,25 @@ namespace TrafficLights
 
         private Crosswalk[] crosswalks = null;
 
-        public Crosswalk[] Crosswalks { get { if (crosswalks == null) crosswalks = GenerateCrosswalks; return crosswalks; } }
+        public Crosswalk[] Crosswalks
+        {
+            get
+            {
+                if (crosswalks == null)
+                {
+                    crosswalks = GenerateCrosswalks;
+                    foreach (Crosswalk crosswalk in crosswalks)
+                    {
+                        crosswalk.Owner = this;
+                    }
+                    foreach (Trafficlight light in this.Lights)
+                    {
+                        light.SetOwner(this);
+                    }
+                }
+                return crosswalks;
+            }
+        }
         protected abstract Crosswalk[] GenerateCrosswalks { get; }
 
         /// <summary>
@@ -66,6 +84,9 @@ namespace TrafficLights
         /// </summary>
         /// <value>The column.</value>
         public int Column { get; private set; }
+
+        public int RowRecycleManager { get; private set; }
+        public int ColumnRecycleManager { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is on the grid.
@@ -139,7 +160,7 @@ namespace TrafficLights
             {
                 Crossing[] nextRow = Owner.Grid[this.Row + 1];
                 if (nextRow == null) return null;
-                if (nextRow.Length < this.Column) return nextRow[this.Column];
+                if (nextRow.Length > this.Column) return nextRow[this.Column];
                 return null;
             }
         }
@@ -192,9 +213,9 @@ namespace TrafficLights
             get
             {
                 List<Renderable> children = new List<Renderable>();
-
-                children.AddRange(Lights);
-                children.AddRange(Lanes);
+                children.AddRange(this.Crosswalks);
+                //children.AddRange(Lights);
+                //children.AddRange(Lanes);
 
                 return children;
             }
@@ -347,6 +368,12 @@ namespace TrafficLights
         {
             this.Row = row;
             this.Column = column;
+
+            if(row!=-1 && column != -1)
+            {
+                this.RowRecycleManager = row;
+                this.ColumnRecycleManager = column;
+            }
         }
 
         public override void Update(float seconds)

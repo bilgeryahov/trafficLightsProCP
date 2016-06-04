@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TrafficLights
 {
@@ -69,7 +70,12 @@ namespace TrafficLights
         /// <param name="fileName">Name of the file.</param>
         public void CreateSnapShot(string fileName)
         {
-            throw new NotImplementedException();
+            var frm = Form.ActiveForm;
+            using (var bmp = new Bitmap(frm.Width, frm.Height))
+            {
+                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                bmp.Save("E:\\" + fileName + ".png");
+            }
         }
     }
 }

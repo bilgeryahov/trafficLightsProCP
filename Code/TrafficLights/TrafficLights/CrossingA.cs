@@ -53,47 +53,12 @@ namespace TrafficLights
                     new Crosswalk
                         (Direction.Up, false,60, 0,40, 0,
                         new Lane(Direction.Down, Direction.Up, false, 112, 0),
-                        new Lane(Direction.Up, Direction.Up | Direction.Left, true, 90, 0 ),
-                        new Lane(Direction.Up, Direction.Right, true, 65, 0)
+                        new Lane(Direction.Up, Direction.Down | Direction.Right, true, 90, 0 ),
+                        new Lane(Direction.Up, Direction.Left, true, 65, 0)
                         )
                 };
             }
         }
-
-
-        /// <summary>
-        /// Updates the specified seconds.
-        /// </summary>
-        /// <param name="seconds">The seconds.</param>
-        public override void Update(float seconds)
-        {
-            foreach (Crosswalk walk in this.Crosswalks)
-            {
-                walk.Update(seconds);
-            }
-        }
-
-        /// <summary>
-        /// Draws the when normal.
-        /// </summary>
-        /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Graphics image)
-        {
-            foreach (Crosswalk walk in this.Crosswalks)
-            {
-                walk.Draw(image);
-            }
-        }
-
-        /// <summary>
-        /// Draws the when active.
-        /// </summary>
-        /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Graphics image)
-        {
-            DrawWhenNormal(image);
-        }
-
 
         public override System.Drawing.Image Image
         {

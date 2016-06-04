@@ -21,10 +21,12 @@ namespace TrafficLights
         {
             get
             {
-                throw new System.NotImplementedException();
+                return CurrentCrosswalk;
             }
             set
             {
+                if (value.CanHavePedestrians)
+                { CurrentCrosswalk = value; }
             }
         }
 
@@ -43,7 +45,26 @@ namespace TrafficLights
         {
             get
             {
-                throw new System.NotImplementedException();
+                
+                    Crossing crossing = CurrentCrosswalk.Owner;
+                    if (CurrentCrosswalk.To == Direction.Up && crossing.NextCrosswalkAbove.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkAbove;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Down && crossing.NextCrosswalkBelow.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkBelow;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Left && crossing.NextCrosswalkLeft.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkLeft;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Right && crossing.NextCrosswalkRight.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkRight;
+                    }
+                
+                return null;
             }
         }
 
@@ -56,7 +77,6 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             //moves the location of the pedestrians based on the elapsed time
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -66,7 +86,7 @@ namespace TrafficLights
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draws a dot on the crosswalk
-            throw new NotImplementedException();
+            image.DrawEllipse(System.Drawing.Pens.Red, this.X, this.Y, 2, 2);
         }
 
         /// <summary>
@@ -75,7 +95,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
+            DrawWhenNormal(image);
         }
     }
 }

@@ -35,17 +35,37 @@ namespace TrafficLights
         {
             get
             {
-                IEnumerable<Lane> result = Owner.Lanes.Where(x => x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
+                IEnumerable<Lane> result = null;
+                if (!this.IsFeeder)
+                {
+                    if (this.Owner.From == Direction.Down)
+                        if (Owner.Owner.NextCrosswalkBelow != null)
+                            result = Owner.Owner.NextCrosswalkBelow.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
+                    if (this.Owner.From == Direction.Left)
+                        if (Owner.Owner.NextCrosswalkLeft != null)
+                            result = Owner.Owner.NextCrosswalkLeft.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
+                    if (this.Owner.From == Direction.Right)
+                        if (Owner.Owner.NextCrossingOnRight != null)
+                            result = Owner.Owner.NextCrossingOnRight.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
+                    if (this.Owner.From == Direction.Up)
+                        if (Owner.Owner.NextCrosswalkAbove != null)
+                            result = Owner.Owner.NextCrosswalkAbove.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
+                    if(result == null)
+                        return null;
+                }
+                if(result == null)
+                    result = Owner.Owner.Lanes.Where(x => 
+                        x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
+                
                 if (result.Count() == 0) return null;
                 if (result.Count() == 1) return result.First();
                 else
                 {
                     int current = r.Next(result.Count());
-                    if (current == 0) current = 1;
 
                     foreach (Lane lane in result)
                     {
-                        if (--current == 0)
+                        if (--current == -1)
                             return lane;
                     }
                     throw new InvalidProgramException("Unable to obtain next lane");
@@ -53,7 +73,10 @@ namespace TrafficLights
             }
         }
 
+
         private List<Car> currentCarsOn = new List<Car>();
+
+        public Car[] CarsCurrentlyOn { get { return currentCarsOn.ToArray(); } }
 
         /// <summary>
         /// Gets the current flow.
@@ -108,6 +131,7 @@ namespace TrafficLights
             if (flowReleased < Flow)
             {
                 this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                flowReleased += 1;
             }
             else if (flowAccumulated > 0)
             {
@@ -118,6 +142,7 @@ namespace TrafficLights
             {
                 car.Update(seconds);
             }
+            this.currentCarsOn = new List<Car>(this.currentCarsOn.Where(x => x.CurrentLane == this));
         }
 
         /// <summary>
@@ -126,7 +151,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(150, System.Drawing.Color.Tomato));
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(70, System.Drawing.Color.Tomato));
             int x = 60;
             int y = 20;
             if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)
@@ -134,15 +159,26 @@ namespace TrafficLights
                 x = 20;
                 y = 60;
             }
-                if (this.IsFeeder)
-                    image.FillRectangle(System.Drawing.Brushes.Yellow, this.X, this.Y, x, y);
-                else
-                    image.FillRectangle(brush, this.X, this.Y, x, y);
-                foreach (Car car in this.currentCarsOn)
-                {
-                    car.Draw(image);
-                }
-            
+            if (this.IsFeeder)
+                image.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(70, System.Drawing.Color.Yellow)), this.X, this.Y, x, y);
+            else
+                image.FillRectangle(brush, this.X, this.Y, x, y);
+            foreach (Car car in this.currentCarsOn)
+            {
+                car.Draw(image);
+            }
+            if(this.Owner.From == Direction.Down)
+            {
+                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y+45);
+            }
+            else if (this.Owner.From == Direction.Right)
+            {
+                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+45, this.Y+2);
+            }
+            else
+            {
+                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y +3);
+            }
         }
 
         /// <summary>
@@ -160,7 +196,7 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(150, System.Drawing.Color.Green));
+            System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(70, System.Drawing.Color.Green));
             if (this.Owner.From == Direction.Down || this.Owner.From == Direction.Up)
                 image.FillRectangle(brush, this.X, this.Y, 20, 60);
             else

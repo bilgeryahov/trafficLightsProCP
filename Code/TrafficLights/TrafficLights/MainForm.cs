@@ -163,6 +163,34 @@ namespace TrafficLights
                 int id = row * 3 + column;
                 this.slotIDToPBoxLookup[id].Image = null;
             };
+
+            this.manager.GridLoaded += () =>
+            {
+                gridSlot1.Image = null;
+                gridSlot2.Image = null;
+                gridSlot3.Image = null;
+                gridSlot4.Image = null;
+                gridSlot5.Image = null;
+                gridSlot6.Image = null;
+                gridSlot7.Image = null;
+                gridSlot8.Image = null;
+                gridSlot9.Image = null;
+
+                foreach (Crossing[] c in this.manager.Grid.Crossings)
+                {
+                    foreach(Crossing cr in c)
+                    {
+                        if(cr != null)
+                        {
+                            int id = cr.Row * 3 + cr.Column;
+                            this.slotIDToPBoxLookup[id].Image = cr.Image;
+                        }
+                    }
+                }
+            };
+            manager.CurrentSimulation.OnPauseStateChanged += 
+                (x) => 
+                    timer.Enabled = !x;
         }
 
         private void PopulateActionStackListbox()
@@ -229,7 +257,11 @@ namespace TrafficLights
 
         private void UpdateSimulation()
         {
-            manager.CurrentSimulation.Update(timer.Interval);
+            manager.CurrentSimulation.Update(timer.Interval / 1000.0f);
+            foreach (var item in this.pBoxToSlotIDLookup)
+            {
+                item.Key.Invalidate();
+            }
         }
 
         private void UpdateInterface()
@@ -352,7 +384,7 @@ namespace TrafficLights
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            manager.RestartSimulation();
+           manager.RestartSimulation();
         }
 
         private void btnSaveStats_Click(object sender, EventArgs e)
@@ -373,46 +405,127 @@ namespace TrafficLights
             Crossing crossing = manager.Grid.CrossingAt(slot);
             if(crossing!=null)
             {
-                foreach (var lane in crossing.Feeders)
+                foreach (Lane lane in crossing.Feeders)
                 //foreach (Lane lane in crossing.Feeders)
                 {
-                    if (e.X < lane.X || e.Y < lane.Y) continue;
-                    if (lane.Owner.From == Direction.Up || lane.Owner.From == Direction.Down)
+                    if (FindCollision(e, lane))
                     {
-                        if (e.X - lane.X <= 20 && lane.Y - e.Y <= 60)
-                        {
-                            manager.CurrentActiveComponent = lane;
-                            sender.Invalidate();
-                            return;
-                        }
+                        if(manager.CurrentActiveLane != null)
+                            slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
+                        manager.CurrentActiveComponent = lane;
+                        sender.Invalidate();
+                        return;
                     }
-                    else
+                }
+                foreach (Trafficlight light in crossing.Lights)
+                {
+                    if (FindCollision(e, light))
                     {
-                        if (e.X - lane.X <= 60 && lane.Y - e.Y <= 20)
-                        {
-                            manager.CurrentActiveComponent = lane;
-                            sender.Invalidate();
-                            return;
-                        }
+                        if (manager.CurrentActiveTrafficLight != null)
+                            slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
+                        manager.CurrentActiveComponent = light;
+                        sender.Invalidate();
+                        return;
                     }
                 }
             }
+        }
+        private bool FindCollision(MouseEventArgs e, Trafficlight light)
+        {
+            if (e.X < light.X || e.Y < light.Y) return false;
+            if (e.X - light.X <= 16 && e.Y - light.Y <= 46)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool FindCollision(MouseEventArgs e, Lane lane)
+        {
+            if (e.X < lane.X || e.Y < lane.Y) return false;
+            if (lane.Owner.From == Direction.Up || lane.Owner.From == Direction.Down)
+            {
+                if (e.X - lane.X <= 20 &&  e.Y - lane.Y <= 60)
+                {
+
+                    return true;
+                }
+            }
+            else
+            {
+                if (e.X - lane.X <= 60 && e.Y - lane.Y <= 20)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         private void updateFlowBtn_Click(object sender, EventArgs e)
         {
             if (manager.CurrentActiveLane != null)
             {
                 if (manager.CurrentActiveLane.Flow == (int)propertiesEditNUD.Value) return;
-                ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
-                propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
-            }
-            else if (manager.CurrentActiveTrafficLight != null)
-                if (manager.CurrentActiveTrafficLight.GreenSeconds == (float)propertiesEditNUD.Value) return;
+                if (cbApply.Checked || cbApplyCrossing.Checked)
+                {
+                    ApplyForAll();
+                }
                 else
                 {
-                    //todo - add action
-                    manager.CurrentActiveTrafficLight.GreenSeconds = (float)propertiesEditNUD.Value;
+                    ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, manager.CurrentActiveLane));
+                    slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
                 }
+            }
+            else if (manager.CurrentActiveTrafficLight != null)
+            {
+                if (manager.CurrentActiveTrafficLight.GreenSeconds == (float)propertiesEditNUD.Value) return;
+                if (cbApply.Checked || cbApplyCrossing.Checked)
+                {
+                    ApplyForAll();
+                }
+                else
+                {
+                    ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, manager.CurrentActiveTrafficLight));
+                    slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
+                }
+            }
+            UpdateInterface(); 
+        }
+
+        private void ApplyForAll()
+        {
+            foreach (Crossing crossing in manager.Grid.AllCrossings)
+            {
+                if (crossing == null) continue;
+                if (manager.CurrentActiveComponent is Lane)
+                {
+                    if (cbApplyCrossing.Checked && manager.CurrentActiveLane.Owner.Owner != crossing)
+                    {
+                        continue;
+                    }
+                    foreach (Lane lane in crossing.Lanes)
+                    {
+                        if (!lane.IsFeeder) continue;
+                        if (lane.Flow == (int)propertiesEditNUD.Value) continue;
+                        ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
+                        slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
+                    }
+                }
+                if (manager.CurrentActiveComponent is Trafficlight)
+                {
+                    if (cbApplyCrossing.Checked && manager.CurrentActiveTrafficLight.Owner != crossing)
+                    {
+                        continue;
+                    }
+                    foreach (Trafficlight light in crossing.Lights)
+                    {
+                        if (light.GreenSeconds == (float)propertiesEditNUD.Value) continue;
+                        ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, light));
+                        slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
+                    }
+                }
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -528,7 +641,8 @@ namespace TrafficLights
             if (state != SystemState.Place) return;
 
             int id = pBoxToSlotIDLookup[currentBox];
-            ActionStack.AddAction(new PlaceCrossingAction(id / 3, id % 3, crossingToBePlaced));
+            ActionStack.AddAction(new PlaceCrossingAction(id / 3, id % 3, Activator.CreateInstance(crossingToBePlaced.GetType(), manager) as Crossing));
+
         }
         private void RemoveCrossing(PictureBox currentBox)
         {
@@ -559,6 +673,39 @@ namespace TrafficLights
                 button2.FlatStyle = FlatStyle.Standard;
                 rmToggled = false;
             }
+        }
+
+        private void cbApplyCrossing_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbApplyCrossing.Checked)
+            {
+                cbApply.Checked = false;
+            }
+        }
+
+        private void cbApply_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbApply.Checked)
+            {
+                cbApplyCrossing.Checked = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RecycleManagerForm rmform = new RecycleManagerForm(manager);
+            rmform.Show();
+        }
+
+        private void PicBoxTypeB_Click_1(object sender, EventArgs e)
+        {
+
+        }
+       
+        private void btnSaveCrossingManager_Click(object sender, EventArgs e)
+        {
+            SavedManagerForm smform = new SavedManagerForm(manager);
+            smform.Show();
         }
     }
 }

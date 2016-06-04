@@ -12,6 +12,8 @@ namespace TrafficLights
     /// <seealso cref="TrafficLights.Component" />
     public abstract class Moveable : Component
     {
+        const float DefaultTimeFromStartToEnd = 1;
+        private float currentPassed = 0;
         /// <summary>
         /// Gets the path.
         /// </summary>
@@ -36,15 +38,53 @@ namespace TrafficLights
         /// Gets the current point.
         /// </summary>
         /// <value>The current point.</value>
-        public System.Drawing.Point CurrentPoint { get { throw new NotImplementedException(); } }
+        public System.Drawing.Point CurrentPoint { get { return new System.Drawing.Point(X, Y); } }
+
+        private float lastUpdatePassed = 0;
+
+        protected bool OneCycleHasPassed { get { return lastUpdatePassed >= DefaultTimeFromStartToEnd; } }
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            throw new NotImplementedException();
-        }
+            /*foreach (System.Drawing.Point p in Path)
+            {
+                if (p == CurrentPoint)
+                { CurrentPointIndex = Path.IndexOf(p); }
+            }*/
+            currentPassed += seconds;
+            lastUpdatePassed = currentPassed;
+            if (currentPassed >= DefaultTimeFromStartToEnd)
+            {
+                //set next lane
+                currentPassed = 0;
+            }
+            else
+            {
+                float avrg = DefaultTimeFromStartToEnd / (Path.Count - 1);
+                int leftIndex = (int)(currentPassed / avrg);
+                int rightIndex = leftIndex + 1;
+                System.Drawing.Point leftPoint = Path[leftIndex];
+                System.Drawing.Point rightPoint = Path[rightIndex];
+                float passed = currentPassed;
+                while (passed >= avrg)
+                    passed -= avrg;
+                float percentPassed = passed / avrg;
+
+                if (percentPassed.ToString().IndexOf('.') != -1)
+                    percentPassed = float.Parse("0." + percentPassed.ToString().Split('.').Last());
+                else
+                    if(percentPassed != 0)
+                        percentPassed = 1;
+
+                this.X = leftPoint.X + (int)((rightPoint.X - leftPoint.X) * percentPassed);
+                this.Y = leftPoint.Y + (int)((rightPoint.Y - leftPoint.Y) * percentPassed);
+            }
+
+         }
 
         /// <summary>
         /// Draws the when normal.
@@ -52,7 +92,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -61,7 +100,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
         }
     }
 }

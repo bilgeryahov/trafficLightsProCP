@@ -18,14 +18,32 @@ namespace TrafficLights
         {
             manager = mn;
             InitializeComponent();
+            UpdatePanel();
         }
 
         private void SavedManagerForm_Load(object sender, EventArgs e)
         {
-            UpdatePane1();
+            
         }
 
-        private void UpdatePane1()
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int column = Convert.ToInt32(textBoxColumn.Text);
+                int row = Convert.ToInt32(textBoxRow.Text);
+                Crossing crossingToBeSaved = manager.Grid.Crossings[row - 1][column - 1];
+                manager.SavedCrossingManager.Add(crossingToBeSaved);
+                UpdatePanel();
+            }
+            catch
+            {
+                MessageBox.Show("There is no crossing there!");
+            }            
+        
+        }
+
+        private void UpdatePanel()
         {
             panel1.Controls.Clear();
 
@@ -37,41 +55,17 @@ namespace TrafficLights
                 Label lb = new Label();
                 lb.Text = labelCount.ToString();
                 lb.Location = new System.Drawing.Point(10, y + 50);
-
                 PictureBox pb = new PictureBox();
                 pb.Size = new System.Drawing.Size(150, 150);
                 pb.Location = new System.Drawing.Point(50, y);
                 pb.Image = cr.Image;
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
-
                 panel1.Controls.Add(pb);
                 panel1.Controls.Add(lb);
-
                 y += 160;
                 labelCount++;
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Crossing cr = manager.SavedCrossingManager.Crossings[Convert.ToInt32(tbInformation.Text) - 1];
-            int cars = 0;
-            int pedestrian = 0;
             
-            foreach (Lane l in cr.Lanes)
-            {
-                cars += l.Flow;
-            }
-
-            MessageBox.Show(cars.ToString());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int x = Convert.ToInt32(tbX.Text);
-            int y = Convert.ToInt32(tbY.Text);
-            Crossing cr = manager.SavedCrossingManager.Crossings[Convert.ToInt32(tbPlace.Text) - 1];
-            manager.Grid.AddAt(x, y, cr);      
         }
     }
 }

@@ -701,29 +701,7 @@ namespace TrafficLights
         {
 
         }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            ToggleSaveCrossingButton();
-            MainForm_Click(sender, e);
-        }
-        private bool saveCrossingToggled = false;
-        private void ToggleSaveCrossingButton()
-        {
-            if (!saveCrossingToggled)
-            {
-                state = SystemState.Save;
-                button8.FlatStyle = FlatStyle.Flat;
-                saveCrossingToggled = true;
-            }
-            else
-            {
-                state = SystemState.None;
-                button8.FlatStyle = FlatStyle.Standard;
-                saveCrossingToggled = false;
-            }
-        }
-
+       
         private void btnSaveCrossingManager_Click(object sender, EventArgs e)
         {
             SavedManagerForm smform = new SavedManagerForm(manager);

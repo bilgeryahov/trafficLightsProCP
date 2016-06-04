@@ -33,14 +33,14 @@ namespace TrafficLights
                 int column = Convert.ToInt32(textBoxColumn.Text);
                 int row = Convert.ToInt32(textBoxRow.Text);
                 Crossing crossingToBeSaved = manager.Grid.Crossings[row - 1][column - 1];
+
                 manager.SavedCrossingManager.Add(crossingToBeSaved);
                 UpdatePanel();
             }
             catch
             {
                 MessageBox.Show("There is no crossing there!");
-            }            
-        
+            }                    
         }
 
         private void UpdatePanel()
@@ -64,8 +64,16 @@ namespace TrafficLights
                 panel1.Controls.Add(lb);
                 y += 160;
                 labelCount++;
-            }
-            
+            }            
+        }
+
+        private void btnPlace_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(tbPlaceId.Text) - 1;
+            int row = Convert.ToInt32(tbPlaceRow.Text) - 1;
+            int column = Convert.ToInt32(tbPlaceColumn.Text) - 1;
+            Crossing cr = manager.SavedCrossingManager.Crossings[id];
+            manager.Grid.AddAt(row, column, cr);
         }
     }
 }

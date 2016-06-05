@@ -348,6 +348,7 @@ namespace TrafficLights
             return this;
             //using serialization create Full copy
             Crossing copy = null;
+
             throw new System.NotImplementedException();
         }
 

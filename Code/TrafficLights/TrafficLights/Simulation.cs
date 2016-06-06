@@ -216,6 +216,7 @@ namespace TrafficLights
             }
             isPaused = false;
             OnPauseStateChanged(isPaused);
+            this.Grid.Reset();
         }
 
         /// <summary>
@@ -244,6 +245,7 @@ namespace TrafficLights
         public void Stop()
         {
             Reset();
+            isPaused = false;
         }
 
         /// <summary>
@@ -294,6 +296,7 @@ namespace TrafficLights
             foreach (Crossing crossing in Grid.AllCrossings)
                 if(crossing != null)
                     crossing.Update(seconds);
+            TimePassed += seconds;
             //throw new NotImplementedException();
         }
 

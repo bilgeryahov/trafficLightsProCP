@@ -259,13 +259,7 @@ namespace TrafficLights
         private void UpdateSimulation()
         {
             manager.CurrentSimulation.Update(timer.Interval / 1000.0f);
-            foreach (var item in this.pBoxToSlotIDLookup)
-            {
-                item.Key.Invalidate();
-            }
-
-            string time = "";
-
+            RefreshCrossings();
             int seconds = (int)manager.CurrentSimulation.TimePassed;
             int minutes = seconds / 60;
             seconds %= 60;
@@ -274,13 +268,7 @@ namespace TrafficLights
 
         private void UpdateInterface()
         {
-            for (int i = 0; i < (manager.Grid.Columns ^ 2); i++)
-            {
-                Crossing c = manager.Grid.CrossingAt(i);
-                if (c == null)
-                    continue;
-                c.Draw(slotIDToPBoxLookup[i].CreateGraphics());
-            }
+            RefreshCrossings();
         }
 
         private void ShowResults(SimulationResult results)
@@ -378,6 +366,11 @@ namespace TrafficLights
         private void btnStop_Click(object sender, EventArgs e)
         {
             manager.StopSimulation();
+            RefreshCrossings();
+        }
+
+        private void RefreshCrossings()
+        {
             foreach (var item in this.pBoxToSlotIDLookup)
             {
                 item.Key.Invalidate();
@@ -522,7 +515,6 @@ namespace TrafficLights
                         if (!lane.IsFeeder) continue;
                         if (lane.Flow == (int)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
-                        slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
                     }
                 }
                 if (manager.CurrentActiveComponent is Trafficlight)
@@ -535,10 +527,10 @@ namespace TrafficLights
                     {
                         if (light.GreenSeconds == (float)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, light));
-                        slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
                     }
                 }
             }
+            RefreshCrossings();
         }
 
         private void timer_Tick(object sender, EventArgs e)

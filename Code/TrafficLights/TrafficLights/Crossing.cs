@@ -214,7 +214,7 @@ namespace TrafficLights
             {
                 List<Renderable> children = new List<Renderable>();
                 children.AddRange(this.Crosswalks);
-                //children.AddRange(Lights);
+                children.AddRange(Lights);
                 //children.AddRange(Lanes);
 
                 return children;
@@ -375,18 +375,19 @@ namespace TrafficLights
                 this.ColumnRecycleManager = column;
             }
         }
-
         public override void Update(float seconds)
         {
+            //set interval, but not timeout if first pass
             foreach (Renderable child in this.ChildElements)
                 child.Update(seconds);
         }
-
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             
             foreach (Renderable child in this.ChildElements)
+            {
                 child.Draw(image);
+            }  
         }
 
         protected override void DrawWhenActive(System.Drawing.Graphics image)
@@ -394,9 +395,19 @@ namespace TrafficLights
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);
         }
-
+        public bool IntervalsSet = false;
+        public void SetStartIntervals()
+        {
+            foreach (Trafficlight light in this.Lights)
+            {
+                light.RedSeconds = this.Lights.Where(x=>x != light).Sum(x=>x.GreenSeconds+x.YellowSeconds);
+                light.TimeoutSeconds = this.Lights.Where(x => x.Position < light.Position).Sum(x => x.YellowSeconds+x.GreenSeconds);
+            }
+            IntervalsSet = true;
+        }
         public void Reset()
         {
+            SetStartIntervals();
             foreach (Crosswalk crosswalk in this.Crosswalks)
             {
                 crosswalk.Reset();

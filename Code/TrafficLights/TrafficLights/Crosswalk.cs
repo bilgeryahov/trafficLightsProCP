@@ -41,7 +41,6 @@ namespace TrafficLights
         /// <value>The lanes.</value>
         public List<Lane> Lanes { get; private set; }
         static int pos = 1;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Crosswalk"/> class.
         /// </summary>
@@ -57,8 +56,9 @@ namespace TrafficLights
             this.From = from;
             this.Light = new Trafficlight(trafficLightX, trafficLightY,pos);
             pos++;
-            if (pos > 4) pos = 1;
+            if (pos >4) pos = 1;
         }
+        
 
         public Crosswalk(Direction from, bool canHavePedestrians,int x, int y, int trafficLightX, int trafficLightY, params Lane[] lanes)
             : this(lanes.ToList(), from, canHavePedestrians, x, y, trafficLightX, trafficLightY)
@@ -126,22 +126,30 @@ namespace TrafficLights
         {
             this.PedestrianFlowFrom = CreatePedestrian(this.From, targetDirection);
         }
-
+        private static int spins = 0;
+        private static float AccumilatedTime = 0;
+        public float TotalActiveSeconds { get;private set; }
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
+            //if (!this.Owner.IntervalsSet)
+            //{
+            //    this.Owner.SetStartIntervals();
+            //}
             if (PedestrianFlowFrom != null)
                 PedestrianFlowFrom.Update(seconds);
             if (PedestrianFlowTo != null)
                 PedestrianFlowTo.Update(seconds);
-            this.Light.Update(seconds);
+            
             foreach (Lane lane in this.Lanes)
             {
                 lane.Update(seconds);
             }
+            this.Light.Update(seconds);
+            spins++;
         }
 
         /// <summary>
@@ -200,7 +208,6 @@ namespace TrafficLights
         {
             DrawWhenActive(image);
         }
-
         public void Reset()
         {
             foreach (Lane lane in this.Lanes)

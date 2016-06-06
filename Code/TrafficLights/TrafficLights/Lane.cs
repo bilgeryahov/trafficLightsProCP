@@ -128,6 +128,7 @@ namespace TrafficLights
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
+            if(Owner.Light.CurrentState == Trafficlight.State.Green)
             if (flowReleased < Flow)
             {
                 this.currentCarsOn.Add(new Car(this.X, this.Y, this));
@@ -167,17 +168,19 @@ namespace TrafficLights
             {
                 car.Draw(image);
             }
+            string flow = this.Flow.ToString();
+            if (this.flowReleased > 0 || this.flowAccumulated>0) flow = (this.Flow - this.flowReleased + this.flowAccumulated)+"";
             if(this.Owner.From == Direction.Down)
             {
-                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y+45);
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y+45);
             }
             else if (this.Owner.From == Direction.Right)
             {
-                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+45, this.Y+2);
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+45, this.Y+2);
             }
             else
             {
-                image.DrawString(this.Flow.ToString(), new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y +3);
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y +3);
             }
         }
 

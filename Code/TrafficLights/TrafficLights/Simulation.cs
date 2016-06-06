@@ -94,7 +94,7 @@ namespace TrafficLights
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { throw new System.NotImplementedException(); } }
+        public int CarsPassed { get { return 0; } }
 
         /// <summary>
         /// Gets the cars left.
@@ -251,13 +251,11 @@ namespace TrafficLights
         /// </summary>
         public void Finish()
         {
-            throw new System.NotImplementedException();
             if (CarsLeft == 0 && !HasPedestriansCrossing)
             {
                 OnCompleted(new SimulationResult(this));
                 Stop();
             }
-
         }
 
         /// <summary>
@@ -294,6 +292,7 @@ namespace TrafficLights
             foreach (Crossing crossing in Grid.AllCrossings)
                 if(crossing != null)
                     crossing.Update(seconds);
+            Finish();
             //throw new NotImplementedException();
         }
 

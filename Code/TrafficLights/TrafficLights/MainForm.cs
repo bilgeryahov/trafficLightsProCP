@@ -192,6 +192,9 @@ namespace TrafficLights
                 (x) => 
                     timer.Enabled = !x;
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
+            manager.CurrentSimulation.OnCompleted += (x) => {
+                throw new NotImplementedException("Show results");
+            });
         }
 
         private void PopulateActionStackListbox()
@@ -264,8 +267,6 @@ namespace TrafficLights
                 item.Key.Invalidate();
             }
 
-            string time = "";
-
             int seconds = (int)manager.CurrentSimulation.TimePassed;
             int minutes = seconds / 60;
             seconds %= 60;
@@ -304,8 +305,6 @@ namespace TrafficLights
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 manager.LoadFromFile(d.FileName);
-
-           
         }
 
         private void ShowSaveDialog()
@@ -314,8 +313,7 @@ namespace TrafficLights
             d.Filter = "Trafic lights manager (*.tlm)|*.tlm";
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
-                if (MessageBox.Show("Would you like to overwrite the specified file?", "Overwrite file", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                    manager.SaveToFile(d.FileName);
+                manager.SaveToFile(d.FileName);
         }
 
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)

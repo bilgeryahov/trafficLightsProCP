@@ -50,26 +50,61 @@ namespace TrafficLights
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Crossing cr = manager.RecycleCrossingManager.Crossings[Convert.ToInt32(textBox1.Text) - 1];
-            manager.Grid.AddAt(cr.RowRecycleManager, cr.ColumnRecycleManager, cr);
+            int id = Convert.ToInt32(textBox1.Text) - 1;
 
-            manager.RecycleCrossingManager.Remove(cr);
+            try
+            {
+                Crossing cr = manager.RecycleCrossingManager.Crossings[id];
 
-            UpdatePanel();
+                manager.Grid.AddAt(cr.RowRecycleManager, cr.ColumnRecycleManager, cr);
+                manager.RecycleCrossingManager.Remove(cr);
 
-            
+                UpdatePanel();
+            }
+            catch
+            {
+                MessageBox.Show("Crossing ID " + (id + 1) + " does not exist in recycle manager.");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Crossing cr = manager.RecycleCrossingManager.Crossings[Convert.ToInt32(textBox2.Text) - 1];
+            int id = Convert.ToInt32(textBox2.Text) - 1;
             int cars = 0;
-            foreach(Lane l in cr.Lanes)
-            {
-                cars = cars + l.Flow;
-            }
 
-            MessageBox.Show(cars.ToString());
+            try
+            {
+                Crossing cr = manager.RecycleCrossingManager.Crossings[id];
+                if((cr is CrossingA) || (cr is CrossingB))
+                {
+                    foreach (Lane l in cr.Lanes)
+                    {
+                        cars += l.Flow;
+                    }
+                    MessageBox.Show("Total car flow is " + cars.ToString());
+                }
+                else
+                {
+                    foreach (Lane l in cr.Lanes)
+                    {
+                        cars += l.Flow;
+                    }
+                    MessageBox.Show("Total car flow is " + cars.ToString());
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Crossing ID " + (id + 1) + " does not exist in recycle manager.");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            manager.RecycleCrossingManager.Clear();
+            panel1.Controls.Clear();
+
+            textBox1.Text = "";
+            textBox2.Text = "";
         }
     }
 }

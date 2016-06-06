@@ -293,7 +293,6 @@ namespace TrafficLights
                 if(crossing != null)
                     crossing.Update(seconds);
             Finish();
-            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -302,13 +301,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            if (isPaused) return;
-            //draw components based on which frame they should be at
-            foreach (Crossing crossing in Grid.AllCrossings)
-                crossing.Draw(image);
-            foreach (Car car in this.CurrentCars)
-                car.Draw(image);
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -317,7 +309,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new Exception("Should not be called");
         }
 
         /// <summary>

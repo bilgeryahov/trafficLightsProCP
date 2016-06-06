@@ -41,8 +41,6 @@ namespace TrafficLights
         /// <param name="fileName">Name of the file.</param>
         public void ExportToExcel(string fileName)
         {
-            //throw new NotImplementedException();
-
             DataTable myTable = new DataTable();
             myTable.Columns.Add("name", typeof(string));
             myTable.Columns.Add("age", typeof(int));

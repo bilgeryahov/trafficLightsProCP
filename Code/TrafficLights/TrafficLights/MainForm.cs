@@ -194,7 +194,7 @@ namespace TrafficLights
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
             manager.CurrentSimulation.OnCompleted += (x) => {
                 throw new NotImplementedException("Show results");
-            });
+            };
         }
 
         private void PopulateActionStackListbox()

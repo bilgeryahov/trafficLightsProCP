@@ -252,7 +252,6 @@ namespace TrafficLights
                 //    MessageBox.Show("correct");
                 //}
 
-                // throw new NotImplementedException("Update grid UI");
                 //Notify for success?
             }
 

@@ -345,7 +345,6 @@ namespace TrafficLights
         /// <returns>Crossing.</returns>
         public Crossing CreateCopy()
         {
-            return this;
             //using serialization create Full copy
             Crossing copy = null;
             throw new System.NotImplementedException();

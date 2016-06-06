@@ -94,7 +94,7 @@ namespace TrafficLights
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { throw new System.NotImplementedException(); } }
+        public int CarsPassed { get { return 0; } }
 
         /// <summary>
         /// Gets the cars left.
@@ -253,13 +253,11 @@ namespace TrafficLights
         /// </summary>
         public void Finish()
         {
-            throw new System.NotImplementedException();
             if (CarsLeft == 0 && !HasPedestriansCrossing)
             {
                 OnCompleted(new SimulationResult(this));
                 Stop();
             }
-
         }
 
         /// <summary>
@@ -298,6 +296,7 @@ namespace TrafficLights
                     crossing.Update(seconds);
             TimePassed += seconds;
             //throw new NotImplementedException();
+            Finish();
         }
 
         /// <summary>
@@ -306,13 +305,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            if (isPaused) return;
-            //draw components based on which frame they should be at
-            foreach (Crossing crossing in Grid.AllCrossings)
-                crossing.Draw(image);
-            foreach (Car car in this.CurrentCars)
-                car.Draw(image);
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -321,7 +313,6 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new Exception("Should not be called");
         }
 
         /// <summary>

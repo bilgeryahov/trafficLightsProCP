@@ -192,6 +192,9 @@ namespace TrafficLights
                 (x) => 
                     timer.Enabled = !x;
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
+            manager.CurrentSimulation.OnCompleted += (x) => {
+                throw new NotImplementedException("Show results");
+            };
         }
 
         private void PopulateActionStackListbox()
@@ -259,7 +262,11 @@ namespace TrafficLights
         private void UpdateSimulation()
         {
             manager.CurrentSimulation.Update(timer.Interval / 1000.0f);
-            RefreshCrossings();
+            foreach (var item in this.pBoxToSlotIDLookup)
+            {
+                item.Key.Invalidate();
+            }
+
             int seconds = (int)manager.CurrentSimulation.TimePassed;
             int minutes = seconds / 60;
             seconds %= 60;
@@ -268,7 +275,13 @@ namespace TrafficLights
 
         private void UpdateInterface()
         {
-            RefreshCrossings();
+            for (int i = 0; i < (manager.Grid.Columns ^ 2); i++)
+            {
+                Crossing c = manager.Grid.CrossingAt(i);
+                if (c == null)
+                    continue;
+                c.Draw(slotIDToPBoxLookup[i].CreateGraphics());
+            }
         }
 
         private void ShowResults(SimulationResult results)
@@ -292,8 +305,6 @@ namespace TrafficLights
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 manager.LoadFromFile(d.FileName);
-
-           
         }
 
         private void ShowSaveDialog()
@@ -302,8 +313,7 @@ namespace TrafficLights
             d.Filter = "Trafic lights manager (*.tlm)|*.tlm";
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
-                if (MessageBox.Show("Would you like to overwrite the specified file?", "Overwrite file", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                    manager.SaveToFile(d.FileName);
+                manager.SaveToFile(d.FileName);
         }
 
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -366,11 +376,6 @@ namespace TrafficLights
         private void btnStop_Click(object sender, EventArgs e)
         {
             manager.StopSimulation();
-            RefreshCrossings();
-        }
-
-        private void RefreshCrossings()
-        {
             foreach (var item in this.pBoxToSlotIDLookup)
             {
                 item.Key.Invalidate();
@@ -515,6 +520,7 @@ namespace TrafficLights
                         if (!lane.IsFeeder) continue;
                         if (lane.Flow == (int)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
+                        slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
                     }
                 }
                 if (manager.CurrentActiveComponent is Trafficlight)
@@ -527,10 +533,10 @@ namespace TrafficLights
                     {
                         if (light.GreenSeconds == (float)propertiesEditNUD.Value) continue;
                         ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, light));
+                        slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
                     }
                 }
             }
-            RefreshCrossings();
         }
 
         private void timer_Tick(object sender, EventArgs e)

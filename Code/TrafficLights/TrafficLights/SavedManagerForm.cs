@@ -123,6 +123,14 @@ namespace TrafficLights
         {
             manager.SavedCrossingManager.Clear();
             panel1.Controls.Clear();
+            textBoxRow.Text = "";
+            textBoxColumn.Text = "";
+            textBoxPlaceRow.Text = "";
+            tbLookId.Text = "";
+            tbPlaceColumn.Text = "";
+            tbPlaceId.Text = "";
+            tbPlaceRow.Text = "";
+            tbSearchId.Text = "";
         }
     }
 }

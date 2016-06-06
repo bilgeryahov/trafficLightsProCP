@@ -345,13 +345,6 @@ namespace TrafficLights
         /// <returns>Crossing.</returns>
         public Crossing CreateCopy()
         {
-<<<<<<< HEAD
-            return this;
-            //using serialization create Full copy
-            Crossing copy = null;
-
-            throw new System.NotImplementedException();
-=======
             var stream = new System.IO.MemoryStream();
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
             formatter.Serialize(stream, this);
@@ -359,7 +352,6 @@ namespace TrafficLights
             Crossing copy = formatter.Deserialize(stream) as Crossing;
             copy.Owner = this.Owner;
             return copy;
->>>>>>> develop
         }
 
         /// <summary>

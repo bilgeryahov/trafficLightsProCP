@@ -102,6 +102,9 @@ namespace TrafficLights
         {
             manager.RecycleCrossingManager.Clear();
             panel1.Controls.Clear();
+
+            textBox1.Text = "";
+            textBox2.Text = "";
         }
     }
 }

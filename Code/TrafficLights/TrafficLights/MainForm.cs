@@ -262,10 +262,7 @@ namespace TrafficLights
         private void UpdateSimulation()
         {
             manager.CurrentSimulation.Update(timer.Interval / 1000.0f);
-            foreach (var item in this.pBoxToSlotIDLookup)
-            {
-                item.Key.Invalidate();
-            }
+            RefreshAll();
 
             int seconds = (int)manager.CurrentSimulation.TimePassed;
             int minutes = seconds / 60;
@@ -275,13 +272,7 @@ namespace TrafficLights
 
         private void UpdateInterface()
         {
-            for (int i = 0; i < (manager.Grid.Columns ^ 2); i++)
-            {
-                Crossing c = manager.Grid.CrossingAt(i);
-                if (c == null)
-                    continue;
-                c.Draw(slotIDToPBoxLookup[i].CreateGraphics());
-            }
+            RefreshAll();
         }
 
         private void ShowResults(SimulationResult results)
@@ -327,10 +318,7 @@ namespace TrafficLights
                 if (MessageBox.Show("There are changes on this grid. Do you want to save them?", "Save changes", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                     ShowSaveDialog();
             manager.CreateNewGrid();
-            foreach (var item in pBoxToSlotIDLookup)
-            {
-                item.Key.Image = null;
-            }
+            RefreshAll();
         }
 
         private void undoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -376,6 +364,11 @@ namespace TrafficLights
         private void btnStop_Click(object sender, EventArgs e)
         {
             manager.StopSimulation();
+            RefreshAll();
+        }
+
+        private void RefreshAll()
+        {
             foreach (var item in this.pBoxToSlotIDLookup)
             {
                 item.Key.Invalidate();

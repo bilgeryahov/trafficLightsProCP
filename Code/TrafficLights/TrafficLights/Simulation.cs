@@ -88,13 +88,13 @@ namespace TrafficLights
         /// Gets the total cars.
         /// </summary>
         /// <value>The total cars.</value>
-        public int TotalCars { get { return Grid.AllCrossings.Select(x => x.Feeders.Select(y => y.Flow).Sum(y => y)).Sum(x => x); } }
+        public int TotalCars { get { return Grid.AllCrossings.Where(x=>x!=null).Select(x => x.Feeders.Select(y => y.Flow).Sum(y => y)).Sum(x => x); } }
 
         /// <summary>
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { return 0; } }
+        public int CarsPassed { get { return 0;//todo obtain } }
 
         /// <summary>
         /// Gets the cars left.

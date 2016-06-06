@@ -200,5 +200,15 @@ namespace TrafficLights
         {
             DrawWhenActive(image);
         }
+
+        public void Reset()
+        {
+            foreach (Lane lane in this.Lanes)
+            {
+                lane.Reset();
+            }
+
+            this.Light.Reset();
+        }
     }
 }

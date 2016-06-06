@@ -394,5 +394,13 @@ namespace TrafficLights
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);
         }
+
+        public void Reset()
+        {
+            foreach (Crosswalk crosswalk in this.Crosswalks)
+            {
+                crosswalk.Reset();
+            }
+        }
     }
 }

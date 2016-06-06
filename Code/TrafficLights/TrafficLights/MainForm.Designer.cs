@@ -237,7 +237,7 @@
             // showHelpToolStripMenuItem
             // 
             this.showHelpToolStripMenuItem.Name = "showHelpToolStripMenuItem";
-            this.showHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showHelpToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.showHelpToolStripMenuItem.Text = "Manual";
             this.showHelpToolStripMenuItem.Click += new System.EventHandler(this.showHelpToolStripMenuItem_Click);
             // 
@@ -463,8 +463,6 @@
             // cbApplyCrossing
             // 
             this.cbApplyCrossing.AutoSize = true;
-            this.cbApplyCrossing.Checked = true;
-            this.cbApplyCrossing.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbApplyCrossing.Location = new System.Drawing.Point(60, 80);
             this.cbApplyCrossing.Name = "cbApplyCrossing";
             this.cbApplyCrossing.Size = new System.Drawing.Size(143, 22);

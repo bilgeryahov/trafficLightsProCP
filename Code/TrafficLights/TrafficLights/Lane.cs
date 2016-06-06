@@ -206,5 +206,12 @@ namespace TrafficLights
                 car.Draw(image);
             }
         }
+
+        public void Reset()
+        {
+            this.currentCarsOn.Clear();
+            this.flowReleased = 0;
+            this.flowAccumulated = 0;
+        }
     }
 }

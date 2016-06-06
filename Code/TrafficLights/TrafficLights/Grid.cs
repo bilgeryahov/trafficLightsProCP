@@ -179,5 +179,12 @@ namespace TrafficLights
         {
             throw new System.NotImplementedException();
         }
+
+        public void Reset()
+        {
+            foreach (Crossing crossing in this.AllCrossings)
+                if(crossing != null)
+                    crossing.Reset();
+        }
     }
 }

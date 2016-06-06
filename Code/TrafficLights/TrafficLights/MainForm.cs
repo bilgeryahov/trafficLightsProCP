@@ -191,6 +191,7 @@ namespace TrafficLights
             manager.CurrentSimulation.OnPauseStateChanged += 
                 (x) => 
                     timer.Enabled = !x;
+            manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
         }
 
         private void PopulateActionStackListbox()
@@ -262,6 +263,13 @@ namespace TrafficLights
             {
                 item.Key.Invalidate();
             }
+
+            string time = "";
+
+            int seconds = (int)manager.CurrentSimulation.TimePassed;
+            int minutes = seconds / 60;
+            seconds %= 60;
+            TimeElapsed.Text = minutes + ":" + seconds;
         }
 
         private void UpdateInterface()
@@ -370,16 +378,20 @@ namespace TrafficLights
         private void btnStop_Click(object sender, EventArgs e)
         {
             manager.StopSimulation();
+            foreach (var item in this.pBoxToSlotIDLookup)
+            {
+                item.Key.Invalidate();
+            }
         }
 
         private void btnDecSpeed_Click(object sender, EventArgs e)
         {
-            manager.IncreaseSimulationSpeed();
+            manager.DecreaseSimulationSpeed();
         }
 
         private void btnIncSpeed_Click(object sender, EventArgs e)
         {
-            manager.DecreaseSimulationSpeed();
+            manager.IncreaseSimulationSpeed();
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
@@ -395,6 +407,7 @@ namespace TrafficLights
 
             if(manager.CurrentSimulation != null)
             {
+                //todo stop simulation
                 //todo excel; snapshot
                 
             }

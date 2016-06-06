@@ -272,5 +272,14 @@ namespace TrafficLights
             image.FillRectangle(System.Drawing.Brushes.Green, this.X-1, this.Y-1, 22, 52);
             DrawWhenNormal(image);
         }
+
+        public void Reset()
+        {
+            timePassed = 0;
+            CurrentState = State.None;
+            brushGreen = System.Drawing.Brushes.White;
+            brushYellow = System.Drawing.Brushes.White;
+            brushRed = System.Drawing.Brushes.White;
+        }
     }
 }

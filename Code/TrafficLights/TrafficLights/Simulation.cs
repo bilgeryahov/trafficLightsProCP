@@ -94,7 +94,7 @@ namespace TrafficLights
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { return 0;//todo obtain } }
+        public int CarsPassed { get { return 0; } }//todo obtain } }
 
         /// <summary>
         /// Gets the cars left.
@@ -123,7 +123,7 @@ namespace TrafficLights
         /// Gets a value indicating whether this instance has pedestrians crossing.
         /// </summary>
         /// <value><c>true</c> if this instance has pedestrians crossing; otherwise, <c>false</c>.</value>
-        public bool HasPedestriansCrossing { get { return Grid.AllCrossings.Any(x => x.HasPedestriansCrossing); } }
+        public bool HasPedestriansCrossing { get { return Grid.AllCrossings.Where(x=>x!=null).Any(x => x.HasPedestriansCrossing); } }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Simulation"/> class.

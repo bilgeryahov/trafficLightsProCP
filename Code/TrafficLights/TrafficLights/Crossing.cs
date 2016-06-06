@@ -214,7 +214,7 @@ namespace TrafficLights
             {
                 List<Renderable> children = new List<Renderable>();
                 children.AddRange(this.Crosswalks);
-                //children.AddRange(Lights);
+                children.AddRange(Lights);
                 //children.AddRange(Lanes);
 
                 return children;
@@ -345,11 +345,21 @@ namespace TrafficLights
         /// <returns>Crossing.</returns>
         public Crossing CreateCopy()
         {
+<<<<<<< HEAD
             return this;
             //using serialization create Full copy
             Crossing copy = null;
 
             throw new System.NotImplementedException();
+=======
+            var stream = new System.IO.MemoryStream();
+            var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            formatter.Serialize(stream, this);
+            stream.Seek(0, System.IO.SeekOrigin.Begin);
+            Crossing copy = formatter.Deserialize(stream) as Crossing;
+            copy.Owner = this.Owner;
+            return copy;
+>>>>>>> develop
         }
 
         /// <summary>
@@ -376,24 +386,43 @@ namespace TrafficLights
                 this.ColumnRecycleManager = column;
             }
         }
-
         public override void Update(float seconds)
         {
+            //set interval, but not timeout if first pass
             foreach (Renderable child in this.ChildElements)
                 child.Update(seconds);
         }
-
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             
             foreach (Renderable child in this.ChildElements)
+            {
                 child.Draw(image);
+            }  
         }
 
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
             foreach (Renderable child in this.ChildElements)
                 child.Draw(image);
+        }
+        public bool IntervalsSet = false;
+        public void SetStartIntervals()
+        {
+            foreach (Trafficlight light in this.Lights)
+            {
+                light.RedSeconds = this.Lights.Where(x=>x != light).Sum(x=>x.GreenSeconds+x.YellowSeconds);
+                light.TimeoutSeconds = this.Lights.Where(x => x.Position < light.Position).Sum(x => x.YellowSeconds+x.GreenSeconds);
+            }
+            IntervalsSet = true;
+        }
+        public void Reset()
+        {
+            SetStartIntervals();
+            foreach (Crosswalk crosswalk in this.Crosswalks)
+            {
+                crosswalk.Reset();
+            }
         }
     }
 }

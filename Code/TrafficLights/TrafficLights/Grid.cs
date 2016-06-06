@@ -177,7 +177,20 @@ namespace TrafficLights
         /// <param name="column">The column.</param>
         public bool CheckAvailability(int row,int column)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                ValidateCanUse(row, column);
+            }
+            catch { return false; }
+
+            return this.Crossings[row][column] == null;
+        }
+
+        public void Reset()
+        {
+            foreach (Crossing crossing in this.AllCrossings)
+                if(crossing != null)
+                    crossing.Reset();
         }
     }
 }

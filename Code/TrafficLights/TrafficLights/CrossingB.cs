@@ -16,7 +16,7 @@ namespace TrafficLights
         /// Initializes a new instance of the <see cref="CrossingB"/> class.
         /// </summary>
         /// <param name="owner">The owner.</param>
-        public CrossingB(TrafficManager owner):base(owner)
+        public CrossingB(TrafficManager owner) : base(owner)
         {
         }
 
@@ -25,36 +25,42 @@ namespace TrafficLights
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-        public override Crosswalk[] Crosswalks
+        protected override Crosswalk[] GenerateCrosswalks
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return new Crosswalk[]
+                    {
+                new Crosswalk
+                        (Direction.Left, false, 0, 60, 30, 140,
+                        new Lane(Direction.Right, Direction.Left, false, 0, 65),
+                        new Lane(Direction.Left, Direction.Up, true, 0, 90),
+                        new Lane(Direction.Left, Direction.Down | Direction.Right, true, 0, 115)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Down, true, 60, 200, 140, 140,
+                        new Lane(Direction.Up, Direction.Down, false, 75, 135),
+                        new Lane(Direction.Up, Direction.Down, false, 110, 135)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Right, false, 200, 60, 140, 0,
+                        new Lane(Direction.Left, Direction.Right, false, 135, 115),
+                        new Lane(Direction.Right, Direction.Down, true, 135, 90),
+                        new Lane(Direction.Right, Direction.Up | Direction.Left, true, 135, 65)
+                        )
+                        ,
+                    new Crosswalk
+                        (Direction.Up, true, 60, 0, 40, 0,
+                        new Lane(Direction.Down, Direction.Up, false, 110, 0),
+                        new Lane(Direction.Down, Direction.Up, false, 75, 0)
+
+                        )
+        };
+            }
         }
 
-        /// <summary>
-        /// Updates the specified seconds.
-        /// </summary>
-        /// <param name="seconds">The seconds.</param>
-        public override void Update(float seconds)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Draws the when normal.
-        /// </summary>
-        /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Draws the when active.
-        /// </summary>
-        /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
-        {
-            throw new NotImplementedException();
-        }
+        public override System.Drawing.Image Image { get { return Properties.Resources.cross_2; } }
     }
 }

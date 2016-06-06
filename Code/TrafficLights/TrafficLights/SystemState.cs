@@ -14,6 +14,8 @@ namespace TrafficLights
         Drag,
         Rotate,
         Place,
-        Delete
+        Delete,
+        Save,
+        None
     }
 }

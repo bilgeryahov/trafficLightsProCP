@@ -5,48 +5,70 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// is responsible for all the actions that can be done from the GUI and represents the system
     /// </summary>
     public class TrafficManager
     {
+        public string CurrentLoadedPath { get; private set; }
         /// <summary>
         /// Gets the current simulation or null if not created
         /// </summary>
-        public Simulation CurrentSimulation { get; private set; }
+        public Simulation CurrentSimulation;
         /// <summary>
         /// Occurs when [on system state changed].
         /// </summary>
+        [field: NonSerialized]
         public event Action<SystemState> OnSystemStateChanged = (x) => { };
+
+        [field: NonSerialized]
+        public event Action GridLoaded;
 
         /// <summary>
         /// Gets the grid.
         /// </summary>
         /// <value>The grid.</value>
         public Grid Grid { get; private set; }
-        /// <summary>
-        /// Gets the undo redo stack.
-        /// </summary>
-        /// <value>The undo redo stack.</value>
-        public ActionStack UndoRedoStack { get; private set; }
 
         /// <summary>
         /// Manager with the recycled crossings
         /// </summary>
-        public RecycleManager RecycleCrossingManager { get; private set; }
+        [NonSerialized]
+        public RecycleManager RecycleCrossingManager;
         /// <summary>
         ///  Manager with the saved crossings
         /// </summary>
-        public SavedManager SavedCrossingManager { get; private set; }
+        [NonSerialized]
+        public SavedManager SavedCrossingManager;
 
         /// <summary>
         /// Gets the state of the current.
         /// </summary>
         /// <value>The state of the current.</value>
         public SystemState CurrentState { get; private set; }
+
+        public event Action<Component> OnCurrentActiveComponentChanged = (x) => { };
+        private Component currentActiveComponent = null;
+        public Component CurrentActiveComponent
+        {
+            get { return currentActiveComponent; }
+            set
+            {
+                if (currentActiveComponent != null)
+                    currentActiveComponent.SetActive(false);
+                currentActiveComponent = value;
+                if (currentActiveComponent != null)
+                    currentActiveComponent.SetActive(true);
+                OnCurrentActiveComponentChanged(value);
+            }
+        }
+        public Trafficlight CurrentActiveTrafficLight { get { return CurrentActiveComponent as Trafficlight; } }
+        public Lane CurrentActiveLane { get { return CurrentActiveComponent as Lane; } }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TrafficManager"/> class.
@@ -56,6 +78,12 @@ namespace TrafficLights
         public TrafficManager(int rows, int columns)
         {
             this.Grid = new Grid(rows, columns);
+
+            this.RecycleCrossingManager = new RecycleManager();
+            this.SavedCrossingManager = new SavedManager();
+            this.CreateSimulation();
+            this.CurrentSimulation = new Simulation(this.Grid);
+
         }
 
         /// <summary>
@@ -73,8 +101,9 @@ namespace TrafficLights
         /// </summary>
         public void CreateSimulation()
         {
-            if (this.CurrentSimulation != null) this.CurrentSimulation.Stop();
-            this.CurrentSimulation = new Simulation(this.Grid);
+           // if (this.CurrentSimulation != null) 
+           //     this.CurrentSimulation.Stop();
+            //this.CurrentSimulation = new Simulation(this.Grid);
         }
 
         /// <summary>
@@ -83,7 +112,6 @@ namespace TrafficLights
         public void IncreaseSimulationSpeed()
         {
             this.CurrentSimulation.IncreaseSpeed();
-            // Increase speed with?
         }
 
         /// <summary>
@@ -92,7 +120,6 @@ namespace TrafficLights
         public void DecreaseSimulationSpeed()
         {
             this.CurrentSimulation.DecreaseSpeed();
-            // Decrease speed with?
         }
 
         /// <summary>
@@ -162,27 +189,28 @@ namespace TrafficLights
         /// <summary>
         /// Saves the simulation.
         /// </summary>
-        public void SaveSimulation()
+        public void SaveToFile(string filepath)
         {
             FileStream myFileStream = null;
             BinaryFormatter myBinaryFormatter = null;
 
             try
             {
-                myFileStream = new FileStream(this.CurrentSimulation.Destination + ".tlm", FileMode.Create, FileAccess.Write);
+                myFileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write);
                 myBinaryFormatter = new BinaryFormatter();
 
-                myBinaryFormatter.Serialize(myFileStream, this.CurrentSimulation);
+                myBinaryFormatter.Serialize(myFileStream, this.Grid);
+                CurrentLoadedPath = filepath;
                 //Notify for success?
             }
 
-            catch (SerializationException)
+            catch (SerializationException e)
             {
-                //Notify for failure?
+                MessageBox.Show(e.Message);
             }
-            catch (IOException)
+            catch (IOException e)
             {
-                //Notify for failure?
+                MessageBox.Show(e.Message);
             }
             finally
             {
@@ -196,7 +224,7 @@ namespace TrafficLights
         /// <summary>
         /// Loads from file.
         /// </summary>
-        public void LoadFromFile()
+        public void LoadFromFile(string filepath)
         {
             //Are there unsaved changes?
 
@@ -204,21 +232,32 @@ namespace TrafficLights
             BinaryFormatter myBinaryFormatter = null;
             try
             {
-                myFileStream = new FileStream("", FileMode.Open, FileAccess.Read);
+                myFileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
                 myBinaryFormatter = new BinaryFormatter();
 
-                this.CurrentSimulation = (Simulation)myBinaryFormatter.Deserialize(myFileStream);
+                this.Grid = (Grid)myBinaryFormatter.Deserialize(myFileStream);
+                CurrentLoadedPath = filepath;
+                ProcessNewGridLoaded();
+
+                // to be used for testing of the load functionality
+                // if you want to test it, create a grid with a crossing on place 3 (first one, second row)
+                // then load it and it should say "correct"
+
+                //if(this.Grid.CrossingAt(3) == null)
+                //{
+                //    MessageBox.Show("not correct");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("correct");
+                //}
 
                 //Notify for success?
             }
 
-            catch (SerializationException)
+            catch (Exception e)
             {
-                //Notify for failure?
-            }
-            catch (IOException)
-            {
-                //Notify for failure?
+                MessageBox.Show(e.Message);
             }
             finally
             {
@@ -229,5 +268,25 @@ namespace TrafficLights
             }
         }
 
+        public void CreateNewGrid()
+        {
+            for (int i = 0; i < Grid.Rows; i++)
+            {
+                for (int j = 0; j < Grid.Columns; j++)
+                {
+                    if (Grid.CrossingAt(i * Grid.Rows + j) != null)
+                        Grid.RemoveAt(i, j);
+                }
+            }
+            ProcessNewGridLoaded();
+        }
+
+        private void ProcessNewGridLoaded()
+        {
+            this.CurrentSimulation = null;
+            ActionStack.Clear();
+            CreateSimulation();
+            this.GridLoaded();
+        }
     }
 }

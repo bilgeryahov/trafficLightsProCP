@@ -10,17 +10,25 @@ namespace TrafficLights
     /// an action that can be undone and redone in the system
     /// </summary>
     /// <seealso cref="TrafficLights.UndoableAction" />
-    public abstract class UpdateLightIntervalAction : UndoableAction
+    public class UpdateLightIntervalAction : UndoableAction
     {
         public Trafficlight Light { get; private set; }
-        public int Interval { get; private set; }
-        private int previousInterval;
+        public float Interval { get; private set; }
+        private float previousInterval;
+        private string OnString;
+        public UpdateLightIntervalAction(float interval,Trafficlight light)
+        {
+            this.Light = light;
+            this.Interval = interval;
+            this.previousInterval = light.GreenSeconds;
+        }
         /// <summary>
         /// Defines changes to remove
         /// </summary>
         protected override void OnUndo()
         {
-            throw new NotImplementedException();
+            Light.GreenSeconds = previousInterval;
+            OnString = "Interval change from {1} to {0}";
         }
 
         /// <summary>
@@ -28,7 +36,8 @@ namespace TrafficLights
         /// </summary>
         protected override void OnRedo()
         {
-            throw new NotImplementedException();
+            Light.GreenSeconds = Interval;
+            OnString = "Interval change from {0} to {1}";
         }
 
         /// <summary>
@@ -36,7 +45,7 @@ namespace TrafficLights
         /// </summary>
         protected override string AsString
         {
-            get { throw new NotImplementedException(); }
+            get { return string.Format(OnString, previousInterval, Interval); }
         }
     }
 }

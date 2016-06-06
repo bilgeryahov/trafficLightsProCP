@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,14 +46,19 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCrosswalkAction.cs" />
+    <Compile Include="CreateExcelFile.cs" />
+    <Compile Include="PlaceCrossingAction.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Crossing.cs" />
     <Compile Include="CrossingA.cs" />
     <Compile Include="CrossingB.cs" />
+    <Compile Include="CrossingBRotated.cs" />
     <Compile Include="CrossingManager.cs" />
     <Compile Include="Crosswalk.cs" />
     <Compile Include="Direction.cs" />
@@ -60,16 +69,34 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manual.Designer.cs">
+      <DependentUpon>Manual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Moveable.cs" />
     <Compile Include="MoveCrosswalkAction.cs" />
     <Compile Include="Pedestrian.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecycleManager.cs" />
+    <Compile Include="RecycleManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecycleManagerForm.Designer.cs">
+      <DependentUpon>RecycleManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Renderable.cs" />
     <Compile Include="Lane.cs" />
-    <Compile Include="RotateAction.cs" />
+    <Compile Include="RemoveCrossingAction.cs" />
     <Compile Include="SavedManager.cs" />
+    <Compile Include="SavedManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SavedManagerForm.Designer.cs">
+      <DependentUpon>SavedManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Simulation.cs" />
     <Compile Include="SystemState.cs" />
     <Compile Include="TrafficManager.cs" />
@@ -82,10 +109,19 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Manual.resx">
+      <DependentUpon>Manual.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecycleManagerForm.resx">
+      <DependentUpon>RecycleManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SavedManagerForm.resx">
+      <DependentUpon>SavedManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagrams\Component.cd" />
     <None Include="ClassDiagrams\Crossing.cd" />
@@ -114,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\cross 1.bmp" />
+    <Content Include="Resources\save.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\cross 2.bmp" />

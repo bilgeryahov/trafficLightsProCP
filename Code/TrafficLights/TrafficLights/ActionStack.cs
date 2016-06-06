@@ -33,6 +33,21 @@ namespace TrafficLights
             }
         }
 
+        public static bool HasChanges { get { return CanUndo || CanRedo; } }
+
+        public static UndoableAction[] UndoableActions
+        {
+            get
+            {
+                List<UndoableAction> result = new List<UndoableAction>();
+
+                result.AddRange(activitiesStack);
+                result.AddRange(redoStack);
+
+                return result.ToArray();
+            }
+        }
+
         private static Stack<UndoableAction> activitiesStack = new Stack<UndoableAction>();
         private static Stack<UndoableAction> redoStack = new Stack<UndoableAction>();
 

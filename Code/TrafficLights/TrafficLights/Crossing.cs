@@ -22,7 +22,29 @@ namespace TrafficLights
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-        public abstract Crosswalk[] Crosswalks { get; }
+
+        private Crosswalk[] crosswalks = null;
+
+        public Crosswalk[] Crosswalks
+        {
+            get
+            {
+                if (crosswalks == null)
+                {
+                    crosswalks = GenerateCrosswalks;
+                    foreach (Crosswalk crosswalk in crosswalks)
+                    {
+                        crosswalk.Owner = this;
+                    }
+                    foreach (Trafficlight light in this.Lights)
+                    {
+                        light.SetOwner(this);
+                    }
+                }
+                return crosswalks;
+            }
+        }
+        protected abstract Crosswalk[] GenerateCrosswalks { get; }
 
         /// <summary>
         /// Gets the crosswalk on left.
@@ -45,11 +67,13 @@ namespace TrafficLights
         /// <value>The crosswalk below.</value>
         public Crosswalk CrosswalkBelow { get { return this.Crosswalks.FirstOrDefault(x => x.Entrylanes.All(y => y.From == Direction.Down)); } }
 
+
         /// <summary>
         /// Gets the owner.
         /// </summary>
         /// <value>The owner.</value>
-        public TrafficManager Owner { get; private set; }
+        [NonSerialized]
+        public TrafficManager Owner;
         /// <summary>
         /// Gets the row.
         /// </summary>
@@ -60,6 +84,9 @@ namespace TrafficLights
         /// </summary>
         /// <value>The column.</value>
         public int Column { get; private set; }
+
+        public int RowRecycleManager { get; private set; }
+        public int ColumnRecycleManager { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is on the grid.
@@ -133,7 +160,7 @@ namespace TrafficLights
             {
                 Crossing[] nextRow = Owner.Grid[this.Row + 1];
                 if (nextRow == null) return null;
-                if (nextRow.Length < this.Column) return nextRow[this.Column];
+                if (nextRow.Length > this.Column) return nextRow[this.Column];
                 return null;
             }
         }
@@ -181,8 +208,21 @@ namespace TrafficLights
             }
         }
 
+        public IEnumerable<Renderable> ChildElements
+        {
+            get
+            {
+                List<Renderable> children = new List<Renderable>();
+                children.AddRange(this.Crosswalks);
+                children.AddRange(Lights);
+                //children.AddRange(Lanes);
 
-     //   public IEnumerable<Lane> Roads
+                return children;
+            }
+        }
+
+        public abstract System.Drawing.Image Image { get; }
+
         /// <summary>
         /// Gets the lanes.
         /// </summary>
@@ -203,6 +243,25 @@ namespace TrafficLights
         }
 
         /// <summary>
+        /// Gets the lanes.
+        /// </summary>
+        /// <value>The lanes.</value>
+        public IEnumerable<Trafficlight> Lights
+        {
+            get
+            {
+                List<Trafficlight> lights = new List<Trafficlight>();
+
+                foreach (Crosswalk crosswalk in Crosswalks)
+                {
+                    lights.Add(crosswalk.Light);
+                }
+
+                return lights;
+            }
+        }
+
+        /// <summary>
         /// Gets the feeders.
         /// </summary>
         /// <value>The feeders.</value>
@@ -218,7 +277,7 @@ namespace TrafficLights
         /// Gets the top feeders.
         /// </summary>
         /// <value>The top feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> TopFeeders
+        public IEnumerable<Lane> TopFeeders
         {
             get
             {
@@ -230,7 +289,7 @@ namespace TrafficLights
         /// Gets the bot feeders.
         /// </summary>
         /// <value>The bot feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> BotFeeders
+        public IEnumerable<Lane> BotFeeders
         {
             get
             {
@@ -242,7 +301,7 @@ namespace TrafficLights
         /// Gets the left feeders.
         /// </summary>
         /// <value>The left feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> LeftFeeders
+        public IEnumerable<Lane> LeftFeeders
         {
             get
             {
@@ -254,7 +313,7 @@ namespace TrafficLights
         /// Gets the right feeders.
         /// </summary>
         /// <value>The right feeders.</value>
-        public System.Collections.Generic.IEnumerable<TrafficLights.Lane> RightFeeders
+        public IEnumerable<Lane> RightFeeders
         {
             get
             {
@@ -286,9 +345,13 @@ namespace TrafficLights
         /// <returns>Crossing.</returns>
         public Crossing CreateCopy()
         {
-            //using serialization create Full copy
-            Crossing copy = null;
-            throw new System.NotImplementedException();
+            var stream = new System.IO.MemoryStream();
+            var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            formatter.Serialize(stream, this);
+            stream.Seek(0, System.IO.SeekOrigin.Begin);
+            Crossing copy = formatter.Deserialize(stream) as Crossing;
+            copy.Owner = this.Owner;
+            return copy;
         }
 
         /// <summary>
@@ -308,14 +371,50 @@ namespace TrafficLights
         {
             this.Row = row;
             this.Column = column;
+
+            if(row!=-1 && column != -1)
+            {
+                this.RowRecycleManager = row;
+                this.ColumnRecycleManager = column;
+            }
+        }
+        public override void Update(float seconds)
+        {
+            //set interval, but not timeout if first pass
+            foreach (Renderable child in this.ChildElements)
+                child.Update(seconds);
+        }
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
+        {
+            
+            foreach (Renderable child in this.ChildElements)
+            {
+                child.Draw(image);
+            }  
         }
 
-        /// <summary>
-        /// Rotates this instance.
-        /// </summary>
-        public void Rotate()
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new System.NotImplementedException();
+            foreach (Renderable child in this.ChildElements)
+                child.Draw(image);
+        }
+        public bool IntervalsSet = false;
+        public void SetStartIntervals()
+        {
+            foreach (Trafficlight light in this.Lights)
+            {
+                light.RedSeconds = this.Lights.Where(x=>x != light).Sum(x=>x.GreenSeconds+x.YellowSeconds);
+                light.TimeoutSeconds = this.Lights.Where(x => x.Position < light.Position).Sum(x => x.YellowSeconds+x.GreenSeconds);
+            }
+            IntervalsSet = true;
+        }
+        public void Reset()
+        {
+            SetStartIntervals();
+            foreach (Crosswalk crosswalk in this.Crosswalks)
+            {
+                crosswalk.Reset();
+            }
         }
     }
 }

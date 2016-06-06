@@ -45,6 +45,7 @@ namespace TrafficLights
         {
             get
             {
+<<<<<<< HEAD
                 if (CurrentCrosswalk.CanHavePedestrians && CurrentCrosswalk.To!=null)
                 {
                     Crossing crossing = CurrentCrosswalk.Owner;
@@ -65,6 +66,27 @@ namespace TrafficLights
                         return crossing.NextCrosswalkRight;
                     }
                 }
+=======
+                
+                    Crossing crossing = CurrentCrosswalk.Owner;
+                    if (CurrentCrosswalk.To == Direction.Up && crossing.NextCrosswalkAbove.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkAbove;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Down && crossing.NextCrosswalkBelow.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkBelow;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Left && crossing.NextCrosswalkLeft.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkLeft;
+                    }
+                    else if (CurrentCrosswalk.To == Direction.Right && crossing.NextCrosswalkRight.CanHavePedestrians)
+                    {
+                        return crossing.NextCrosswalkRight;
+                    }
+                
+>>>>>>> develop
                 return null;
             }
         }
@@ -78,6 +100,7 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             //moves the location of the pedestrians based on the elapsed time
+<<<<<<< HEAD
             base.Update(seconds);
             if (CurrentPointIndex > 0)
             {
@@ -91,6 +114,8 @@ namespace TrafficLights
                 this.X = Path[index].X;
                 this.Y = Path[index].Y;
             }
+=======
+>>>>>>> develop
         }
 
         /// <summary>
@@ -109,7 +134,11 @@ namespace TrafficLights
         /// <param name="image">The image.</param>
         protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
+<<<<<<< HEAD
             base.DrawWhenNormal(image);
+=======
+            DrawWhenNormal(image);
+>>>>>>> develop
         }
     }
 }

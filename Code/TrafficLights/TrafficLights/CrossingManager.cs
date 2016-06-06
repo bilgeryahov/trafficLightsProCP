@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace TrafficLights
-{
+{[Serializable]
     /// <summary>
     /// is responsible for the crossings
     /// </summary>
@@ -27,7 +27,7 @@ namespace TrafficLights
         /// <param name="crossing">The crossing.</param>
         public void Add(Crossing crossing)
         {
-            throw new System.NotImplementedException();
+            this.crossings.Add(crossing);
         }
 
         /// <summary>
@@ -36,7 +36,24 @@ namespace TrafficLights
         /// <param name="id">The identifier.</param>
         public void Remove(int id)
         {
-            throw new System.NotImplementedException();
+            if (this.crossings.Count > id)
+                this.crossings.RemoveAt(id);
+        }
+
+        /// <summary>
+        /// Removes the specified identifier.
+        /// </summary>
+        /// <param name="id">The crossing.</param>
+        public void Remove(Crossing crossing)
+        {
+            for (int i = 0; i < this.crossings.Count; i++)
+            {
+                if(this.crossings[i] == crossing)
+                {
+                    Remove(i);
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -44,7 +61,7 @@ namespace TrafficLights
         /// </summary>
         public void Clear()
         {
-            throw new System.NotImplementedException();
+            this.crossings.Clear();
         }
 
         /// <summary>

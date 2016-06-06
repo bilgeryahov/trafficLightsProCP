@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// abstract class providing with the core for a dynamic object to be rendered
     /// </summary>
@@ -23,15 +24,15 @@ namespace TrafficLights
         /// <summary>
         /// Draws the when normal.
         /// </summary>
-        protected abstract void DrawWhenNormal(System.Drawing.Bitmap image);
+        protected abstract void DrawWhenNormal(System.Drawing.Graphics image);
         /// <summary>
         /// Draws the when active.
         /// </summary>
-        protected abstract void DrawWhenActive(System.Drawing.Bitmap image);
+        protected abstract void DrawWhenActive(System.Drawing.Graphics image);
         /// <summary>
         /// Draws the specified image.
         /// </summary>
-        public void Draw(System.Drawing.Bitmap image)
+        public void Draw(System.Drawing.Graphics image)
         {
             if (isActive) { DrawWhenActive(image); }
             else { DrawWhenNormal(image); }

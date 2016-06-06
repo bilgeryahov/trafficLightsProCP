@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrafficLights
 {
+    [Serializable]
     /// <summary>
     /// handles a simulation based on the grid created by the System
     /// </summary>
@@ -16,6 +17,8 @@ namespace TrafficLights
         /// Occurs when [on completed].
         /// </summary>
         public event Action<SimulationResult> OnCompleted = (x) => { };
+        public event Action<bool> OnPauseStateChanged = (x) => { };
+        public event Action<float> OnSpeedChanged = (x) => { };
 
         /// <summary>
         /// The min speed
@@ -38,6 +41,8 @@ namespace TrafficLights
         /// </summary>
         public const float DEFAULT_GRID_COLUMNS = 3;
 
+        public float TimePassed { get; private set; }
+
         /// <summary>
         /// The current frame
         /// </summary>
@@ -45,7 +50,7 @@ namespace TrafficLights
         /// <summary>
         /// The is paused
         /// </summary>
-        bool isPaused;
+        bool isPaused = false;
 
         /// <summary>
         /// Gets the grid.
@@ -53,10 +58,16 @@ namespace TrafficLights
         /// <value>The grid.</value>
         public Grid Grid { get; private set; }
 
+        private float[] speeds = new float[] {
+        0.1f, 0.2f, 0.5f,
+        1,
+        2, 5, 10
+        };
+
         /// <summary>
         /// The speed
         /// </summary>
-        private float speed;
+        private float speed = 1;
         /// <summary>
         /// Gets the speed.
         /// </summary>
@@ -69,17 +80,8 @@ namespace TrafficLights
                 if (value < 0.1) value = 0.1f;
                 else if (value > 10) value = 10;
                 this.speed = value;
+                OnSpeedChanged(this.speed);
             }
-        }
-
-        /// <summary>
-        /// Destination of the simulation when saving and loading.
-        /// To be used with save file dialogs.
-        /// </summary>
-        public string Destination
-        {
-            get;
-            set;
         }
 
         /// <summary>
@@ -92,13 +94,31 @@ namespace TrafficLights
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { throw new System.NotImplementedException(); } }
+        public int CarsPassed { get { return 0; } }
 
         /// <summary>
         /// Gets the cars left.
         /// </summary>
         /// <value>The cars left.</value>
         public int CarsLeft { get { return TotalCars - CarsPassed; } }
+
+        public List<Car> CurrentCars
+        {
+            get
+            {
+                List<Car> cars = new List<Car>();
+                foreach (Crossing crossing in this.Grid.AllCrossings)
+                {
+                    foreach (Lane lane in crossing.Lanes)
+                    {
+                        cars.AddRange(lane.CarsCurrentlyOn);
+                    }
+                }
+
+                return cars;
+            }
+        }
+
         /// <summary>
         /// Gets a value indicating whether this instance has pedestrians crossing.
         /// </summary>
@@ -120,7 +140,17 @@ namespace TrafficLights
         /// </summary>
         public void IncreaseSpeed()
         {
-            IncreaseSpeed(DEFAULT_ADJUST_SPEED);
+            float nextSpeed = speed;
+            for (int i = 0; i < this.speeds.Length; i++)
+			{
+                if (nextSpeed == speeds[i])
+                {
+                    if (i != this.speeds.Length - 1)
+                        nextSpeed = speeds[i+1];
+                    break;
+                }
+			}
+            Speed = nextSpeed;
         }
 
         /// <summary>
@@ -128,7 +158,17 @@ namespace TrafficLights
         /// </summary>
         public void DecreaseSpeed()
         {
-            DecreaseSpeed(DEFAULT_ADJUST_SPEED);
+            float nextSpeed = speed;
+            for (int i = 0; i < this.speeds.Length; i++)
+            {
+                if (nextSpeed == speeds[i])
+                {
+                    if (i != 0)
+                        nextSpeed = speeds[i - 1];
+                    break;
+                }
+            }
+            Speed = nextSpeed;
         }
 
         /// <summary>
@@ -148,7 +188,7 @@ namespace TrafficLights
         /// <param name="amount">The amount.</param>
         public void DecreaseSpeed(float amount)
         {
-            if (amount < 0) amount *= -1;
+            if (amount > 0) amount *= -1;
 
             AdjustSpeed(amount);
         }
@@ -160,6 +200,8 @@ namespace TrafficLights
         public void AdjustSpeed(float amount)
         {
             this.Speed += amount;
+
+            this.speed = ((int)(this.speed * 100)) / 100.0f;
         }
 
         /// <summary>
@@ -167,12 +209,14 @@ namespace TrafficLights
         /// </summary>
         public void Start()
         {
-            throw new System.NotImplementedException();
             if (isPaused)
             {
                 Resume();
                 return;
             }
+            isPaused = false;
+            OnPauseStateChanged(isPaused);
+            this.Grid.Reset();
         }
 
         /// <summary>
@@ -181,8 +225,8 @@ namespace TrafficLights
         public void Pause()
         {
             if (isPaused) return;
-            throw new System.NotImplementedException();
             isPaused = true;
+            OnPauseStateChanged(isPaused);
         }
 
         /// <summary>
@@ -190,9 +234,9 @@ namespace TrafficLights
         /// </summary>
         public void Resume()
         {
-            throw new System.NotImplementedException();
             if (!isPaused) return;
             isPaused = false;
+            OnPauseStateChanged(isPaused);
         }
 
         /// <summary>
@@ -200,8 +244,8 @@ namespace TrafficLights
         /// </summary>
         public void Stop()
         {
-            throw new System.NotImplementedException();
             Reset();
+            isPaused = false;
         }
 
         /// <summary>
@@ -209,13 +253,11 @@ namespace TrafficLights
         /// </summary>
         public void Finish()
         {
-            throw new System.NotImplementedException();
             if (CarsLeft == 0 && !HasPedestriansCrossing)
             {
                 OnCompleted(new SimulationResult(this));
                 Stop();
             }
-
         }
 
         /// <summary>
@@ -223,7 +265,11 @@ namespace TrafficLights
         /// </summary>
         public void Reset()
         {
-            throw new NotImplementedException();
+            Pause();
+
+            this.Grid.Reset();
+
+            TimePassed = 0;
         }
 
         /// <summary>
@@ -242,28 +288,31 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             if (isPaused) return;
-            currentFrame += speed;
-            throw new NotImplementedException();
+            seconds *= speed;
+            float fps = 15;
+            currentFrame += (seconds * 1000) / (1000/fps);
+            foreach (Crossing crossing in Grid.AllCrossings)
+                if(crossing != null)
+                    crossing.Update(seconds);
+            TimePassed += seconds;
+            //throw new NotImplementedException();
+            Finish();
         }
 
         /// <summary>
         /// Draws the when normal.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenNormal(System.Drawing.Bitmap image)
+        protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
-            if (isPaused) return;
-            //draw components based on which frame they should be at
-            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Draws the when active.
         /// </summary>
         /// <param name="image">The image.</param>
-        protected override void DrawWhenActive(System.Drawing.Bitmap image)
+        protected override void DrawWhenActive(System.Drawing.Graphics image)
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>

@@ -12,6 +12,13 @@ namespace TrafficLights
     [Serializable]
     public class Grid
     {
+        public System.Drawing.Point PointFromSlotID(int slotID) { return new System.Drawing.Point(slotID % 3, slotID / 3); }
+        public Crossing CrossingAt(int slotID)
+        {
+            System.Drawing.Point point = PointFromSlotID(slotID);
+            return Crossings[point.Y][point.X];
+        }
+
         /// <summary>
         /// Delegate GridAltered
         /// </summary>
@@ -19,14 +26,19 @@ namespace TrafficLights
         /// <param name="xPosition">The x position.</param>
         /// <param name="yPosition">The y position.</param>
         public delegate void GridAltered(Crossing alteredCrossing, int xPosition, int yPosition);
+      
         /// <summary>
         /// Occurs when [on crossing added].
         /// </summary>
+        [field:NonSerialized]
         public event GridAltered OnCrossingAdded = (x, y, z) => { };
         /// <summary>
         /// Occurs when [on crossing removed].
         /// </summary>
+        [field:NonSerialized]
         public event GridAltered OnCrossingRemoved = (x, y, z) => { };
+
+      
 
         /// <summary>
         /// Gets the crossings.
@@ -44,9 +56,7 @@ namespace TrafficLights
                 List<Crossing> crossings = new List<Crossing>();
 
                 foreach (Crossing[] row in this.Crossings)
-                {
                     crossings.AddRange(row);
-                }
 
                 return crossings;
             }
@@ -109,7 +119,6 @@ namespace TrafficLights
 
             if (this[row][column] != null)
                 RemoveAt(row, column);
-            throw new NotImplementedException();
 
             crossing = crossing.CreateCopy();
             crossing.AssignGridLocation(row, column);
@@ -127,9 +136,8 @@ namespace TrafficLights
         {
             ValidateCanUse(row, column);
 
-            throw new NotImplementedException();
-
             Crossing crossing = this[row][column];
+            this.Crossings[row][column] = null;
             crossing.RemoveFromGrid();
             OnCrossingRemoved(crossing, row, column);
         }
@@ -169,7 +177,20 @@ namespace TrafficLights
         /// <param name="column">The column.</param>
         public bool CheckAvailability(int row,int column)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                ValidateCanUse(row, column);
+            }
+            catch { return false; }
+
+            return this.Crossings[row][column] == null;
+        }
+
+        public void Reset()
+        {
+            foreach (Crossing crossing in this.AllCrossings)
+                if(crossing != null)
+                    crossing.Reset();
         }
     }
 }

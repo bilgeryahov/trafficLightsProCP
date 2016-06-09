@@ -13,7 +13,7 @@ namespace TrafficLights
     {
         public Lane Lane { get; private set; }
         public int Flow { get; private set; }
-        private int previousFlow;
+        public int previousFlow;
         private string OnString;
         public UpdateFlowAction(int flow, Lane lane)
         {

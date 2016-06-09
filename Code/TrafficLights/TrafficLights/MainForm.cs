@@ -50,6 +50,16 @@ namespace TrafficLights
                 {
                     propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
                 }
+                else if (actionRedone is UpdateMultipleIntervalAction)
+                {
+                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                    slotIDToPBoxLookup[(actionRedone as UpdateMultipleIntervalAction).Crossing.Column + (actionRedone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                }
+                else if (actionRedone is UpdateMultipleFlowAction)
+                {
+                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                    slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
+                }
             };
 
             ActionStack.OnUndoAltered += (actionsToUndo, actionUndone) =>
@@ -72,6 +82,16 @@ namespace TrafficLights
                 else if (actionUndone is UpdateLightIntervalAction && manager.CurrentActiveTrafficLight == (actionUndone as UpdateLightIntervalAction).Light)
                 {
                     propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                }
+                else if (actionUndone is UpdateMultipleIntervalAction)
+                {
+                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                    slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                }
+                else if (actionUndone is UpdateMultipleFlowAction)
+                {
+                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                    slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                 }
             };
 
@@ -508,13 +528,7 @@ namespace TrafficLights
                     {
                         continue;
                     }
-                    foreach (Lane lane in crossing.Lanes)
-                    {
-                        if (!lane.IsFeeder) continue;
-                        if (lane.Flow == (int)propertiesEditNUD.Value) continue;
-                        ActionStack.AddAction(new UpdateFlowAction((int)propertiesEditNUD.Value, lane));
-                        slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
-                    }
+                    ActionStack.AddAction(new UpdateMultipleFlowAction((int)propertiesEditNUD.Value, crossing));
                 }
                 if (manager.CurrentActiveComponent is Trafficlight)
                 {
@@ -522,13 +536,10 @@ namespace TrafficLights
                     {
                         continue;
                     }
-                    foreach (Trafficlight light in crossing.Lights)
-                    {
-                        if (light.GreenSeconds == (float)propertiesEditNUD.Value) continue;
-                        ActionStack.AddAction(new UpdateLightIntervalAction((int)propertiesEditNUD.Value, light));
-                        slotIDToPBoxLookup[manager.CurrentActiveTrafficLight.Owner.Column + manager.CurrentActiveTrafficLight.Owner.Row * 3].Invalidate();
-                    }
+
+                    ActionStack.AddAction(new UpdateMultipleIntervalAction((int)propertiesEditNUD.Value, crossing));
                 }
+                slotIDToPBoxLookup[crossing.Column + crossing.Row * 3].Invalidate();
             }
         }
 

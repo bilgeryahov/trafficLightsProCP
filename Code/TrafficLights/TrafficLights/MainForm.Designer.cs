@@ -374,6 +374,7 @@
             // lbActions
             // 
             this.lbActions.FormattingEnabled = true;
+            this.lbActions.HorizontalScrollbar = true;
             this.lbActions.Location = new System.Drawing.Point(12, 524);
             this.lbActions.Name = "lbActions";
             this.lbActions.Size = new System.Drawing.Size(202, 121);

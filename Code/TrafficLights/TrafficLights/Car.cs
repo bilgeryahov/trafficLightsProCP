@@ -38,20 +38,42 @@ namespace TrafficLights
             int midX = lane.X;
             int midY = next.Y;
 
-           if(false)
-            if (lane.To.HasFlag(next.From))
+            //  if (false)
+           // if (lane.To.HasFlag(next.From))
+           // {
                 if (lane.To.HasFlag(Direction.Left))
-                    midX = lane.X / 2;
+                {
+                    midX = lane.X;
+                    midY = next.Y;
+                //    midX = lane.X / 2;
+                }
                 else if (lane.To.HasFlag(Direction.Right))
-                    midX = next.X / 2;
+                {
+                    midX = lane.X + 200;
+                    midY = next.Y;
+                //    midX = next.X / 2;
+                
+                }
                 else if (lane.To.HasFlag(Direction.Down))
-                    midY = lane.Y / 2;
+                {
+                    midX = next.X;
+                    midY = lane.Y;
+                   // midY = lane.Y/ 2;;
+                }
+                
                 else if (lane.To.HasFlag(Direction.Up))
-                    midY = next.Y / 2;
+                {
+                    midX = next.X;
+                    midY = lane.Y;
+                    //midY = next.Y / 2;
+                
+                }
+         //   }
 
             System.Drawing.Point start = new System.Drawing.Point(lane.X, lane.Y);
             System.Drawing.Point end = new System.Drawing.Point(next.X, next.Y);
-            System.Drawing.Point mid = new System.Drawing.Point(end.X, start.Y);
+            //  System.Drawing.Point mid = new System.Drawing.Point(end.X, start.Y);
+            System.Drawing.Point mid = new System.Drawing.Point(midX, midY);
 
             if (next.To == Direction.Up)
             { }
@@ -81,13 +103,17 @@ namespace TrafficLights
             if (OneCycleHasPassed)
             {
                 CurrentLane = CurrentLane.Next;
-                
+
                 if (CurrentLane != null)
                 {
                     if (!CurrentLane.IsFeeder)
+                    {
                         CurrentLane = CurrentLane.Next;
-                    if(CurrentLane != null)
+                        //   PathFromLane(CurrentLane);
+                    }
+                    if (CurrentLane != null)
                         CurrentLane.IncreaseAccumulatedFlow();
+
                 }
                 else
                 {
@@ -103,7 +129,7 @@ namespace TrafficLights
         protected override void DrawWhenNormal(System.Drawing.Graphics image)
         {
             //draws a rectangle on the car's location
-            image.FillEllipse(System.Drawing.Brushes.Black, this.X - 6, this.Y - 6, 8, 8);
+            image.FillEllipse(System.Drawing.Brushes.Black, this.X + 8, this.Y + 8, 8, 8);
         }
 
         /// <summary>

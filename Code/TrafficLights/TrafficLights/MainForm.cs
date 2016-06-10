@@ -494,6 +494,8 @@ namespace TrafficLights
         {
             if (manager.CurrentActiveLane != null)
             {
+                // TODO-IF Current Lane is allowed to have pedestrians enable button, otherwise disable
+                // when pedestrians activated the cars which are about to get into the lane have to wait for the pedestrians to pass (or other type of functionality)
                 if (manager.CurrentActiveLane.Flow == (int)propertiesEditNUD.Value) return;
                 if (cbApply.Checked || cbApplyCrossing.Checked)
                 {

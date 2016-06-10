@@ -41,7 +41,7 @@ namespace TrafficLights
                     new Crosswalk
                         (Direction.Down, true, 60, 200, 140, 140,
                         new Lane(Direction.Up, Direction.Down, false, 75, 135),
-                        new Lane(Direction.Up, Direction.Down, false, 110, 135)
+                        new Lane(Direction.Down, Direction.Up | Direction.Right, true, 110, 135)
                         )
                         ,
                     new Crosswalk
@@ -54,7 +54,7 @@ namespace TrafficLights
                     new Crosswalk
                         (Direction.Up, true, 60, 0, 40, 0,
                         new Lane(Direction.Down, Direction.Up, false, 110, 0),
-                        new Lane(Direction.Down, Direction.Up, false, 75, 0)
+                        new Lane(Direction.Up, Direction.Down | Direction.Left, true, 75, 0)
 
                         )
         };

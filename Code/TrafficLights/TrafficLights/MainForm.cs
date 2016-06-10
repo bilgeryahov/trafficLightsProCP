@@ -52,12 +52,14 @@ namespace TrafficLights
                 }
                 else if (actionRedone is UpdateMultipleIntervalAction)
                 {
-                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                    if (manager.CurrentActiveTrafficLight != null)
+                        propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
                     slotIDToPBoxLookup[(actionRedone as UpdateMultipleIntervalAction).Crossing.Column + (actionRedone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
                 }
                 else if (actionRedone is UpdateMultipleFlowAction)
                 {
-                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                    if (manager.CurrentActiveLane != null)
+                        propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
                     slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                 }
             };
@@ -85,12 +87,14 @@ namespace TrafficLights
                 }
                 else if (actionUndone is UpdateMultipleIntervalAction)
                 {
-                    propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                    if (manager.CurrentActiveTrafficLight!=null)
+                        propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
                     slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
                 }
                 else if (actionUndone is UpdateMultipleFlowAction)
                 {
-                    propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                    if (manager.CurrentActiveLane!=null)
+                        propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
                     slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                 }
             };

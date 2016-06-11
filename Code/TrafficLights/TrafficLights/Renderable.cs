@@ -15,7 +15,7 @@ namespace TrafficLights
         /// Gets a value indicating whether this instance is active.
         /// </summary>
         /// <value><c>true</c> if this instance is active; otherwise, <c>false</c>.</value>
-        public bool isActive { get; private set; }
+        public bool IsActive { get; private set; }
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
@@ -34,7 +34,7 @@ namespace TrafficLights
         /// </summary>
         public void Draw(System.Drawing.Graphics image)
         {
-            if (isActive) { DrawWhenActive(image); }
+            if (IsActive) { DrawWhenActive(image); }
             else { DrawWhenNormal(image); }
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace TrafficLights
         /// <param name="state">if set to <c>true</c> [state].</param>
         public void SetActive(bool state)
         {
-            this.isActive = state;
+            this.IsActive = state;
         }
     }
 }

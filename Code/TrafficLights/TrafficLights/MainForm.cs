@@ -208,9 +208,41 @@ namespace TrafficLights
                     }
                 }
             };
-            manager.CurrentSimulation.OnPauseStateChanged += 
-                (x) => 
-                    timer.Enabled = !x;
+            manager.CurrentSimulation.OnPauseStateChanged +=
+                (isPaused) =>
+                {
+                    timer.Enabled = !isPaused;
+                    ToggleControl(undoToolStripMenuItem1, isPaused);
+                    ToggleControl(redoToolStripMenuItem1, isPaused);
+                    ToggleControl(undoBtn, isPaused);
+                    ToggleControl(redoBtn, isPaused);
+
+                    ToggleControl(newSimulationToolStripMenuItem, isPaused);
+                    ToggleControl(openToolStripMenuItem, isPaused);
+                    ToggleControl(saveToolStripMenuItem1, isPaused);
+
+                    ToggleControl(btnSaveCrossingManager, isPaused);
+                    ToggleControl(button2, isPaused);
+                    ToggleControl(button1, isPaused);
+                    ToggleControl(updatePropertiesBtn, isPaused);
+
+                    ToggleControl(PicBoxTypeA, isPaused);
+                    ToggleControl(PicBoxTypeB, isPaused);
+                    ToggleControl(PicBoxTypeC, isPaused);
+
+                    if (!isPaused)
+                    {
+                        manager.CurrentActiveComponent = null;
+
+                        ChangeBorder(PicBoxTypeA, false);
+                        ChangeBorder(PicBoxTypeB, false);
+                        ChangeBorder(PicBoxTypeC, false);
+                        ChangeGridSlotsCursor(false);
+                        button2.FlatStyle = FlatStyle.Standard;
+                        rmToggled = false;
+                        state = SystemState.None;
+                    }
+                };
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
             manager.CurrentSimulation.OnCompleted += (x) => {
                 throw new NotImplementedException("Show results");
@@ -299,11 +331,6 @@ namespace TrafficLights
         {
         }
 
-        /// <summary>
-        /// Handles the Enter event of the groupBox1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -425,12 +452,14 @@ namespace TrafficLights
         }
         private void SelectComponent(PictureBox sender, MouseEventArgs e)
         {
+            if (manager.CurrentSimulation.IsActive)
+                return;
+
             int slot = pBoxToSlotIDLookup[sender];
             Crossing crossing = manager.Grid.CrossingAt(slot);
             if(crossing!=null)
             {
                 foreach (Lane lane in crossing.Feeders)
-                //foreach (Lane lane in crossing.Feeders)
                 {
                     if (FindCollision(e, lane))
                     {

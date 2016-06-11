@@ -51,6 +51,7 @@ namespace TrafficLights
         /// The is paused
         /// </summary>
         bool isPaused = false;
+        public bool IsPaused { get { return isPaused; } }
 
         /// <summary>
         /// Gets the grid.
@@ -214,6 +215,7 @@ namespace TrafficLights
                 Resume();
                 return;
             }
+            SetActive(true);
             isPaused = false;
             OnPauseStateChanged(isPaused);
             this.Grid.Reset();
@@ -227,6 +229,7 @@ namespace TrafficLights
             if (isPaused) return;
             isPaused = true;
             OnPauseStateChanged(isPaused);
+            SetActive(false);
         }
 
         /// <summary>
@@ -237,6 +240,7 @@ namespace TrafficLights
             if (!isPaused) return;
             isPaused = false;
             OnPauseStateChanged(isPaused);
+            SetActive(true);
         }
 
         /// <summary>
@@ -245,7 +249,6 @@ namespace TrafficLights
         public void Stop()
         {
             Reset();
-            isPaused = false;
         }
 
         /// <summary>

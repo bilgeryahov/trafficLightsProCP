@@ -102,7 +102,6 @@
             this.gridSlot1 = new System.Windows.Forms.PictureBox();
             this.PicBoxTypeB = new System.Windows.Forms.PictureBox();
             this.PicBoxTypeA = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.propertiesEditGBox.SuspendLayout();
@@ -376,7 +375,7 @@
             // 
             this.lbActions.FormattingEnabled = true;
             this.lbActions.HorizontalScrollbar = true;
-            this.lbActions.Location = new System.Drawing.Point(6, 564);
+            this.lbActions.Location = new System.Drawing.Point(8, 547);
             this.lbActions.Name = "lbActions";
             this.lbActions.Size = new System.Drawing.Size(202, 121);
             this.lbActions.TabIndex = 69;
@@ -448,7 +447,6 @@
             // 
             // propertiesEditGBox
             // 
-            this.propertiesEditGBox.Controls.Add(this.checkBox1);
             this.propertiesEditGBox.Controls.Add(this.cbApplyCrossing);
             this.propertiesEditGBox.Controls.Add(this.cbApply);
             this.propertiesEditGBox.Controls.Add(this.propertiesEditNUD);
@@ -458,7 +456,7 @@
             this.propertiesEditGBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.propertiesEditGBox.Location = new System.Drawing.Point(5, 348);
             this.propertiesEditGBox.Name = "propertiesEditGBox";
-            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 187);
+            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 167);
             this.propertiesEditGBox.TabIndex = 81;
             this.propertiesEditGBox.TabStop = false;
             this.propertiesEditGBox.Text = "Properties";
@@ -494,7 +492,7 @@
             // 
             // updatePropertiesBtn
             // 
-            this.updatePropertiesBtn.Location = new System.Drawing.Point(83, 148);
+            this.updatePropertiesBtn.Location = new System.Drawing.Point(74, 126);
             this.updatePropertiesBtn.Name = "updatePropertiesBtn";
             this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 27);
             this.updatePropertiesBtn.TabIndex = 89;
@@ -517,7 +515,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Baskerville Old Face", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(12, 535);
+            this.label8.Location = new System.Drawing.Point(12, 518);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 26);
             this.label8.TabIndex = 83;
@@ -585,7 +583,7 @@
             // 
             this.redoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("redoBtn.BackgroundImage")));
             this.redoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.redoBtn.Location = new System.Drawing.Point(174, 689);
+            this.redoBtn.Location = new System.Drawing.Point(174, 674);
             this.redoBtn.Name = "redoBtn";
             this.redoBtn.Size = new System.Drawing.Size(40, 40);
             this.redoBtn.TabIndex = 85;
@@ -596,7 +594,7 @@
             // 
             this.undoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("undoBtn.BackgroundImage")));
             this.undoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.undoBtn.Location = new System.Drawing.Point(128, 689);
+            this.undoBtn.Location = new System.Drawing.Point(128, 674);
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.Size = new System.Drawing.Size(40, 40);
             this.undoBtn.TabIndex = 84;
@@ -804,16 +802,6 @@
             this.PicBoxTypeA.TabIndex = 58;
             this.PicBoxTypeA.TabStop = false;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(60, 120);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(154, 22);
-            this.checkBox1.TabIndex = 93;
-            this.checkBox1.Text = "Activate Pedestrians";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -958,7 +946,6 @@
         private System.Windows.Forms.CheckBox cbApply;
         private System.Windows.Forms.Button btnSaveCrossingManager;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

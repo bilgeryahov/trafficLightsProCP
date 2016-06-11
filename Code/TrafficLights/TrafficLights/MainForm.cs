@@ -245,7 +245,31 @@ namespace TrafficLights
                 };
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
             manager.CurrentSimulation.OnCompleted += (x) => {
-                throw new NotImplementedException("Show results");
+                // throw new NotImplementedException("Show results");
+
+                timer.Stop();
+
+                listBox1.Items.Clear();
+
+                listBox1.Items.Add("Date performed: ");
+                listBox1.Items.Add(x.DatePerformed.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Time passed: ");
+                listBox1.Items.Add(x.SimulationSetup.TimePassed.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Total cars: ");
+                listBox1.Items.Add(x.SimulationSetup.TotalCars.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Successfully crossings of cars: ");
+                listBox1.Items.Add(x.SimulationSetup.GetXTimesCrossingsCrossed().ToString());
+            
+
             };
         }
 

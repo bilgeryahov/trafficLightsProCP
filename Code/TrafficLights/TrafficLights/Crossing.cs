@@ -19,10 +19,14 @@ namespace TrafficLights
         public bool HasPedestriansCrossing { get { return this.Crosswalks.Any(x => x.HasPedestriansCrossing); } }
 
         /// <summary>
+        /// When a car crosses inside a crossing, this value gets increased.
+        /// </summary>
+        public int XTimesCrossed { get; set; }
+
+        /// <summary>
         /// Gets the crosswalks.
         /// </summary>
         /// <value>The crosswalks.</value>
-
         private Crosswalk[] crosswalks = null;
 
         public Crosswalk[] Crosswalks
@@ -410,6 +414,7 @@ namespace TrafficLights
         }
         public void Reset()
         {
+            this.XTimesCrossed = 0;
             SetStartIntervals();
             foreach (Crosswalk crosswalk in this.Crosswalks)
             {

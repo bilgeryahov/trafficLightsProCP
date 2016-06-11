@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TrafficLights
 {
@@ -20,6 +21,12 @@ namespace TrafficLights
         public event Action<bool> OnPauseStateChanged = (x) => { };
         public event Action<float> OnSpeedChanged = (x) => { };
 
+        /// <summary>
+        /// 
+        /// All the crossings crosed X-times.
+        /// Gets refreshed every 'Stop' of the simulation.
+        /// </summary>
+        private int XTimes { get; set; }
         /// <summary>
         /// The min speed
         /// </summary>
@@ -95,7 +102,7 @@ namespace TrafficLights
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { return 0; } }//todo obtain } }
+        public int CarsPassed { get { return 0; } set { } }
 
         /// <summary>
         /// Gets the cars left.
@@ -248,6 +255,9 @@ namespace TrafficLights
         /// </summary>
         public void Stop()
         {
+            OnCompleted(new SimulationResult(this));
+            this.CarsPassed =0 ;
+            this.XTimes = 0;
             Reset();
         }
 
@@ -324,13 +334,23 @@ namespace TrafficLights
         /// <value>The current simulation result.</value>
         public SimulationResult CurrentSimulationResult
         {
-            get
+            get;
+            set;
+        }
+
+        public int GetXTimesCrossingsCrossed()
+        {
+            
+            foreach(Crossing cr in this.Grid.AllCrossings)
             {
-                throw new System.NotImplementedException();
+                if (cr !=null)
+                {
+                    this.XTimes += cr.XTimesCrossed;
+                }
+                
             }
-            private set
-            {
-            }
+
+            return this.XTimes;
         }
     }
 }

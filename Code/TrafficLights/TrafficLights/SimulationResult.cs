@@ -33,6 +33,8 @@ namespace TrafficLights
         public SimulationResult(Simulation simulation)
         {
             this.SimulationSetup = simulation;
+            this.DatePerformed = DateTime.Now;
+            this.SimulationSetup.CurrentSimulationResult = this;           
         }
 
         /// <summary>

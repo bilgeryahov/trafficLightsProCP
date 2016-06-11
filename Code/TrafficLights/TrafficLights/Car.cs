@@ -13,6 +13,12 @@ namespace TrafficLights
     /// <seealso cref="TrafficLights.Moveable" />
     public class Car : Moveable
     {
+
+        /// <summary>
+        /// When car successfully passes a lane, sets this attribute to true.
+        /// </summary>
+        public bool successfullyPassedLane { get; private set; }
+
         /// <summary>
         /// Gets or sets the direction.
         /// </summary>
@@ -126,15 +132,19 @@ namespace TrafficLights
             {
                 CurrentLane = CurrentLane.Next;
 
+                // Increase the number of crossed times of the crossing owner.
+                this.CurrentLane.Owner.Owner.XTimesCrossed++;
+
                 if (CurrentLane != null)
-                {
+                {            
                     if (!CurrentLane.IsFeeder)
                     {
                         CurrentLane = CurrentLane.Next;
                     }
                     if (CurrentLane != null)
+                    {
                         CurrentLane.IncreaseAccumulatedFlow();
-
+                    }
                 }
                 else
                 {

@@ -236,11 +236,12 @@ namespace TrafficLights
                 };
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
             manager.CurrentSimulation.OnCompleted += (x) => {
-                // throw new NotImplementedException("Show results");
-
+              
                 timer.Stop();
 
                 listBox1.Items.Clear();
+
+                x.SaveResults(x.SimulationSetup.TimePassed, x.SimulationSetup.TotalCars, x.SimulationSetup.GetXTimesCrossingsCrossed());
 
                 listBox1.Items.Add("Date performed: ");
                 listBox1.Items.Add(x.DatePerformed.ToString());
@@ -248,19 +249,17 @@ namespace TrafficLights
                 listBox1.Items.Add("");
 
                 listBox1.Items.Add("Time passed: ");
-                listBox1.Items.Add(x.SimulationSetup.TimePassed.ToString());
+                listBox1.Items.Add(x.TimePassed.ToString());
 
                 listBox1.Items.Add("");
 
                 listBox1.Items.Add("Total cars: ");
-                listBox1.Items.Add(x.SimulationSetup.TotalCars.ToString());
+                listBox1.Items.Add(x.TotalCars.ToString());
 
                 listBox1.Items.Add("");
 
                 listBox1.Items.Add("Successfully crossings of cars: ");
-                listBox1.Items.Add(x.SimulationSetup.GetXTimesCrossingsCrossed().ToString());
-            
-
+                listBox1.Items.Add(x.CarsCrossed.ToString());
             };
         }
 
@@ -482,16 +481,17 @@ namespace TrafficLights
         }
 
         private void btnSaveStats_Click(object sender, EventArgs e)
-        {
-            // for testing purpose.
-            SimulationResult test = new SimulationResult(new Simulation(new Grid(20)));
-            test.ExportToExcel("bla");
-
-            if(manager.CurrentSimulation != null)
+        { 
+            if(this.manager.CurrentSimulation.CurrentSimulationResult != null)
             {
-                //todo stop simulation
-                //todo excel; snapshot
-                
+                SaveFileDialog dlgResult = new SaveFileDialog();
+                System.Windows.Forms.DialogResult result = dlgResult.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                   this.manager.CurrentSimulation.CurrentSimulationResult.ExportToExcel(dlgResult.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Results still do not exist!");
             }
         }
         private void SelectComponent(PictureBox sender, MouseEventArgs e)

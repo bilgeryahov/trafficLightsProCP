@@ -106,5 +106,42 @@ namespace TrafficLights
             textBox1.Text = "";
             textBox2.Text = "";
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdatePanel();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            int id = Convert.ToInt32(tbSearchId.Text);
+            int y = 10;
+            try
+            {
+                foreach (Crossing cr in manager.RecycleCrossingManager.Crossings)
+                {                   
+                    if (cr.Owner.ToString().Contains(id.ToString()))
+                    {
+                        MessageBox.Show(cr.Owner.ToString().Contains(id.ToString()).ToString());
+                        Label lb = new Label();
+                        lb.Text = cr.Owner.ToString();
+                        lb.Location = new System.Drawing.Point(10, y + 50);
+                        PictureBox pb = new PictureBox();
+                        pb.Size = new System.Drawing.Size(150, 150);
+                        pb.Location = new System.Drawing.Point(50, y);
+                        pb.Image = cr.Image;
+                        pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                        panel2.Controls.Add(pb);
+                        panel2.Controls.Add(lb);
+                        y += 160;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Crossing ID " + (id + 1) + " does not exist in recycle manager.");
+            }
+        }
     }
 }

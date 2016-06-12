@@ -247,6 +247,7 @@ namespace TrafficLights
             manager.CurrentSimulation.OnCompleted += (x) => {
                 throw new NotImplementedException("Show results");
             };
+            
         }
 
         private void PopulateActionStackListbox()
@@ -747,11 +748,16 @@ namespace TrafficLights
         {
 
         }
-       
+
         private void btnSaveCrossingManager_Click(object sender, EventArgs e)
         {
             SavedManagerForm smform = new SavedManagerForm(manager);
             smform.Show();
+        }
+
+        private void gridSlot1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

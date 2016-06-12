@@ -13,6 +13,7 @@ namespace TrafficLights
     public partial class SavedManagerForm : Form
     {
         TrafficManager manager;
+        List<string> savedCrossingName = new List<string>();
 
         public SavedManagerForm(TrafficManager mn)
         {
@@ -35,18 +36,23 @@ namespace TrafficLights
 
             foreach (Crossing cr in manager.SavedCrossingManager.Crossings)
             {
-                Label lb = new Label();
-                lb.Text = labelCount.ToString();
-                lb.Location = new System.Drawing.Point(10, y + 50);
+                Label lbId = new Label();
+                lbId.Text = labelCount.ToString();
+                lbId.Location = new System.Drawing.Point(10, y + 50);
+
+                Label lbName = new Label();
+                lbName.Text = savedCrossingName.ElementAt(labelCount);
+                lbName.Location = new System.Drawing.Point(30, y + 50);
+
                 PictureBox pb = new PictureBox();
                 pb.Size = new System.Drawing.Size(150, 150);
                 pb.Location = new System.Drawing.Point(50, y);
                 pb.Image = cr.Image;
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
                 panel1.Controls.Add(pb);
-                panel1.Controls.Add(lb);
+                panel1.Controls.Add(lbId);
                 y += 160;
-                labelCount++;
+                labelCount++;                
             }
         }
 
@@ -56,11 +62,13 @@ namespace TrafficLights
             {
                 int column = Convert.ToInt32(textBoxColumn.Text);
                 int row = Convert.ToInt32(textBoxRow.Text);
+                string name = tbName.Text;
                 Crossing crossingToBeSaved = manager.Grid.Crossings[row - 1][column - 1];
 
                 if (crossingToBeSaved.IsOnTheGrid)
                 {
                     manager.SavedCrossingManager.Add(crossingToBeSaved);
+                    savedCrossingName.Add(name);
                     UpdatePanel();
                 }
             }
@@ -122,6 +130,7 @@ namespace TrafficLights
         private void btnClear_Click(object sender, EventArgs e)
         {
             manager.SavedCrossingManager.Clear();
+            savedCrossingName.Clear();
             panel1.Controls.Clear();
             textBoxRow.Text = "";
             textBoxColumn.Text = "";
@@ -131,6 +140,73 @@ namespace TrafficLights
             tbPlaceId.Text = "";
             tbPlaceRow.Text = "";
             tbSearchId.Text = "";
+        }
+
+        private void btnSearchId_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            int id = Convert.ToInt32(tbId.Text);
+            int y = 10;
+            try
+            {
+                foreach (Crossing cr in manager.SavedCrossingManager.Crossings)
+                {
+                    if (cr.Owner.ToString().Contains(id.ToString()))
+                    {
+                        Label lb = new Label();
+                        lb.Text = cr.Owner.ToString();
+                        lb.Location = new System.Drawing.Point(10, y + 50);
+                        PictureBox pb = new PictureBox();
+                        pb.Size = new System.Drawing.Size(150, 150);
+                        pb.Location = new System.Drawing.Point(50, y);
+                        pb.Image = cr.Image;
+                        pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                        panel2.Controls.Add(pb);
+                        panel2.Controls.Add(lb);
+                        y += 160;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Crossing ID " + (id + 1) + " does not exist in recycle manager.");
+            }
+        }
+
+        private void btnSearchName_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            string searchName = tbSearchName.Text;
+            int y = 10;
+            int id;
+
+            try
+            {
+                foreach (var n in savedCrossingName)
+                {
+                    if (n.Contains(searchName))
+                    {
+                        id = n.Count();
+                        Crossing cr = manager.SavedCrossingManager.Crossings[id];
+
+                        Label lb = new Label();
+                        lb.Text = cr.Owner.ToString();
+                        lb.Location = new System.Drawing.Point(10, y + 50);
+                        PictureBox pb = new PictureBox();
+                        pb.Size = new System.Drawing.Size(150, 150);
+                        pb.Location = new System.Drawing.Point(50, y);
+                        pb.Image = cr.Image;
+                        pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                        panel2.Controls.Add(pb);
+                        panel2.Controls.Add(lb);
+                        y += 160;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Crossing  does not exist in recycle manager.");
+            }
         }
     }
 }

@@ -797,5 +797,22 @@ namespace TrafficLights
             SavedManagerForm smform = new SavedManagerForm(manager);
             smform.Show();
         }
+
+        private void buttonCreateSnapshot_Click(object sender, EventArgs e)
+        {
+            if(this.manager.CurrentSimulation.CurrentSimulationResult!= null)
+            {
+                SaveFileDialog d = new SaveFileDialog();
+                System.Windows.Forms.DialogResult result = d.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                    this.manager.CurrentSimulation.CurrentSimulationResult.CreateSnapShot(d.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Results still do not exist!");
+            }
+          
+                
+        }
     }
 }

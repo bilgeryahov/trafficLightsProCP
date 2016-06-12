@@ -268,7 +268,7 @@ namespace TrafficLights
         {
             if (CarsLeft == 0 && !HasPedestriansCrossing)
             {
-                OnCompleted(new SimulationResult(this));
+                // The simulation result is created in Stop method.
                 Stop();
             }
         }

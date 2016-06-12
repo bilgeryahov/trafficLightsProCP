@@ -89,12 +89,21 @@ namespace TrafficLights
         /// <param name="fileName">Name of the file.</param>
         public void CreateSnapShot(string fileName)
         {
-            var frm = Form.ActiveForm;
-            using (var bmp = new Bitmap(frm.Width, frm.Height))
+            try
             {
-                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                bmp.Save("E:\\" + fileName + ".png");
+                var frm = Form.ActiveForm;
+                using (var bmp = new Bitmap(frm.Width, frm.Height))
+                {
+                    frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                    bmp.Save(fileName + ".png");
+                    MessageBox.Show("Snapshot created!");
+                }
             }
+            catch
+            {
+                MessageBox.Show("Failed to create the snapshot!");
+            }
+            
         }
     }
 }

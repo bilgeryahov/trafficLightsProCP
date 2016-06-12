@@ -134,12 +134,21 @@ namespace TrafficLights
         /// <param name="column">The column.</param>
         public void RemoveAt(int row, int column)
         {
-            ValidateCanUse(row, column);
+            try
+            {
+                ValidateCanUse(row, column);
 
-            Crossing crossing = this[row][column];
-            this.Crossings[row][column] = null;
-            crossing.RemoveFromGrid();
-            OnCrossingRemoved(crossing, row, column);
+                Crossing crossing = this[row][column];
+                this.Crossings[row][column] = null;
+                crossing.RemoveFromGrid();
+                OnCrossingRemoved(crossing, row, column);
+            }
+            catch
+            {
+                // Gets here after undo-ing a loaded grid.
+            }
+
+            
         }
 
         /// <summary>

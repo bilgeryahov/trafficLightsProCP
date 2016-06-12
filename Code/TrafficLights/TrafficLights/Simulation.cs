@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TrafficLights
 {
@@ -20,6 +21,12 @@ namespace TrafficLights
         public event Action<bool> OnPauseStateChanged = (x) => { };
         public event Action<float> OnSpeedChanged = (x) => { };
 
+        /// <summary>
+        /// 
+        /// All the crossings crosed X-times.
+        /// Gets refreshed every 'Stop' of the simulation.
+        /// </summary>
+        private int XTimes { get; set; }
         /// <summary>
         /// The min speed
         /// </summary>
@@ -51,6 +58,7 @@ namespace TrafficLights
         /// The is paused
         /// </summary>
         bool isPaused = false;
+        public bool IsPaused { get { return isPaused; } }
 
         /// <summary>
         /// Gets the grid.
@@ -94,7 +102,7 @@ namespace TrafficLights
         /// Gets the cars passed.
         /// </summary>
         /// <value>The cars passed.</value>
-        public int CarsPassed { get { return 0; } }//todo obtain } }
+        public int CarsPassed { get { return 0; } set { } }
 
         /// <summary>
         /// Gets the cars left.
@@ -214,6 +222,7 @@ namespace TrafficLights
                 Resume();
                 return;
             }
+            SetActive(true);
             isPaused = false;
             OnPauseStateChanged(isPaused);
             this.Grid.Reset();
@@ -227,6 +236,7 @@ namespace TrafficLights
             if (isPaused) return;
             isPaused = true;
             OnPauseStateChanged(isPaused);
+            SetActive(false);
         }
 
         /// <summary>
@@ -237,6 +247,7 @@ namespace TrafficLights
             if (!isPaused) return;
             isPaused = false;
             OnPauseStateChanged(isPaused);
+            SetActive(true);
         }
 
         /// <summary>
@@ -244,8 +255,10 @@ namespace TrafficLights
         /// </summary>
         public void Stop()
         {
+            OnCompleted(new SimulationResult(this));
+            this.CarsPassed =0 ;
+            this.XTimes = 0;
             Reset();
-            isPaused = false;
         }
 
         /// <summary>
@@ -255,7 +268,7 @@ namespace TrafficLights
         {
             if (CarsLeft == 0 && !HasPedestriansCrossing)
             {
-                OnCompleted(new SimulationResult(this));
+                // The simulation result is created in Stop method.
                 Stop();
             }
         }
@@ -321,13 +334,22 @@ namespace TrafficLights
         /// <value>The current simulation result.</value>
         public SimulationResult CurrentSimulationResult
         {
-            get
+            get;
+            set;
+        }
+
+        public int GetXTimesCrossingsCrossed()
+        {
+            foreach(Crossing cr in this.Grid.AllCrossings)
             {
-                throw new System.NotImplementedException();
+                if (cr !=null)
+                {
+                    this.XTimes += cr.XTimesCrossed;
+                }
+                
             }
-            private set
-            {
-            }
+
+            return this.XTimes;
         }
     }
 }

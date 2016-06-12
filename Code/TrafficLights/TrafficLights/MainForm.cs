@@ -176,17 +176,8 @@ namespace TrafficLights
             PicBoxTypeB.Cursor = Cursors.Hand;
             PicBoxTypeC.Cursor = Cursors.Hand;
 
-            this.manager.Grid.OnCrossingAdded += (crossing, row, column)=>
-            {
-                int id = row * 3 + column;
-                this.slotIDToPBoxLookup[id].Image = crossing.Image;
-            };
-
-            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
-            {
-                int id = row * 3 + column;
-                this.slotIDToPBoxLookup[id].Image = null;
-            };
+            // Attach the grid.
+            this.AttachGrid();
 
             this.manager.GridLoaded += () =>
             {
@@ -212,12 +203,86 @@ namespace TrafficLights
                     }
                 }
             };
-            manager.CurrentSimulation.OnPauseStateChanged += 
-                (x) => 
-                    timer.Enabled = !x;
+            manager.CurrentSimulation.OnPauseStateChanged +=
+                (isPaused) =>
+                {
+                    timer.Enabled = !isPaused;
+                    ToggleControl(undoToolStripMenuItem1, isPaused);
+                    ToggleControl(redoToolStripMenuItem1, isPaused);
+                    ToggleControl(undoBtn, isPaused);
+                    ToggleControl(redoBtn, isPaused);
+
+                    ToggleControl(newSimulationToolStripMenuItem, isPaused);
+                    ToggleControl(openToolStripMenuItem, isPaused);
+                    ToggleControl(saveToolStripMenuItem1, isPaused);
+
+                    ToggleControl(btnSaveCrossingManager, isPaused);
+                    ToggleControl(button2, isPaused);
+                    ToggleControl(button1, isPaused);
+                    ToggleControl(updatePropertiesBtn, isPaused);
+
+                    ToggleControl(PicBoxTypeA, isPaused);
+                    ToggleControl(PicBoxTypeB, isPaused);
+                    ToggleControl(PicBoxTypeC, isPaused);
+
+                    if (!isPaused)
+                    {
+                        manager.CurrentActiveComponent = null;
+
+                        ChangeBorder(PicBoxTypeA, false);
+                        ChangeBorder(PicBoxTypeB, false);
+                        ChangeBorder(PicBoxTypeC, false);
+                        ChangeGridSlotsCursor(false);
+                        button2.FlatStyle = FlatStyle.Standard;
+                        rmToggled = false;
+                        state = SystemState.None;
+                    }
+                };
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
             manager.CurrentSimulation.OnCompleted += (x) => {
-                throw new NotImplementedException("Show results");
+              
+                timer.Stop();
+
+                listBox1.Items.Clear();
+
+                x.SaveResults(x.SimulationSetup.TimePassed, x.SimulationSetup.TotalCars, x.SimulationSetup.GetXTimesCrossingsCrossed());
+
+                listBox1.Items.Add("Date performed: ");
+                listBox1.Items.Add(x.DatePerformed.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Time passed: ");
+                listBox1.Items.Add(x.TimePassed.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Total cars: ");
+                listBox1.Items.Add(x.TotalCars.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Successfully crossings of cars: ");
+                listBox1.Items.Add(x.CarsCrossed.ToString());
+            };
+        }
+
+        /// <summary>
+        /// Split up in a separate function since after loading a new grid, it should be attached
+        /// and to reduce repetitions the piece of code is split up into a method.
+        /// </summary>
+        private void AttachGrid()
+        {
+            this.manager.Grid.OnCrossingAdded += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = crossing.Image;
+            };
+
+            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = null;
             };
         }
 
@@ -303,11 +368,6 @@ namespace TrafficLights
         {
         }
 
-        /// <summary>
-        /// Handles the Enter event of the groupBox1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -320,6 +380,13 @@ namespace TrafficLights
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 manager.LoadFromFile(d.FileName);
+
+            // Attach the newly loaded grid.
+            this.AttachGrid();
+
+            // Refresh the results listbox.
+            listBox1.Items.Clear();
+
         }
 
         private void ShowSaveDialog()
@@ -343,6 +410,9 @@ namespace TrafficLights
                     ShowSaveDialog();
             manager.CreateNewGrid();
             RefreshAll();
+
+            // Refresh the results listbox.
+            listBox1.Items.Clear();
         }
 
         private void undoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -415,26 +485,29 @@ namespace TrafficLights
         }
 
         private void btnSaveStats_Click(object sender, EventArgs e)
-        {
-            // for testing purpose.
-            SimulationResult test = new SimulationResult(new Simulation(new Grid(20)));
-            test.ExportToExcel("bla");
-
-            if(manager.CurrentSimulation != null)
+        { 
+            if(this.manager.CurrentSimulation.CurrentSimulationResult != null)
             {
-                //todo stop simulation
-                //todo excel; snapshot
-                
+                SaveFileDialog dlgResult = new SaveFileDialog();
+                System.Windows.Forms.DialogResult result = dlgResult.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                   this.manager.CurrentSimulation.CurrentSimulationResult.ExportToExcel(dlgResult.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Results still do not exist!");
             }
         }
         private void SelectComponent(PictureBox sender, MouseEventArgs e)
         {
+            if (manager.CurrentSimulation.IsActive)
+                return;
+
             int slot = pBoxToSlotIDLookup[sender];
             Crossing crossing = manager.Grid.CrossingAt(slot);
             if(crossing!=null)
             {
                 foreach (Lane lane in crossing.Feeders)
-                //foreach (Lane lane in crossing.Feeders)
                 {
                     if (FindCollision(e, lane))
                     {
@@ -727,6 +800,23 @@ namespace TrafficLights
         {
             SavedManagerForm smform = new SavedManagerForm(manager);
             smform.Show();
+        }
+
+        private void buttonCreateSnapshot_Click(object sender, EventArgs e)
+        {
+            if(this.manager.CurrentSimulation.CurrentSimulationResult!= null)
+            {
+                SaveFileDialog d = new SaveFileDialog();
+                System.Windows.Forms.DialogResult result = d.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                    this.manager.CurrentSimulation.CurrentSimulationResult.CreateSnapShot(d.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Results still do not exist!");
+            }
+          
+                
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TrafficLights
 {
@@ -37,42 +38,62 @@ namespace TrafficLights
 
             int midX = lane.X;
             int midY = next.Y;
-
-            //  if (false)
-           // if (lane.To.HasFlag(next.From))
-           // {
-                if (lane.To.HasFlag(Direction.Left))
-                {
-                    midX = lane.X;
-                    midY = next.Y;
-                //    midX = lane.X / 2;
-                }
-                else if (lane.To.HasFlag(Direction.Right))
-                {
-                    midX = lane.X + 200;
-                    midY = next.Y;
-                //    midX = next.X / 2;
-                
-                }
-                else if (lane.To.HasFlag(Direction.Down))
-                {
-                    midX = next.X;
-                    midY = lane.Y;
-                   // midY = lane.Y/ 2;;
-                }
-                
-                else if (lane.To.HasFlag(Direction.Up))
-                {
-                    midX = next.X;
-                    midY = lane.Y;
-                    //midY = next.Y / 2;
-                
-                }
-         //   }
+            
+            //single
+            if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Left))
+            {
+                midX = next.X + 100;
+                midY = lane.Y - 15;
+            }
+            if (lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
+            {
+                midX = next.X - 10;
+                midY = lane.Y - 5;
+            }
+            if (lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Left) && next.From.HasFlag(Direction.Right))
+            {
+                midX = lane.X;
+                midY = next.Y;
+            }
+            if (lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
+            {
+                midX = next.X;
+                midY = next.Y - 25;
+            }
+            //double
+            if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Right))
+            {
+                midX = lane.X;
+                midY = next.Y;
+            }
+            if (lane.To.HasFlag(Direction.Right) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
+            {
+                midX = next.X;
+                midY = lane.Y;
+            }
+            if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
+            {
+                midX = next.X;
+                midY = lane.Y - 50;
+            }
+            if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
+            {
+                midX = next.X;
+                midY = lane.Y;
+            }
+            if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Left) && next.From.HasFlag(Direction.Right))
+            {
+                midX = next.X + 80;
+                midY = next.Y;
+            }
+            if (lane.To.HasFlag(Direction.Up) && lane.To.HasFlag(Direction.Right) && next.To.HasFlag(Direction.Right) && next.From.HasFlag(Direction.Left))
+            {
+                midX = lane.X + 160;
+                midY = next.Y;
+            }
 
             System.Drawing.Point start = new System.Drawing.Point(lane.X, lane.Y);
             System.Drawing.Point end = new System.Drawing.Point(next.X, next.Y);
-            //  System.Drawing.Point mid = new System.Drawing.Point(end.X, start.Y);
             System.Drawing.Point mid = new System.Drawing.Point(midX, midY);
 
             if (next.To == Direction.Up)
@@ -83,11 +104,9 @@ namespace TrafficLights
             { }
             else if (next.To == Direction.Right)
                 end.X += 60;
-
-
+            
             return new System.Drawing.Point[] { start, mid, end };
         }
-
 
         /// <summary>
         /// Updates the specified seconds.
@@ -104,16 +123,19 @@ namespace TrafficLights
             {
                 CurrentLane = CurrentLane.Next;
 
+                // Increase the number of crossed times of the crossing owner.
+                this.CurrentLane.Owner.Owner.XTimesCrossed++;
+
                 if (CurrentLane != null)
-                {
+                {            
                     if (!CurrentLane.IsFeeder)
                     {
                         CurrentLane = CurrentLane.Next;
-                        //   PathFromLane(CurrentLane);
                     }
                     if (CurrentLane != null)
+                    {
                         CurrentLane.IncreaseAccumulatedFlow();
-
+                    }
                 }
                 else
                 {

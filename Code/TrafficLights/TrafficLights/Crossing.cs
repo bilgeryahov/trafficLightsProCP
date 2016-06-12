@@ -89,6 +89,10 @@ namespace TrafficLights
         /// <value>The column.</value>
         public int Column { get; private set; }
 
+        /// <summary>
+        /// Used to restore in its previous place at the grid.
+        /// Replaces the original row and column since after deletion they get -1 -1.
+        /// </summary>
         public int RowRecycleManager { get; private set; }
         public int ColumnRecycleManager { get; private set; }
 
@@ -376,6 +380,7 @@ namespace TrafficLights
             this.Row = row;
             this.Column = column;
 
+            // Set these values so they can be used from the Recycle Manager.
             if(row!=-1 && column != -1)
             {
                 this.RowRecycleManager = row;
@@ -414,7 +419,9 @@ namespace TrafficLights
         }
         public void Reset()
         {
+            // Reset the crossed times in order to start from 0 after stopping a simulation and starting over again.
             this.XTimesCrossed = 0;
+
             SetStartIntervals();
             foreach (Crosswalk crosswalk in this.Crosswalks)
             {

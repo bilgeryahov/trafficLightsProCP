@@ -172,17 +172,8 @@ namespace TrafficLights
             PicBoxTypeB.Cursor = Cursors.Hand;
             PicBoxTypeC.Cursor = Cursors.Hand;
 
-            this.manager.Grid.OnCrossingAdded += (crossing, row, column)=>
-            {
-                int id = row * 3 + column;
-                this.slotIDToPBoxLookup[id].Image = crossing.Image;
-            };
-
-            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
-            {
-                int id = row * 3 + column;
-                this.slotIDToPBoxLookup[id].Image = null;
-            };
+            // Attach the grid.
+            this.AttachGrid();
 
             this.manager.GridLoaded += () =>
             {
@@ -270,6 +261,25 @@ namespace TrafficLights
                 listBox1.Items.Add(x.SimulationSetup.GetXTimesCrossingsCrossed().ToString());
             
 
+            };
+        }
+
+        /// <summary>
+        /// Split up in a separate function since after loading a new grid, it should be attached
+        /// and to reduce repetitions the piece of code is split up into a method.
+        /// </summary>
+        private void AttachGrid()
+        {
+            this.manager.Grid.OnCrossingAdded += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = crossing.Image;
+            };
+
+            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = null;
             };
         }
 
@@ -367,6 +377,13 @@ namespace TrafficLights
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 manager.LoadFromFile(d.FileName);
+
+            // Attach the newly loaded grid.
+            this.AttachGrid();
+
+            // Refresh the results listbox.
+            listBox1.Items.Clear();
+
         }
 
         private void ShowSaveDialog()
@@ -390,6 +407,9 @@ namespace TrafficLights
                     ShowSaveDialog();
             manager.CreateNewGrid();
             RefreshAll();
+
+            // Refresh the results listbox.
+            listBox1.Items.Clear();
         }
 
         private void undoToolStripMenuItem1_Click(object sender, EventArgs e)

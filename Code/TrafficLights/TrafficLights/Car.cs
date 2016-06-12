@@ -13,12 +13,6 @@ namespace TrafficLights
     /// <seealso cref="TrafficLights.Moveable" />
     public class Car : Moveable
     {
-
-        /// <summary>
-        /// When car successfully passes a lane, sets this attribute to true.
-        /// </summary>
-        public bool successfullyPassedLane { get; private set; }
-
         /// <summary>
         /// Gets or sets the direction.
         /// </summary>
@@ -44,8 +38,7 @@ namespace TrafficLights
 
             int midX = lane.X;
             int midY = next.Y;
-
-
+            
             //single
             if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Left))
             {
@@ -111,11 +104,9 @@ namespace TrafficLights
             { }
             else if (next.To == Direction.Right)
                 end.X += 60;
-
-
+            
             return new System.Drawing.Point[] { start, mid, end };
         }
-
 
         /// <summary>
         /// Updates the specified seconds.

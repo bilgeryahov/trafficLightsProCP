@@ -340,7 +340,6 @@ namespace TrafficLights
 
         public int GetXTimesCrossingsCrossed()
         {
-            
             foreach(Crossing cr in this.Grid.AllCrossings)
             {
                 if (cr !=null)

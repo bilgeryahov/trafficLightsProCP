@@ -50,13 +50,13 @@ namespace TrafficLights
                     if (this.Owner.From == Direction.Up)
                         if (Owner.Owner.NextCrosswalkAbove != null)
                             result = Owner.Owner.NextCrosswalkAbove.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
-                    if(result == null)
+                    if (result == null)
                         return null;
                 }
-                if(result == null)
-                    result = Owner.Owner.Lanes.Where(x => 
+                if (result == null)
+                    result = Owner.Owner.Lanes.Where(x =>
                         x.IsFeeder != this.IsFeeder && this.To.HasFlag(x.To));
-                
+
                 if (result.Count() == 0) return null;
                 if (result.Count() == 1) return result.First();
                 else
@@ -88,8 +88,8 @@ namespace TrafficLights
             get { return currentCarsOn.Count; }
         }
 
-            //returns List<Car>.Count 
-      
+        //returns List<Car>.Count 
+
 
         /// <summary>
         /// Gets the flow.
@@ -105,7 +105,8 @@ namespace TrafficLights
         private int flowAccumulated = 0;
         public Crosswalk Owner { get; private set; }
 
-        public Lane(Direction from, Direction to, bool isFeeder, int x, int y) : base(x,y)
+        public Lane(Direction from, Direction to, bool isFeeder, int x, int y)
+            : base(x, y)
         {
             this.From = from;
             this.To = to;
@@ -121,8 +122,7 @@ namespace TrafficLights
         {
             this.Owner = owner;
         }
-        float defaultTimeout = 0.2f;
-        float timeouToReleaseCar = 0;
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
@@ -130,20 +130,16 @@ namespace TrafficLights
         public override void Update(float seconds)
         {
             if (Owner.Light.CurrentState == Trafficlight.State.Green)
-                timeouToReleaseCar -= seconds;
-                if(timeouToReleaseCar <= 0)
-            if (flowReleased < Flow)
-            {
-                this.currentCarsOn.Add(new Car(this.X, this.Y, this));
-                flowReleased += 1;
-                timeouToReleaseCar = defaultTimeout;
-            }
-            else if (flowAccumulated > 0)
-            {
-                this.currentCarsOn.Add(new Car(this.X, this.Y, this));
-                flowAccumulated -= 1;
-                timeouToReleaseCar = defaultTimeout;
-            }
+                if (flowReleased < Flow)
+                {
+                    this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                    flowReleased += 1;
+                }
+                else if (flowAccumulated > 0)
+                {
+                    this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                    flowAccumulated -= 1;
+                }
             foreach (Car car in this.currentCarsOn)
             {
                 car.Update(seconds);
@@ -174,18 +170,18 @@ namespace TrafficLights
                 car.Draw(image);
             }
             string flow = this.Flow.ToString();
-            if (this.flowReleased > 0 || this.flowAccumulated>0) flow = (this.Flow - this.flowReleased + this.flowAccumulated)+"";
-            if(this.Owner.From == Direction.Down)
+            if (this.flowReleased > 0 || this.flowAccumulated > 0) flow = (this.Flow - this.flowReleased + this.flowAccumulated) + "";
+            if (this.Owner.From == Direction.Down)
             {
-                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y+45);
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X + 3, this.Y + 45);
             }
             else if (this.Owner.From == Direction.Right)
             {
-                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+45, this.Y+2);
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X + 45, this.Y + 2);
             }
             else
             {
-                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X+3, this.Y +3);
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X + 3, this.Y + 3);
             }
         }
 

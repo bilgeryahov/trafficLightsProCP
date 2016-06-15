@@ -121,23 +121,28 @@ namespace TrafficLights
         {
             this.Owner = owner;
         }
-
+        float defaultTimeout = 0.2f;
+        float timeouToReleaseCar = 0;
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            if(Owner.Light.CurrentState == Trafficlight.State.Green)
+            if (Owner.Light.CurrentState == Trafficlight.State.Green)
+                timeouToReleaseCar -= seconds;
+                if(timeouToReleaseCar <= 0)
             if (flowReleased < Flow)
             {
                 this.currentCarsOn.Add(new Car(this.X, this.Y, this));
                 flowReleased += 1;
+                timeouToReleaseCar = defaultTimeout;
             }
             else if (flowAccumulated > 0)
             {
                 this.currentCarsOn.Add(new Car(this.X, this.Y, this));
                 flowAccumulated -= 1;
+                timeouToReleaseCar = defaultTimeout;
             }
             foreach (Car car in this.currentCarsOn)
             {

@@ -21,12 +21,14 @@ namespace TrafficLights
         private SystemState state;
         private Crossing crossingToBePlaced;
         private TrafficManager manager = new TrafficManager(3, 3);
+        SavedManagerForm smform;
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
+            smform = new SavedManagerForm(manager);
             state = SystemState.None;
             ActionStack.OnRedoAltered += (actionsToRedo, actionRedone) =>
             {
@@ -155,6 +157,16 @@ namespace TrafficLights
                         {
                             PlaceCrossing(x as PictureBox);
                             RemoveCrossing(x as PictureBox);
+
+                            Form fc = Application.OpenForms["SavedManagerForm"];
+
+                            if (fc != null)
+                            {
+                                int row = pBoxToSlotIDLookup[x as PictureBox] / 3;
+                                int column = pBoxToSlotIDLookup[x as PictureBox] % 3;
+                                manager.SavedCrossingManager.Add(manager.Grid[row][column]);
+                               smform.UpdatePanel();
+                            }
                         }
                         else
                         {
@@ -811,7 +823,14 @@ namespace TrafficLights
        
         private void btnSaveCrossingManager_Click(object sender, EventArgs e)
         {
-            SavedManagerForm smform = new SavedManagerForm(manager);
+            if(smform == null)
+            {
+                smform = new SavedManagerForm(manager);
+            }
+            if (smform.IsDisposed)
+            {
+                smform = new SavedManagerForm(manager);
+            }
             smform.Show();
         }
 

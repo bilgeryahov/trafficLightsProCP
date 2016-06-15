@@ -38,8 +38,6 @@ namespace TrafficLights
 
             int midX = lane.X;
             int midY = next.Y;
-<<<<<<< HEAD
-
 
           
                 //single
@@ -143,7 +141,6 @@ namespace TrafficLights
                     }
                 }
             
-=======
             
             //single
             if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Left))
@@ -197,7 +194,6 @@ namespace TrafficLights
                 midX = lane.X + 160;
                 midY = next.Y;
             }
->>>>>>> 2776453fb9b70612d64ee9fa0e30475d649b3afd
 
             System.Drawing.Point start = new System.Drawing.Point(lane.X, lane.Y);
             System.Drawing.Point end = new System.Drawing.Point(next.X, next.Y);

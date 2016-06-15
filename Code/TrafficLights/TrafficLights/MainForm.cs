@@ -53,14 +53,20 @@ namespace TrafficLights
                 else if (actionRedone is UpdateMultipleIntervalAction)
                 {
                     if (manager.CurrentActiveTrafficLight != null)
+                    {
                         propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
-                    slotIDToPBoxLookup[(actionRedone as UpdateMultipleIntervalAction).Crossing.Column + (actionRedone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                            slotIDToPBoxLookup[(actionRedone as UpdateMultipleIntervalAction).Crossing.Column + (actionRedone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                    }
                 }
                 else if (actionRedone is UpdateMultipleFlowAction)
                 {
                     if (manager.CurrentActiveLane != null)
+                    {
                         propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
-                    slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
+                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                            slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
+                    }
                 }
             };
 
@@ -87,15 +93,21 @@ namespace TrafficLights
                 }
                 else if (actionUndone is UpdateMultipleIntervalAction)
                 {
-                    if (manager.CurrentActiveTrafficLight!=null)
+                    if (manager.CurrentActiveTrafficLight != null)
+                    {
                         propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
-                    slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                            slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                    }
                 }
                 else if (actionUndone is UpdateMultipleFlowAction)
                 {
-                    if (manager.CurrentActiveLane!=null)
+                    if (manager.CurrentActiveLane != null)
+                    {
                         propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
-                    slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
+                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                            slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
+                    }
                 }
             };
 
@@ -512,8 +524,9 @@ namespace TrafficLights
                     if (FindCollision(e, lane))
                     {
                         if(manager.CurrentActiveLane != null)
-                            slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
-                        manager.CurrentActiveComponent = lane;
+                            if(manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                                slotIDToPBoxLookup[manager.CurrentActiveLane.Owner.Owner.Column + manager.CurrentActiveLane.Owner.Owner.Row * 3].Invalidate();
+                                manager.CurrentActiveComponent = lane;
                         sender.Invalidate();
                         return;
                     }

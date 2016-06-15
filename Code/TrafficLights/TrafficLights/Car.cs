@@ -38,6 +38,109 @@ namespace TrafficLights
 
             int midX = lane.X;
             int midY = next.Y;
+
+          
+                //single
+                if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Left))
+                {
+                    midX = next.X + 100;
+                    midY = lane.Y - 15;
+                }
+                if (lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
+                {
+                    midX = next.X - 10;
+                    midY = lane.Y - 5;
+                }
+                if (lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Left) && next.From.HasFlag(Direction.Right))
+                {
+                    midX = lane.X;
+                    midY = next.Y;
+                }
+                if (lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
+                {
+                    //+++
+                    midX = next.X;
+                    midY = lane.Y ;
+                }
+                //double
+                if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Right) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
+                {
+                    //+++
+                    if (lane.Owner.Owner is CrossingA)
+                    {
+                        midX = next.X;
+                        midY = lane.Y;
+                    }
+                    else
+                    {
+                        midX = next.X;
+                        midY = next.Y - 30;
+                    }
+                }
+                if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Right))
+                {
+                    //i tyt
+                    midX = lane.X;
+                    midY = next.Y;
+                }
+                if (lane.To.HasFlag(Direction.Right) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
+                {
+                    midX = next.X;
+                    midY = lane.Y;
+                }
+                if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
+                {
+                    if (lane.Owner.Owner is CrossingA)
+                    {
+                        midX = next.X;
+                        midY = lane.Y - 50;
+                    }
+                    else 
+                    {
+                        midX = next.X;
+                        midY = lane.Y ;
+                    }
+                  }
+                if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
+                { //odna tyt
+                    if (lane.Owner.Owner is CrossingA)
+                    {
+                        midX = next.X;
+                        midY = lane.Y;
+                    }
+                    else
+                    {
+                        midX = lane.X;
+                        midY = next.Y;
+                    }
+                }
+                if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Left) && next.From.HasFlag(Direction.Right))
+                {//fryga tyt
+                    if (lane.Owner.Owner is CrossingA)
+                    {
+                        midX = next.X+10;
+                        midY = next.Y-5;
+                    }
+                    else
+                    {
+                        midX = lane.X;
+                        midY = next.Y;
+                    }
+                }
+                if (lane.To.HasFlag(Direction.Up) && lane.To.HasFlag(Direction.Right) && next.To.HasFlag(Direction.Right) && next.From.HasFlag(Direction.Left))
+                {
+                    if (lane.Owner.Owner is CrossingA)
+                    {
+                        midX = lane.X + 160;
+                        midY = next.Y;
+                    }
+                    else
+                    {
+                        midX = lane.X;
+                        midY = next.Y;
+                    }
+                }
+            
             
             //single
             if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Left))
@@ -61,8 +164,24 @@ namespace TrafficLights
                 midY = next.Y - 25;
             }
             //double
+            //double
+            if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Right) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
+            {
+                //+++
+                if (lane.Owner.Owner is CrossingA)
+                {
+                    midX = next.X;
+                    midY = lane.Y;
+                }
+                else
+                {
+                    midX = next.X;
+                    midY = next.Y - 30;
+                }
+            }
             if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Right))
             {
+                //i tyt
                 midX = lane.X;
                 midY = next.Y;
             }
@@ -73,23 +192,55 @@ namespace TrafficLights
             }
             if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Up) && next.To.HasFlag(Direction.Up) && next.From.HasFlag(Direction.Down))
             {
-                midX = next.X;
-                midY = lane.Y - 50;
+                if (lane.Owner.Owner is CrossingA)
+                {
+                    midX = next.X;
+                    midY = lane.Y - 50;
+                }
+                else
+                {
+                    midX = next.X;
+                    midY = lane.Y;
+                }
             }
             if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Down) && next.From.HasFlag(Direction.Up))
-            {
-                midX = next.X;
-                midY = lane.Y;
+            { //odna tyt
+                if (lane.Owner.Owner is CrossingA)
+                {
+                    midX = next.X;
+                    midY = lane.Y;
+                }
+                else
+                {
+                    midX = lane.X;
+                    midY = next.Y;
+                }
             }
             if (lane.To.HasFlag(Direction.Down) && lane.To.HasFlag(Direction.Left) && next.To.HasFlag(Direction.Left) && next.From.HasFlag(Direction.Right))
-            {
-                midX = next.X + 80;
-                midY = next.Y;
+            {//fryga tyt
+                if (lane.Owner.Owner is CrossingA)
+                {
+                    midX = next.X + 10;
+                    midY = next.Y - 5;
+                }
+                else
+                {
+                    midX = lane.X;
+                    midY = next.Y;
+                }
             }
             if (lane.To.HasFlag(Direction.Up) && lane.To.HasFlag(Direction.Right) && next.To.HasFlag(Direction.Right) && next.From.HasFlag(Direction.Left))
             {
-                midX = lane.X + 160;
-                midY = next.Y;
+                if (lane.Owner.Owner is CrossingA)
+                {
+                    midX = lane.X + 160;
+                    midY = next.Y;
+                }
+                else
+                {
+                    midX = lane.X;
+                    midY = next.Y;
+                }
             }
 
             System.Drawing.Point start = new System.Drawing.Point(lane.X, lane.Y);

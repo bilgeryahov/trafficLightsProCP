@@ -40,7 +40,7 @@ namespace TrafficLights
             int midY = next.Y;
             int startX = lane.X;
             int startY = lane.Y;
-            
+
             //single
             if (lane.To.HasFlag(Direction.Left) && lane.To.HasFlag(Direction.Down) && next.To.HasFlag(Direction.Left))
             {

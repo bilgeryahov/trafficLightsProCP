@@ -56,7 +56,8 @@ namespace TrafficLights
                 {
                     if (manager.CurrentActiveTrafficLight != null)
                     {
-                        propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                        if (!isApplying)
+                            propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
                         if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
                             slotIDToPBoxLookup[(actionRedone as UpdateMultipleIntervalAction).Crossing.Column + (actionRedone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
                     }
@@ -65,7 +66,8 @@ namespace TrafficLights
                 {
                     if (manager.CurrentActiveLane != null)
                     {
-                        propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                        if(!isApplying)
+                            propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
                         if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
                             slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                     }
@@ -97,7 +99,8 @@ namespace TrafficLights
                 {
                     if (manager.CurrentActiveTrafficLight != null)
                     {
-                        propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
+                        if (!isApplying)
+                            propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
                         if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
                             slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
                     }
@@ -106,7 +109,8 @@ namespace TrafficLights
                 {
                     if (manager.CurrentActiveLane != null)
                     {
-                        propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
+                        if (!isApplying)
+                            propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
                         if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
                             slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                     }
@@ -290,7 +294,7 @@ namespace TrafficLights
                 listBox1.Items.Add(x.CarsCrossed.ToString());
             };
         }
-
+        bool isApplying = false;
         /// <summary>
         /// Split up in a separate function since after loading a new grid, it should be attached
         /// and to reduce repetitions the piece of code is split up into a method.
@@ -623,6 +627,7 @@ namespace TrafficLights
 
         private void ApplyForAll()
         {
+            isApplying = true;
             foreach (Crossing crossing in manager.Grid.AllCrossings)
             {
                 if (crossing == null) continue;
@@ -645,6 +650,7 @@ namespace TrafficLights
                 }
                 slotIDToPBoxLookup[crossing.Column + crossing.Row * 3].Invalidate();
             }
+            isApplying = false;
         }
 
         private void timer_Tick(object sender, EventArgs e)

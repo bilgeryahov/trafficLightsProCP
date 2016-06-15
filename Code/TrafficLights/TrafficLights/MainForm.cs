@@ -172,17 +172,8 @@ namespace TrafficLights
             PicBoxTypeB.Cursor = Cursors.Hand;
             PicBoxTypeC.Cursor = Cursors.Hand;
 
-            this.manager.Grid.OnCrossingAdded += (crossing, row, column)=>
-            {
-                int id = row * 3 + column;
-                this.slotIDToPBoxLookup[id].Image = crossing.Image;
-            };
-
-            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
-            {
-                int id = row * 3 + column;
-                this.slotIDToPBoxLookup[id].Image = null;
-            };
+            // Attach the grid.
+            this.AttachGrid();
 
             this.manager.GridLoaded += () =>
             {
@@ -245,7 +236,49 @@ namespace TrafficLights
                 };
             manager.CurrentSimulation.OnSpeedChanged += (x) => lblSpeed.Text = x + "x";
             manager.CurrentSimulation.OnCompleted += (x) => {
-                throw new NotImplementedException("Show results");
+              
+                timer.Stop();
+
+                listBox1.Items.Clear();
+
+                x.SaveResults(x.SimulationSetup.TimePassed, x.SimulationSetup.TotalCars, x.SimulationSetup.GetXTimesCrossingsCrossed());
+
+                listBox1.Items.Add("Date performed: ");
+                listBox1.Items.Add(x.DatePerformed.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Time passed: ");
+                listBox1.Items.Add(x.TimePassed.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Total cars: ");
+                listBox1.Items.Add(x.TotalCars.ToString());
+
+                listBox1.Items.Add("");
+
+                listBox1.Items.Add("Successfully crossings of cars: ");
+                listBox1.Items.Add(x.CarsCrossed.ToString());
+            };
+        }
+
+        /// <summary>
+        /// Split up in a separate function since after loading a new grid, it should be attached
+        /// and to reduce repetitions the piece of code is split up into a method.
+        /// </summary>
+        private void AttachGrid()
+        {
+            this.manager.Grid.OnCrossingAdded += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = crossing.Image;
+            };
+
+            this.manager.Grid.OnCrossingRemoved += (crossing, row, column) =>
+            {
+                int id = row * 3 + column;
+                this.slotIDToPBoxLookup[id].Image = null;
             };
         }
 
@@ -343,6 +376,13 @@ namespace TrafficLights
             System.Windows.Forms.DialogResult result = d.ShowDialog();
             if(result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 manager.LoadFromFile(d.FileName);
+
+            // Attach the newly loaded grid.
+            this.AttachGrid();
+
+            // Refresh the results listbox.
+            listBox1.Items.Clear();
+
         }
 
         private void ShowSaveDialog()
@@ -366,6 +406,9 @@ namespace TrafficLights
                     ShowSaveDialog();
             manager.CreateNewGrid();
             RefreshAll();
+
+            // Refresh the results listbox.
+            listBox1.Items.Clear();
         }
 
         private void undoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -438,16 +481,17 @@ namespace TrafficLights
         }
 
         private void btnSaveStats_Click(object sender, EventArgs e)
-        {
-            // for testing purpose.
-            SimulationResult test = new SimulationResult(new Simulation(new Grid(20)));
-            test.ExportToExcel("bla");
-
-            if(manager.CurrentSimulation != null)
+        { 
+            if(this.manager.CurrentSimulation.CurrentSimulationResult != null)
             {
-                //todo stop simulation
-                //todo excel; snapshot
-                
+                SaveFileDialog dlgResult = new SaveFileDialog();
+                System.Windows.Forms.DialogResult result = dlgResult.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                   this.manager.CurrentSimulation.CurrentSimulationResult.ExportToExcel(dlgResult.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Results still do not exist!");
             }
         }
         private void SelectComponent(PictureBox sender, MouseEventArgs e)
@@ -752,6 +796,23 @@ namespace TrafficLights
         {
             SavedManagerForm smform = new SavedManagerForm(manager);
             smform.Show();
+        }
+
+        private void buttonCreateSnapshot_Click(object sender, EventArgs e)
+        {
+            if(this.manager.CurrentSimulation.CurrentSimulationResult!= null)
+            {
+                SaveFileDialog d = new SaveFileDialog();
+                System.Windows.Forms.DialogResult result = d.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                    this.manager.CurrentSimulation.CurrentSimulationResult.CreateSnapShot(d.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Results still do not exist!");
+            }
+          
+                
         }
     }
 }

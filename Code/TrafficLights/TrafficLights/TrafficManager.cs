@@ -82,7 +82,7 @@ namespace TrafficLights
             this.RecycleCrossingManager = new RecycleManager();
             this.SavedCrossingManager = new SavedManager();
             this.CreateSimulation();
-            this.CurrentSimulation = new Simulation(this.Grid);
+            //this.CurrentSimulation = new Simulation(this.Grid);
 
         }
 
@@ -101,9 +101,9 @@ namespace TrafficLights
         /// </summary>
         public void CreateSimulation()
         {
-           // if (this.CurrentSimulation != null) 
-           //     this.CurrentSimulation.Stop();
-            //this.CurrentSimulation = new Simulation(this.Grid);
+            if (this.CurrentSimulation != null) 
+                this.CurrentSimulation.Stop();
+            this.CurrentSimulation = new Simulation(this.Grid);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace TrafficLights
 
                 myBinaryFormatter.Serialize(myFileStream, this.Grid);
                 CurrentLoadedPath = filepath;
-                //Notify for success?
+                MessageBox.Show("Successfully saved!");
             }
 
             catch (SerializationException e)
@@ -238,21 +238,6 @@ namespace TrafficLights
                 this.Grid = (Grid)myBinaryFormatter.Deserialize(myFileStream);
                 CurrentLoadedPath = filepath;
                 ProcessNewGridLoaded();
-
-                // to be used for testing of the load functionality
-                // if you want to test it, create a grid with a crossing on place 3 (first one, second row)
-                // then load it and it should say "correct"
-
-                //if(this.Grid.CrossingAt(3) == null)
-                //{
-                //    MessageBox.Show("not correct");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("correct");
-                //}
-
-                //Notify for success?
             }
 
             catch (Exception e)

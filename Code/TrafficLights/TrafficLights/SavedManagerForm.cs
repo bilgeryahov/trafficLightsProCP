@@ -26,7 +26,7 @@ namespace TrafficLights
             
         }
 
-        private void UpdatePanel()
+        public void UpdatePanel()
         {
             panel1.Controls.Clear();
 

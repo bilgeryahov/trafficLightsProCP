@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrafficLights.Properties;
 
 namespace TrafficLights
 {
@@ -15,6 +16,14 @@ namespace TrafficLights
         public Manual()
         {
             InitializeComponent();
+            FillRichText();
+        }
+
+        public void FillRichText()
+        {
+            var content = Resources.manual;
+            rtbxManual.Text = content;
+
         }
     }
 }

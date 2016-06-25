@@ -66,8 +66,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.listViewResults = new System.Windows.Forms.ListView();
             this.btnSaveStats = new System.Windows.Forms.Button();
             this.propertiesEditGBox = new System.Windows.Forms.GroupBox();
             this.cbApplyCrossing = new System.Windows.Forms.CheckBox();
@@ -102,6 +102,8 @@
             this.gridSlot1 = new System.Windows.Forms.PictureBox();
             this.PicBoxTypeB = new System.Windows.Forms.PictureBox();
             this.PicBoxTypeA = new System.Windows.Forms.PictureBox();
+            this.buttonCreateSnapshot = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.propertiesEditGBox.SuspendLayout();
@@ -374,7 +376,8 @@
             // lbActions
             // 
             this.lbActions.FormattingEnabled = true;
-            this.lbActions.Location = new System.Drawing.Point(12, 524);
+            this.lbActions.HorizontalScrollbar = true;
+            this.lbActions.Location = new System.Drawing.Point(8, 547);
             this.lbActions.Name = "lbActions";
             this.lbActions.Size = new System.Drawing.Size(202, 121);
             this.lbActions.TabIndex = 69;
@@ -403,16 +406,27 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.buttonCreateSnapshot);
+            this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.listViewResults);
             this.groupBox1.Controls.Add(this.btnSaveStats);
             this.groupBox1.Font = new System.Drawing.Font("Baskerville Old Face", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(861, 90);
+            this.groupBox1.Location = new System.Drawing.Point(861, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(207, 600);
+            this.groupBox1.Size = new System.Drawing.Size(207, 651);
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Simulation Results";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 18;
+            this.listBox1.Location = new System.Drawing.Point(7, 84);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(194, 508);
+            this.listBox1.TabIndex = 89;
             // 
             // label10
             // 
@@ -424,14 +438,6 @@
             this.label10.TabIndex = 88;
             this.label10.Text = "Save results";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // listViewResults
-            // 
-            this.listViewResults.Location = new System.Drawing.Point(6, 72);
-            this.listViewResults.Name = "listViewResults";
-            this.listViewResults.Size = new System.Drawing.Size(193, 523);
-            this.listViewResults.TabIndex = 77;
-            this.listViewResults.UseCompatibleStateImageBehavior = false;
             // 
             // btnSaveStats
             // 
@@ -455,7 +461,7 @@
             this.propertiesEditGBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.propertiesEditGBox.Location = new System.Drawing.Point(5, 348);
             this.propertiesEditGBox.Name = "propertiesEditGBox";
-            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 154);
+            this.propertiesEditGBox.Size = new System.Drawing.Size(217, 167);
             this.propertiesEditGBox.TabIndex = 81;
             this.propertiesEditGBox.TabStop = false;
             this.propertiesEditGBox.Text = "Properties";
@@ -491,7 +497,7 @@
             // 
             // updatePropertiesBtn
             // 
-            this.updatePropertiesBtn.Location = new System.Drawing.Point(55, 121);
+            this.updatePropertiesBtn.Location = new System.Drawing.Point(74, 126);
             this.updatePropertiesBtn.Name = "updatePropertiesBtn";
             this.updatePropertiesBtn.Size = new System.Drawing.Size(111, 27);
             this.updatePropertiesBtn.TabIndex = 89;
@@ -514,7 +520,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Baskerville Old Face", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(11, 495);
+            this.label8.Location = new System.Drawing.Point(12, 518);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 26);
             this.label8.TabIndex = 83;
@@ -582,7 +588,7 @@
             // 
             this.redoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("redoBtn.BackgroundImage")));
             this.redoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.redoBtn.Location = new System.Drawing.Point(174, 651);
+            this.redoBtn.Location = new System.Drawing.Point(174, 674);
             this.redoBtn.Name = "redoBtn";
             this.redoBtn.Size = new System.Drawing.Size(40, 40);
             this.redoBtn.TabIndex = 85;
@@ -593,7 +599,7 @@
             // 
             this.undoBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("undoBtn.BackgroundImage")));
             this.undoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.undoBtn.Location = new System.Drawing.Point(128, 651);
+            this.undoBtn.Location = new System.Drawing.Point(128, 674);
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.Size = new System.Drawing.Size(40, 40);
             this.undoBtn.TabIndex = 84;
@@ -801,6 +807,28 @@
             this.PicBoxTypeA.TabIndex = 58;
             this.PicBoxTypeA.TabStop = false;
             // 
+            // buttonCreateSnapshot
+            // 
+            this.buttonCreateSnapshot.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCreateSnapshot.BackgroundImage")));
+            this.buttonCreateSnapshot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonCreateSnapshot.Location = new System.Drawing.Point(7, 605);
+            this.buttonCreateSnapshot.Name = "buttonCreateSnapshot";
+            this.buttonCreateSnapshot.Size = new System.Drawing.Size(40, 40);
+            this.buttonCreateSnapshot.TabIndex = 90;
+            this.buttonCreateSnapshot.UseVisualStyleBackColor = true;
+            this.buttonCreateSnapshot.Click += new System.EventHandler(this.buttonCreateSnapshot_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(55, 619);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 16);
+            this.label7.TabIndex = 91;
+            this.label7.Text = "Create snapshot";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -926,7 +954,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSaveStats;
-        private System.Windows.Forms.ListView listViewResults;
         private System.Windows.Forms.GroupBox propertiesEditGBox;
         private System.Windows.Forms.Label propertiesLbl;
         private System.Windows.Forms.Button btnRestart;
@@ -945,6 +972,9 @@
         private System.Windows.Forms.CheckBox cbApply;
         private System.Windows.Forms.Button btnSaveCrossingManager;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonCreateSnapshot;
     }
 }
 

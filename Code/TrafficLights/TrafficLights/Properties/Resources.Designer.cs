@@ -81,6 +81,25 @@ namespace TrafficLights.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Traffic Lights System can help you develop traffic in your city. This guide introduces you to Traffic Lights System¡¯s useful features.
+        ///
+        ///Features 
+        ///
+        ///From the main interface, you can find File menu, Edit menu and Help menu on the top; Crossing Types, Crossing Options and States on the left side; start, pause, stop, restart, increase and decrease simulation speed and grid area from middle; Simulation Results on the right side.
+        ///	1.	File
+        ///		-	New Grid
+        ///			Create a new grid.
+        ///
+        ///		-	Load Grid 
+        ///			Load a  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string manual {
+            get {
+                return ResourceManager.GetString("manual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pause {

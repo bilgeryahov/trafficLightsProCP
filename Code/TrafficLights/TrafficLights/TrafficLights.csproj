@@ -104,6 +104,8 @@
     <Compile Include="Trafficlight.cs" />
     <Compile Include="UndoableAction.cs" />
     <Compile Include="ActionStack.cs" />
+    <Compile Include="UpdateMultipleFlowAction.cs" />
+    <Compile Include="UpdateMultipleIntervalAction.cs" />
     <Compile Include="UpdateFlowAction.cs" />
     <Compile Include="UpdateLightIntervalAction.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -150,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\cross 1.bmp" />
+    <None Include="Resources\manual.txt" />
     <Content Include="Resources\save.png" />
   </ItemGroup>
   <ItemGroup>

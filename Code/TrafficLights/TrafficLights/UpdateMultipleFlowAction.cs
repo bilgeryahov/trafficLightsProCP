@@ -12,13 +12,17 @@ namespace TrafficLights
         private List<int> previousFlows;
         string OnString;
         public int Flow { get; set; }
-        public Crossing Crossing { get; set; }
+        public Crossing Crossing { get {return grid[CrossingRow][CrossingColumn];}}
+        int CrossingRow, CrossingColumn;
+        Grid grid;
 
         public UpdateMultipleFlowAction(int flow,Crossing crossing)
         {
             previousFlows = new List<int>();
             this.Flow = flow;
-            this.Crossing = crossing;
+            this.grid = crossing.Owner.Grid;
+            this.CrossingColumn = crossing.Column;
+            this.CrossingRow = crossing.Row;
             this.Lanes = crossing.Lanes.ToList();
             foreach (Lane lane in Lanes)
             {

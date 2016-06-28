@@ -8,7 +8,7 @@ namespace TrafficLights
 {
     public class UpdateMultipleFlowAction:UndoableAction
     {
-        List<Lane> Lanes = new List<Lane>();
+        List<Lane> Lanes { get { return Crossing.Lanes.ToList(); } }
         private List<int> previousFlows;
         string OnString;
         public int Flow { get; set; }
@@ -23,10 +23,13 @@ namespace TrafficLights
             this.grid = crossing.Owner.Grid;
             this.CrossingColumn = crossing.Column;
             this.CrossingRow = crossing.Row;
-            this.Lanes = crossing.Lanes.ToList();
+
             foreach (Lane lane in Lanes)
             {
                 previousFlows.Add(lane.Flow);
+                //Lane is of the crossing before it was deleted
+                //lane  has to be using the ID that is in the crossing, not the direct reference
+                
             }
         }
         protected override void OnUndo()

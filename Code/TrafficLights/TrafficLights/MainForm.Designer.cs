@@ -66,6 +66,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttonCreateSnapshot = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnSaveStats = new System.Windows.Forms.Button();
@@ -102,8 +104,6 @@
             this.gridSlot1 = new System.Windows.Forms.PictureBox();
             this.PicBoxTypeB = new System.Windows.Forms.PictureBox();
             this.PicBoxTypeA = new System.Windows.Forms.PictureBox();
-            this.buttonCreateSnapshot = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.propertiesEditGBox.SuspendLayout();
@@ -379,7 +379,7 @@
             this.lbActions.HorizontalScrollbar = true;
             this.lbActions.Location = new System.Drawing.Point(8, 547);
             this.lbActions.Name = "lbActions";
-            this.lbActions.Size = new System.Drawing.Size(202, 121);
+            this.lbActions.Size = new System.Drawing.Size(227, 121);
             this.lbActions.TabIndex = 69;
             // 
             // label1
@@ -418,6 +418,28 @@
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Simulation Results";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(55, 619);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 16);
+            this.label7.TabIndex = 91;
+            this.label7.Text = "Create snapshot";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // buttonCreateSnapshot
+            // 
+            this.buttonCreateSnapshot.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCreateSnapshot.BackgroundImage")));
+            this.buttonCreateSnapshot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonCreateSnapshot.Location = new System.Drawing.Point(7, 605);
+            this.buttonCreateSnapshot.Name = "buttonCreateSnapshot";
+            this.buttonCreateSnapshot.Size = new System.Drawing.Size(40, 40);
+            this.buttonCreateSnapshot.TabIndex = 90;
+            this.buttonCreateSnapshot.UseVisualStyleBackColor = true;
+            this.buttonCreateSnapshot.Click += new System.EventHandler(this.buttonCreateSnapshot_Click);
             // 
             // listBox1
             // 
@@ -806,28 +828,6 @@
             this.PicBoxTypeA.Size = new System.Drawing.Size(68, 64);
             this.PicBoxTypeA.TabIndex = 58;
             this.PicBoxTypeA.TabStop = false;
-            // 
-            // buttonCreateSnapshot
-            // 
-            this.buttonCreateSnapshot.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCreateSnapshot.BackgroundImage")));
-            this.buttonCreateSnapshot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonCreateSnapshot.Location = new System.Drawing.Point(7, 605);
-            this.buttonCreateSnapshot.Name = "buttonCreateSnapshot";
-            this.buttonCreateSnapshot.Size = new System.Drawing.Size(40, 40);
-            this.buttonCreateSnapshot.TabIndex = 90;
-            this.buttonCreateSnapshot.UseVisualStyleBackColor = true;
-            this.buttonCreateSnapshot.Click += new System.EventHandler(this.buttonCreateSnapshot_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Baskerville Old Face", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(55, 619);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 16);
-            this.label7.TabIndex = 91;
-            this.label7.Text = "Create snapshot";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MainForm
             // 

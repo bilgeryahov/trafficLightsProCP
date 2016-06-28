@@ -58,7 +58,7 @@ namespace TrafficLights
                     {
                         if (!isApplying)
                             propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
-                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                      
                             slotIDToPBoxLookup[(actionRedone as UpdateMultipleIntervalAction).Crossing.Column + (actionRedone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
                     }
                 }
@@ -68,8 +68,10 @@ namespace TrafficLights
                     {
                         if(!isApplying)
                             propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
-                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                        //if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
                             slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
+                        //ORLY
+                        //yes
                     }
                 }
             };
@@ -101,17 +103,18 @@ namespace TrafficLights
                     {
                         if (!isApplying)
                             propertiesEditNUD.Value = (decimal)manager.CurrentActiveTrafficLight.GreenSeconds;
-                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
-                            slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
+                        
+                        slotIDToPBoxLookup[(actionUndone as UpdateMultipleIntervalAction).Crossing.Column + (actionUndone as UpdateMultipleIntervalAction).Crossing.Row * 3].Invalidate();
                     }
                 }
                 else if (actionUndone is UpdateMultipleFlowAction)
                 {
                     if (manager.CurrentActiveLane != null)
                     {
+                        
                         if (!isApplying)
                             propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
-                        if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
+                        //if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
                             slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                     }
                 }

@@ -30,7 +30,7 @@ namespace TrafficLights
             Light.GreenSeconds = previousInterval;
             OnString = "Interval change from {1} to {0}";
         }
-
+        
         /// <summary>
         /// Defines changes to apply
         /// </summary>

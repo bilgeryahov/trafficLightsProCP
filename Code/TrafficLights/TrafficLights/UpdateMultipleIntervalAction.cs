@@ -8,17 +8,20 @@ namespace TrafficLights
 {
     public class UpdateMultipleIntervalAction : UndoableAction
     {
-        private List<Trafficlight> Lights = new List<Trafficlight>();
+        private List<Trafficlight> Lights { get { return Crossing.Lights.ToList(); } }
         private List<float> previousIntervals;
-        public Crossing Crossing { get; set; }
+        public Crossing Crossing { get { return grid[CrossingRow][CrossingColumn]; } }
+        int CrossingRow, CrossingColumn;
         string OnString;
+        Grid grid;
         public float Interval { get; private set; }
         public UpdateMultipleIntervalAction(float interval, Crossing crossing)
         {
             previousIntervals = new List<float>();
-            this.Crossing = crossing;
-            this.Lights = crossing.Lights.ToList();
+            this.grid = crossing.Owner.Grid;
             this.Interval = interval;
+            this.CrossingColumn = crossing.Column;
+            this.CrossingRow = crossing.Row;
             foreach (Trafficlight light in Lights)
             {
                 previousIntervals.Add(light.GreenSeconds);

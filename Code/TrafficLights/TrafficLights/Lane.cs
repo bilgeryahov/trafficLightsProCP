@@ -39,16 +39,16 @@ namespace TrafficLights
                 if (!this.IsFeeder)
                 {
                     if (this.Owner.From == Direction.Down)
-                        if (Owner.Owner.NextCrosswalkBelow != null)
+                        if (Owner.Owner.NextCrossingBelow != null)
                             result = Owner.Owner.NextCrosswalkBelow.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (this.Owner.From == Direction.Left)
-                        if (Owner.Owner.NextCrosswalkLeft != null)
+                        if (Owner.Owner.NextCrossingOnLeft != null)
                             result = Owner.Owner.NextCrosswalkLeft.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (this.Owner.From == Direction.Right)
                         if (Owner.Owner.NextCrossingOnRight != null)
-                            result = Owner.Owner.NextCrossingOnRight.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
+                            result = Owner.Owner.NextCrosswalkRight.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (this.Owner.From == Direction.Up)
-                        if (Owner.Owner.NextCrosswalkAbove != null)
+                        if (Owner.Owner.NextCrossingAbove != null)
                             result = Owner.Owner.NextCrosswalkAbove.Lanes.Where(x => x.IsFeeder && this.From.HasFlag(x.From));
                     if (result == null)
                         return null;
@@ -123,22 +123,33 @@ namespace TrafficLights
             this.Owner = owner;
         }
 
+        private float lastReleased = 0;
+
         /// <summary>
         /// Updates the specified seconds.
         /// </summary>
         /// <param name="seconds">The seconds.</param>
         public override void Update(float seconds)
         {
-            if (Owner.Light.CurrentState == Trafficlight.State.Green)
+            lastReleased -= seconds;
+            if (Owner.Light.CurrentState == Trafficlight.State.Green && Owner.Light.TimeoutSeconds >= 1)
                 if (flowReleased < Flow)
                 {
-                    this.currentCarsOn.Add(new Car(this.X, this.Y, this));
-                    flowReleased += 1;
+                    if (lastReleased <= 0)
+                    {
+                        this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                        flowReleased += 1;
+                        lastReleased = 0.2f;
+                    }
                 }
                 else if (flowAccumulated > 0)
                 {
-                    this.currentCarsOn.Add(new Car(this.X, this.Y, this));
-                    flowAccumulated -= 1;
+                    if (lastReleased <= 0)
+                    {
+                        this.currentCarsOn.Add(new Car(this.X, this.Y, this));
+                        flowAccumulated -= 1;
+                        lastReleased = 0.2f;
+                    }
                 }
             foreach (Car car in this.currentCarsOn)
             {

@@ -69,10 +69,8 @@ namespace TrafficLights
                         if(!isApplying)
                             propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
                         //if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
-                            slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
-                        //ORLY
-                        //yes
-                    }
+                       
+                    }slotIDToPBoxLookup[(actionRedone as UpdateMultipleFlowAction).Crossing.Column + (actionRedone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                 }
             };
 
@@ -115,8 +113,8 @@ namespace TrafficLights
                         if (!isApplying)
                             propertiesEditNUD.Value = manager.CurrentActiveLane.Flow;
                         //if (manager.CurrentActiveLane.Owner.Owner.IsOnTheGrid)
-                            slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
-                    }
+                            
+                    }slotIDToPBoxLookup[(actionUndone as UpdateMultipleFlowAction).Crossing.Column + (actionUndone as UpdateMultipleFlowAction).Crossing.Row * 3].Invalidate();
                 }
             };
 
@@ -129,7 +127,7 @@ namespace TrafficLights
                 {
                     if (x == null)
                     {
-                        propertiesEditGBox.Visible = true;
+                        propertiesEditGBox.Visible = false;
                         return;
                     }
                     propertiesEditGBox.Visible = true;

@@ -220,6 +220,20 @@ namespace TrafficLights
             {
                 car.Draw(image);
             }
+            string flow = this.Flow.ToString();
+            if (this.flowReleased > 0 || this.flowAccumulated > 0) flow = (this.Flow - this.flowReleased + this.flowAccumulated) + "";
+            if (this.Owner.From == Direction.Down)
+            {
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X + 3, this.Y + 45);
+            }
+            else if (this.Owner.From == Direction.Right)
+            {
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X + 45, this.Y + 2);
+            }
+            else
+            {
+                image.DrawString(flow, new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 8), System.Drawing.Brushes.ForestGreen, this.X + 3, this.Y + 3);
+            }
         }
 
         public void Reset()
